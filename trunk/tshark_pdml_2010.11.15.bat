@@ -1,6 +1,11 @@
 echo 按照格式解码和过滤-过滤m3ua协议
 cd   D:\Program Files\Wireshark\
 tshark -V   -R "m3ua"  -r  D:\CMCC_SZ\merge_cap.pcap > D:\CMCC_SZ\merge_cap
+
+
+m3ua.protocol_data_si==SCCP || m3ua.protocol_data_si==ISUP
+
+
 echo 按照协议过滤的批处理-过滤m3ua协议
 cd   D:\Program Files\Wireshark\
 tshark -R "m3ua"  -r D:\DX188\2010-01-15-mgw-iu-cs0.pcap -w D:\DX188\0pcap
@@ -17,7 +22,10 @@ foreach $f ( <at> flist) {\
  if(/field name=\"$f\".*show=\"(.*?)\".*/){print "$f:$1,";}}'
 
 Tshark -r f:\t.pcap -X lua_script:trace_stats.lua -q
+
 tshark -r f:\t.pcap  -t ad -V -n frame.number==11 
+
+
 tshark -r f:\t.pcap  -t ad -V -n frame.number==11 -T pdml > test.xml
 tshark -r f:\t.pcap  -x -n frame.number==11
 tshark -r f:\t.pcap -T fields -e frame.number -e ip.src -e tcp.srcport -e ip.ttl -e ip.id
