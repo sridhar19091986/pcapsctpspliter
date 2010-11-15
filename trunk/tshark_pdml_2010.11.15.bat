@@ -2,8 +2,10 @@ echo 按照格式解码和过滤-过滤m3ua协议
 cd   D:\Program Files\Wireshark\
 tshark -V   -R "m3ua"  -r  D:\CMCC_SZ\merge_cap.pcap > D:\CMCC_SZ\merge_cap
 
-
 m3ua.protocol_data_si==SCCP || m3ua.protocol_data_si==ISUP
+
+
+tshark -V -R "m3ua.protocol_data_si==SCCP || m3ua.protocol_data_si==ISUP" -r D:\merge_cap.pcap > D:\merge_cap
 
 
 echo 按照协议过滤的批处理-过滤m3ua协议
