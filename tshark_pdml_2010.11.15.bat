@@ -7,6 +7,7 @@ m3ua.protocol_data_si==SCCP || m3ua.protocol_data_si==ISUP
 
 tshark -V -R "m3ua.protocol_data_si==SCCP || m3ua.protocol_data_si==ISUP" -r D:\merge_cap.pcap > D:\merge_cap
 
+tshark -R "m3ua.protocol_data_si==SCCP || m3ua.protocol_data_si==ISUP" -r mm.pcap -w mmm.pcap
 
 tshark -V -r ezsniff.pcap -n frame.num=1970 -d tcp.port==14000,oicq
 
