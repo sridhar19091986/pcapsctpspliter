@@ -56,6 +56,8 @@ namespace GnPlatForm.SqlServer
             string mysqlconnstring = ConfigurationManager.ConnectionStrings["guangzhou_0410Entities"].ToString();
             mysqlcontext = new guangzhou_0410Entities(mysqlconnstring);
 
+            mysqlcontext.CommandTimeout = 3600;
+
             string serverconnstring = ConfigurationManager.ConnectionStrings["GuangZhou_GnEntities"].ToString();
             servercontext = new GuangZhou_GnEntities(serverconnstring);
 
@@ -77,11 +79,13 @@ namespace GnPlatForm.SqlServer
         public void batchRun()
         {
             session_list=mysqlcontext.gn_common_201204181300
-                //.Take(2000000)
+                .Where(e=>e.Event_Type==4 || e.Event_Type ==5)
+                .Where(e=>e.APN.Length>1)
+                //.Take(10000000)
                 .Select(e=>new {e.Session_ID,e.IsReassemble})
                 .ToLookup(e=>e.Session_ID,e=>e.IsReassemble);
 
-            mysqlcontext.Connection.Close();
+            //mysqlcontext.Connection.Close();
 
             Console.WriteLine("session_list.Count:{0}", session_list.Count);
 
