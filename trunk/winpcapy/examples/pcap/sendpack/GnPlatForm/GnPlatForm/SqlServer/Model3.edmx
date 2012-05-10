@@ -200,7 +200,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="Model3" >
+      <Diagram Name="Model3" ZoomLevel="66" >
         <EntityTypeShape EntityType="GuangZhou_GnModel2.Gb_IP_Fragment" Width="1.5" PointX="0.75" PointY="0.75" Height="8.8728645833333317" />
       </Diagram>
     </Diagrams>

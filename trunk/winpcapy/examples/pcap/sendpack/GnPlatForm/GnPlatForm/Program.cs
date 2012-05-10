@@ -15,7 +15,7 @@
 
 
 //插入数据库，更新数据库？
-#define bulkdata_ef4
+//#define bulkdata_ef4
 
 
 //#define bulkdata_dblinq
@@ -60,7 +60,7 @@ namespace GnPlatForm
         static void Main(string[] args)
         {
 
-            Console.WriteLine("0|1:{0},1|1:{1},3<<3:{2},1&~1:{3}", 0 | 1, 1 | 1, 3 << 3, 1 & ~1);
+            Console.WriteLine("0|1:{0},1|1:{1},20<<3:{2},1&~1:{3}", 0 | 1, 1 | 1, 20 << 3, 1 & ~1);
 
 
 #if apriori_ab
@@ -84,8 +84,12 @@ namespace GnPlatForm
             //这样可以连续处理多个小时的数据？
             if (Convert.ToBoolean(ConfigurationManager.AppSettings["bulkserver"]) == true)
             {
-                MySqlToSqlServer2 mysql2server = new MySqlToSqlServer2(true);
+                //MySqlToSqlServer2 mysql2server = new MySqlToSqlServer2(true);
+
+                MySqlToSqlServer2 mysql2server = new MySqlToSqlServer2(false);
+
                 mysql2server.batchRun();
+
             }
 
 #endif

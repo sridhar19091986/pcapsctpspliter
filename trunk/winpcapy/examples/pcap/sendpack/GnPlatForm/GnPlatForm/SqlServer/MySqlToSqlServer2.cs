@@ -24,27 +24,25 @@ using GnPlatForm.AnalysisOut;
 using GnPlatForm.BusinessLogic;
 using System.Threading;
 using System.Windows.Forms;
+using System.IO;
 
 namespace GnPlatForm.SqlServer
 {
     public class MySqlToSqlServer2
     {
-
-        GuangZhou_GnEntities servercontext;
-
-        guangzhou_0410Entities mysqlcontext;
-
-        SychronizeCache<ConcurrentBag<mpos_gn_common>> sych;
-
-        string serverconn;
-
-        string mysqlconn;
-
+   
         private int pagesize = 0;
-
         private const int maxqueuelength = 10;
-
         private int cnt = 0;
+        ILookup<decimal, bool> session_list;
+        int bg = 1588;  
+        //2012.5.10生成的文件
+        //继续时，需要修改？
+        GuangZhou_GnEntities servercontext;
+        guangzhou_0410Entities mysqlcontext;
+        SychronizeCache<ConcurrentBag<mpos_gn_common>> sych;
+        string serverconn;
+        string mysqlconn;
 
         public MySqlToSqlServer2(bool crnewtable)
         {
@@ -54,11 +52,13 @@ namespace GnPlatForm.SqlServer
             pagesize = Convert.ToInt16(ConfigurationManager.AppSettings["pagesize"]);
 
             string mysqlconnstring = ConfigurationManager.ConnectionStrings["guangzhou_0410Entities"].ToString();
+
             mysqlcontext = new guangzhou_0410Entities(mysqlconnstring);
 
             mysqlcontext.CommandTimeout = 3600;
 
             string serverconnstring = ConfigurationManager.ConnectionStrings["GuangZhou_GnEntities"].ToString();
+
             servercontext = new GuangZhou_GnEntities(serverconnstring);
 
             serverconn = ConfigurationManager.ConnectionStrings["serverconn"].ToString();
@@ -72,18 +72,16 @@ namespace GnPlatForm.SqlServer
 
         }
 
-        ILookup<decimal, bool> session_list;
-
-        int bg = 0;
+ 
 
         public void batchRun()
         {
-            session_list=mysqlcontext.gn_common_201204181300
-                .Where(e=>e.Event_Type==4 || e.Event_Type ==5)
-                .Where(e=>e.APN.Length>1)
+            session_list = mysqlcontext.gn_common_201204181300
+                .Where(e => e.Event_Type == 4 || e.Event_Type == 5)
+                .Where(e => e.APN.Length > 1)
                 //.Take(10000000)
-                .Select(e=>new {e.Session_ID,e.IsReassemble})
-                .ToLookup(e=>e.Session_ID,e=>e.IsReassemble);
+                .Select(e => new { e.Session_ID, e.IsReassemble })
+                .ToLookup(e => e.Session_ID, e => e.IsReassemble);
 
             //mysqlcontext.Connection.Close();
 
@@ -98,10 +96,12 @@ namespace GnPlatForm.SqlServer
                 t.Start(i);
 
                 while (i - (cnt + bg) > maxqueuelength)  //这1点是纯数学的方法，检测线程等待的距离，2012.5.9
-                    //Thread.Sleep(10);
-                    Application.DoEvents();
+                    Thread.Sleep(1000);
+                //Application.DoEvents();
             }
+
             //Parallel.For(0, pagenum_max / pagesize + 1, (i) => produce(i, pagesize));
+
         }
 
         int sql_conn_num = 0;
@@ -115,6 +115,7 @@ namespace GnPlatForm.SqlServer
             using (guangzhou_0410Entities mysqlc = new guangzhou_0410Entities(mysqlconn))
             {
                 ConcurrentBag<mpos_gn_common> gnbag = new ConcurrentBag<mpos_gn_common>();
+
                 mysqlc.CommandTimeout = 3600;
 
                 var mysqls_split_id = session_list.Skip((int)pagenum * pagesize)
@@ -128,7 +129,12 @@ namespace GnPlatForm.SqlServer
                     (m) => Parallel.Invoke(() =>
                         LoadData(m, ref gnbag)));
 
-                Task.Factory.StartNew(() => bulkLoadToServer(gnbag));
+                try
+                {
+                    Task.Factory.StartNew(() => bulkLoadToServer(gnbag));
+                }
+                catch { }
+
                 mysqlc.Connection.Close();
             }
         }
@@ -141,12 +147,22 @@ namespace GnPlatForm.SqlServer
         }
 
         //private mpos_gn_common mpos;
+
+       
+
+        //更改bulk大小的问题？可以解决缓冲溢出的问题,stackoverload, bulk大小即分页大小，pagesize
+
+        //更改目标数据库的问题？nvarchar的问题,可以解决的问题
+
+        //Bulk Copy error The given value of type String from the data source cannot be converted to type nchar of the specified target column.
+
+
         private void bulkLoadToServer(ConcurrentBag<mpos_gn_common> rtlbags)
         {
 
             //CreateNewTable.KillSleepingConnections(0, ref sql_conn_num);
 
-            Application.DoEvents();
+            //Application.DoEvents();
 
             cnt++;
 
@@ -158,15 +174,31 @@ namespace GnPlatForm.SqlServer
             using (SqlConnection con = new SqlConnection(serverconn))
             {
                 con.Open();
-                using (SqlTransaction tran = con.BeginTransaction())
+                try
                 {
-                    var newOrders = rtlbags;
-                    SqlBulkCopy bc = new SqlBulkCopy(con, SqlBulkCopyOptions.KeepNulls, tran);
-                    bc.BulkCopyTimeout = 36000;
-                    bc.BatchSize = pagesize;
-                    bc.DestinationTableName = "mpos_gn_common";
-                    bc.WriteToServer(newOrders.AsDataReader());
-                    tran.Commit();
+                    using (SqlTransaction tran = con.BeginTransaction())
+                    {
+                        var newOrders = rtlbags;
+                        SqlBulkCopy bc = new SqlBulkCopy(con, SqlBulkCopyOptions.KeepNulls, tran);
+                        bc.BulkCopyTimeout = 36000;
+                        bc.BatchSize = pagesize + 20;
+                        bc.DestinationTableName = "mpos_gn_common";
+                        bc.WriteToServer(newOrders.AsDataReader());
+                        tran.Commit();
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("bulkToServer-error:{0}", cnt);
+
+                    using (var writer = new StreamWriter(cnt + ".txt", true, Encoding.UTF8))
+                    {
+                        writer.WriteLine("bulkToServer-error:{0}", cnt);
+                    }
+                }
+                finally
+                {
+                    con.Close();
                 }
                 con.Close();
             }

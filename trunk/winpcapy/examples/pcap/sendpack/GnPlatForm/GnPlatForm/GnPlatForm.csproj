@@ -167,10 +167,6 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <EntityDeploy Include="SqlServer\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <None Include="packages.config" />
     <EntityDeploy Include="SqlServer\Model2.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -183,6 +179,10 @@
     <EntityDeploy Include="SqlServer\Model4.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model4.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="SqlServer\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
