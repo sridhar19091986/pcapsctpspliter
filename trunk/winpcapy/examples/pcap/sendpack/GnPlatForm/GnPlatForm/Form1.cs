@@ -1216,7 +1216,13 @@ namespace GnPlatForm
                            //q.delay,
                            //q.resp_delay
                        };
-            var dborder = dbss.OrderByDescending(e => e.my_URI_Main).ThenBy(e => e.URI_Main);
+            //过滤，不然死机
+            var dborder = dbss.Where(e => e.total_tcp_reset > 500)
+                .OrderByDescending(e => e.my_URI_Main)
+                .ThenBy(e => e.URI_Main);
+
+            refreshGrid(dborder, 2);
+
             gridControl1.DataSource = dborder.ToList();
 
             refreshGrid(dborder, 2);
@@ -1376,7 +1382,8 @@ namespace GnPlatForm
                         
                        };
 
-            var dborder = dbss.OrderByDescending(e => e.summary)
+            //优化一下，不然死机
+            var dborder = dbss.Where(e=>e.cnt>100).OrderByDescending(e => e.summary)
                 .ThenBy(e=>e.my_URI_Main).ThenBy(e=>e.URI_Main).ThenByDescending(e=>e.cnt);
             //OrderByDescending(e => e.summary).ThenBy(e => e.my_DEST_IP).
             gridControl1.DataSource = dborder.ToList();
@@ -1413,6 +1420,15 @@ namespace GnPlatForm
             var dborder =suma.OrderByDescending(e => e.cnt);
             gridControl1.DataSource = dborder.ToList();
             refreshGrid(dborder, 0);
+        }
+
+        private void navBarItem29_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
+        {
+            var maxt = sqlserver_objectquery.Max(e => e.Start_Date_Time);
+            var mint = sqlserver_objectquery.Min(e => e.Start_Date_Time);
+            TimeSpan ts = maxt.Value - mint.Value;
+            var ttim = mint.Value.ToString() + "-" + maxt.Value.ToString() + "," + ts.TotalSeconds.ToString();
+            textBox1.Text = ttim.ToString();
         }
     }
 }

@@ -47,6 +47,7 @@
             this.navBarItem26 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem27 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem28 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem29 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup2 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem4 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem5 = new DevExpress.XtraNavBar.NavBarItem();
@@ -197,7 +198,8 @@
             this.navBarItem25,
             this.navBarItem26,
             this.navBarItem27,
-            this.navBarItem28});
+            this.navBarItem28,
+            this.navBarItem29});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 140;
@@ -218,7 +220,8 @@
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem25),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem26),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem27),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem28)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem28),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem29)});
             this.navBarGroup1.Name = "navBarGroup1";
             // 
             // navBarItem1
@@ -274,6 +277,12 @@
             this.navBarItem28.Caption = "Gn接口http请求错误码分布,APN->dest";
             this.navBarItem28.Name = "navBarItem28";
             this.navBarItem28.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem28_LinkClicked);
+            // 
+            // navBarItem29
+            // 
+            this.navBarItem29.Caption = "navBarItem29";
+            this.navBarItem29.Name = "navBarItem29";
+            this.navBarItem29.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem29_LinkClicked);
             // 
             // navBarGroup2
             // 
@@ -365,6 +374,7 @@
             // navBarGroup5
             // 
             this.navBarGroup5.Caption = "IP包分片优化专题-Gn接口的IP包3层分片分析";
+            this.navBarGroup5.Expanded = true;
             this.navBarGroup5.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem14),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem15),
@@ -536,5 +546,6 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem26;
         private DevExpress.XtraNavBar.NavBarItem navBarItem27;
         private DevExpress.XtraNavBar.NavBarItem navBarItem28;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem29;
     }
 }
