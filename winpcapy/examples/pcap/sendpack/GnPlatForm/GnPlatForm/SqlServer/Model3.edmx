@@ -7,6 +7,7 @@
     <Schema Namespace="GuangZhou_GnModel2.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="GuangZhou_GnModel2StoreContainer">
           <EntitySet Name="Gb_IP_Fragment" EntityType="GuangZhou_GnModel2.Store.Gb_IP_Fragment" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="imeitype" EntityType="GuangZhou_GnModel2.Store.imeitype" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
         <EntityType Name="Gb_IP_Fragment">
           <Key>
@@ -60,14 +61,34 @@
           <Property Name="bssgp_direction" Type="nvarchar" MaxLength="200" />
           <Property Name="bssgp_drx_timer" Type="nvarchar" MaxLength="200" />
           <Property Name="sndcp_segment" Type="int" />
+          <Property Name="sndcp_m" Type="nvarchar" MaxLength="200" />
+          <Property Name="udp_length" Type="int" />
+          <Property Name="gsm_a_imeisv" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="imeitype">
+          <Key>
+            <PropertyRef Name="imei" />
+          </Key>
+          <Property Name="imei" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="imeifactory" Type="nvarchar" MaxLength="50" />
+          <Property Name="imeiname" Type="nvarchar" MaxLength="500" />
         </EntityType>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="GuangZhou_GnModel2" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="GuangZhou_GnEntities2" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="imeitype" EntityType="GuangZhou_GnModel2.imeitype" />
           <EntitySet Name="Gb_IP_Fragment" EntityType="GuangZhou_GnModel2.Gb_IP_Fragment" />
         </EntityContainer>
+        <EntityType Name="imeitype">
+          <Key>
+            <PropertyRef Name="imei" />
+          </Key>
+          <Property Type="String" Name="imei" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="imeifactory" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="imeiname" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="Gb_IP_Fragment">
           <Key>
             <PropertyRef Name="FileNum" />
@@ -120,6 +141,9 @@
           <Property Type="String" Name="bssgp_direction" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="bssgp_drx_timer" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="sndcp_segment" />
+          <Property Type="String" Name="sndcp_m" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="udp_length" />
+          <Property Type="String" Name="gsm_a_imeisv" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -127,9 +151,21 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="GuangZhou_GnModel2StoreContainer" CdmEntityContainer="GuangZhou_GnEntities2" >
+        <EntitySetMapping Name="imeitype">
+            <EntityTypeMapping TypeName="GuangZhou_GnModel2.imeitype">
+              <MappingFragment StoreEntitySet="imeitype">
+                <ScalarProperty Name="imeiname" ColumnName="imeiname" />
+                <ScalarProperty Name="imeifactory" ColumnName="imeifactory" />
+                <ScalarProperty Name="imei" ColumnName="imei" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Gb_IP_Fragment">
             <EntityTypeMapping TypeName="GuangZhou_GnModel2.Gb_IP_Fragment">
               <MappingFragment StoreEntitySet="Gb_IP_Fragment">
+                <ScalarProperty Name="gsm_a_imeisv" ColumnName="gsm_a_imeisv" />
+                <ScalarProperty Name="udp_length" ColumnName="udp_length" />
+                <ScalarProperty Name="sndcp_m" ColumnName="sndcp_m" />
                 <ScalarProperty Name="sndcp_segment" ColumnName="sndcp_segment" />
                 <ScalarProperty Name="bssgp_drx_timer" ColumnName="bssgp_drx_timer" />
                 <ScalarProperty Name="bssgp_direction" ColumnName="bssgp_direction" />
@@ -200,8 +236,9 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="Model3" ZoomLevel="66" >
-        <EntityTypeShape EntityType="GuangZhou_GnModel2.Gb_IP_Fragment" Width="1.5" PointX="0.75" PointY="0.75" Height="8.8728645833333317" />
+      <Diagram Name="Model3" ZoomLevel="62" >
+        <EntityTypeShape EntityType="GuangZhou_GnModel2.imeitype" Width="1.5" PointX="4.875" PointY="2.375" Height="1.4535937499999996" />
+        <EntityTypeShape EntityType="GuangZhou_GnModel2.Gb_IP_Fragment" Width="1.5" PointX="0.75" PointY="0.75" Height="9.3787239583333317" />
       </Diagram>
     </Diagrams>
   </Designer>

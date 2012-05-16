@@ -68,6 +68,22 @@ namespace GnPlatForm.SqlServer
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<imeitype> imeitype
+        {
+            get
+            {
+                if ((_imeitype == null))
+                {
+                    _imeitype = base.CreateObjectSet<imeitype>("imeitype");
+                }
+                return _imeitype;
+            }
+        }
+        private ObjectSet<imeitype> _imeitype;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<Gb_IP_Fragment> Gb_IP_Fragment
         {
             get
@@ -83,6 +99,14 @@ namespace GnPlatForm.SqlServer
 
         #endregion
         #region AddTo Methods
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the imeitype EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToimeitype(imeitype imeitype)
+        {
+            base.AddObject("imeitype", imeitype);
+        }
     
         /// <summary>
         /// Deprecated Method for adding a new object to the Gb_IP_Fragment EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
@@ -1259,6 +1283,181 @@ namespace GnPlatForm.SqlServer
         private Nullable<global::System.Int32> _sndcp_segment;
         partial void Onsndcp_segmentChanging(Nullable<global::System.Int32> value);
         partial void Onsndcp_segmentChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String sndcp_m
+        {
+            get
+            {
+                return _sndcp_m;
+            }
+            set
+            {
+                Onsndcp_mChanging(value);
+                ReportPropertyChanging("sndcp_m");
+                _sndcp_m = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("sndcp_m");
+                Onsndcp_mChanged();
+            }
+        }
+        private global::System.String _sndcp_m;
+        partial void Onsndcp_mChanging(global::System.String value);
+        partial void Onsndcp_mChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> udp_length
+        {
+            get
+            {
+                return _udp_length;
+            }
+            set
+            {
+                Onudp_lengthChanging(value);
+                ReportPropertyChanging("udp_length");
+                _udp_length = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("udp_length");
+                Onudp_lengthChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _udp_length;
+        partial void Onudp_lengthChanging(Nullable<global::System.Int32> value);
+        partial void Onudp_lengthChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String gsm_a_imeisv
+        {
+            get
+            {
+                return _gsm_a_imeisv;
+            }
+            set
+            {
+                Ongsm_a_imeisvChanging(value);
+                ReportPropertyChanging("gsm_a_imeisv");
+                _gsm_a_imeisv = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("gsm_a_imeisv");
+                Ongsm_a_imeisvChanged();
+            }
+        }
+        private global::System.String _gsm_a_imeisv;
+        partial void Ongsm_a_imeisvChanging(global::System.String value);
+        partial void Ongsm_a_imeisvChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="GuangZhou_GnModel2", Name="imeitype")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class imeitype : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new imeitype object.
+        /// </summary>
+        /// <param name="imei">Initial value of the imei property.</param>
+        public static imeitype Createimeitype(global::System.String imei)
+        {
+            imeitype imeitype = new imeitype();
+            imeitype.imei = imei;
+            return imeitype;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String imei
+        {
+            get
+            {
+                return _imei;
+            }
+            set
+            {
+                if (_imei != value)
+                {
+                    OnimeiChanging(value);
+                    ReportPropertyChanging("imei");
+                    _imei = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("imei");
+                    OnimeiChanged();
+                }
+            }
+        }
+        private global::System.String _imei;
+        partial void OnimeiChanging(global::System.String value);
+        partial void OnimeiChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String imeifactory
+        {
+            get
+            {
+                return _imeifactory;
+            }
+            set
+            {
+                OnimeifactoryChanging(value);
+                ReportPropertyChanging("imeifactory");
+                _imeifactory = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("imeifactory");
+                OnimeifactoryChanged();
+            }
+        }
+        private global::System.String _imeifactory;
+        partial void OnimeifactoryChanging(global::System.String value);
+        partial void OnimeifactoryChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String imeiname
+        {
+            get
+            {
+                return _imeiname;
+            }
+            set
+            {
+                OnimeinameChanging(value);
+                ReportPropertyChanging("imeiname");
+                _imeiname = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("imeiname");
+                OnimeinameChanged();
+            }
+        }
+        private global::System.String _imeiname;
+        partial void OnimeinameChanging(global::System.String value);
+        partial void OnimeinameChanged();
 
         #endregion
     

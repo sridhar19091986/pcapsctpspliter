@@ -59,6 +59,11 @@ namespace GnPlatForm
           [STAThread]
         static void Main(string[] args)
         {
+              int[] a=new int[]{1,2,3};
+              int[] b=new int[]{1,2};
+              var c = a.Intersect(b);
+              foreach(var m in c)
+            Console.WriteLine(m);
 
             Console.WriteLine("0|1:{0},1|1:{1},20<<3:{2},1&~1:{3}", 0 | 1, 1 | 1, 20 << 3, 1 & ~1);
 
