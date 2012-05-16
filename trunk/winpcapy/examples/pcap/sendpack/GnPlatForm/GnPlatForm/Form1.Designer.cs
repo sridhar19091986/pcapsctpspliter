@@ -72,6 +72,12 @@
             this.navBarItem20 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem21 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem23 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroup7 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItem30 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem31 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem32 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem33 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem34 = new DevExpress.XtraNavBar.NavBarItem();
             this.dockPanel1 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -169,7 +175,8 @@
             this.navBarGroup3,
             this.navBarGroup4,
             this.navBarGroup5,
-            this.navBarGroup6});
+            this.navBarGroup6,
+            this.navBarGroup7});
             this.navBarControl1.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
             this.navBarItem1,
             this.navBarItem2,
@@ -199,7 +206,12 @@
             this.navBarItem26,
             this.navBarItem27,
             this.navBarItem28,
-            this.navBarItem29});
+            this.navBarItem29,
+            this.navBarItem30,
+            this.navBarItem31,
+            this.navBarItem32,
+            this.navBarItem33,
+            this.navBarItem34});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 140;
@@ -210,7 +222,6 @@
             // navBarGroup1
             // 
             this.navBarGroup1.Caption = "Gn接口http性能优化-TCP reset信令流程分析";
-            this.navBarGroup1.Expanded = true;
             this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem1),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem2),
@@ -374,7 +385,6 @@
             // navBarGroup5
             // 
             this.navBarGroup5.Caption = "IP包分片优化专题-Gn接口的IP包3层分片分析";
-            this.navBarGroup5.Expanded = true;
             this.navBarGroup5.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem14),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem15),
@@ -446,6 +456,48 @@
             this.navBarItem23.Caption = "Gb接口的SNDCP分片";
             this.navBarItem23.Name = "navBarItem23";
             this.navBarItem23.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem23_LinkClicked);
+            // 
+            // navBarGroup7
+            // 
+            this.navBarGroup7.Caption = "IP包分片优化专题-Gb接口IP分片优化建议2";
+            this.navBarGroup7.Expanded = true;
+            this.navBarGroup7.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem30),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem31),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem32),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem33),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem34)});
+            this.navBarGroup7.Name = "navBarGroup7";
+            // 
+            // navBarItem30
+            // 
+            this.navBarItem30.Caption = "ip2_len > 1440比例分布";
+            this.navBarItem30.Name = "navBarItem30";
+            this.navBarItem30.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem30_LinkClicked);
+            // 
+            // navBarItem31
+            // 
+            this.navBarItem31.Caption = "IP分片和SNDCP分片信令统计";
+            this.navBarItem31.Name = "navBarItem31";
+            this.navBarItem31.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem31_LinkClicked);
+            // 
+            // navBarItem32
+            // 
+            this.navBarItem32.Caption = "IP分片之后的特征";
+            this.navBarItem32.Name = "navBarItem32";
+            this.navBarItem32.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem32_LinkClicked);
+            // 
+            // navBarItem33
+            // 
+            this.navBarItem33.Caption = "tcp_options_mss_val信令统计";
+            this.navBarItem33.Name = "navBarItem33";
+            this.navBarItem33.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem33_LinkClicked);
+            // 
+            // navBarItem34
+            // 
+            this.navBarItem34.Caption = "IP分片IMEI";
+            this.navBarItem34.Name = "navBarItem34";
+            this.navBarItem34.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem34_LinkClicked);
             // 
             // dockPanel1
             // 
@@ -547,5 +599,11 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem27;
         private DevExpress.XtraNavBar.NavBarItem navBarItem28;
         private DevExpress.XtraNavBar.NavBarItem navBarItem29;
+        private DevExpress.XtraNavBar.NavBarGroup navBarGroup7;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem30;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem31;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem32;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem33;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem34;
     }
 }
