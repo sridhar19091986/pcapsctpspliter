@@ -1,0 +1,5 @@
+G:\wysf\AutoSql_Ts\AutoSql_Ts\bin\Debug\AutoSql_Ts.exe
+G:\wysf\AutoSql_Ts\AutoSql_Ts\bin\Debug\AutoSql_Ts.pdb
+G:\wysf\AutoSql_Ts\AutoSql_Ts\obj\x86\Debug\ResolveAssemblyReference.cache
+G:\wysf\AutoSql_Ts\AutoSql_Ts\obj\x86\Debug\AutoSql_Ts.exe
+G:\wysf\AutoSql_Ts\AutoSql_Ts\obj\x86\Debug\AutoSql_Ts.pdb

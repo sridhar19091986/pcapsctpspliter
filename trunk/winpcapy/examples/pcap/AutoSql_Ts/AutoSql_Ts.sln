@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoSql_Ts", "AutoSql_Ts\AutoSql_Ts.csproj", "{545C5A79-91CD-439C-AE0E-5C1EBEEFA051}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C8663EF3-D60A-4159-978A-D747BCC34362}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{545C5A79-91CD-439C-AE0E-5C1EBEEFA051}.Debug|x86.ActiveCfg = Debug|x86
+		{545C5A79-91CD-439C-AE0E-5C1EBEEFA051}.Debug|x86.Build.0 = Debug|x86
+		{545C5A79-91CD-439C-AE0E-5C1EBEEFA051}.Release|x86.ActiveCfg = Release|x86
+		{545C5A79-91CD-439C-AE0E-5C1EBEEFA051}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
