@@ -1,0 +1,22 @@
+  //  static string field_ts = "`Online_ID`,`Session_ID`,`Start_Date_Time`,`End_Date_Time`,`SGSN_IP`,`SGSN`,`BSC_IP`,`BSC`,`LAC`,`CI`,`RAC`,`BVCI`,`TLLI`,`IMSI`,`IMEI`,`APN`,`Protocol`,`Event_Type`,`IP_LEN_UL`,`IP_LEN_DL`,`Count_Packet_UL`,`Count_Packet_DL`,`Duration`,`SOURCE_IP`,`DEST_IP`,`SOURCE_PORT`,`DEST_PORT`,`URI`,`URI_Main`,`X_Online_Host`,`referer`,`Content_Type_Part1`,`Content_Type_Part2`,`USER_AGENT_MAIN`,`Service_Type`,`Sub_Service_Type`,`Deactivate_PDP_Accept`,`Deactivate_PDP_Accept_Direction`,`Deactivate_PDP_Accept_DelayFirst`,`Detach_Accept`,`Detach_Accept_Direction`,`Detach_Accept_DelayFirst`,`Abnormal_reason`,`Request`,`Repeat`,`Reject`,`Reject_DelayFirst`,`Reject_Cause`,`Accept`,`Accept_DelayFirst`,`Complete`,`Complete_DelayFirst`,`NACK`,`NACK_Cause`,`ACK`,`ACK_DelayFirst`,`PTMSI`,`Type`,`Authentication_Request`,`Authentication_Response`,`ID_REQ`,`ID_RESP`,`ID_RESP_DelayFirst`,`Acknowledge`,`Detach_Cause`,`Detach_Direction`,`Assign IP`,`Deactivate_Direction`,`Deactivate_Cause`,`Radio_Status`,`Radio_Cause`,`MS_Bucket_Size`,`Bucket_Leak_Rate`,`Bucket_Full_Ratio`,`BVCI(Old)`,`BVCI(New)`,`LLC_Discarded`,`Octets_Affected`,`LAC_OLD`,`RAC_OLD`,`Reply`,`Reply_delayFirst`,`Reply_Status`,`Result`,`Result_Delayfirst`,`Conf`,`Conf_Delayfirst`,`Disconnect`,`Abort`,`Query_Name`,`Query_Type`,`Response`,`Response_delayFirst`,`Response_Code`,`DNS_TTL`,`SP_Address`,`From`,`To`,`Subject`,`Delivery_Report`,`MMS_resp_status`,`Read_report`,`Identifier`,`ErrorPacketLost`,`ErrorPacketWired`,`ErrorPacketWireless`,`IpLenDlAck`,`IpLenUpAck`,`Ack_delay`,`GPRS_multislot_E`,`EDGE_multislot_E`,`Umts_128TDD_E`,`Umts_FDD_E`,`GPRS_multislot_1800`,`EDGE_multislot_1800`,`Umts_128TDD_1800`,`Umts_FDD_1800`";
+        
+		//if  ((SELECT table_name FROM information_schema.tables 
+
+        //where table_schema ='att_req1' and table_name like 'att_req1%' ) 
+
+        //is not null) select * from  att_req1 
+
+        //SELECT table_name FROM information_schema.tables
+        /*
+         * DROP PROCEDURE IF EXISTS `sp_Check_Table`; 
+create procedure sp_check_table (IN p_tablename varchar(50))
+begin
+  select count(1) from information_schema.tables where table_name = p_tablename into @cnt;
+  if @cnt != 0 then 
+    select 'Table exists!';
+  else 
+    select 'Table not exists!';
+  end if;
+end;
+call sp_check_table('ab');
+         * */
