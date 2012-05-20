@@ -64,6 +64,13 @@
           <Property Name="sndcp_m" Type="nvarchar" MaxLength="200" />
           <Property Name="udp_length" Type="int" />
           <Property Name="gsm_a_imeisv" Type="nvarchar" MaxLength="200" />
+          <Property Name="llcgprs_xidtype" Type="int" />
+          <Property Name="llcgprs_xidbyte" Type="int" />
+          <Property Name="llcgprs_xid1type" Type="int" />
+          <Property Name="llcgprs_xidbyte1" Type="int" />
+          <Property Name="llcgprs_xid1byte2" Type="int" />
+          <Property Name="llcgprs_xid2type" Type="int" />
+          <Property Name="llcgprs_xid3type" Type="int" />
         </EntityType>
         <EntityType Name="imeitype">
           <Key>
@@ -144,6 +151,13 @@
           <Property Type="String" Name="sndcp_m" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="udp_length" />
           <Property Type="String" Name="gsm_a_imeisv" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="llcgprs_xidtype" />
+          <Property Type="Int32" Name="llcgprs_xidbyte" />
+          <Property Type="Int32" Name="llcgprs_xid1type" />
+          <Property Type="Int32" Name="llcgprs_xidbyte1" />
+          <Property Type="Int32" Name="llcgprs_xid1byte2" />
+          <Property Type="Int32" Name="llcgprs_xid2type" />
+          <Property Type="Int32" Name="llcgprs_xid3type" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -163,6 +177,13 @@
           <EntitySetMapping Name="Gb_IP_Fragment">
             <EntityTypeMapping TypeName="GuangZhou_GnModel2.Gb_IP_Fragment">
               <MappingFragment StoreEntitySet="Gb_IP_Fragment">
+                <ScalarProperty Name="llcgprs_xid3type" ColumnName="llcgprs_xid3type" />
+                <ScalarProperty Name="llcgprs_xid2type" ColumnName="llcgprs_xid2type" />
+                <ScalarProperty Name="llcgprs_xid1byte2" ColumnName="llcgprs_xid1byte2" />
+                <ScalarProperty Name="llcgprs_xidbyte1" ColumnName="llcgprs_xidbyte1" />
+                <ScalarProperty Name="llcgprs_xid1type" ColumnName="llcgprs_xid1type" />
+                <ScalarProperty Name="llcgprs_xidbyte" ColumnName="llcgprs_xidbyte" />
+                <ScalarProperty Name="llcgprs_xidtype" ColumnName="llcgprs_xidtype" />
                 <ScalarProperty Name="gsm_a_imeisv" ColumnName="gsm_a_imeisv" />
                 <ScalarProperty Name="udp_length" ColumnName="udp_length" />
                 <ScalarProperty Name="sndcp_m" ColumnName="sndcp_m" />
@@ -238,7 +259,7 @@
     <Diagrams>
       <Diagram Name="Model3" ZoomLevel="62" >
         <EntityTypeShape EntityType="GuangZhou_GnModel2.imeitype" Width="1.5" PointX="4.875" PointY="2.375" Height="1.4535937499999996" />
-        <EntityTypeShape EntityType="GuangZhou_GnModel2.Gb_IP_Fragment" Width="1.5" PointX="0.75" PointY="0.75" Height="9.3787239583333317" />
+        <EntityTypeShape EntityType="GuangZhou_GnModel2.Gb_IP_Fragment" Width="1.5" PointX="0.75" PointY="0.75" Height="10.5590625" />
       </Diagram>
     </Diagrams>
   </Designer>
