@@ -1355,6 +1355,174 @@ namespace GnPlatForm.SqlServer
         private global::System.String _gsm_a_imeisv;
         partial void Ongsm_a_imeisvChanging(global::System.String value);
         partial void Ongsm_a_imeisvChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> llcgprs_xidtype
+        {
+            get
+            {
+                return _llcgprs_xidtype;
+            }
+            set
+            {
+                Onllcgprs_xidtypeChanging(value);
+                ReportPropertyChanging("llcgprs_xidtype");
+                _llcgprs_xidtype = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("llcgprs_xidtype");
+                Onllcgprs_xidtypeChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _llcgprs_xidtype;
+        partial void Onllcgprs_xidtypeChanging(Nullable<global::System.Int32> value);
+        partial void Onllcgprs_xidtypeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> llcgprs_xidbyte
+        {
+            get
+            {
+                return _llcgprs_xidbyte;
+            }
+            set
+            {
+                Onllcgprs_xidbyteChanging(value);
+                ReportPropertyChanging("llcgprs_xidbyte");
+                _llcgprs_xidbyte = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("llcgprs_xidbyte");
+                Onllcgprs_xidbyteChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _llcgprs_xidbyte;
+        partial void Onllcgprs_xidbyteChanging(Nullable<global::System.Int32> value);
+        partial void Onllcgprs_xidbyteChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> llcgprs_xid1type
+        {
+            get
+            {
+                return _llcgprs_xid1type;
+            }
+            set
+            {
+                Onllcgprs_xid1typeChanging(value);
+                ReportPropertyChanging("llcgprs_xid1type");
+                _llcgprs_xid1type = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("llcgprs_xid1type");
+                Onllcgprs_xid1typeChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _llcgprs_xid1type;
+        partial void Onllcgprs_xid1typeChanging(Nullable<global::System.Int32> value);
+        partial void Onllcgprs_xid1typeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> llcgprs_xidbyte1
+        {
+            get
+            {
+                return _llcgprs_xidbyte1;
+            }
+            set
+            {
+                Onllcgprs_xidbyte1Changing(value);
+                ReportPropertyChanging("llcgprs_xidbyte1");
+                _llcgprs_xidbyte1 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("llcgprs_xidbyte1");
+                Onllcgprs_xidbyte1Changed();
+            }
+        }
+        private Nullable<global::System.Int32> _llcgprs_xidbyte1;
+        partial void Onllcgprs_xidbyte1Changing(Nullable<global::System.Int32> value);
+        partial void Onllcgprs_xidbyte1Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> llcgprs_xid1byte2
+        {
+            get
+            {
+                return _llcgprs_xid1byte2;
+            }
+            set
+            {
+                Onllcgprs_xid1byte2Changing(value);
+                ReportPropertyChanging("llcgprs_xid1byte2");
+                _llcgprs_xid1byte2 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("llcgprs_xid1byte2");
+                Onllcgprs_xid1byte2Changed();
+            }
+        }
+        private Nullable<global::System.Int32> _llcgprs_xid1byte2;
+        partial void Onllcgprs_xid1byte2Changing(Nullable<global::System.Int32> value);
+        partial void Onllcgprs_xid1byte2Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> llcgprs_xid2type
+        {
+            get
+            {
+                return _llcgprs_xid2type;
+            }
+            set
+            {
+                Onllcgprs_xid2typeChanging(value);
+                ReportPropertyChanging("llcgprs_xid2type");
+                _llcgprs_xid2type = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("llcgprs_xid2type");
+                Onllcgprs_xid2typeChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _llcgprs_xid2type;
+        partial void Onllcgprs_xid2typeChanging(Nullable<global::System.Int32> value);
+        partial void Onllcgprs_xid2typeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> llcgprs_xid3type
+        {
+            get
+            {
+                return _llcgprs_xid3type;
+            }
+            set
+            {
+                Onllcgprs_xid3typeChanging(value);
+                ReportPropertyChanging("llcgprs_xid3type");
+                _llcgprs_xid3type = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("llcgprs_xid3type");
+                Onllcgprs_xid3typeChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _llcgprs_xid3type;
+        partial void Onllcgprs_xid3typeChanging(Nullable<global::System.Int32> value);
+        partial void Onllcgprs_xid3typeChanged();
 
         #endregion
     

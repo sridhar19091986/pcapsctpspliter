@@ -81,6 +81,8 @@
             this.dockPanel1 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.navBarItem35 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem36 = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -211,7 +213,9 @@
             this.navBarItem31,
             this.navBarItem32,
             this.navBarItem33,
-            this.navBarItem34});
+            this.navBarItem34,
+            this.navBarItem35,
+            this.navBarItem36});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 140;
@@ -466,7 +470,9 @@
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem31),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem32),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem33),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem34)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem34),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem35),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem36)});
             this.navBarGroup7.Name = "navBarGroup7";
             // 
             // navBarItem30
@@ -524,6 +530,17 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(302, 21);
             this.textBox1.TabIndex = 17;
+            // 
+            // navBarItem35
+            // 
+            this.navBarItem35.Caption = "navBarItem35";
+            this.navBarItem35.Name = "navBarItem35";
+            this.navBarItem35.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem35_LinkClicked);
+            // 
+            // navBarItem36
+            // 
+            this.navBarItem36.Caption = "navBarItem36";
+            this.navBarItem36.Name = "navBarItem36";
             // 
             // Form1
             // 
@@ -605,5 +622,7 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem32;
         private DevExpress.XtraNavBar.NavBarItem navBarItem33;
         private DevExpress.XtraNavBar.NavBarItem navBarItem34;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem35;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem36;
     }
 }

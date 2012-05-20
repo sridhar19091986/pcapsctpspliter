@@ -1714,5 +1714,70 @@ namespace GnPlatForm
 
             //refreshGrid(dborder);
         }
+
+        private void navBarItem35_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
+        {
+            gridView1.PopulateColumns();
+            gridControl1.Refresh();
+
+            var imeity = servercontext2.imeitype.ToLookup(e => e.imei, e => e.imeiname);
+
+            var imsi_filenum_packetnum = gb_ip_fragment
+                .Where(e => e.gsm_a_imeisv != null)
+                .ToLookup(e => e.BeginFrameNum + e.BeginFileNum * 100000000);
+                //, e => e.gsm_a_imeisv);
+
+            var pdu_filenum_packetnum= gb_ip_fragment
+                .Where(e => e.llcgprs_xid1type ==5)
+                .ToLookup(e => e.BeginFrameNum + e.BeginFileNum * 100000000);
+            //e => e.llcgprs_xidbyte1*256+e.llcgprs_xid1byte2);
+
+            var pdu = from p in imsi_filenum_packetnum
+                      join q in pdu_filenum_packetnum on p.Key equals q.Key
+                      select new
+                      {
+                          p.Key,p.Select(e=>e.gsm_a_imeisv).FirstOrDefault(),
+                          q.Select(e=>e.
+                          Queryable.
+
+                      };
+
+
+            //帧号，终端，pdu最大值
+           var ip = new List<Tuple<int?, string, string, double, double, double, double>>();
+
+            string it = null;
+            double N201U_max = 0;
+            double N201U_cnt = 0;
+            double N201U_min = 0;
+            double N201U_avg = 0;
+
+            foreach (var m in imsi_filenum_packetnum)
+            {
+                if (m.FirstOrDefault() != null)
+                    if (m.FirstOrDefault().Length > 8)
+                        it = imeity[m.FirstOrDefault().Substring(0, 8)].FirstOrDefault();
+
+                if (pdu_filenum_packetnum.Contains(m.Key))
+                {
+                    N201U_max = pdu_filenum_packetnum[m.Key].Max(e => e.Value);
+                    N201U_cnt = pdu_filenum_packetnum[m.Key].Count();
+                    N201U_min = pdu_filenum_packetnum[m.Key].Min(e => e.Value);
+                    N201U_avg = pdu_filenum_packetnum[m.Key].Average(e => e.Value);
+                }
+
+               var t = new Tuple<int?, string, string, double, double, double, double>
+                        (m.Key, m.FirstOrDefault(), it,N201U_min,N201U_max,N201U_cnt,N201U_avg);
+
+                ip.Add(t);
+
+            }
+
+            var dborder = ip.OrderBy(e => e.Item1);
+
+            gridControl1.DataSource = dborder.ToList();
+
+            //refreshGrid(dborder);
+        }
     }
 }
