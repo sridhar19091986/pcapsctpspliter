@@ -167,6 +167,13 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="LinqBook\DNS查询的问题.linq" />
+    <None Include="LinqBook\N201U协商大小-结果分布.linq" />
+    <None Include="LinqBook\N201U协商大小分布.linq" />
+    <None Include="LinqBook\xid协商类型分布.linq" />
+    <None Include="LinqBook\协议栈包头分布.linq" />
+    <None Include="LinqBook\数据采集时间.linq" />
+    <None Include="LinqBook\终端的问题.linq" />
     <None Include="packages.config" />
     <EntityDeploy Include="SqlServer\Model2.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

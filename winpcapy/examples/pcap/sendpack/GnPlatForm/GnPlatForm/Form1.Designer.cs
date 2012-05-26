@@ -78,11 +78,11 @@
             this.navBarItem32 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem33 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem34 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem35 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem36 = new DevExpress.XtraNavBar.NavBarItem();
             this.dockPanel1 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.navBarItem35 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem36 = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -226,6 +226,7 @@
             // navBarGroup1
             // 
             this.navBarGroup1.Caption = "Gn接口http性能优化-TCP reset信令流程分析";
+            this.navBarGroup1.Expanded = true;
             this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem1),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem2),
@@ -423,6 +424,7 @@
             // navBarGroup6
             // 
             this.navBarGroup6.Caption = "IP包分片优化专题-Gb接口IP分片优化建议";
+            this.navBarGroup6.Expanded = true;
             this.navBarGroup6.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem18),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem19),
@@ -505,6 +507,17 @@
             this.navBarItem34.Name = "navBarItem34";
             this.navBarItem34.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem34_LinkClicked);
             // 
+            // navBarItem35
+            // 
+            this.navBarItem35.Caption = "navBarItem35";
+            this.navBarItem35.Name = "navBarItem35";
+            this.navBarItem35.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem35_LinkClicked);
+            // 
+            // navBarItem36
+            // 
+            this.navBarItem36.Caption = "navBarItem36";
+            this.navBarItem36.Name = "navBarItem36";
+            // 
             // dockPanel1
             // 
             this.dockPanel1.Controls.Add(this.dockPanel1_Container);
@@ -530,17 +543,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(302, 21);
             this.textBox1.TabIndex = 17;
-            // 
-            // navBarItem35
-            // 
-            this.navBarItem35.Caption = "navBarItem35";
-            this.navBarItem35.Name = "navBarItem35";
-            this.navBarItem35.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem35_LinkClicked);
-            // 
-            // navBarItem36
-            // 
-            this.navBarItem36.Caption = "navBarItem36";
-            this.navBarItem36.Name = "navBarItem36";
             // 
             // Form1
             // 
