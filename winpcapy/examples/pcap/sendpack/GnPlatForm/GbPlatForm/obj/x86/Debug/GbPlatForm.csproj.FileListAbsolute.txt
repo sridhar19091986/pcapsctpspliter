@@ -1,0 +1,11 @@
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\GbPlatForm\bin\Debug\GbPlatForm.exe.config
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\GbPlatForm\bin\Debug\GbPlatForm.exe
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\GbPlatForm\bin\Debug\GbPlatForm.pdb
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\GbPlatForm\obj\x86\Debug\ResolveAssemblyReference.cache
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\GbPlatForm\obj\x86\Debug\GbPlatForm.Form1.resources
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\GbPlatForm\obj\x86\Debug\GbPlatForm.Properties.Resources.resources
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\GbPlatForm\obj\x86\Debug\GenerateResource.read.1.tlog
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\GbPlatForm\obj\x86\Debug\GenerateResource.write.1.tlog
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\GbPlatForm\obj\x86\Debug\GbPlatForm.exe.licenses
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\GbPlatForm\obj\x86\Debug\GbPlatForm.exe
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\GbPlatForm\obj\x86\Debug\GbPlatForm.pdb

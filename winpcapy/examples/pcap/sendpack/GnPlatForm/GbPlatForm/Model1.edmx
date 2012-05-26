@@ -1,0 +1,413 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="mpos_gb_gz0511Model.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.1" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="mpos_gb_gz0511ModelStoreContainer">
+          <EntitySet Name="gb_gz_tousu" EntityType="mpos_gb_gz0511Model.Store.gb_gz_tousu" store:Type="Tables" Schema="mpos_gb_gz0511" />
+        </EntityContainer>
+        <EntityType Name="gb_gz_tousu">
+          <Key>
+            <PropertyRef Name="Session_ID" />
+          </Key>
+          <Property Name="Abnormal_reason" Type="bigint" Nullable="false" />
+          <Property Name="Abort" Type="bigint" Nullable="false" />
+          <Property Name="Accept" Type="bigint" Nullable="false" />
+          <Property Name="Accept_DelayFirst" Type="bigint" Nullable="false" />
+          <Property Name="ACK" Type="bigint" Nullable="false" />
+          <Property Name="Acknowledge" Type="bigint" Nullable="false" />
+          <Property Name="Ack_delay" Type="bigint" Nullable="false" />
+          <Property Name="ACK_DelayFirst" Type="bigint" Nullable="false" />
+          <Property Name="APN" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="Assign IP" Type="bigint" Nullable="false" />
+          <Property Name="Authentication_Request" Type="bigint" Nullable="false" />
+          <Property Name="Authentication_Response" Type="bigint" Nullable="false" />
+          <Property Name="BSC" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="BSC_IP" Type="bigint" Nullable="false" />
+          <Property Name="Bucket_Full_Ratio" Type="bigint" Nullable="false" />
+          <Property Name="Bucket_Leak_Rate" Type="bigint" Nullable="false" />
+          <Property Name="BVCI" Type="bigint" Nullable="false" />
+          <Property Name="BVCI(New)" Type="bigint" Nullable="false" />
+          <Property Name="BVCI(Old)" Type="bigint" Nullable="false" />
+          <Property Name="CI" Type="bigint" Nullable="false" />
+          <Property Name="Complete" Type="bigint" Nullable="false" />
+          <Property Name="Complete_DelayFirst" Type="bigint" Nullable="false" />
+          <Property Name="Conf" Type="bigint" Nullable="false" />
+          <Property Name="Conf_Delayfirst" Type="bigint" Nullable="false" />
+          <Property Name="Content_Type_Part1" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="Content_Type_Part2" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="Count_Packet_DL" Type="bigint" Nullable="false" />
+          <Property Name="Count_Packet_UL" Type="bigint" Nullable="false" />
+          <Property Name="Deactivate_Cause" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="Deactivate_Direction" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="Deactivate_PDP_Accept" Type="bigint" Nullable="false" />
+          <Property Name="Deactivate_PDP_Accept_DelayFirst" Type="bigint" Nullable="false" />
+          <Property Name="Deactivate_PDP_Accept_Direction" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="Delivery_Report" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="DEST_IP" Type="bigint" Nullable="false" />
+          <Property Name="DEST_PORT" Type="bigint" Nullable="false" />
+          <Property Name="Detach_Accept" Type="bigint" Nullable="false" />
+          <Property Name="Detach_Accept_DelayFirst" Type="bigint" Nullable="false" />
+          <Property Name="Detach_Accept_Direction" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="Detach_Cause" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="Detach_Direction" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="Disconnect" Type="bigint" Nullable="false" />
+          <Property Name="DNS_TTL" Type="bigint" Nullable="false" />
+          <Property Name="Duration" Type="bigint" Nullable="false" />
+          <Property Name="EDGE_multislot_1800" Type="bigint" Nullable="false" />
+          <Property Name="EDGE_multislot_E" Type="bigint" Nullable="false" />
+          <Property Name="End_Date_Time" Type="datetime" Nullable="false" />
+          <Property Name="ErrorPacketLost" Type="bigint" Nullable="false" />
+          <Property Name="ErrorPacketWired" Type="bigint" Nullable="false" />
+          <Property Name="ErrorPacketWireless" Type="bigint" Nullable="false" />
+          <Property Name="Event_Type" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="From" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="GPRS_multislot_1800" Type="bigint" Nullable="false" />
+          <Property Name="GPRS_multislot_E" Type="bigint" Nullable="false" />
+          <Property Name="Identifier" Type="bigint" Nullable="false" />
+          <Property Name="ID_REQ" Type="bigint" Nullable="false" />
+          <Property Name="ID_RESP" Type="bigint" Nullable="false" />
+          <Property Name="ID_RESP_DelayFirst" Type="bigint" Nullable="false" />
+          <Property Name="IMEI" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="IMSI" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="IpLenDlAck" Type="bigint" Nullable="false" />
+          <Property Name="IpLenUpAck" Type="bigint" Nullable="false" />
+          <Property Name="IP_LEN_DL" Type="bigint" Nullable="false" />
+          <Property Name="IP_LEN_UL" Type="bigint" Nullable="false" />
+          <Property Name="LAC" Type="bigint" Nullable="false" />
+          <Property Name="LAC_OLD" Type="bigint" Nullable="false" />
+          <Property Name="LLC_Discarded" Type="bigint" Nullable="false" />
+          <Property Name="MMS_resp_status" Type="bigint" Nullable="false" />
+          <Property Name="MS_Bucket_Size" Type="bigint" Nullable="false" />
+          <Property Name="NACK" Type="bigint" Nullable="false" />
+          <Property Name="NACK_Cause" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="Octets_Affected" Type="bigint" Nullable="false" />
+          <Property Name="Online_ID" Type="bigint" Nullable="false" />
+          <Property Name="Protocol" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="PTMSI" Type="bigint" Nullable="false" />
+          <Property Name="Query_Name" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="Query_Type" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="RAC" Type="bigint" Nullable="false" />
+          <Property Name="RAC_OLD" Type="bigint" Nullable="false" />
+          <Property Name="Radio_Cause" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="Radio_Status" Type="bigint" Nullable="false" />
+          <Property Name="Read_report" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="referer" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="Reject" Type="bigint" Nullable="false" />
+          <Property Name="Reject_Cause" Type="bigint" Nullable="false" />
+          <Property Name="Reject_DelayFirst" Type="bigint" Nullable="false" />
+          <Property Name="Repeat" Type="bigint" Nullable="false" />
+          <Property Name="Reply" Type="bigint" Nullable="false" />
+          <Property Name="Reply_delayFirst" Type="bigint" Nullable="false" />
+          <Property Name="Reply_Status" Type="bigint" Nullable="false" />
+          <Property Name="Request" Type="bigint" Nullable="false" />
+          <Property Name="Response" Type="bigint" Nullable="false" />
+          <Property Name="Response_Code" Type="bigint" Nullable="false" />
+          <Property Name="Response_delayFirst" Type="bigint" Nullable="false" />
+          <Property Name="Result" Type="bigint" Nullable="false" />
+          <Property Name="Result_Delayfirst" Type="bigint" Nullable="false" />
+          <Property Name="Service_Type" Type="bigint" Nullable="false" />
+          <Property Name="Session_ID" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="SGSN" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="SGSN_IP" Type="bigint" Nullable="false" />
+          <Property Name="SOURCE_IP" Type="bigint" Nullable="false" />
+          <Property Name="SOURCE_PORT" Type="bigint" Nullable="false" />
+          <Property Name="SP_Address" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="Start_Date_Time" Type="datetime" Nullable="false" />
+          <Property Name="Subject" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="Sub_Service_Type" Type="bigint" Nullable="false" />
+          <Property Name="TLLI" Type="bigint" Nullable="false" />
+          <Property Name="To" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="Type" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="Umts_128TDD_1800" Type="bigint" Nullable="false" />
+          <Property Name="Umts_128TDD_E" Type="bigint" Nullable="false" />
+          <Property Name="Umts_FDD_1800" Type="bigint" Nullable="false" />
+          <Property Name="Umts_FDD_E" Type="bigint" Nullable="false" />
+          <Property Name="URI" Type="varchar" Nullable="false" MaxLength="1024" />
+          <Property Name="URI_Main" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="USER_AGENT_MAIN" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="X_Online_Host" Type="bigint" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="mpos_gb_gz0511Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="mpos_gb_gz0511Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="gb_gz_tousu" EntityType="mpos_gb_gz0511Model.gb_gz_tousu" />
+        </EntityContainer>
+        <EntityType Name="gb_gz_tousu">
+          <Key>
+            <PropertyRef Name="Session_ID" />
+          </Key>
+          <Property Name="Abnormal_reason" Type="Int64" Nullable="false" />
+          <Property Name="Abort" Type="Int64" Nullable="false" />
+          <Property Name="Accept" Type="Int64" Nullable="false" />
+          <Property Name="Accept_DelayFirst" Type="Int64" Nullable="false" />
+          <Property Name="ACK" Type="Int64" Nullable="false" />
+          <Property Name="Acknowledge" Type="Int64" Nullable="false" />
+          <Property Name="Ack_delay" Type="Int64" Nullable="false" />
+          <Property Name="ACK_DelayFirst" Type="Int64" Nullable="false" />
+          <Property Name="APN" Type="String" Nullable="false" />
+          <Property Name="Assign_IP" Type="Int64" Nullable="false" />
+          <Property Name="Authentication_Request" Type="Int64" Nullable="false" />
+          <Property Name="Authentication_Response" Type="Int64" Nullable="false" />
+          <Property Name="BSC" Type="String" Nullable="false" />
+          <Property Name="BSC_IP" Type="Int64" Nullable="false" />
+          <Property Name="Bucket_Full_Ratio" Type="Int64" Nullable="false" />
+          <Property Name="Bucket_Leak_Rate" Type="Int64" Nullable="false" />
+          <Property Name="BVCI" Type="Int64" Nullable="false" />
+          <Property Name="BVCI_New_" Type="Int64" Nullable="false" />
+          <Property Name="BVCI_Old_" Type="Int64" Nullable="false" />
+          <Property Name="CI" Type="Int64" Nullable="false" />
+          <Property Name="Complete" Type="Int64" Nullable="false" />
+          <Property Name="Complete_DelayFirst" Type="Int64" Nullable="false" />
+          <Property Name="Conf" Type="Int64" Nullable="false" />
+          <Property Name="Conf_Delayfirst" Type="Int64" Nullable="false" />
+          <Property Name="Content_Type_Part1" Type="String" Nullable="false" />
+          <Property Name="Content_Type_Part2" Type="String" Nullable="false" />
+          <Property Name="Count_Packet_DL" Type="Int64" Nullable="false" />
+          <Property Name="Count_Packet_UL" Type="Int64" Nullable="false" />
+          <Property Name="Deactivate_Cause" Type="String" Nullable="false" />
+          <Property Name="Deactivate_Direction" Type="String" Nullable="false" />
+          <Property Name="Deactivate_PDP_Accept" Type="Int64" Nullable="false" />
+          <Property Name="Deactivate_PDP_Accept_DelayFirst" Type="Int64" Nullable="false" />
+          <Property Name="Deactivate_PDP_Accept_Direction" Type="String" Nullable="false" />
+          <Property Name="Delivery_Report" Type="String" Nullable="false" />
+          <Property Name="DEST_IP" Type="Int64" Nullable="false" />
+          <Property Name="DEST_PORT" Type="Int64" Nullable="false" />
+          <Property Name="Detach_Accept" Type="Int64" Nullable="false" />
+          <Property Name="Detach_Accept_DelayFirst" Type="Int64" Nullable="false" />
+          <Property Name="Detach_Accept_Direction" Type="String" Nullable="false" />
+          <Property Name="Detach_Cause" Type="String" Nullable="false" />
+          <Property Name="Detach_Direction" Type="String" Nullable="false" />
+          <Property Name="Disconnect" Type="Int64" Nullable="false" />
+          <Property Name="DNS_TTL" Type="Int64" Nullable="false" />
+          <Property Name="Duration" Type="Int64" Nullable="false" />
+          <Property Name="EDGE_multislot_1800" Type="Int64" Nullable="false" />
+          <Property Name="EDGE_multislot_E" Type="Int64" Nullable="false" />
+          <Property Name="End_Date_Time" Type="DateTime" Nullable="false" />
+          <Property Name="ErrorPacketLost" Type="Int64" Nullable="false" />
+          <Property Name="ErrorPacketWired" Type="Int64" Nullable="false" />
+          <Property Name="ErrorPacketWireless" Type="Int64" Nullable="false" />
+          <Property Name="Event_Type" Type="String" Nullable="false" />
+          <Property Name="From" Type="String" Nullable="false" />
+          <Property Name="GPRS_multislot_1800" Type="Int64" Nullable="false" />
+          <Property Name="GPRS_multislot_E" Type="Int64" Nullable="false" />
+          <Property Name="Identifier" Type="Int64" Nullable="false" />
+          <Property Name="ID_REQ" Type="Int64" Nullable="false" />
+          <Property Name="ID_RESP" Type="Int64" Nullable="false" />
+          <Property Name="ID_RESP_DelayFirst" Type="Int64" Nullable="false" />
+          <Property Name="IMEI" Type="String" Nullable="false" />
+          <Property Name="IMSI" Type="String" Nullable="false" />
+          <Property Name="IpLenDlAck" Type="Int64" Nullable="false" />
+          <Property Name="IpLenUpAck" Type="Int64" Nullable="false" />
+          <Property Name="IP_LEN_DL" Type="Int64" Nullable="false" />
+          <Property Name="IP_LEN_UL" Type="Int64" Nullable="false" />
+          <Property Name="LAC" Type="Int64" Nullable="false" />
+          <Property Name="LAC_OLD" Type="Int64" Nullable="false" />
+          <Property Name="LLC_Discarded" Type="Int64" Nullable="false" />
+          <Property Name="MMS_resp_status" Type="Int64" Nullable="false" />
+          <Property Name="MS_Bucket_Size" Type="Int64" Nullable="false" />
+          <Property Name="NACK" Type="Int64" Nullable="false" />
+          <Property Name="NACK_Cause" Type="String" Nullable="false" />
+          <Property Name="Octets_Affected" Type="Int64" Nullable="false" />
+          <Property Name="Online_ID" Type="Int64" Nullable="false" />
+          <Property Name="Protocol" Type="String" Nullable="false" />
+          <Property Name="PTMSI" Type="Int64" Nullable="false" />
+          <Property Name="Query_Name" Type="String" Nullable="false" />
+          <Property Name="Query_Type" Type="String" Nullable="false" />
+          <Property Name="RAC" Type="Int64" Nullable="false" />
+          <Property Name="RAC_OLD" Type="Int64" Nullable="false" />
+          <Property Name="Radio_Cause" Type="String" Nullable="false" />
+          <Property Name="Radio_Status" Type="Int64" Nullable="false" />
+          <Property Name="Read_report" Type="String" Nullable="false" />
+          <Property Name="referer" Type="String" Nullable="false" />
+          <Property Name="Reject" Type="Int64" Nullable="false" />
+          <Property Name="Reject_Cause" Type="Int64" Nullable="false" />
+          <Property Name="Reject_DelayFirst" Type="Int64" Nullable="false" />
+          <Property Name="Repeat" Type="Int64" Nullable="false" />
+          <Property Name="Reply" Type="Int64" Nullable="false" />
+          <Property Name="Reply_delayFirst" Type="Int64" Nullable="false" />
+          <Property Name="Reply_Status" Type="Int64" Nullable="false" />
+          <Property Name="Request" Type="Int64" Nullable="false" />
+          <Property Name="Response" Type="Int64" Nullable="false" />
+          <Property Name="Response_Code" Type="Int64" Nullable="false" />
+          <Property Name="Response_delayFirst" Type="Int64" Nullable="false" />
+          <Property Name="Result" Type="Int64" Nullable="false" />
+          <Property Name="Result_Delayfirst" Type="Int64" Nullable="false" />
+          <Property Name="Service_Type" Type="Int64" Nullable="false" />
+          <Property Name="Session_ID" Type="String" Nullable="false" />
+          <Property Name="SGSN" Type="String" Nullable="false" />
+          <Property Name="SGSN_IP" Type="Int64" Nullable="false" />
+          <Property Name="SOURCE_IP" Type="Int64" Nullable="false" />
+          <Property Name="SOURCE_PORT" Type="Int64" Nullable="false" />
+          <Property Name="SP_Address" Type="String" Nullable="false" />
+          <Property Name="Start_Date_Time" Type="DateTime" Nullable="false" />
+          <Property Name="Subject" Type="String" Nullable="false" />
+          <Property Name="Sub_Service_Type" Type="Int64" Nullable="false" />
+          <Property Name="TLLI" Type="Int64" Nullable="false" />
+          <Property Name="To" Type="String" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="false" />
+          <Property Name="Umts_128TDD_1800" Type="Int64" Nullable="false" />
+          <Property Name="Umts_128TDD_E" Type="Int64" Nullable="false" />
+          <Property Name="Umts_FDD_1800" Type="Int64" Nullable="false" />
+          <Property Name="Umts_FDD_E" Type="Int64" Nullable="false" />
+          <Property Name="URI" Type="String" Nullable="false" />
+          <Property Name="URI_Main" Type="String" Nullable="false" />
+          <Property Name="USER_AGENT_MAIN" Type="String" Nullable="false" />
+          <Property Name="X_Online_Host" Type="Int64" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="mpos_gb_gz0511ModelStoreContainer" CdmEntityContainer="mpos_gb_gz0511Entities">
+          <EntitySetMapping Name="gb_gz_tousu"><EntityTypeMapping TypeName="mpos_gb_gz0511Model.gb_gz_tousu"><MappingFragment StoreEntitySet="gb_gz_tousu">
+            <ScalarProperty Name="Abnormal_reason" ColumnName="Abnormal_reason" />
+            <ScalarProperty Name="Abort" ColumnName="Abort" />
+            <ScalarProperty Name="Accept" ColumnName="Accept" />
+            <ScalarProperty Name="Accept_DelayFirst" ColumnName="Accept_DelayFirst" />
+            <ScalarProperty Name="ACK" ColumnName="ACK" />
+            <ScalarProperty Name="Acknowledge" ColumnName="Acknowledge" />
+            <ScalarProperty Name="Ack_delay" ColumnName="Ack_delay" />
+            <ScalarProperty Name="ACK_DelayFirst" ColumnName="ACK_DelayFirst" />
+            <ScalarProperty Name="APN" ColumnName="APN" />
+            <ScalarProperty Name="Assign_IP" ColumnName="Assign IP" />
+            <ScalarProperty Name="Authentication_Request" ColumnName="Authentication_Request" />
+            <ScalarProperty Name="Authentication_Response" ColumnName="Authentication_Response" />
+            <ScalarProperty Name="BSC" ColumnName="BSC" />
+            <ScalarProperty Name="BSC_IP" ColumnName="BSC_IP" />
+            <ScalarProperty Name="Bucket_Full_Ratio" ColumnName="Bucket_Full_Ratio" />
+            <ScalarProperty Name="Bucket_Leak_Rate" ColumnName="Bucket_Leak_Rate" />
+            <ScalarProperty Name="BVCI" ColumnName="BVCI" />
+            <ScalarProperty Name="BVCI_New_" ColumnName="BVCI(New)" />
+            <ScalarProperty Name="BVCI_Old_" ColumnName="BVCI(Old)" />
+            <ScalarProperty Name="CI" ColumnName="CI" />
+            <ScalarProperty Name="Complete" ColumnName="Complete" />
+            <ScalarProperty Name="Complete_DelayFirst" ColumnName="Complete_DelayFirst" />
+            <ScalarProperty Name="Conf" ColumnName="Conf" />
+            <ScalarProperty Name="Conf_Delayfirst" ColumnName="Conf_Delayfirst" />
+            <ScalarProperty Name="Content_Type_Part1" ColumnName="Content_Type_Part1" />
+            <ScalarProperty Name="Content_Type_Part2" ColumnName="Content_Type_Part2" />
+            <ScalarProperty Name="Count_Packet_DL" ColumnName="Count_Packet_DL" />
+            <ScalarProperty Name="Count_Packet_UL" ColumnName="Count_Packet_UL" />
+            <ScalarProperty Name="Deactivate_Cause" ColumnName="Deactivate_Cause" />
+            <ScalarProperty Name="Deactivate_Direction" ColumnName="Deactivate_Direction" />
+            <ScalarProperty Name="Deactivate_PDP_Accept" ColumnName="Deactivate_PDP_Accept" />
+            <ScalarProperty Name="Deactivate_PDP_Accept_DelayFirst" ColumnName="Deactivate_PDP_Accept_DelayFirst" />
+            <ScalarProperty Name="Deactivate_PDP_Accept_Direction" ColumnName="Deactivate_PDP_Accept_Direction" />
+            <ScalarProperty Name="Delivery_Report" ColumnName="Delivery_Report" />
+            <ScalarProperty Name="DEST_IP" ColumnName="DEST_IP" />
+            <ScalarProperty Name="DEST_PORT" ColumnName="DEST_PORT" />
+            <ScalarProperty Name="Detach_Accept" ColumnName="Detach_Accept" />
+            <ScalarProperty Name="Detach_Accept_DelayFirst" ColumnName="Detach_Accept_DelayFirst" />
+            <ScalarProperty Name="Detach_Accept_Direction" ColumnName="Detach_Accept_Direction" />
+            <ScalarProperty Name="Detach_Cause" ColumnName="Detach_Cause" />
+            <ScalarProperty Name="Detach_Direction" ColumnName="Detach_Direction" />
+            <ScalarProperty Name="Disconnect" ColumnName="Disconnect" />
+            <ScalarProperty Name="DNS_TTL" ColumnName="DNS_TTL" />
+            <ScalarProperty Name="Duration" ColumnName="Duration" />
+            <ScalarProperty Name="EDGE_multislot_1800" ColumnName="EDGE_multislot_1800" />
+            <ScalarProperty Name="EDGE_multislot_E" ColumnName="EDGE_multislot_E" />
+            <ScalarProperty Name="End_Date_Time" ColumnName="End_Date_Time" />
+            <ScalarProperty Name="ErrorPacketLost" ColumnName="ErrorPacketLost" />
+            <ScalarProperty Name="ErrorPacketWired" ColumnName="ErrorPacketWired" />
+            <ScalarProperty Name="ErrorPacketWireless" ColumnName="ErrorPacketWireless" />
+            <ScalarProperty Name="Event_Type" ColumnName="Event_Type" />
+            <ScalarProperty Name="From" ColumnName="From" />
+            <ScalarProperty Name="GPRS_multislot_1800" ColumnName="GPRS_multislot_1800" />
+            <ScalarProperty Name="GPRS_multislot_E" ColumnName="GPRS_multislot_E" />
+            <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+            <ScalarProperty Name="ID_REQ" ColumnName="ID_REQ" />
+            <ScalarProperty Name="ID_RESP" ColumnName="ID_RESP" />
+            <ScalarProperty Name="ID_RESP_DelayFirst" ColumnName="ID_RESP_DelayFirst" />
+            <ScalarProperty Name="IMEI" ColumnName="IMEI" />
+            <ScalarProperty Name="IMSI" ColumnName="IMSI" />
+            <ScalarProperty Name="IpLenDlAck" ColumnName="IpLenDlAck" />
+            <ScalarProperty Name="IpLenUpAck" ColumnName="IpLenUpAck" />
+            <ScalarProperty Name="IP_LEN_DL" ColumnName="IP_LEN_DL" />
+            <ScalarProperty Name="IP_LEN_UL" ColumnName="IP_LEN_UL" />
+            <ScalarProperty Name="LAC" ColumnName="LAC" />
+            <ScalarProperty Name="LAC_OLD" ColumnName="LAC_OLD" />
+            <ScalarProperty Name="LLC_Discarded" ColumnName="LLC_Discarded" />
+            <ScalarProperty Name="MMS_resp_status" ColumnName="MMS_resp_status" />
+            <ScalarProperty Name="MS_Bucket_Size" ColumnName="MS_Bucket_Size" />
+            <ScalarProperty Name="NACK" ColumnName="NACK" />
+            <ScalarProperty Name="NACK_Cause" ColumnName="NACK_Cause" />
+            <ScalarProperty Name="Octets_Affected" ColumnName="Octets_Affected" />
+            <ScalarProperty Name="Online_ID" ColumnName="Online_ID" />
+            <ScalarProperty Name="Protocol" ColumnName="Protocol" />
+            <ScalarProperty Name="PTMSI" ColumnName="PTMSI" />
+            <ScalarProperty Name="Query_Name" ColumnName="Query_Name" />
+            <ScalarProperty Name="Query_Type" ColumnName="Query_Type" />
+            <ScalarProperty Name="RAC" ColumnName="RAC" />
+            <ScalarProperty Name="RAC_OLD" ColumnName="RAC_OLD" />
+            <ScalarProperty Name="Radio_Cause" ColumnName="Radio_Cause" />
+            <ScalarProperty Name="Radio_Status" ColumnName="Radio_Status" />
+            <ScalarProperty Name="Read_report" ColumnName="Read_report" />
+            <ScalarProperty Name="referer" ColumnName="referer" />
+            <ScalarProperty Name="Reject" ColumnName="Reject" />
+            <ScalarProperty Name="Reject_Cause" ColumnName="Reject_Cause" />
+            <ScalarProperty Name="Reject_DelayFirst" ColumnName="Reject_DelayFirst" />
+            <ScalarProperty Name="Repeat" ColumnName="Repeat" />
+            <ScalarProperty Name="Reply" ColumnName="Reply" />
+            <ScalarProperty Name="Reply_delayFirst" ColumnName="Reply_delayFirst" />
+            <ScalarProperty Name="Reply_Status" ColumnName="Reply_Status" />
+            <ScalarProperty Name="Request" ColumnName="Request" />
+            <ScalarProperty Name="Response" ColumnName="Response" />
+            <ScalarProperty Name="Response_Code" ColumnName="Response_Code" />
+            <ScalarProperty Name="Response_delayFirst" ColumnName="Response_delayFirst" />
+            <ScalarProperty Name="Result" ColumnName="Result" />
+            <ScalarProperty Name="Result_Delayfirst" ColumnName="Result_Delayfirst" />
+            <ScalarProperty Name="Service_Type" ColumnName="Service_Type" />
+            <ScalarProperty Name="Session_ID" ColumnName="Session_ID" />
+            <ScalarProperty Name="SGSN" ColumnName="SGSN" />
+            <ScalarProperty Name="SGSN_IP" ColumnName="SGSN_IP" />
+            <ScalarProperty Name="SOURCE_IP" ColumnName="SOURCE_IP" />
+            <ScalarProperty Name="SOURCE_PORT" ColumnName="SOURCE_PORT" />
+            <ScalarProperty Name="SP_Address" ColumnName="SP_Address" />
+            <ScalarProperty Name="Start_Date_Time" ColumnName="Start_Date_Time" />
+            <ScalarProperty Name="Subject" ColumnName="Subject" />
+            <ScalarProperty Name="Sub_Service_Type" ColumnName="Sub_Service_Type" />
+            <ScalarProperty Name="TLLI" ColumnName="TLLI" />
+            <ScalarProperty Name="To" ColumnName="To" />
+            <ScalarProperty Name="Type" ColumnName="Type" />
+            <ScalarProperty Name="Umts_128TDD_1800" ColumnName="Umts_128TDD_1800" />
+            <ScalarProperty Name="Umts_128TDD_E" ColumnName="Umts_128TDD_E" />
+            <ScalarProperty Name="Umts_FDD_1800" ColumnName="Umts_FDD_1800" />
+            <ScalarProperty Name="Umts_FDD_E" ColumnName="Umts_FDD_E" />
+            <ScalarProperty Name="URI" ColumnName="URI" />
+            <ScalarProperty Name="URI_Main" ColumnName="URI_Main" />
+            <ScalarProperty Name="USER_AGENT_MAIN" ColumnName="USER_AGENT_MAIN" />
+            <ScalarProperty Name="X_Online_Host" ColumnName="X_Online_Host" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model1" ZoomLevel="121">
+        <EntityTypeShape EntityType="mpos_gb_gz0511Model.gb_gz_tousu" Width="1.5" PointX="0.75" PointY="0.75" Height="20.676250000000003" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
