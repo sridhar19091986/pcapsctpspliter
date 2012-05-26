@@ -14,23 +14,24 @@ namespace AutoSql_Ts
 {
     class Program
     {
-        static int time_size = 15;
+         const int time_size = 15;
         static string conf_file = "config.xml";
-
+        static int gb_pre_time = 24;
         static string gb_ts_xcd_script;
         static string gb_ts_table;
         static string gb_ts_in;
- 
+
 
         //生成投诉信息库，读取文件信息？建表时的engine？不然报错？
         static void Main(string[] args)
         {
             XElement config = XElement.Load(conf_file);
-           gb_ts_in = config.Element("gb_ts_in").Value.ToString();
-           gb_ts_table = config.Element("gb_ts_table").Value.ToString();
-             gb_ts_xcd_script = config.Element("gb_ts_xcd_script").Value.ToString();
+            gb_ts_in = config.Element("gb_ts_in").Value.ToString();
+            gb_ts_table = config.Element("gb_ts_table").Value.ToString();
+            gb_ts_xcd_script = config.Element("gb_ts_xcd_script").Value.ToString();
+            gb_pre_time = int.Parse(config.Element("gb_pre_time").Value.ToString());
 
-            if (File.Exists(gb_ts_xcd_script)) 
+            if (File.Exists(gb_ts_xcd_script))
                 File.Delete(gb_ts_xcd_script);
 
             StreamReader reader = new StreamReader(gb_ts_in, System.Text.Encoding.Default);
@@ -58,7 +59,7 @@ namespace AutoSql_Ts
             string ts_imsi = imsi.Trim();
             DateTime ts_time = DateTime.Parse(ttime);
             string[] mm = new string[] { "00", "15", "30", "45" };
-            for (int i = 0; i < mm.Length; i++)
+            for (int i = 0; i < gb_pre_time * mm.Length; i++)
             {
                 var dt1 = RoundUp(ts_time.AddMinutes(-1 * i * time_size), TimeSpan.FromMinutes(time_size));
                 string ts_table = dt1.ToString("yyyyMMddHHmm");

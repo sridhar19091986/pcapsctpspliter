@@ -1724,59 +1724,104 @@ namespace GnPlatForm
 
             var imsi_filenum_packetnum = gb_ip_fragment
                 .Where(e => e.gsm_a_imeisv != null)
-                .ToLookup(e => e.BeginFrameNum + e.BeginFileNum * 100000000);
-                //, e => e.gsm_a_imeisv);
+                .ToLookup(e => e.BeginFrameNum + e.BeginFileNum * 100000000,
+                e => e.gsm_a_imeisv);
+            //, e => e.gsm_a_imeisv);
 
-            var pdu_filenum_packetnum= gb_ip_fragment
-                .Where(e => e.llcgprs_xid1type ==5)
+            var pdu_filenum_packetnum = gb_ip_fragment
+                .Where(e=>e.llcgprs_xid1type != null)
+                .Where(e => e.llcgprs_xid1type == 5)
+                //.Where(e => e.bssgp_direction == "Up")
                 .ToLookup(e => e.BeginFrameNum + e.BeginFileNum * 100000000);
+                //e => e.llcgprs_xidbyte1 * 256 + e.llcgprs_xid1byte2);
             //e => e.llcgprs_xidbyte1*256+e.llcgprs_xid1byte2);
 
-            var pdu = from p in imsi_filenum_packetnum
-                      join q in pdu_filenum_packetnum on p.Key equals q.Key
-                      select new
-                      {
-                          p.Key,p.Select(e=>e.gsm_a_imeisv).FirstOrDefault(),
-                          q.Select(e=>e.
-                          Queryable.
+            //var pdu = from p in imsi_filenum_packetnum
+            //          join q in pdu_filenum_packetnum on p.Key equals q.Key
+            //          select new
+            //          {
+            //              p.Key,p.Select(e=>e.gsm_a_imeisv).FirstOrDefault(),
+            //              q.Select(e=>e.
+            //              Queryable.
 
-                      };
+            //          };
 
 
             //帧号，终端，pdu最大值
-           var ip = new List<Tuple<int?, string, string, double, double, double, double>>();
+            var ip = new List<Tuple<int,string, string,int,Gb_IP_Fragment>>();
 
             string it = null;
-            double N201U_max = 0;
-            double N201U_cnt = 0;
-            double N201U_min = 0;
-            double N201U_avg = 0;
+            string imei = null;
+            int cnt=0;
+            //double N201U_max = 0;
+            //double N201U_cnt = 0;
+            //double N201U_min = 0;
+            //double N201U_avg = 0;
 
             foreach (var m in imsi_filenum_packetnum)
             {
+                imei = m.FirstOrDefault();
                 if (m.FirstOrDefault() != null)
                     if (m.FirstOrDefault().Length > 8)
-                        it = imeity[m.FirstOrDefault().Substring(0, 8)].FirstOrDefault();
+                        it = m.FirstOrDefault().Substring(0, 8);
+                        //it = imeity[m.FirstOrDefault().Substring(0, 8)].FirstOrDefault();
 
                 if (pdu_filenum_packetnum.Contains(m.Key))
                 {
-                    N201U_max = pdu_filenum_packetnum[m.Key].Max(e => e.Value);
-                    N201U_cnt = pdu_filenum_packetnum[m.Key].Count();
-                    N201U_min = pdu_filenum_packetnum[m.Key].Min(e => e.Value);
-                    N201U_avg = pdu_filenum_packetnum[m.Key].Average(e => e.Value);
+                    cnt = pdu_filenum_packetnum[m.Key].Count();
+                    foreach (Gb_IP_Fragment pdu in pdu_filenum_packetnum[m.Key])
+                    {
+                        var t = Tuple.Create((int)m.Key,imei,it,cnt,pdu);
+                        //t.Item1 = it;
+                        //t.Item2 = it;
+                        //t.Item3 = pdu;
+                        ip.Add(t);
+                    }
+                    //N201U_max = pdu_filenum_packetnum[m.Key].Max(e => e.Value);
+                    //N201U_cnt = pdu_filenum_packetnum[m.Key].Count();
+                    //N201U_min = pdu_filenum_packetnum[m.Key].Min(e => e.Value);
+                    //N201U_avg = pdu_filenum_packetnum[m.Key].Average(e => e.Value);
                 }
 
-               var t = new Tuple<int?, string, string, double, double, double, double>
-                        (m.Key, m.FirstOrDefault(), it,N201U_min,N201U_max,N201U_cnt,N201U_avg);
+                //var t = new Tuple<int?, string, string, double, double, double, double>
+                //         (m.Key, m.FirstOrDefault(), it, N201U_min, N201U_max, N201U_cnt, N201U_avg);
 
-                ip.Add(t);
+                //ip.Add(t);
 
             }
 
-            var dborder = ip.OrderBy(e => e.Item1);
+            var dborder = from p in ip
+                          select new
+                          {
+                              p.Item1,p.Item2,p.Item3,p.Item4,
+                              p.Item5.BeginFileNum,
+                              p.Item5.BeginFrameNum,
+                              p.Item5.PacketNum,
+                              
+                              p.Item5.llcgprs_xid1type,
+                              p.Item5.llcgprs_xidbyte1,
+                              p.Item5.llcgprs_xid1byte2,
+                              p.Item5.bssgp_direction,
 
-            gridControl1.DataSource = dborder.ToList();
+                              N201_U=256*p.Item5.llcgprs_xidbyte1+p.Item5.llcgprs_xid1byte2
 
+                          };
+
+            //gridControl1.DataSource = dborder.OrderByDescending(e=>e.Item4).OrderBy(e=>e.Item1).ThenBy(e=>e.PacketNum).ToList();
+
+            var imei_xid = from p in dborder
+                           where p.bssgp_direction=="Up"
+                           group p by p.Item3 into ttt
+                           select new
+                           {
+                               ttt.Key,
+                               cnt=ttt.Count(),
+                               N201_U_min = ttt.Min(e => e.N201_U),
+                               N201_U_max = ttt.Max(e => e.N201_U),
+                               N201_U_avg = ttt.Average(e => e.N201_U),
+                           };
+
+            gridControl1.DataSource = imei_xid.OrderByDescending(e => e.N201_U_avg).ToList();
             //refreshGrid(dborder);
         }
     }
