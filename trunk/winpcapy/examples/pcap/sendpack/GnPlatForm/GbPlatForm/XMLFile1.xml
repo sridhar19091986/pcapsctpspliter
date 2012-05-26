@@ -1,0 +1,523 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <Times Minute="15">
+    <!--信令质量开始 -->
+    <Node Event_Type="Attach" Name="att_req"  Index="1"    Text="Attach附着请求信令质量">
+      <Table SourcTable="att_req" ResultTable="gb_att_req" Type="0" >
+        <Kpi SourcColumn="REQUEST" ResultColumn="Request_Count" Operation="COUNT" WhereColumn="REQUEST" Where="p1>0"></Kpi>
+        <Kpi SourcColumn="REPEAT" ResultColumn="Repeat_Sum" Operation="SUM" WhereColumn="" Where=""></Kpi>
+        <Kpi SourcColumn="ACCEPT"  ResultColumn="Accept_Count" Operation="COUNT" WhereColumn="ACCEPT" Where="p1>0"></Kpi>
+        <Kpi SourcColumn="REJECT_CAUSE" ResultColumn="Reject_Cause_Count" Operation="COUNT" WhereColumn="REJECT_CAUSE" Where="p1>0"></Kpi>
+        <Kpi SourcColumn="REJECT_CAUSE" ResultColumn="Reject_Cause_User_Count" Operation="COUNT" WhereColumn="REJECT_CAUSE" Where="p1==2 or p1==3 or p1==6 or p1==7 or p1==8 or p1==11 or p1==12 or p1==13 or p1==14 or p1==15"></Kpi>
+        <Kpi SourcColumn="ACCEPT_DELAYFIRST" ResultColumn="Accept_DelayFirst_Sum"  Operation="SUM" WhereColumn="ACCEPT" Where="p1>0"></Kpi>
+        <Kpi SourcColumn="ACCEPT_DELAYFIRST" ResultColumn="Accept_DelayFirst_Count"  Operation="COUNT" WhereColumn="ACCEPT" Where="p1>0"></Kpi>
+        <ColumnExp Name="SGSN" GroupBy="SGSN"></ColumnExp>
+        <ColumnExp Name="BSC"    GroupBy="BSC"></ColumnExp>
+        <ColumnExp Name="LAC"  GroupBy="LAC"></ColumnExp>
+        <ColumnExp Name="LAC_CI" GroupBy="LAC,CI"></ColumnExp>
+        <Dimension Name="" GroupBy="">
+          <DColumnExp  Name="SGSN"></DColumnExp>
+          <DColumnExp  Name="LAC" ></DColumnExp>
+          <DColumnExp  Name="BSC" ></DColumnExp>
+          <DColumnExp  Name="LAC_CI" ></DColumnExp>
+        </Dimension>
+      </Table>
+      <Table SourcTable="att_req" ResultTable="gb_att_req_fault" Type="0" >
+        <Kpi SourcColumn="ABNORMAL_REASON" ResultColumn="Reject_Count" Operation="COUNT" WhereColumn="" Where=""></Kpi>
+        <ColumnExp Name="ABNORMAL_REASON"   GroupBy="ABNORMAL_REASON"></ColumnExp>
+        <ColumnExp Name="IMSI" GroupBy="IMSI"></ColumnExp>
+        <ColumnExp Name="SGSN" GroupBy="SGSN"></ColumnExp>
+        <ColumnExp Name="BSC"    GroupBy="BSC"></ColumnExp>
+        <ColumnExp Name="LAC"  GroupBy="LAC"></ColumnExp>
+        <ColumnExp Name="LAC_CI" GroupBy="LAC,CI"></ColumnExp>
+        <Dimension Name="ABNORMAL_REASON" GroupBy="ABNORMAL_REASON" WhereColumn="ABNORMAL_REASON" Where="p1>0">
+          <DColumnExp Name="ABNORMAL_REASON"></DColumnExp>
+          <DColumnExp Name="IMSI"></DColumnExp>
+          <DColumnExp Name="SGSN"></DColumnExp>
+          <DColumnExp Name="LAC"></DColumnExp>
+          <DColumnExp Name="BSC"></DColumnExp>
+          <DColumnExp Name="LAC_CI"></DColumnExp>
+        </Dimension>
+      </Table>
+    </Node>
+    <Node Event_Type="Activate PDP" Name="pdp"  Index="3"   Text="PDP激活">
+      <Table SourcTable="pdp" ResultTable="gb_pdp" Type="0">
+        <Kpi SourcColumn="REQUEST"  ResultColumn="Request_Count" Operation="COUNT" WhereColumn="REQUEST" Where="p1>0"></Kpi>
+        <Kpi SourcColumn="REPEAT" ResultColumn="Repeat_Sum" Operation="SUM" WhereColumn="" Where=""></Kpi>
+        <Kpi SourcColumn="ACCEPT" ResultColumn="Accept_Count" Operation="COUNT"  WhereColumn="ACCEPT" Where="p1>0"></Kpi>
+        <Kpi SourcColumn="REJECT_CAUSE" ResultColumn="Reject_Cause_Count" Operation="COUNT"  WhereColumn="REJECT_CAUSE" Where="p1>0"></Kpi>
+        <Kpi SourcColumn="REJECT_CAUSE" ResultColumn="Reject_Cause_User_Count" Operation="COUNT" WhereColumn="REJECT_CAUSE" Where="p1==27 or p1==28 or p1==29 or p1==32 or p1==33"></Kpi>
+        <Kpi SourcColumn="ACCEPT_DELAYFIRST" ResultColumn="Accept_DelayFirst_Sum" Operation="SUM"  WhereColumn="ACCEPT" Where="p1>0"></Kpi>
+        <Kpi SourcColumn="ACCEPT_DELAYFIRST" ResultColumn="Accept_DelayFirst_Count" Operation="COUNT"  WhereColumn="ACCEPT" Where="p1>0"></Kpi>
+        <ColumnExp Name="SGSN" GroupBy="SGSN"></ColumnExp>
+        <ColumnExp Name="BSC"    GroupBy="BSC"></ColumnExp>
+        <ColumnExp Name="LAC"  GroupBy="LAC"></ColumnExp>
+        <ColumnExp Name="LAC_CI" GroupBy="LAC,CI"></ColumnExp>
+        <Dimension Name="" GroupBy="">
+          <DColumnExp  Name="SGSN"></DColumnExp>
+          <DColumnExp  Name="BSC" ></DColumnExp>
+          <DColumnExp  Name="LAC" ></DColumnExp>
+          <DColumnExp  Name="LAC_CI" ></DColumnExp>
+        </Dimension>
+      </Table>
+      <Table SourcTable="pdp" ResultTable="gb_pdp_fault" Type="0" >
+        <Kpi SourcColumn="ABNORMAL_REASON" ResultColumn="Reject_Count" Operation="COUNT" WhereColumn="" Where=""></Kpi>
+        <ColumnExp Name="ABNORMAL_REASON"   GroupBy="ABNORMAL_REASON"></ColumnExp>
+        <ColumnExp Name="IMSI" GroupBy="IMSI"></ColumnExp>
+        <ColumnExp Name="SGSN" GroupBy="SGSN"></ColumnExp>
+        <ColumnExp Name="BSC"    GroupBy="BSC"></ColumnExp>
+        <ColumnExp Name="LAC"  GroupBy="LAC"></ColumnExp>
+        <ColumnExp Name="LAC_CI" GroupBy="LAC,CI"></ColumnExp>
+        <Dimension Name="ABNORMAL_REASON" GroupBy="ABNORMAL_REASON" WhereColumn="ABNORMAL_REASON" Where="p1>0">
+          <DColumnExp Name="ABNORMAL_REASON"></DColumnExp>
+          <DColumnExp Name="IMSI"></DColumnExp>
+          <DColumnExp Name="SGSN"></DColumnExp>
+          <DColumnExp Name="LAC"></DColumnExp>
+          <DColumnExp Name="BSC"></DColumnExp>
+          <DColumnExp Name="LAC_CI"></DColumnExp>
+        </Dimension>
+      </Table>
+    </Node>
+    <Node Event_Type="Routing Area update" Name="rau"  Index="6"   Text="RAU路由更新">
+      <Table SourcTable="rau" ResultTable="gb_rau" Type="0">
+        <Kpi SourcColumn="REQUEST"  ResultColumn="Request_Count" Operation="COUNT" WhereColumn="REQUEST" Where="p1>0"></Kpi>
+        <Kpi SourcColumn="REPEAT"  ResultColumn="Repeat_Sum" Operation="SUM" WhereColumn="" Where=""></Kpi>
+        <Kpi SourcColumn="ACCEPT"  ResultColumn="Accept_Count" Operation="COUNT" WhereColumn="ACCEPT" Where="p1>0"></Kpi>
+        <Kpi SourcColumn="REJECT_CAUSE"  ResultColumn="Reject_Cause_Count" Operation="COUNT" WhereColumn="REJECT_CAUSE" Where="p1>0"></Kpi>
+        <Kpi SourcColumn="REJECT_CAUSE" ResultColumn="Reject_Cause_User_Count" Operation="COUNT" WhereColumn="REJECT_CAUSE" Where="p1==2 or p1==3 or p1==6 or p1==7 or p1==8 or p1==11 or p1==12 or p1==13 or p1==14 or p1==15"></Kpi>
+        <Kpi SourcColumn="ACCEPT_DELAYFIRST"  ResultColumn="Accept_DelayFirst_Sum" Operation="SUM"  WhereColumn="ACCEPT" Where="p1>0"></Kpi>
+        <Kpi SourcColumn="ACCEPT_DELAYFIRST"  ResultColumn="Accept_DelayFirst_Count" Operation="COUNT"  WhereColumn="ACCEPT" Where="p1>0"></Kpi>
+        <ColumnExp Name="SGSN" GroupBy="SGSN"></ColumnExp>
+        <ColumnExp Name="BSC"    GroupBy="BSC"></ColumnExp>
+        <ColumnExp Name="LAC"  GroupBy="LAC"></ColumnExp>
+        <ColumnExp Name="LAC_CI" GroupBy="LAC,CI"></ColumnExp>
+        <Dimension Name="" GroupBy="">
+          <DColumnExp  Name="SGSN"></DColumnExp>
+          <DColumnExp  Name="LAC" ></DColumnExp>
+          <DColumnExp  Name="BSC" ></DColumnExp>
+          <DColumnExp  Name="LAC_CI" ></DColumnExp>
+        </Dimension>
+      </Table>
+      <Table SourcTable="rau" ResultTable="gb_rau_fault" Type="0" >
+        <Kpi SourcColumn="ABNORMAL_REASON" ResultColumn="Reject_Count" Operation="COUNT" WhereColumn="" Where=""></Kpi>
+        <ColumnExp Name="ABNORMAL_REASON"   GroupBy="ABNORMAL_REASON"></ColumnExp>
+        <ColumnExp Name="IMSI" GroupBy="IMSI"></ColumnExp>
+        <ColumnExp Name="SGSN" GroupBy="SGSN"></ColumnExp>
+        <ColumnExp Name="BSC"    GroupBy="BSC"></ColumnExp>
+        <ColumnExp Name="LAC"  GroupBy="LAC"></ColumnExp>
+        <ColumnExp Name="LAC_CI" GroupBy="LAC,CI"></ColumnExp>
+        <Dimension Name="ABNORMAL_REASON" GroupBy="ABNORMAL_REASON" WhereColumn="ABNORMAL_REASON" Where="p1>0">
+          <DColumnExp Name="ABNORMAL_REASON"></DColumnExp>
+          <DColumnExp Name="IMSI"></DColumnExp>
+          <DColumnExp Name="SGSN"></DColumnExp>
+          <DColumnExp Name="LAC"></DColumnExp>
+          <DColumnExp Name="BSC"></DColumnExp>
+          <DColumnExp Name="LAC_CI"></DColumnExp>
+        </Dimension>
+      </Table>
+    </Node>
+    <Node Event_Type="Paging PS" Name="paging_ps"  Index="7"  Text="Paging事件">
+      <Table SourcTable="paging_ps" ResultTable="gb_paging_ps" Type="0">
+        <Kpi SourcColumn="REQUEST"  ResultColumn="Request_Count" Operation="COUNT" WhereColumn="REQUEST" Where="p1>0"></Kpi>
+        <Kpi SourcColumn="REPEAT"  ResultColumn="Repeat_Sum" Operation="SUM" WhereColumn="" Where=""></Kpi>
+        <Kpi SourcColumn="RESPONSE"  ResultColumn="Response_Count" Operation="COUNT" WhereColumn="RESPONSE" Where="p1>0"></Kpi>
+        <Kpi SourcColumn="RESPONSE_DELAYFIRST"  ResultColumn="Response_DelayFirst_Sum" Operation="SUM"  WhereColumn="RESPONSE" Where="p1>0"></Kpi>
+        <Kpi SourcColumn="RESPONSE_DELAYFIRST"  ResultColumn="Response_DelayFirst_Count" Operation="COUNT"  WhereColumn="RESPONSE" Where="p1>0"></Kpi>
+        <ColumnExp Name="SGSN" GroupBy="SGSN"></ColumnExp>
+        <ColumnExp Name="BSC"    GroupBy="BSC"></ColumnExp>
+        <ColumnExp Name="LAC"  GroupBy="LAC"></ColumnExp>
+        <ColumnExp Name="LAC_CI" GroupBy="LAC,CI"></ColumnExp>
+        <Dimension Name="" GroupBy="">
+          <DColumnExp  Name="SGSN"></DColumnExp>
+          <DColumnExp  Name="LAC" ></DColumnExp>
+          <DColumnExp  Name="BSC" ></DColumnExp>
+          <DColumnExp  Name="LAC_CI" ></DColumnExp>
+        </Dimension>
+      </Table>
+      <Table SourcTable="paging_ps" ResultTable="gb_paging_ps_fault" Type="0" >
+        <Kpi SourcColumn="ABNORMAL_REASON" ResultColumn="Reject_Count" Operation="COUNT" WhereColumn="" Where=""></Kpi>
+        <ColumnExp Name="ABNORMAL_REASON"   GroupBy="ABNORMAL_REASON"></ColumnExp>
+        <ColumnExp Name="IMSI" GroupBy="IMSI"></ColumnExp>
+        <ColumnExp Name="SGSN" GroupBy="SGSN"></ColumnExp>
+        <ColumnExp Name="BSC"    GroupBy="BSC"></ColumnExp>
+        <ColumnExp Name="LAC"  GroupBy="LAC"></ColumnExp>
+        <ColumnExp Name="LAC_CI" GroupBy="LAC,CI"></ColumnExp>
+        <Dimension Name="ABNORMAL_REASON" GroupBy="ABNORMAL_REASON" WhereColumn="ABNORMAL_REASON" Where="p1>0">
+          <DColumnExp Name="ABNORMAL_REASON"></DColumnExp>
+          <DColumnExp Name="IMSI"></DColumnExp>
+          <DColumnExp Name="SGSN"></DColumnExp>
+          <DColumnExp Name="LAC"></DColumnExp>
+          <DColumnExp Name="BSC"></DColumnExp>
+          <DColumnExp Name="LAC_CI"></DColumnExp>
+        </Dimension>
+      </Table>
+    </Node>
+    <Node Event_Type="Flush LL" Name="flush_ll"  Index="8"    Text="小区重选事件">
+      <Table SourcTable="flush_ll"  ResultTable="gb_flush_ll" Type="0">
+        <Kpi SourcColumn="REQUEST"  ResultColumn="Request_Count" Operation="COUNT" WhereColumn="REQUEST" Where="p1>0"></Kpi>
+        <Kpi SourcColumn="REPEAT"  ResultColumn="Repeat_Sum" Operation="SUM" WhereColumn="" Where=""></Kpi>
+        <Kpi SourcColumn="ACK"  ResultColumn="ACK_Count" Operation="COUNT" WhereColumn="" Where=""></Kpi>
+        <Kpi SourcColumn="ACK_DELAYFIRST"  ResultColumn="ACK_DelayFirst_Sum" Operation="SUM"  WhereColumn="ACK" Where="p1>0"></Kpi>
+        <Kpi SourcColumn="ACK_DELAYFIRST"  ResultColumn="ACK_DelayFirst_Count" Operation="COUNT"  WhereColumn="ACK" Where="p1>0"></Kpi>
+        <ColumnExp Name="SGSN" GroupBy="SGSN"></ColumnExp>
+        <ColumnExp Name="BSC"    GroupBy="BSC"></ColumnExp>
+        <ColumnExp Name="LAC"  GroupBy="LAC"></ColumnExp>
+        <ColumnExp Name="LAC_CI" GroupBy="LAC,CI"></ColumnExp>
+        <Dimension Name="" GroupBy="">
+          <DColumnExp  Name="SGSN"></DColumnExp>
+          <DColumnExp  Name="LAC" ></DColumnExp>
+          <DColumnExp  Name="BSC" ></DColumnExp>
+          <DColumnExp  Name="LAC_CI" ></DColumnExp>
+        </Dimension>
+
+      </Table>
+      <Table SourcTable="flush_ll" ResultTable="gb_flush_ll_fault" Type="0" >
+        <Kpi SourcColumn="ABNORMAL_REASON" ResultColumn="Reject_Count" Operation="COUNT" WhereColumn="" Where=""></Kpi>
+        <ColumnExp Name="ABNORMAL_REASON"   GroupBy="ABNORMAL_REASON"></ColumnExp>
+        <ColumnExp Name="IMSI" GroupBy="IMSI"></ColumnExp>
+        <ColumnExp Name="SGSN" GroupBy="SGSN"></ColumnExp>
+        <ColumnExp Name="BSC"    GroupBy="BSC"></ColumnExp>
+        <ColumnExp Name="LAC"  GroupBy="LAC"></ColumnExp>
+        <ColumnExp Name="LAC_CI" GroupBy="LAC,CI"></ColumnExp>
+        <Dimension Name="ABNORMAL_REASON" GroupBy="ABNORMAL_REASON" WhereColumn="ABNORMAL_REASON" Where="p1>0">
+          <DColumnExp Name="ABNORMAL_REASON"></DColumnExp>
+          <DColumnExp Name="IMSI"></DColumnExp>
+          <DColumnExp Name="SGSN"></DColumnExp>
+          <DColumnExp Name="LAC"></DColumnExp>
+          <DColumnExp Name="BSC"></DColumnExp>
+          <DColumnExp Name="LAC_CI"></DColumnExp>
+        </Dimension>
+      </Table>
+    </Node>
+    <!--信令质量结束 -->
+    <!--业务质量开始 -->
+    <Node Event_Type="Get" Name="get"  Index="15,16"  Text="Get or Post 业务请求统计指标">
+      <Table SourcTable="get"  ResultTable="gb_get" Type="0">
+        <Kpi SourcColumn="REQUEST" ResultColumn="Request_Count" Operation="COUNT"  WhereColumn="" Where=""></Kpi>
+        <Kpi SourcColumn="REPEAT" ResultColumn="Repeat_Sum" Operation="SUM"  WhereColumn="" Where=""></Kpi>
+        <Kpi SourcColumn="REPLY" ResultColumn="Reply_Count" Operation="COUNT"  WhereColumn="ABNORMAL_REASON" Where="p1==0"></Kpi>
+        <Kpi SourcColumn="REPLY_DELAYFIRST" ResultColumn="Reply_DelayFirst_Sum" Operation="SUM" WhereColumn="REPLY" Where="p1>0"></Kpi>
+        <Kpi SourcColumn="REPLY_DELAYFIRST" ResultColumn="Reply_DelayFirst_Count" Operation="COUNT" WhereColumn="REPLY" Where="p1>0"></Kpi>
+        <ColumnExp Name="SGSN" GroupBy="SGSN"></ColumnExp>
+        <ColumnExp Name="BSC"    GroupBy="BSC"></ColumnExp>
+        <ColumnExp Name="LAC"  GroupBy="LAC"></ColumnExp>
+        <ColumnExp Name="LAC_CI" GroupBy="LAC,CI"></ColumnExp>
+        <ColumnExp Name="APN" GroupBy="APN"></ColumnExp>
+        <ColumnExp Name="PROTOCOL" GroupBy="PROTOCOL"></ColumnExp>
+        <Dimension Name="" GroupBy="">
+          <DColumnExp   Name="APN" ></DColumnExp>
+          <DColumnExp   Name="PROTOCOL" ></DColumnExp>
+          <DColumnExp  Name="SGSN"></DColumnExp>
+          <DColumnExp  Name="LAC" ></DColumnExp>
+          <DColumnExp  Name="BSC" ></DColumnExp>
+          <DColumnExp  Name="LAC_CI" ></DColumnExp>
+        </Dimension>
+      </Table>
+      <Table SourcTable="get" ResultTable="gb_get_fault" Type="0" >
+        <Kpi SourcColumn="ABNORMAL_REASON" ResultColumn="Reject_Count" Operation="COUNT" WhereColumn="" Where=""></Kpi>
+        <ColumnExp Name="ABNORMAL_REASON"   GroupBy="ABNORMAL_REASON"></ColumnExp>
+        <ColumnExp Name="IMSI" GroupBy="IMSI"></ColumnExp>
+        <ColumnExp Name="SGSN" GroupBy="SGSN"></ColumnExp>
+        <ColumnExp Name="BSC"    GroupBy="BSC"></ColumnExp>
+        <ColumnExp Name="LAC"  GroupBy="LAC"></ColumnExp>
+        <ColumnExp Name="LAC_CI" GroupBy="LAC,CI"></ColumnExp>
+        <Dimension Name="ABNORMAL_REASON" GroupBy="ABNORMAL_REASON" WhereColumn="ABNORMAL_REASON" Where="p1>0">
+          <DColumnExp Name="ABNORMAL_REASON"></DColumnExp>
+          <DColumnExp Name="IMSI"></DColumnExp>
+          <DColumnExp Name="SGSN"></DColumnExp>
+          <DColumnExp Name="LAC"></DColumnExp>
+          <DColumnExp Name="BSC"></DColumnExp>
+          <DColumnExp Name="LAC_CI"></DColumnExp>
+        </Dimension>
+      </Table>
+    </Node>
+    <Node Event_Type="MMS_MO" Name="mms_mo"  Index="17"   Text="彩信发送指标">
+      <Table SourcTable="mms_mo" ResultTable="gb_mms_mo" Type="0">
+        <Kpi SourcColumn="REQUEST" ResultColumn="Request_Count" Operation="COUNT" WhereColumn="REQUEST" Where="p1>0"></Kpi>
+        <Kpi SourcColumn="REPEAT" ResultColumn="Repeat_Sum" Operation="SUM"  WhereColumn="" Where=""></Kpi>
+        <Kpi SourcColumn="CONF"  ResultColumn="Conf_Count" Operation="COUNT"  WhereColumn="ABNORMAL_REASON" Where="p1==0"></Kpi>
+        <Kpi SourcColumn="CONF_DELAYFIRST" ResultColumn="Conf_DelayFirst_Sum" Operation="SUM" WhereColumn="CONF" Where="p1>0"></Kpi>
+        <Kpi SourcColumn="CONF_DELAYFIRST" ResultColumn="Conf_DelayFirst_Count" Operation="COUNT" WhereColumn="CONF" Where="p1>0"></Kpi>
+        <ColumnExp Name="SGSN" GroupBy="SGSN"></ColumnExp>
+        <ColumnExp Name="BSC"    GroupBy="BSC"></ColumnExp>
+        <ColumnExp Name="LAC"  GroupBy="LAC"></ColumnExp>
+        <ColumnExp Name="LAC_CI" GroupBy="LAC,CI"></ColumnExp>
+        <ColumnExp Name="APN" GroupBy="APN"></ColumnExp>
+        <ColumnExp Name="PROTOCOL" GroupBy="PROTOCOL"></ColumnExp>
+        <Dimension Name="" GroupBy="">
+          <DColumnExp   Name="APN" ></DColumnExp>
+          <DColumnExp   Name="PROTOCOL" ></DColumnExp>
+          <DColumnExp  Name="SGSN"></DColumnExp>
+          <DColumnExp  Name="LAC" ></DColumnExp>
+          <DColumnExp  Name="BSC" ></DColumnExp>
+          <DColumnExp  Name="LAC_CI" ></DColumnExp>
+        </Dimension>
+      </Table>
+      <Table SourcTable="mms_mo" ResultTable="gb_mms_mo_fault" Type="0" >
+        <Kpi SourcColumn="ABNORMAL_REASON" ResultColumn="Reject_Count" Operation="COUNT" WhereColumn="" Where=""></Kpi>
+        <ColumnExp Name="ABNORMAL_REASON"   GroupBy="ABNORMAL_REASON"></ColumnExp>
+        <ColumnExp Name="IMSI" GroupBy="IMSI"></ColumnExp>
+        <ColumnExp Name="SGSN" GroupBy="SGSN"></ColumnExp>
+        <ColumnExp Name="BSC"    GroupBy="BSC"></ColumnExp>
+        <ColumnExp Name="LAC"  GroupBy="LAC"></ColumnExp>
+        <ColumnExp Name="LAC_CI" GroupBy="LAC,CI"></ColumnExp>
+        <Dimension Name="ABNORMAL_REASON" GroupBy="ABNORMAL_REASON" WhereColumn="ABNORMAL_REASON" Where="p1>0">
+          <DColumnExp Name="ABNORMAL_REASON"></DColumnExp>
+          <DColumnExp Name="IMSI"></DColumnExp>
+          <DColumnExp Name="SGSN"></DColumnExp>
+          <DColumnExp Name="LAC"></DColumnExp>
+          <DColumnExp Name="BSC"></DColumnExp>
+          <DColumnExp Name="LAC_CI"></DColumnExp>
+        </Dimension>
+      </Table>
+    </Node>
+    <Node Event_Type="MMS_MT" Name="mms_mt"  Index="18" IndexRef="0"  Text="彩信接收指标">
+      <Table SourcTable="mms_mt" ResultTable="gb_mms_mt" Type="0">
+        <Kpi SourcColumn="REQUEST" ResultColumn="Request_Count" Operation="COUNT" WhereColumn="REQUEST" Where="p1>0"></Kpi>
+        <Kpi SourcColumn="REPEAT" ResultColumn="Repeat_Sum" Operation="SUM"  WhereColumn="" Where=""></Kpi>
+        <Kpi SourcColumn="CONF"  ResultColumn="Conf_Count" Operation="COUNT"  WhereColumn="ABNORMAL_REASON" Where="p1==0"></Kpi>
+        <Kpi SourcColumn="CONF_DELAYFIRST" ResultColumn="Conf_DelayFirst_Sum" Operation="SUM" WhereColumn="CONF" Where="p1>0"></Kpi>
+        <Kpi SourcColumn="CONF_DELAYFIRST" ResultColumn="Conf_DelayFirst_Count" Operation="COUNT" WhereColumn="CONF" Where="p1>0"></Kpi>
+        <ColumnExp Name="SGSN" GroupBy="SGSN"></ColumnExp>
+        <ColumnExp Name="BSC"    GroupBy="BSC"></ColumnExp>
+        <ColumnExp Name="LAC"  GroupBy="LAC"></ColumnExp>
+        <ColumnExp Name="LAC_CI" GroupBy="LAC,CI"></ColumnExp>
+        <ColumnExp Name="APN" GroupBy="APN"></ColumnExp>
+        <ColumnExp Name="PROTOCOL" GroupBy="PROTOCOL"></ColumnExp>
+        <Dimension Name="" GroupBy="">
+          <DColumnExp   Name="APN" ></DColumnExp>
+          <DColumnExp   Name="PROTOCOL" ></DColumnExp>
+          <DColumnExp  Name="SGSN"></DColumnExp>
+          <DColumnExp  Name="LAC" ></DColumnExp>
+          <DColumnExp  Name="BSC" ></DColumnExp>
+          <DColumnExp  Name="LAC_CI" ></DColumnExp>
+        </Dimension>
+      </Table>
+      <Table SourcTable="mms_mt" ResultTable="gb_mms_mt_fault" Type="0" >
+        <Kpi SourcColumn="ABNORMAL_REASON" ResultColumn="Reject_Count" Operation="COUNT" WhereColumn="" Where=""></Kpi>
+        <ColumnExp Name="ABNORMAL_REASON"   GroupBy="ABNORMAL_REASON"></ColumnExp>
+        <ColumnExp Name="IMSI" GroupBy="IMSI"></ColumnExp>
+        <ColumnExp Name="SGSN" GroupBy="SGSN"></ColumnExp>
+        <ColumnExp Name="BSC"    GroupBy="BSC"></ColumnExp>
+        <ColumnExp Name="LAC"  GroupBy="LAC"></ColumnExp>
+        <ColumnExp Name="LAC_CI" GroupBy="LAC,CI"></ColumnExp>
+        <Dimension Name="ABNORMAL_REASON" GroupBy="ABNORMAL_REASON" WhereColumn="ABNORMAL_REASON" Where="p1>0">
+          <DColumnExp Name="ABNORMAL_REASON"></DColumnExp>
+          <DColumnExp Name="IMSI"></DColumnExp>
+          <DColumnExp Name="SGSN"></DColumnExp>
+          <DColumnExp Name="LAC"></DColumnExp>
+          <DColumnExp Name="BSC"></DColumnExp>
+          <DColumnExp Name="LAC_CI"></DColumnExp>
+        </Dimension>
+
+      </Table>
+    </Node>
+    <Node Event_Type="Connect" Name="connect"  Index="19,20"  Text="WAP_Connect or WAP_Syn 连接指标">
+      <Table SourcTable="connect" ResultTable="gb_connect" Type="0">
+        <Kpi SourcColumn="REQUEST" ResultColumn="Request_Count" Operation="COUNT"  WhereColumn="REQUEST" Where="p1>0"></Kpi>
+        <Kpi SourcColumn="REPEAT" ResultColumn="Repeat_Sum" Operation="SUM"  WhereColumn="" Where=""></Kpi>
+        <Kpi SourcColumn="REPLY" ResultColumn="Reply_Count" Operation="COUNT" WhereColumn="ABNORMAL_REASON" Where="p1==0"></Kpi>
+        <Kpi SourcColumn="REPLY_DELAYFIRST" ResultColumn="Reply_DelayFirst_Sum"  Operation="SUM" WhereColumn="REPLY" Where="p1>0"></Kpi>
+        <Kpi SourcColumn="REPLY_DELAYFIRST" ResultColumn="Reply_DelayFirst_Count" Operation="COUNT" WhereColumn="REPLY" Where="p1>0"></Kpi>
+        <ColumnExp Name="SGSN" GroupBy="SGSN"></ColumnExp>
+        <ColumnExp Name="BSC"    GroupBy="BSC"></ColumnExp>
+        <ColumnExp Name="LAC"  GroupBy="LAC"></ColumnExp>
+        <ColumnExp Name="LAC_CI" GroupBy="LAC,CI"></ColumnExp>
+        <ColumnExp Name="APN" GroupBy="APN"></ColumnExp>
+        <ColumnExp Name="PROTOCOL" GroupBy="PROTOCOL"></ColumnExp>
+        <Dimension Name="" GroupBy="">
+          <DColumnExp   Name="APN" ></DColumnExp>
+          <DColumnExp   Name="PROTOCOL" ></DColumnExp>
+          <DColumnExp  Name="SGSN"></DColumnExp>
+          <DColumnExp  Name="LAC" ></DColumnExp>
+          <DColumnExp  Name="BSC" ></DColumnExp>
+          <DColumnExp  Name="LAC_CI" ></DColumnExp>
+        </Dimension>
+      </Table>
+      <Table SourcTable="connect" ResultTable="gb_connect_fault" Type="0" >
+        <Kpi SourcColumn="ABNORMAL_REASON" ResultColumn="Reject_Count" Operation="COUNT" WhereColumn="" Where=""></Kpi>
+        <ColumnExp Name="ABNORMAL_REASON"   GroupBy="ABNORMAL_REASON"></ColumnExp>
+        <ColumnExp Name="IMSI" GroupBy="IMSI"></ColumnExp>
+        <ColumnExp Name="SGSN" GroupBy="SGSN"></ColumnExp>
+        <ColumnExp Name="BSC"    GroupBy="BSC"></ColumnExp>
+        <ColumnExp Name="LAC"  GroupBy="LAC"></ColumnExp>
+        <ColumnExp Name="LAC_CI" GroupBy="LAC,CI"></ColumnExp>
+        <Dimension Name="ABNORMAL_REASON" GroupBy="ABNORMAL_REASON" WhereColumn="ABNORMAL_REASON" Where="p1>0">
+          <DColumnExp Name="ABNORMAL_REASON"></DColumnExp>
+          <DColumnExp Name="IMSI"></DColumnExp>
+          <DColumnExp Name="SGSN"></DColumnExp>
+          <DColumnExp Name="LAC"></DColumnExp>
+          <DColumnExp Name="BSC"></DColumnExp>
+          <DColumnExp Name="LAC_CI"></DColumnExp>
+        </Dimension>
+      </Table>
+    </Node>
+    <Node Event_Type="Ping" Name="ping"  Index="14"   Text="ping">
+      <Table SourcTable="ping"  ResultTable="gb_ping" Type="0">
+        <Kpi SourcColumn="REQUEST" ResultColumn="Request_Count" Operation="COUNT"  WhereColumn="" Where=""></Kpi>
+        <Kpi SourcColumn="REPEAT" ResultColumn="Repeat_Sum" Operation="SUM"  WhereColumn="" Where=""></Kpi>
+        <Kpi SourcColumn="REPLY" ResultColumn="Reply_Count" Operation="COUNT"  WhereColumn="ABNORMAL_REASON" Where="p1==0"></Kpi>
+        <Kpi SourcColumn="REPLY_DELAYFIRST" ResultColumn="Reply_DelayFirst_Sum" Operation="SUM" WhereColumn="REPLY" Where="p1>0"></Kpi>
+        <Kpi SourcColumn="REPLY_DELAYFIRST" ResultColumn="Reply_DelayFirst_Count" Operation="COUNT" WhereColumn="REPLY" Where="p1>0"></Kpi>
+        <ColumnExp Name="SGSN" GroupBy="SGSN"></ColumnExp>
+        <ColumnExp Name="BSC"    GroupBy="BSC"></ColumnExp>
+        <ColumnExp Name="LAC"  GroupBy="LAC"></ColumnExp>
+        <ColumnExp Name="LAC_CI" GroupBy="LAC,CI"></ColumnExp>
+        <ColumnExp Name="APN" GroupBy="APN"></ColumnExp>
+        <ColumnExp Name="PROTOCOL" GroupBy="PROTOCOL"></ColumnExp>
+        <Dimension Name="" GroupBy="">
+          <DColumnExp   Name="APN" ></DColumnExp>
+          <DColumnExp   Name="PROTOCOL" ></DColumnExp>
+          <DColumnExp  Name="SGSN"></DColumnExp>
+          <DColumnExp  Name="LAC" ></DColumnExp>
+          <DColumnExp  Name="BSC" ></DColumnExp>
+          <DColumnExp  Name="LAC_CI" ></DColumnExp>
+        </Dimension>
+      </Table>
+      <Table SourcTable="ping" ResultTable="gb_ping_fault" Type="0" >
+        <Kpi SourcColumn="ABNORMAL_REASON" ResultColumn="Reject_Count" Operation="COUNT" WhereColumn="" Where=""></Kpi>
+        <ColumnExp Name="ABNORMAL_REASON"   GroupBy="ABNORMAL_REASON"></ColumnExp>
+        <ColumnExp Name="IMSI" GroupBy="IMSI"></ColumnExp>
+        <ColumnExp Name="SGSN" GroupBy="SGSN"></ColumnExp>
+        <ColumnExp Name="BSC"    GroupBy="BSC"></ColumnExp>
+        <ColumnExp Name="LAC"  GroupBy="LAC"></ColumnExp>
+        <ColumnExp Name="LAC_CI" GroupBy="LAC,CI"></ColumnExp>
+        <Dimension Name="ABNORMAL_REASON" GroupBy="ABNORMAL_REASON" WhereColumn="ABNORMAL_REASON" Where="p1>0">
+          <DColumnExp Name="ABNORMAL_REASON"></DColumnExp>
+          <DColumnExp Name="IMSI"></DColumnExp>
+          <DColumnExp Name="SGSN"></DColumnExp>
+          <DColumnExp Name="LAC"></DColumnExp>
+          <DColumnExp Name="BSC"></DColumnExp>
+          <DColumnExp Name="LAC_CI"></DColumnExp>
+        </Dimension>
+      </Table>
+    </Node>
+    <Node Event_Type="DNS" Name="dns"  Index="13"   Text="DNS事件指标">
+      <Table SourcTable="dns" ResultTable="gb_dns" Type="0">
+        <Kpi SourcColumn="REQUEST" ResultColumn="Request_Count" Operation="COUNT"  WhereColumn="REQUEST" Where="p1>0"> </Kpi>
+        <Kpi SourcColumn="REPEAT" ResultColumn="Repeat_Sum" Operation="SUM"  WhereColumn="" Where=""></Kpi>
+        <Kpi SourcColumn="RESPONSE" ResultColumn="Response_Count" Operation="COUNT"  WhereColumn="RESPONSE_CODE" Where="p1==0"></Kpi>
+        <Kpi SourcColumn="RESPONSE_DELAYFIRST" ResultColumn="Response_DelayFirst_Sum" Operation="COUNT" WhereColumn="RESPONSE" Where="p1>0"></Kpi>
+        <Kpi SourcColumn="RESPONSE_DELAYFIRST" ResultColumn="Response_DelayFirst_Count" Operation="SUM" WhereColumn="RESPONSE" Where="p1>0"></Kpi>
+        <ColumnExp Name="SGSN" GroupBy="SGSN"></ColumnExp>
+        <ColumnExp Name="BSC"    GroupBy="BSC"></ColumnExp>
+        <ColumnExp Name="LAC"  GroupBy="LAC"></ColumnExp>
+        <ColumnExp Name="LAC_CI" GroupBy="LAC,CI"></ColumnExp>
+        <ColumnExp Name="APN" GroupBy="APN"></ColumnExp>
+        <ColumnExp Name="PROTOCOL" GroupBy="PROTOCOL"></ColumnExp>
+        <Dimension Name="" GroupBy="">
+          <DColumnExp   Name="APN" ></DColumnExp>
+          <DColumnExp   Name="PROTOCOL" ></DColumnExp>
+          <DColumnExp  Name="SGSN"></DColumnExp>
+          <DColumnExp  Name="LAC" ></DColumnExp>
+          <DColumnExp  Name="BSC" ></DColumnExp>
+          <DColumnExp  Name="LAC_CI" ></DColumnExp>
+        </Dimension>
+      </Table>
+      <Table SourcTable="dns" ResultTable="gb_dns_fault" Type="0" >
+        <Kpi SourcColumn="ABNORMAL_REASON" ResultColumn="Reject_Count" Operation="COUNT" WhereColumn="" Where=""></Kpi>
+        <ColumnExp Name="ABNORMAL_REASON"   GroupBy="ABNORMAL_REASON"></ColumnExp>
+        <ColumnExp Name="IMSI" GroupBy="IMSI"></ColumnExp>
+        <ColumnExp Name="SGSN" GroupBy="SGSN"></ColumnExp>
+        <ColumnExp Name="BSC"    GroupBy="BSC"></ColumnExp>
+        <ColumnExp Name="LAC"  GroupBy="LAC"></ColumnExp>
+        <ColumnExp Name="LAC_CI" GroupBy="LAC,CI"></ColumnExp>
+        <Dimension Name="ABNORMAL_REASON" GroupBy="ABNORMAL_REASON" WhereColumn="ABNORMAL_REASON" Where="p1>0">
+          <DColumnExp Name="ABNORMAL_REASON"></DColumnExp>
+          <DColumnExp Name="IMSI"></DColumnExp>
+          <DColumnExp Name="SGSN"></DColumnExp>
+          <DColumnExp Name="LAC"></DColumnExp>
+          <DColumnExp Name="BSC"></DColumnExp>
+          <DColumnExp Name="LAC_CI"></DColumnExp>
+        </Dimension>
+      </Table>
+    </Node>-->
+    <!--业务质量结束 -->
+    <!--User-->
+
+    <Node Event_Type="ALL" Name="ALL"  Index="-1"   Text="ALL事件指标">
+      <Table SourcTable="common" ResultTable="gb_user_flow" Type="0">
+        <Kpi SourcColumn="IP_LEN_UL" ResultColumn="IP_LEN_UL_SUM" Operation="SUM"  WhereColumn="IP_LEN_UL" Where="p1>0"> </Kpi>
+        <Kpi SourcColumn="IP_LEN_DL" ResultColumn="IP_LEN_DL_SUM" Operation="SUM"  WhereColumn="IP_LEN_DL" Where="p1>0"></Kpi>
+        <ColumnExp Name="SGSN" GroupBy="SGSN"></ColumnExp>
+        <ColumnExp Name="BSC"    GroupBy="BSC"></ColumnExp>
+        <ColumnExp Name="LAC"  GroupBy="LAC"></ColumnExp>
+        <ColumnExp Name="LAC_CI" GroupBy="LAC,CI"></ColumnExp>
+        <ColumnExp Name="PROTOCOL" GroupBy="PROTOCOL"></ColumnExp>
+        <ColumnExp Name="APN"    GroupBy="APN"></ColumnExp>
+        <Dimension Name="" GroupBy="" >
+          <DColumnExp  Name="SGSN"></DColumnExp>
+          <DColumnExp  Name="LAC" ></DColumnExp>
+          <DColumnExp  Name="BSC" ></DColumnExp>
+          <DColumnExp  Name="LAC_CI" ></DColumnExp>
+          <DColumnExp  Name="APN"  ></DColumnExp>
+          <DColumnExp  Name="PROTOCOL"></DColumnExp>
+        </Dimension>
+
+      </Table>
+      <Table SourcTable="common" ResultTable="gb_user_type_flow" Type="0">
+        <Kpi SourcColumn="IP_LEN_UL" ResultColumn="IP_LEN_UL_SUM" Operation="SUM"  WhereColumn="IP_LEN_UL" Where="p1>0"> </Kpi>
+        <Kpi SourcColumn="IP_LEN_DL" ResultColumn="IP_LEN_DL_SUM" Operation="SUM"  WhereColumn="IP_LEN_DL" Where="p1>0"></Kpi>
+        <Kpi SourcColumn="SUB_SERVICE_TYPE" ResultColumn="SUB_SERVICE_TYPE_COUNT" Operation="COUNT"  WhereColumn="" Where=""></Kpi>
+        <ColumnExp Name="SGSN" GroupBy="SGSN"></ColumnExp>
+        <ColumnExp Name="BSC"    GroupBy="BSC"></ColumnExp>
+        <ColumnExp Name="LAC"  GroupBy="LAC"></ColumnExp>
+        <ColumnExp Name="LAC_CI" GroupBy="LAC,CI"></ColumnExp>
+        <ColumnExp Name="PROTOCOL" GroupBy="PROTOCOL"></ColumnExp>
+        <ColumnExp Name="APN"    GroupBy="APN"></ColumnExp>
+        <ColumnExp Name="SUB_SERVICE_TYPE"    GroupBy="SUB_SERVICE_TYPE"></ColumnExp>
+        <ColumnExp Name="SERVICE_TYPE"    GroupBy="SERVICE_TYPE" SourcExist="1"></ColumnExp>
+        <Dimension Name="SERVICE_TYPE" GroupBy="SERVICE_TYPE" WhereColumn="SERVICE_TYPE" Where="p1~=8002">
+          <DColumnExp  Name="SGSN"></DColumnExp>
+          <DColumnExp  Name="LAC" ></DColumnExp>
+          <DColumnExp  Name="BSC" ></DColumnExp>
+          <DColumnExp  Name="LAC_CI" ></DColumnExp>
+          <DColumnExp  Name="APN"  ></DColumnExp>
+          <DColumnExp  Name="PROTOCOL"></DColumnExp>
+          <DColumnExp  Name="SUB_SERVICE_TYPE"  ></DColumnExp>
+          <DColumnExp  Name="SERVICE_TYPE"></DColumnExp>
+        </Dimension>
+      </Table>
+    </Node>
+    <!--User-->
+  </Times>
+  <Times Minute="60">
+    <Node Event_Type="ALL" Name="ALL"  Index="-1"   Text="ALL事件指标">
+      <Table SourcTable="common" ResultTable="gb_user_count" Type="0">
+        <Kpi SourcColumn="SUB_SERVICE_TYPE" ResultColumn="User_COUNT" Operation="COUNT"  WhereColumn="" Where=""></Kpi>
+        <ColumnExp Name="SUB_SERVICE_TYPE"    GroupBy="SUB_SERVICE_TYPE"></ColumnExp>
+        <ColumnExp Name="SERVICE_TYPE"    GroupBy="SERVICE_TYPE" SourcExist="1"></ColumnExp>
+        <ColumnExp Name="APN"    GroupBy="APN"></ColumnExp>
+        <ColumnExp Name="PROTOCOL" GroupBy="PROTOCOL"></ColumnExp>
+        <Dimension Name="SGSN" GroupBy="SGSN" WhereColumn="SERVICE_TYPE" Where="p1~=8002">
+          <DColumnExp  Name="SUB_SERVICE_TYPE"  ></DColumnExp>
+          <DColumnExp  Name="SERVICE_TYPE" ></DColumnExp>
+          <DColumnExp  Name="APN"  ></DColumnExp>
+          <DColumnExp  Name="PROTOCOL"></DColumnExp>
+        </Dimension>
+        <Dimension Name="BSC" GroupBy="BSC" WhereColumn="SERVICE_TYPE" Where="p1~=8002">
+          <DColumnExp  Name="SUB_SERVICE_TYPE"  ></DColumnExp>
+          <DColumnExp  Name="SERVICE_TYPE" ></DColumnExp>
+          <DColumnExp  Name="APN"  ></DColumnExp>
+          <DColumnExp  Name="PROTOCOL"></DColumnExp>
+        </Dimension>
+        <Dimension Name="LAC" GroupBy="LAC" WhereColumn="SERVICE_TYPE" Where="p1~=8002">
+          <DColumnExp  Name="SUB_SERVICE_TYPE"  ></DColumnExp>
+          <DColumnExp  Name="SERVICE_TYPE"  ></DColumnExp>
+          <DColumnExp  Name="APN"  ></DColumnExp>
+          <DColumnExp  Name="PROTOCOL"></DColumnExp>
+        </Dimension>
+        <Dimension Name="LAC_CI" GroupBy="LAC,CI" WhereColumn="SERVICE_TYPE" Where="p1~=8002">
+          <DColumnExp  Name="SUB_SERVICE_TYPE"  ></DColumnExp>
+          <DColumnExp  Name="SERVICE_TYPE" ></DColumnExp>
+          <DColumnExp  Name="APN"  ></DColumnExp>
+          <DColumnExp  Name="PROTOCOL"></DColumnExp>
+        </Dimension>
+      </Table>
+    </Node>
+  </Times>
+</Root>
+
+
+
+

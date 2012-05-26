@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GuangZhou_GnModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="GuangZhou_GnEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="mpos_gb_gz" EntityType="GuangZhou_GnModel.mpos_gb_gz" />
+  </EntityContainer>
+  <EntityType Name="mpos_gb_gz">
+    <Key>
+      <PropertyRef Name="Session_ID" />
+    </Key>
+    <Property Name="Online_ID" Type="Int64" Nullable="false" />
+    <Property Name="Session_ID" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="Start_Date_Time" Type="DateTime" Nullable="false" />
+    <Property Name="End_Date_Time" Type="DateTime" Nullable="false" />
+    <Property Name="SGSN_IP" Type="Int64" Nullable="false" />
+    <Property Name="SGSN" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="BSC_IP" Type="Int64" Nullable="false" />
+    <Property Name="BSC" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="LAC" Type="Int64" Nullable="false" />
+    <Property Name="CI" Type="Int64" Nullable="false" />
+    <Property Name="RAC" Type="Int64" Nullable="false" />
+    <Property Name="BVCI" Type="Int64" Nullable="false" />
+    <Property Name="TLLI" Type="Int64" Nullable="false" />
+    <Property Name="IMSI" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="IMEI" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="APN" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="Protocol" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="Event_Type" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="IP_LEN_UL" Type="Int64" Nullable="false" />
+    <Property Name="IP_LEN_DL" Type="Int64" Nullable="false" />
+    <Property Name="Count_Packet_UL" Type="Int64" Nullable="false" />
+    <Property Name="Count_Packet_DL" Type="Int64" Nullable="false" />
+    <Property Name="Duration" Type="Int64" Nullable="false" />
+    <Property Name="SOURCE_IP" Type="Int64" Nullable="false" />
+    <Property Name="DEST_IP" Type="Int64" Nullable="false" />
+    <Property Name="SOURCE_PORT" Type="Int64" Nullable="false" />
+    <Property Name="DEST_PORT" Type="Int64" Nullable="false" />
+    <Property Name="URI" Type="String" Nullable="false" MaxLength="1024" Unicode="false" FixedLength="false" />
+    <Property Name="URI_Main" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="X_Online_Host" Type="Int64" Nullable="false" />
+    <Property Name="referer" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="Content_Type_Part1" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="Content_Type_Part2" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="USER_AGENT_MAIN" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="Service_Type" Type="Int64" Nullable="false" />
+    <Property Name="Sub_Service_Type" Type="Int64" Nullable="false" />
+    <Property Name="Deactivate_PDP_Accept" Type="Int64" Nullable="false" />
+    <Property Name="Deactivate_PDP_Accept_Direction" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="Deactivate_PDP_Accept_DelayFirst" Type="Int64" Nullable="false" />
+    <Property Name="Detach_Accept" Type="Int64" Nullable="false" />
+    <Property Name="Detach_Accept_Direction" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="Detach_Accept_DelayFirst" Type="Int64" Nullable="false" />
+    <Property Name="Abnormal_reason" Type="Int64" Nullable="false" />
+    <Property Name="Request" Type="Int64" Nullable="false" />
+    <Property Name="Repeat" Type="Int64" Nullable="false" />
+    <Property Name="Reject" Type="Int64" Nullable="false" />
+    <Property Name="Reject_DelayFirst" Type="Int64" Nullable="false" />
+    <Property Name="Reject_Cause" Type="Int64" Nullable="false" />
+    <Property Name="Accept" Type="Int64" Nullable="false" />
+    <Property Name="Accept_DelayFirst" Type="Int64" Nullable="false" />
+    <Property Name="Complete" Type="Int64" Nullable="false" />
+    <Property Name="Complete_DelayFirst" Type="Int64" Nullable="false" />
+    <Property Name="NACK" Type="Int64" Nullable="false" />
+    <Property Name="NACK_Cause" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="ACK" Type="Int64" Nullable="false" />
+    <Property Name="ACK_DelayFirst" Type="Int64" Nullable="false" />
+    <Property Name="PTMSI" Type="Int64" Nullable="false" />
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="Authentication_Request" Type="Int64" Nullable="false" />
+    <Property Name="Authentication_Response" Type="Int64" Nullable="false" />
+    <Property Name="ID_REQ" Type="Int64" Nullable="false" />
+    <Property Name="ID_RESP" Type="Int64" Nullable="false" />
+    <Property Name="ID_RESP_DelayFirst" Type="Int64" Nullable="false" />
+    <Property Name="Acknowledge" Type="Int64" Nullable="false" />
+    <Property Name="Detach_Cause" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="Detach_Direction" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="Assign_IP" Type="Int64" Nullable="false" />
+    <Property Name="Deactivate_Direction" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="Deactivate_Cause" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="Radio_Status" Type="Int64" Nullable="false" />
+    <Property Name="Radio_Cause" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="MS_Bucket_Size" Type="Int64" Nullable="false" />
+    <Property Name="Bucket_Leak_Rate" Type="Int64" Nullable="false" />
+    <Property Name="Bucket_Full_Ratio" Type="Int64" Nullable="false" />
+    <Property Name="BVCI_Old_" Type="Int64" Nullable="false" />
+    <Property Name="BVCI_New_" Type="Int64" Nullable="false" />
+    <Property Name="LLC_Discarded" Type="Int64" Nullable="false" />
+    <Property Name="Octets_Affected" Type="Int64" Nullable="false" />
+    <Property Name="LAC_OLD" Type="Int64" Nullable="false" />
+    <Property Name="RAC_OLD" Type="Int64" Nullable="false" />
+    <Property Name="Reply" Type="Int64" Nullable="false" />
+    <Property Name="Reply_delayFirst" Type="Int64" Nullable="false" />
+    <Property Name="Reply_Status" Type="Int64" Nullable="false" />
+    <Property Name="Result" Type="Int64" Nullable="false" />
+    <Property Name="Result_Delayfirst" Type="Int64" Nullable="false" />
+    <Property Name="Conf" Type="Int64" Nullable="false" />
+    <Property Name="Conf_Delayfirst" Type="Int64" Nullable="false" />
+    <Property Name="Disconnect" Type="Int64" Nullable="false" />
+    <Property Name="Abort" Type="Int64" Nullable="false" />
+    <Property Name="Query_Name" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="Query_Type" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="Response" Type="Int64" Nullable="false" />
+    <Property Name="Response_delayFirst" Type="Int64" Nullable="false" />
+    <Property Name="Response_Code" Type="Int64" Nullable="false" />
+    <Property Name="DNS_TTL" Type="Int64" Nullable="false" />
+    <Property Name="SP_Address" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="From" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="To" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="Subject" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="Delivery_Report" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="MMS_resp_status" Type="Int64" Nullable="false" />
+    <Property Name="Read_report" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="Identifier" Type="Int64" Nullable="false" />
+    <Property Name="ErrorPacketLost" Type="Int64" Nullable="false" />
+    <Property Name="ErrorPacketWired" Type="Int64" Nullable="false" />
+    <Property Name="ErrorPacketWireless" Type="Int64" Nullable="false" />
+    <Property Name="IpLenDlAck" Type="Int64" Nullable="false" />
+    <Property Name="IpLenUpAck" Type="Int64" Nullable="false" />
+    <Property Name="Ack_delay" Type="Int64" Nullable="false" />
+    <Property Name="GPRS_multislot_E" Type="Int64" Nullable="false" />
+    <Property Name="EDGE_multislot_E" Type="Int64" Nullable="false" />
+    <Property Name="Umts_128TDD_E" Type="Int64" Nullable="false" />
+    <Property Name="Umts_FDD_E" Type="Int64" Nullable="false" />
+    <Property Name="GPRS_multislot_1800" Type="Int64" Nullable="false" />
+    <Property Name="EDGE_multislot_1800" Type="Int64" Nullable="false" />
+    <Property Name="Umts_128TDD_1800" Type="Int64" Nullable="false" />
+    <Property Name="Umts_FDD_1800" Type="Int64" Nullable="false" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<QueryLog>
+  <log Type="LINQ">
+    <Expression>Convert(value(System.Data.Objects.ObjectSet`1[GbPlatForm.gb_gz_tousu])).MergeAs(AppendOnly).GroupBy(p =&gt; p.Event_Type).Select(ttt =&gt; new &lt;&gt;f__AnonymousType0`2(Event_Type = ttt.Key, cnt = ttt.Count()))</Expression>
+    <StoreSQL>System.Data.Objects.ObjectQuery`1[&lt;&gt;f__AnonymousType0`2[System.String,System.Int32]]</StoreSQL>
+  </log>
+  <log Type="LINQ">
+    <Expression>Convert(value(System.Data.Objects.ObjectSet`1[GbPlatForm.gb_gz_tousu])).MergeAs(AppendOnly).GroupBy(p =&gt; p.Event_Type).Select(ttt =&gt; new &lt;&gt;f__AnonymousType0`2(Event_Type = ttt.Key, cnt = ttt.Count()))</Expression>
+    <StoreSQL>System.Data.Objects.ObjectQuery`1[&lt;&gt;f__AnonymousType0`2[System.String,System.Int32]]</StoreSQL>
+  </log>
+  <log Type="LINQ">
+    <Expression>Convert(value(System.Data.Objects.ObjectSet`1[GbPlatForm.gb_gz_tousu])).MergeAs(AppendOnly).GroupBy(p =&gt; p.Event_Type).Select(ttt =&gt; new &lt;&gt;f__AnonymousType0`2(Event_Type = ttt.Key, cnt = ttt.Count()))</Expression>
+    <StoreSQL>System.Data.Objects.ObjectQuery`1[&lt;&gt;f__AnonymousType0`2[System.String,System.Int32]]</StoreSQL>
+  </log>
+  <log Type="LINQ">
+    <Expression>Convert(value(System.Data.Objects.ObjectSet`1[GbPlatForm.mpos_gb_gz])).MergeAs(AppendOnly).GroupBy(p =&gt; p.Event_Type).Select(ttt =&gt; new &lt;&gt;f__AnonymousType0`2(Event_Type = ttt.Key, cnt = ttt.Count()))</Expression>
+    <StoreSQL>System.Data.Objects.ObjectQuery`1[&lt;&gt;f__AnonymousType0`2[System.String,System.Int32]]</StoreSQL>
+  </log>
+  <log Type="LINQ">
+    <Expression>Convert(value(System.Data.Objects.ObjectSet`1[GbPlatForm.mpos_gb_gz])).MergeAs(AppendOnly).GroupBy(p =&gt; p.Event_Type).Select(ttt =&gt; new &lt;&gt;f__AnonymousType0`2(Event_Type = ttt.Key, cnt = ttt.Count()))</Expression>
+    <StoreSQL>System.Data.Objects.ObjectQuery`1[&lt;&gt;f__AnonymousType0`2[System.String,System.Int32]]</StoreSQL>
+  </log>
+  <log Type="LINQ">
+    <Expression>Convert(value(System.Data.Objects.ObjectSet`1[GbPlatForm.mpos_gb_gz])).MergeAs(AppendOnly).GroupBy(p =&gt; p.Event_Type).Select(ttt =&gt; new &lt;&gt;f__AnonymousType0`2(Event_Type = ttt.Key, cnt = ttt.Count()))</Expression>
+    <StoreSQL>System.Data.Objects.ObjectQuery`1[&lt;&gt;f__AnonymousType0`2[System.String,System.Int32]]</StoreSQL>
+  </log>
+  <log Type="LINQ">
+    <Expression>Convert(value(System.Data.Objects.ObjectSet`1[GbPlatForm.mpos_gb_gz])).MergeAs(AppendOnly).GroupBy(p =&gt; p.Event_Type).Select(ttt =&gt; new &lt;&gt;f__AnonymousType0`4(Event_Type = ttt.Key, suc = ((ttt.Where(e =&gt; (e.Response == 1)).Count() + ttt.Where(e =&gt; (e.Accept == 1)).Count()) + ttt.Where(e =&gt; (e.Reply == 1)).Count()), cnt = ttt.Count(), percent = ((1 * Convert(((ttt.Where(e =&gt; (e.Response == 1)).Count() + ttt.Where(e =&gt; (e.Accept == 1)).Count()) + ttt.Where(e =&gt; (e.Reply == 1)).Count()))) / Convert(ttt.Count()))))</Expression>
+    <StoreSQL>System.Data.Objects.ObjectQuery`1[&lt;&gt;f__AnonymousType0`4[System.String,System.Int32,System.Int32,System.Double]]</StoreSQL>
+  </log>
+  <log Type="LINQ">
+    <Expression>Convert(value(System.Data.Objects.ObjectSet`1[GbPlatForm.mpos_gb_gz])).MergeAs(AppendOnly).GroupBy(p =&gt; p.Event_Type).Select(ttt =&gt; new &lt;&gt;f__AnonymousType0`4(Event_Type = ttt.Key, suc = ((ttt.Where(e =&gt; (e.Response == 1)).Count() + ttt.Where(e =&gt; (e.Accept == 1)).Count()) + ttt.Where(e =&gt; (e.Reply == 1)).Count()), cnt = ttt.Count(), percent = ((1 * Convert(((ttt.Where(e =&gt; (e.Response == 1)).Count() + ttt.Where(e =&gt; (e.Accept == 1)).Count()) + ttt.Where(e =&gt; (e.Reply == 1)).Count()))) / Convert(ttt.Count()))))</Expression>
+    <StoreSQL>SELECT 
+1 AS [C1], 
+[Project6].[Event_Type] AS [Event_Type], 
+[Project6].[C3] + [Project6].[C4] + [Project6].[C5] AS [C2], 
+[Project6].[C1] AS [C3], 
+(cast(1 as float(53)) *  CAST( [Project6].[C6] + [Project6].[C7] + [Project6].[C8] AS float)) /  CAST( [Project6].[C2] AS float) AS [C4]
+FROM ( SELECT 
+	[Project5].[C1] AS [C1], 
+	[Project5].[C2] AS [C2], 
+	[Project5].[Event_Type] AS [Event_Type], 
+	[Project5].[C3] AS [C3], 
+	[Project5].[C4] AS [C4], 
+	[Project5].[C5] AS [C5], 
+	[Project5].[C6] AS [C6], 
+	[Project5].[C7] AS [C7], 
+	(SELECT 
+		COUNT(1) AS [A1]
+		FROM [dbo].[mpos_gb_gz] AS [Extent7]
+		WHERE ([Project5].[Event_Type] = [Extent7].[Event_Type]) AND (1 = [Extent7].[Reply])) AS [C8]
+	FROM ( SELECT 
+		[Project4].[C1] AS [C1], 
+		[Project4].[C2] AS [C2], 
+		[Project4].[Event_Type] AS [Event_Type], 
+		[Project4].[C3] AS [C3], 
+		[Project4].[C4] AS [C4], 
+		[Project4].[C5] AS [C5], 
+		[Project4].[C6] AS [C6], 
+		(SELECT 
+			COUNT(1) AS [A1]
+			FROM [dbo].[mpos_gb_gz] AS [Extent6]
+			WHERE ([Project4].[Event_Type] = [Extent6].[Event_Type]) AND (1 = [Extent6].[Accept])) AS [C7]
+		FROM ( SELECT 
+			[Project3].[C1] AS [C1], 
+			[Project3].[C2] AS [C2], 
+			[Project3].[Event_Type] AS [Event_Type], 
+			[Project3].[C3] AS [C3], 
+			[Project3].[C4] AS [C4], 
+			[Project3].[C5] AS [C5], 
+			(SELECT 
+				COUNT(1) AS [A1]
+				FROM [dbo].[mpos_gb_gz] AS [Extent5]
+				WHERE ([Project3].[Event_Type] = [Extent5].[Event_Type]) AND (1 = [Extent5].[Response])) AS [C6]
+			FROM ( SELECT 
+				[Project2].[C1] AS [C1], 
+				[Project2].[C2] AS [C2], 
+				[Project2].[Event_Type] AS [Event_Type], 
+				[Project2].[C3] AS [C3], 
+				[Project2].[C4] AS [C4], 
+				(SELECT 
+					COUNT(1) AS [A1]
+					FROM [dbo].[mpos_gb_gz] AS [Extent4]
+					WHERE ([Project2].[Event_Type] = [Extent4].[Event_Type]) AND (1 = [Extent4].[Reply])) AS [C5]
+				FROM ( SELECT 
+					[Project1].[C1] AS [C1], 
+					[Project1].[C2] AS [C2], 
+					[Project1].[Event_Type] AS [Event_Type], 
+					[Project1].[C3] AS [C3], 
+					(SELECT 
+						COUNT(1) AS [A1]
+						FROM [dbo].[mpos_gb_gz] AS [Extent3]
+						WHERE ([Project1].[Event_Type] = [Extent3].[Event_Type]) AND (1 = [Extent3].[Accept])) AS [C4]
+					FROM ( SELECT 
+						[GroupBy1].[A1] AS [C1], 
+						[GroupBy1].[A2] AS [C2], 
+						[GroupBy1].[K1] AS [Event_Type], 
+						(SELECT 
+							COUNT(1) AS [A1]
+							FROM [dbo].[mpos_gb_gz] AS [Extent2]
+							WHERE ([GroupBy1].[K1] = [Extent2].[Event_Type]) AND (1 = [Extent2].[Response])) AS [C3]
+						FROM ( SELECT 
+							[Extent1].[Event_Type] AS [K1], 
+							COUNT(1) AS [A1], 
+							COUNT(1) AS [A2]
+							FROM [dbo].[mpos_gb_gz] AS [Extent1]
+							GROUP BY [Extent1].[Event_Type]
+						)  AS [GroupBy1]
+					)  AS [Project1]
+				)  AS [Project2]
+			)  AS [Project3]
+		)  AS [Project4]
+	)  AS [Project5]
+)  AS [Project6]</StoreSQL>
+  </log>
+  <log Type="LINQ">
+    <Expression>Convert(value(System.Data.Objects.ObjectSet`1[GbPlatForm.mpos_gb_gz])).MergeAs(AppendOnly).GroupBy(p =&gt; p.Event_Type).Select(ttt =&gt; new &lt;&gt;f__AnonymousType0`4(Event_Type = ttt.Key, suc = ((ttt.Where(e =&gt; (e.Response == 1)).Count() + ttt.Where(e =&gt; (e.Accept == 1)).Count()) + ttt.Where(e =&gt; (e.Reply == 1)).Count()), cnt = ttt.Count(), percent = ((1 * Convert(((ttt.Where(e =&gt; (e.Response == 1)).Count() + ttt.Where(e =&gt; (e.Accept == 1)).Count()) + ttt.Where(e =&gt; (e.Reply == 1)).Count()))) / Convert(ttt.Count()))))</Expression>
+    <StoreSQL>SELECT 
+1 AS [C1], 
+[Project6].[Event_Type] AS [Event_Type], 
+[Project6].[C3] + [Project6].[C4] + [Project6].[C5] AS [C2], 
+[Project6].[C1] AS [C3], 
+(cast(1 as float(53)) *  CAST( [Project6].[C6] + [Project6].[C7] + [Project6].[C8] AS float)) /  CAST( [Project6].[C2] AS float) AS [C4]
+FROM ( SELECT 
+	[Project5].[C1] AS [C1], 
+	[Project5].[C2] AS [C2], 
+	[Project5].[Event_Type] AS [Event_Type], 
+	[Project5].[C3] AS [C3], 
+	[Project5].[C4] AS [C4], 
+	[Project5].[C5] AS [C5], 
+	[Project5].[C6] AS [C6], 
+	[Project5].[C7] AS [C7], 
+	(SELECT 
+		COUNT(1) AS [A1]
+		FROM [dbo].[mpos_gb_gz] AS [Extent7]
+		WHERE ([Project5].[Event_Type] = [Extent7].[Event_Type]) AND (1 = [Extent7].[Reply])) AS [C8]
+	FROM ( SELECT 
+		[Project4].[C1] AS [C1], 
+		[Project4].[C2] AS [C2], 
+		[Project4].[Event_Type] AS [Event_Type], 
+		[Project4].[C3] AS [C3], 
+		[Project4].[C4] AS [C4], 
+		[Project4].[C5] AS [C5], 
+		[Project4].[C6] AS [C6], 
+		(SELECT 
+			COUNT(1) AS [A1]
+			FROM [dbo].[mpos_gb_gz] AS [Extent6]
+			WHERE ([Project4].[Event_Type] = [Extent6].[Event_Type]) AND (1 = [Extent6].[Accept])) AS [C7]
+		FROM ( SELECT 
+			[Project3].[C1] AS [C1], 
+			[Project3].[C2] AS [C2], 
+			[Project3].[Event_Type] AS [Event_Type], 
+			[Project3].[C3] AS [C3], 
+			[Project3].[C4] AS [C4], 
+			[Project3].[C5] AS [C5], 
+			(SELECT 
+				COUNT(1) AS [A1]
+				FROM [dbo].[mpos_gb_gz] AS [Extent5]
+				WHERE ([Project3].[Event_Type] = [Extent5].[Event_Type]) AND (1 = [Extent5].[Response])) AS [C6]
+			FROM ( SELECT 
+				[Project2].[C1] AS [C1], 
+				[Project2].[C2] AS [C2], 
+				[Project2].[Event_Type] AS [Event_Type], 
+				[Project2].[C3] AS [C3], 
+				[Project2].[C4] AS [C4], 
+				(SELECT 
+					COUNT(1) AS [A1]
+					FROM [dbo].[mpos_gb_gz] AS [Extent4]
+					WHERE ([Project2].[Event_Type] = [Extent4].[Event_Type]) AND (1 = [Extent4].[Reply])) AS [C5]
+				FROM ( SELECT 
+					[Project1].[C1] AS [C1], 
+					[Project1].[C2] AS [C2], 
+					[Project1].[Event_Type] AS [Event_Type], 
+					[Project1].[C3] AS [C3], 
+					(SELECT 
+						COUNT(1) AS [A1]
+						FROM [dbo].[mpos_gb_gz] AS [Extent3]
+						WHERE ([Project1].[Event_Type] = [Extent3].[Event_Type]) AND (1 = [Extent3].[Accept])) AS [C4]
+					FROM ( SELECT 
+						[GroupBy1].[A1] AS [C1], 
+						[GroupBy1].[A2] AS [C2], 
+						[GroupBy1].[K1] AS [Event_Type], 
+						(SELECT 
+							COUNT(1) AS [A1]
+							FROM [dbo].[mpos_gb_gz] AS [Extent2]
+							WHERE ([GroupBy1].[K1] = [Extent2].[Event_Type]) AND (1 = [Extent2].[Response])) AS [C3]
+						FROM ( SELECT 
+							[Extent1].[Event_Type] AS [K1], 
+							COUNT(1) AS [A1], 
+							COUNT(1) AS [A2]
+							FROM [dbo].[mpos_gb_gz] AS [Extent1]
+							GROUP BY [Extent1].[Event_Type]
+						)  AS [GroupBy1]
+					)  AS [Project1]
+				)  AS [Project2]
+			)  AS [Project3]
+		)  AS [Project4]
+	)  AS [Project5]
+)  AS [Project6]</StoreSQL>
+  </log>
+</QueryLog>
