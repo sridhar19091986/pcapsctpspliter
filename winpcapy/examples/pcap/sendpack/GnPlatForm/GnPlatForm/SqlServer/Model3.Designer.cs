@@ -84,18 +84,34 @@ namespace GnPlatForm.SqlServer
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Gb_IP_Fragment> Gb_IP_Fragment
+        public ObjectSet<Gb_XID> Gb_XID
         {
             get
             {
-                if ((_Gb_IP_Fragment == null))
+                if ((_Gb_XID == null))
                 {
-                    _Gb_IP_Fragment = base.CreateObjectSet<Gb_IP_Fragment>("Gb_IP_Fragment");
+                    _Gb_XID = base.CreateObjectSet<Gb_XID>("Gb_XID");
                 }
-                return _Gb_IP_Fragment;
+                return _Gb_XID;
             }
         }
-        private ObjectSet<Gb_IP_Fragment> _Gb_IP_Fragment;
+        private ObjectSet<Gb_XID> _Gb_XID;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Gb_PDP_XID> Gb_PDP_XID
+        {
+            get
+            {
+                if ((_Gb_PDP_XID == null))
+                {
+                    _Gb_PDP_XID = base.CreateObjectSet<Gb_PDP_XID>("Gb_PDP_XID");
+                }
+                return _Gb_PDP_XID;
+            }
+        }
+        private ObjectSet<Gb_PDP_XID> _Gb_PDP_XID;
 
         #endregion
         #region AddTo Methods
@@ -109,11 +125,19 @@ namespace GnPlatForm.SqlServer
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Gb_IP_Fragment EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the Gb_XID EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToGb_IP_Fragment(Gb_IP_Fragment gb_IP_Fragment)
+        public void AddToGb_XID(Gb_XID gb_XID)
         {
-            base.AddObject("Gb_IP_Fragment", gb_IP_Fragment);
+            base.AddObject("Gb_XID", gb_XID);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Gb_PDP_XID EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToGb_PDP_XID(Gb_PDP_XID gb_PDP_XID)
+        {
+            base.AddObject("Gb_PDP_XID", gb_PDP_XID);
         }
 
         #endregion
@@ -127,24 +151,24 @@ namespace GnPlatForm.SqlServer
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="GuangZhou_GnModel2", Name="Gb_IP_Fragment")]
+    [EdmEntityTypeAttribute(NamespaceName="GuangZhou_GnModel2", Name="Gb_PDP_XID")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Gb_IP_Fragment : EntityObject
+    public partial class Gb_PDP_XID : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new Gb_IP_Fragment object.
+        /// Create a new Gb_PDP_XID object.
         /// </summary>
         /// <param name="fileNum">Initial value of the FileNum property.</param>
         /// <param name="packetNum">Initial value of the PacketNum property.</param>
-        public static Gb_IP_Fragment CreateGb_IP_Fragment(global::System.Int32 fileNum, global::System.Int32 packetNum)
+        public static Gb_PDP_XID CreateGb_PDP_XID(global::System.Int32 fileNum, global::System.Int32 packetNum)
         {
-            Gb_IP_Fragment gb_IP_Fragment = new Gb_IP_Fragment();
-            gb_IP_Fragment.FileNum = fileNum;
-            gb_IP_Fragment.PacketNum = packetNum;
-            return gb_IP_Fragment;
+            Gb_PDP_XID gb_PDP_XID = new Gb_PDP_XID();
+            gb_PDP_XID.FileNum = fileNum;
+            gb_PDP_XID.PacketNum = packetNum;
+            return gb_PDP_XID;
         }
 
         #endregion
@@ -329,888 +353,744 @@ namespace GnPlatForm.SqlServer
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> IP_Fragment
+        public Nullable<global::System.Int32> PDP_Act_Request
         {
             get
             {
-                return _IP_Fragment;
+                return _PDP_Act_Request;
             }
             set
             {
-                OnIP_FragmentChanging(value);
-                ReportPropertyChanging("IP_Fragment");
-                _IP_Fragment = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("IP_Fragment");
-                OnIP_FragmentChanged();
+                OnPDP_Act_RequestChanging(value);
+                ReportPropertyChanging("PDP_Act_Request");
+                _PDP_Act_Request = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PDP_Act_Request");
+                OnPDP_Act_RequestChanged();
             }
         }
-        private Nullable<global::System.Int32> _IP_Fragment;
-        partial void OnIP_FragmentChanging(Nullable<global::System.Int32> value);
-        partial void OnIP_FragmentChanged();
+        private Nullable<global::System.Int32> _PDP_Act_Request;
+        partial void OnPDP_Act_RequestChanging(Nullable<global::System.Int32> value);
+        partial void OnPDP_Act_RequestChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String IP_Fragment_time
+        public global::System.String PDP_Act_Request_time
         {
             get
             {
-                return _IP_Fragment_time;
+                return _PDP_Act_Request_time;
             }
             set
             {
-                OnIP_Fragment_timeChanging(value);
-                ReportPropertyChanging("IP_Fragment_time");
-                _IP_Fragment_time = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("IP_Fragment_time");
-                OnIP_Fragment_timeChanged();
+                OnPDP_Act_Request_timeChanging(value);
+                ReportPropertyChanging("PDP_Act_Request_time");
+                _PDP_Act_Request_time = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("PDP_Act_Request_time");
+                OnPDP_Act_Request_timeChanged();
             }
         }
-        private global::System.String _IP_Fragment_time;
-        partial void OnIP_Fragment_timeChanging(global::System.String value);
-        partial void OnIP_Fragment_timeChanged();
+        private global::System.String _PDP_Act_Request_time;
+        partial void OnPDP_Act_Request_timeChanging(global::System.String value);
+        partial void OnPDP_Act_Request_timeChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String IP_Fragment_MsgType
+        public global::System.String TLLI
         {
             get
             {
-                return _IP_Fragment_MsgType;
+                return _TLLI;
             }
             set
             {
-                OnIP_Fragment_MsgTypeChanging(value);
-                ReportPropertyChanging("IP_Fragment_MsgType");
-                _IP_Fragment_MsgType = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("IP_Fragment_MsgType");
-                OnIP_Fragment_MsgTypeChanged();
+                OnTLLIChanging(value);
+                ReportPropertyChanging("TLLI");
+                _TLLI = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("TLLI");
+                OnTLLIChanged();
             }
         }
-        private global::System.String _IP_Fragment_MsgType;
-        partial void OnIP_Fragment_MsgTypeChanging(global::System.String value);
-        partial void OnIP_Fragment_MsgTypeChanged();
+        private global::System.String _TLLI;
+        partial void OnTLLIChanging(global::System.String value);
+        partial void OnTLLIChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> tcp_window_size
+        public global::System.String CI
         {
             get
             {
-                return _tcp_window_size;
+                return _CI;
             }
             set
             {
-                Ontcp_window_sizeChanging(value);
-                ReportPropertyChanging("tcp_window_size");
-                _tcp_window_size = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("tcp_window_size");
-                Ontcp_window_sizeChanged();
+                OnCIChanging(value);
+                ReportPropertyChanging("CI");
+                _CI = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("CI");
+                OnCIChanged();
             }
         }
-        private Nullable<global::System.Int32> _tcp_window_size;
-        partial void Ontcp_window_sizeChanging(Nullable<global::System.Int32> value);
-        partial void Ontcp_window_sizeChanged();
+        private global::System.String _CI;
+        partial void OnCIChanging(global::System.String value);
+        partial void OnCIChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> tcp_srcport
+        public global::System.String APN
         {
             get
             {
-                return _tcp_srcport;
+                return _APN;
             }
             set
             {
-                Ontcp_srcportChanging(value);
-                ReportPropertyChanging("tcp_srcport");
-                _tcp_srcport = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("tcp_srcport");
-                Ontcp_srcportChanged();
+                OnAPNChanging(value);
+                ReportPropertyChanging("APN");
+                _APN = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("APN");
+                OnAPNChanged();
             }
         }
-        private Nullable<global::System.Int32> _tcp_srcport;
-        partial void Ontcp_srcportChanging(Nullable<global::System.Int32> value);
-        partial void Ontcp_srcportChanged();
+        private global::System.String _APN;
+        partial void OnAPNChanging(global::System.String value);
+        partial void OnAPNChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> tcp_seq
+        public global::System.String LAC
         {
             get
             {
-                return _tcp_seq;
+                return _LAC;
             }
             set
             {
-                Ontcp_seqChanging(value);
-                ReportPropertyChanging("tcp_seq");
-                _tcp_seq = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("tcp_seq");
-                Ontcp_seqChanged();
+                OnLACChanging(value);
+                ReportPropertyChanging("LAC");
+                _LAC = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("LAC");
+                OnLACChanged();
             }
         }
-        private Nullable<global::System.Int32> _tcp_seq;
-        partial void Ontcp_seqChanging(Nullable<global::System.Int32> value);
-        partial void Ontcp_seqChanged();
+        private global::System.String _LAC;
+        partial void OnLACChanging(global::System.String value);
+        partial void OnLACChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> tcp_nxtseq
+        public global::System.String MCC
         {
             get
             {
-                return _tcp_nxtseq;
+                return _MCC;
             }
             set
             {
-                Ontcp_nxtseqChanging(value);
-                ReportPropertyChanging("tcp_nxtseq");
-                _tcp_nxtseq = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("tcp_nxtseq");
-                Ontcp_nxtseqChanged();
+                OnMCCChanging(value);
+                ReportPropertyChanging("MCC");
+                _MCC = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("MCC");
+                OnMCCChanged();
             }
         }
-        private Nullable<global::System.Int32> _tcp_nxtseq;
-        partial void Ontcp_nxtseqChanging(Nullable<global::System.Int32> value);
-        partial void Ontcp_nxtseqChanged();
+        private global::System.String _MCC;
+        partial void OnMCCChanging(global::System.String value);
+        partial void OnMCCChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> tcp_need_segment
+        public global::System.String MNC
         {
             get
             {
-                return _tcp_need_segment;
+                return _MNC;
             }
             set
             {
-                Ontcp_need_segmentChanging(value);
-                ReportPropertyChanging("tcp_need_segment");
-                _tcp_need_segment = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("tcp_need_segment");
-                Ontcp_need_segmentChanged();
+                OnMNCChanging(value);
+                ReportPropertyChanging("MNC");
+                _MNC = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("MNC");
+                OnMNCChanged();
             }
         }
-        private Nullable<global::System.Int32> _tcp_need_segment;
-        partial void Ontcp_need_segmentChanging(Nullable<global::System.Int32> value);
-        partial void Ontcp_need_segmentChanged();
+        private global::System.String _MNC;
+        partial void OnMNCChanging(global::System.String value);
+        partial void OnMNCChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> tcp_dstport
+        public global::System.String BVCI
         {
             get
             {
-                return _tcp_dstport;
+                return _BVCI;
             }
             set
             {
-                Ontcp_dstportChanging(value);
-                ReportPropertyChanging("tcp_dstport");
-                _tcp_dstport = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("tcp_dstport");
-                Ontcp_dstportChanged();
+                OnBVCIChanging(value);
+                ReportPropertyChanging("BVCI");
+                _BVCI = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("BVCI");
+                OnBVCIChanged();
             }
         }
-        private Nullable<global::System.Int32> _tcp_dstport;
-        partial void Ontcp_dstportChanging(Nullable<global::System.Int32> value);
-        partial void Ontcp_dstportChanged();
+        private global::System.String _BVCI;
+        partial void OnBVCIChanging(global::System.String value);
+        partial void OnBVCIChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> tcp_ack
+        public global::System.String Source_IP
         {
             get
             {
-                return _tcp_ack;
+                return _Source_IP;
             }
             set
             {
-                Ontcp_ackChanging(value);
-                ReportPropertyChanging("tcp_ack");
-                _tcp_ack = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("tcp_ack");
-                Ontcp_ackChanged();
+                OnSource_IPChanging(value);
+                ReportPropertyChanging("Source_IP");
+                _Source_IP = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Source_IP");
+                OnSource_IPChanged();
             }
         }
-        private Nullable<global::System.Int32> _tcp_ack;
-        partial void Ontcp_ackChanging(Nullable<global::System.Int32> value);
-        partial void Ontcp_ackChanged();
+        private global::System.String _Source_IP;
+        partial void OnSource_IPChanging(global::System.String value);
+        partial void OnSource_IPChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> ip2_ttl
+        public global::System.String Dest_IP
         {
             get
             {
-                return _ip2_ttl;
+                return _Dest_IP;
             }
             set
             {
-                Onip2_ttlChanging(value);
-                ReportPropertyChanging("ip2_ttl");
-                _ip2_ttl = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ip2_ttl");
-                Onip2_ttlChanged();
+                OnDest_IPChanging(value);
+                ReportPropertyChanging("Dest_IP");
+                _Dest_IP = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Dest_IP");
+                OnDest_IPChanged();
             }
         }
-        private Nullable<global::System.Int32> _ip2_ttl;
-        partial void Onip2_ttlChanging(Nullable<global::System.Int32> value);
-        partial void Onip2_ttlChanged();
+        private global::System.String _Dest_IP;
+        partial void OnDest_IPChanging(global::System.String value);
+        partial void OnDest_IPChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String ip2_src_host
+        public global::System.String Source_Port
         {
             get
             {
-                return _ip2_src_host;
+                return _Source_Port;
             }
             set
             {
-                Onip2_src_hostChanging(value);
-                ReportPropertyChanging("ip2_src_host");
-                _ip2_src_host = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("ip2_src_host");
-                Onip2_src_hostChanged();
+                OnSource_PortChanging(value);
+                ReportPropertyChanging("Source_Port");
+                _Source_Port = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Source_Port");
+                OnSource_PortChanged();
             }
         }
-        private global::System.String _ip2_src_host;
-        partial void Onip2_src_hostChanging(global::System.String value);
-        partial void Onip2_src_hostChanged();
+        private global::System.String _Source_Port;
+        partial void OnSource_PortChanging(global::System.String value);
+        partial void OnSource_PortChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> ip2_len
+        public global::System.String Dest_Port
         {
             get
             {
-                return _ip2_len;
+                return _Dest_Port;
             }
             set
             {
-                Onip2_lenChanging(value);
-                ReportPropertyChanging("ip2_len");
-                _ip2_len = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ip2_len");
-                Onip2_lenChanged();
+                OnDest_PortChanging(value);
+                ReportPropertyChanging("Dest_Port");
+                _Dest_Port = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Dest_Port");
+                OnDest_PortChanged();
             }
         }
-        private Nullable<global::System.Int32> _ip2_len;
-        partial void Onip2_lenChanging(Nullable<global::System.Int32> value);
-        partial void Onip2_lenChanged();
+        private global::System.String _Dest_Port;
+        partial void OnDest_PortChanging(global::System.String value);
+        partial void OnDest_PortChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> ip2_frag_offset
+        public Nullable<global::System.Int32> PDP_Request_Repeat
         {
             get
             {
-                return _ip2_frag_offset;
+                return _PDP_Request_Repeat;
             }
             set
             {
-                Onip2_frag_offsetChanging(value);
-                ReportPropertyChanging("ip2_frag_offset");
-                _ip2_frag_offset = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ip2_frag_offset");
-                Onip2_frag_offsetChanged();
+                OnPDP_Request_RepeatChanging(value);
+                ReportPropertyChanging("PDP_Request_Repeat");
+                _PDP_Request_Repeat = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PDP_Request_Repeat");
+                OnPDP_Request_RepeatChanged();
             }
         }
-        private Nullable<global::System.Int32> _ip2_frag_offset;
-        partial void Onip2_frag_offsetChanging(Nullable<global::System.Int32> value);
-        partial void Onip2_frag_offsetChanged();
+        private Nullable<global::System.Int32> _PDP_Request_Repeat;
+        partial void OnPDP_Request_RepeatChanging(Nullable<global::System.Int32> value);
+        partial void OnPDP_Request_RepeatChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String ip2_flags_rb
+        public Nullable<global::System.Int32> PDP_Request_Repeat_delayFirst
         {
             get
             {
-                return _ip2_flags_rb;
+                return _PDP_Request_Repeat_delayFirst;
             }
             set
             {
-                Onip2_flags_rbChanging(value);
-                ReportPropertyChanging("ip2_flags_rb");
-                _ip2_flags_rb = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("ip2_flags_rb");
-                Onip2_flags_rbChanged();
+                OnPDP_Request_Repeat_delayFirstChanging(value);
+                ReportPropertyChanging("PDP_Request_Repeat_delayFirst");
+                _PDP_Request_Repeat_delayFirst = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PDP_Request_Repeat_delayFirst");
+                OnPDP_Request_Repeat_delayFirstChanged();
             }
         }
-        private global::System.String _ip2_flags_rb;
-        partial void Onip2_flags_rbChanging(global::System.String value);
-        partial void Onip2_flags_rbChanged();
+        private Nullable<global::System.Int32> _PDP_Request_Repeat_delayFirst;
+        partial void OnPDP_Request_Repeat_delayFirstChanging(Nullable<global::System.Int32> value);
+        partial void OnPDP_Request_Repeat_delayFirstChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String ip2_flags_mf
+        public Nullable<global::System.Int32> RADIO_Status
         {
             get
             {
-                return _ip2_flags_mf;
+                return _RADIO_Status;
             }
             set
             {
-                Onip2_flags_mfChanging(value);
-                ReportPropertyChanging("ip2_flags_mf");
-                _ip2_flags_mf = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("ip2_flags_mf");
-                Onip2_flags_mfChanged();
+                OnRADIO_StatusChanging(value);
+                ReportPropertyChanging("RADIO_Status");
+                _RADIO_Status = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("RADIO_Status");
+                OnRADIO_StatusChanged();
             }
         }
-        private global::System.String _ip2_flags_mf;
-        partial void Onip2_flags_mfChanging(global::System.String value);
-        partial void Onip2_flags_mfChanged();
+        private Nullable<global::System.Int32> _RADIO_Status;
+        partial void OnRADIO_StatusChanging(Nullable<global::System.Int32> value);
+        partial void OnRADIO_StatusChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String ip2_flags_df
+        public Nullable<global::System.Int32> RADIO_Status_delayFirst
         {
             get
             {
-                return _ip2_flags_df;
+                return _RADIO_Status_delayFirst;
             }
             set
             {
-                Onip2_flags_dfChanging(value);
-                ReportPropertyChanging("ip2_flags_df");
-                _ip2_flags_df = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("ip2_flags_df");
-                Onip2_flags_dfChanged();
+                OnRADIO_Status_delayFirstChanging(value);
+                ReportPropertyChanging("RADIO_Status_delayFirst");
+                _RADIO_Status_delayFirst = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("RADIO_Status_delayFirst");
+                OnRADIO_Status_delayFirstChanged();
             }
         }
-        private global::System.String _ip2_flags_df;
-        partial void Onip2_flags_dfChanging(global::System.String value);
-        partial void Onip2_flags_dfChanged();
+        private Nullable<global::System.Int32> _RADIO_Status_delayFirst;
+        partial void OnRADIO_Status_delayFirstChanging(Nullable<global::System.Int32> value);
+        partial void OnRADIO_Status_delayFirstChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> ip2_flags
+        public global::System.String Radio_Cause
         {
             get
             {
-                return _ip2_flags;
+                return _Radio_Cause;
             }
             set
             {
-                Onip2_flagsChanging(value);
-                ReportPropertyChanging("ip2_flags");
-                _ip2_flags = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ip2_flags");
-                Onip2_flagsChanged();
+                OnRadio_CauseChanging(value);
+                ReportPropertyChanging("Radio_Cause");
+                _Radio_Cause = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Radio_Cause");
+                OnRadio_CauseChanged();
             }
         }
-        private Nullable<global::System.Int32> _ip2_flags;
-        partial void Onip2_flagsChanging(Nullable<global::System.Int32> value);
-        partial void Onip2_flagsChanged();
+        private global::System.String _Radio_Cause;
+        partial void OnRadio_CauseChanging(global::System.String value);
+        partial void OnRadio_CauseChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String ip2_dst_host
+        public Nullable<global::System.Int32> LLC_Discarded
         {
             get
             {
-                return _ip2_dst_host;
+                return _LLC_Discarded;
             }
             set
             {
-                Onip2_dst_hostChanging(value);
-                ReportPropertyChanging("ip2_dst_host");
-                _ip2_dst_host = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("ip2_dst_host");
-                Onip2_dst_hostChanged();
+                OnLLC_DiscardedChanging(value);
+                ReportPropertyChanging("LLC_Discarded");
+                _LLC_Discarded = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LLC_Discarded");
+                OnLLC_DiscardedChanged();
             }
         }
-        private global::System.String _ip2_dst_host;
-        partial void Onip2_dst_hostChanging(global::System.String value);
-        partial void Onip2_dst_hostChanged();
+        private Nullable<global::System.Int32> _LLC_Discarded;
+        partial void OnLLC_DiscardedChanging(Nullable<global::System.Int32> value);
+        partial void OnLLC_DiscardedChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> ip_ttl
+        public Nullable<global::System.Int32> LLC_Discarded_delayFirst
         {
             get
             {
-                return _ip_ttl;
+                return _LLC_Discarded_delayFirst;
             }
             set
             {
-                Onip_ttlChanging(value);
-                ReportPropertyChanging("ip_ttl");
-                _ip_ttl = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ip_ttl");
-                Onip_ttlChanged();
+                OnLLC_Discarded_delayFirstChanging(value);
+                ReportPropertyChanging("LLC_Discarded_delayFirst");
+                _LLC_Discarded_delayFirst = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LLC_Discarded_delayFirst");
+                OnLLC_Discarded_delayFirstChanged();
             }
         }
-        private Nullable<global::System.Int32> _ip_ttl;
-        partial void Onip_ttlChanging(Nullable<global::System.Int32> value);
-        partial void Onip_ttlChanged();
+        private Nullable<global::System.Int32> _LLC_Discarded_delayFirst;
+        partial void OnLLC_Discarded_delayFirstChanging(Nullable<global::System.Int32> value);
+        partial void OnLLC_Discarded_delayFirstChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String ip_src_host
+        public global::System.String Octets_Affected
         {
             get
             {
-                return _ip_src_host;
+                return _Octets_Affected;
             }
             set
             {
-                Onip_src_hostChanging(value);
-                ReportPropertyChanging("ip_src_host");
-                _ip_src_host = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("ip_src_host");
-                Onip_src_hostChanged();
+                OnOctets_AffectedChanging(value);
+                ReportPropertyChanging("Octets_Affected");
+                _Octets_Affected = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Octets_Affected");
+                OnOctets_AffectedChanged();
             }
         }
-        private global::System.String _ip_src_host;
-        partial void Onip_src_hostChanging(global::System.String value);
-        partial void Onip_src_hostChanged();
+        private global::System.String _Octets_Affected;
+        partial void OnOctets_AffectedChanging(global::System.String value);
+        partial void OnOctets_AffectedChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> ip_len
+        public Nullable<global::System.Int32> PDP_Act_Reject
         {
             get
             {
-                return _ip_len;
+                return _PDP_Act_Reject;
             }
             set
             {
-                Onip_lenChanging(value);
-                ReportPropertyChanging("ip_len");
-                _ip_len = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ip_len");
-                Onip_lenChanged();
+                OnPDP_Act_RejectChanging(value);
+                ReportPropertyChanging("PDP_Act_Reject");
+                _PDP_Act_Reject = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PDP_Act_Reject");
+                OnPDP_Act_RejectChanged();
             }
         }
-        private Nullable<global::System.Int32> _ip_len;
-        partial void Onip_lenChanging(Nullable<global::System.Int32> value);
-        partial void Onip_lenChanged();
+        private Nullable<global::System.Int32> _PDP_Act_Reject;
+        partial void OnPDP_Act_RejectChanging(Nullable<global::System.Int32> value);
+        partial void OnPDP_Act_RejectChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> ip_frag_offset
+        public Nullable<global::System.Int32> PDP_Act_Reject_delayFirst
         {
             get
             {
-                return _ip_frag_offset;
+                return _PDP_Act_Reject_delayFirst;
             }
             set
             {
-                Onip_frag_offsetChanging(value);
-                ReportPropertyChanging("ip_frag_offset");
-                _ip_frag_offset = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ip_frag_offset");
-                Onip_frag_offsetChanged();
+                OnPDP_Act_Reject_delayFirstChanging(value);
+                ReportPropertyChanging("PDP_Act_Reject_delayFirst");
+                _PDP_Act_Reject_delayFirst = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PDP_Act_Reject_delayFirst");
+                OnPDP_Act_Reject_delayFirstChanged();
             }
         }
-        private Nullable<global::System.Int32> _ip_frag_offset;
-        partial void Onip_frag_offsetChanging(Nullable<global::System.Int32> value);
-        partial void Onip_frag_offsetChanged();
+        private Nullable<global::System.Int32> _PDP_Act_Reject_delayFirst;
+        partial void OnPDP_Act_Reject_delayFirstChanging(Nullable<global::System.Int32> value);
+        partial void OnPDP_Act_Reject_delayFirstChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String ip_flags_rb
+        public global::System.String Reject_Cause
         {
             get
             {
-                return _ip_flags_rb;
+                return _Reject_Cause;
             }
             set
             {
-                Onip_flags_rbChanging(value);
-                ReportPropertyChanging("ip_flags_rb");
-                _ip_flags_rb = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("ip_flags_rb");
-                Onip_flags_rbChanged();
+                OnReject_CauseChanging(value);
+                ReportPropertyChanging("Reject_Cause");
+                _Reject_Cause = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Reject_Cause");
+                OnReject_CauseChanged();
             }
         }
-        private global::System.String _ip_flags_rb;
-        partial void Onip_flags_rbChanging(global::System.String value);
-        partial void Onip_flags_rbChanged();
+        private global::System.String _Reject_Cause;
+        partial void OnReject_CauseChanging(global::System.String value);
+        partial void OnReject_CauseChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String ip_flags_mf
+        public global::System.String Reject_IMSI
         {
             get
             {
-                return _ip_flags_mf;
+                return _Reject_IMSI;
             }
             set
             {
-                Onip_flags_mfChanging(value);
-                ReportPropertyChanging("ip_flags_mf");
-                _ip_flags_mf = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("ip_flags_mf");
-                Onip_flags_mfChanged();
+                OnReject_IMSIChanging(value);
+                ReportPropertyChanging("Reject_IMSI");
+                _Reject_IMSI = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Reject_IMSI");
+                OnReject_IMSIChanged();
             }
         }
-        private global::System.String _ip_flags_mf;
-        partial void Onip_flags_mfChanging(global::System.String value);
-        partial void Onip_flags_mfChanged();
+        private global::System.String _Reject_IMSI;
+        partial void OnReject_IMSIChanging(global::System.String value);
+        partial void OnReject_IMSIChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String ip_flags_df
+        public global::System.String Reject_BVCI
         {
             get
             {
-                return _ip_flags_df;
+                return _Reject_BVCI;
             }
             set
             {
-                Onip_flags_dfChanging(value);
-                ReportPropertyChanging("ip_flags_df");
-                _ip_flags_df = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("ip_flags_df");
-                Onip_flags_dfChanged();
+                OnReject_BVCIChanging(value);
+                ReportPropertyChanging("Reject_BVCI");
+                _Reject_BVCI = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Reject_BVCI");
+                OnReject_BVCIChanged();
             }
         }
-        private global::System.String _ip_flags_df;
-        partial void Onip_flags_dfChanging(global::System.String value);
-        partial void Onip_flags_dfChanged();
+        private global::System.String _Reject_BVCI;
+        partial void OnReject_BVCIChanging(global::System.String value);
+        partial void OnReject_BVCIChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> ip_flags
+        public Nullable<global::System.Int32> Detach_Request
         {
             get
             {
-                return _ip_flags;
+                return _Detach_Request;
             }
             set
             {
-                Onip_flagsChanging(value);
-                ReportPropertyChanging("ip_flags");
-                _ip_flags = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ip_flags");
-                Onip_flagsChanged();
+                OnDetach_RequestChanging(value);
+                ReportPropertyChanging("Detach_Request");
+                _Detach_Request = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Detach_Request");
+                OnDetach_RequestChanged();
             }
         }
-        private Nullable<global::System.Int32> _ip_flags;
-        partial void Onip_flagsChanging(Nullable<global::System.Int32> value);
-        partial void Onip_flagsChanged();
+        private Nullable<global::System.Int32> _Detach_Request;
+        partial void OnDetach_RequestChanging(Nullable<global::System.Int32> value);
+        partial void OnDetach_RequestChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String ip_dst_host
+        public Nullable<global::System.Int32> Detach_Request_delayFirst
         {
             get
             {
-                return _ip_dst_host;
+                return _Detach_Request_delayFirst;
             }
             set
             {
-                Onip_dst_hostChanging(value);
-                ReportPropertyChanging("ip_dst_host");
-                _ip_dst_host = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("ip_dst_host");
-                Onip_dst_hostChanged();
+                OnDetach_Request_delayFirstChanging(value);
+                ReportPropertyChanging("Detach_Request_delayFirst");
+                _Detach_Request_delayFirst = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Detach_Request_delayFirst");
+                OnDetach_Request_delayFirstChanged();
             }
         }
-        private global::System.String _ip_dst_host;
-        partial void Onip_dst_hostChanging(global::System.String value);
-        partial void Onip_dst_hostChanged();
+        private Nullable<global::System.Int32> _Detach_Request_delayFirst;
+        partial void OnDetach_Request_delayFirstChanging(Nullable<global::System.Int32> value);
+        partial void OnDetach_Request_delayFirstChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> gtp_seq_number
+        public Nullable<global::System.Int32> U_Exchange_identification
         {
             get
             {
-                return _gtp_seq_number;
+                return _U_Exchange_identification;
             }
             set
             {
-                Ongtp_seq_numberChanging(value);
-                ReportPropertyChanging("gtp_seq_number");
-                _gtp_seq_number = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("gtp_seq_number");
-                Ongtp_seq_numberChanged();
+                OnU_Exchange_identificationChanging(value);
+                ReportPropertyChanging("U_Exchange_identification");
+                _U_Exchange_identification = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("U_Exchange_identification");
+                OnU_Exchange_identificationChanged();
             }
         }
-        private Nullable<global::System.Int32> _gtp_seq_number;
-        partial void Ongtp_seq_numberChanging(Nullable<global::System.Int32> value);
-        partial void Ongtp_seq_numberChanged();
+        private Nullable<global::System.Int32> _U_Exchange_identification;
+        partial void OnU_Exchange_identificationChanging(Nullable<global::System.Int32> value);
+        partial void OnU_Exchange_identificationChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> gtp_length
+        public Nullable<global::System.Int32> U_Exchange_identification_delayFirst
         {
             get
             {
-                return _gtp_length;
+                return _U_Exchange_identification_delayFirst;
             }
             set
             {
-                Ongtp_lengthChanging(value);
-                ReportPropertyChanging("gtp_length");
-                _gtp_length = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("gtp_length");
-                Ongtp_lengthChanged();
+                OnU_Exchange_identification_delayFirstChanging(value);
+                ReportPropertyChanging("U_Exchange_identification_delayFirst");
+                _U_Exchange_identification_delayFirst = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("U_Exchange_identification_delayFirst");
+                OnU_Exchange_identification_delayFirstChanged();
             }
         }
-        private Nullable<global::System.Int32> _gtp_length;
-        partial void Ongtp_lengthChanging(Nullable<global::System.Int32> value);
-        partial void Ongtp_lengthChanged();
+        private Nullable<global::System.Int32> _U_Exchange_identification_delayFirst;
+        partial void OnU_Exchange_identification_delayFirstChanging(Nullable<global::System.Int32> value);
+        partial void OnU_Exchange_identification_delayFirstChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String tcp_flags_cwr
+        public global::System.String U_Exchange_identification_timeFirst
         {
             get
             {
-                return _tcp_flags_cwr;
+                return _U_Exchange_identification_timeFirst;
             }
             set
             {
-                Ontcp_flags_cwrChanging(value);
-                ReportPropertyChanging("tcp_flags_cwr");
-                _tcp_flags_cwr = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("tcp_flags_cwr");
-                Ontcp_flags_cwrChanged();
+                OnU_Exchange_identification_timeFirstChanging(value);
+                ReportPropertyChanging("U_Exchange_identification_timeFirst");
+                _U_Exchange_identification_timeFirst = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("U_Exchange_identification_timeFirst");
+                OnU_Exchange_identification_timeFirstChanged();
             }
         }
-        private global::System.String _tcp_flags_cwr;
-        partial void Ontcp_flags_cwrChanging(global::System.String value);
-        partial void Ontcp_flags_cwrChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> tcp_options_mss_val
-        {
-            get
-            {
-                return _tcp_options_mss_val;
-            }
-            set
-            {
-                Ontcp_options_mss_valChanging(value);
-                ReportPropertyChanging("tcp_options_mss_val");
-                _tcp_options_mss_val = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("tcp_options_mss_val");
-                Ontcp_options_mss_valChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _tcp_options_mss_val;
-        partial void Ontcp_options_mss_valChanging(Nullable<global::System.Int32> value);
-        partial void Ontcp_options_mss_valChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> tcp_options_wscale_val
-        {
-            get
-            {
-                return _tcp_options_wscale_val;
-            }
-            set
-            {
-                Ontcp_options_wscale_valChanging(value);
-                ReportPropertyChanging("tcp_options_wscale_val");
-                _tcp_options_wscale_val = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("tcp_options_wscale_val");
-                Ontcp_options_wscale_valChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _tcp_options_wscale_val;
-        partial void Ontcp_options_wscale_valChanging(Nullable<global::System.Int32> value);
-        partial void Ontcp_options_wscale_valChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> bssgp_lac
-        {
-            get
-            {
-                return _bssgp_lac;
-            }
-            set
-            {
-                Onbssgp_lacChanging(value);
-                ReportPropertyChanging("bssgp_lac");
-                _bssgp_lac = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("bssgp_lac");
-                Onbssgp_lacChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _bssgp_lac;
-        partial void Onbssgp_lacChanging(Nullable<global::System.Int32> value);
-        partial void Onbssgp_lacChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> bssgp_ci
-        {
-            get
-            {
-                return _bssgp_ci;
-            }
-            set
-            {
-                Onbssgp_ciChanging(value);
-                ReportPropertyChanging("bssgp_ci");
-                _bssgp_ci = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("bssgp_ci");
-                Onbssgp_ciChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _bssgp_ci;
-        partial void Onbssgp_ciChanging(Nullable<global::System.Int32> value);
-        partial void Onbssgp_ciChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> nsip_bvci
-        {
-            get
-            {
-                return _nsip_bvci;
-            }
-            set
-            {
-                Onnsip_bvciChanging(value);
-                ReportPropertyChanging("nsip_bvci");
-                _nsip_bvci = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("nsip_bvci");
-                Onnsip_bvciChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _nsip_bvci;
-        partial void Onnsip_bvciChanging(Nullable<global::System.Int32> value);
-        partial void Onnsip_bvciChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String bssgp_drx_cycle
-        {
-            get
-            {
-                return _bssgp_drx_cycle;
-            }
-            set
-            {
-                Onbssgp_drx_cycleChanging(value);
-                ReportPropertyChanging("bssgp_drx_cycle");
-                _bssgp_drx_cycle = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("bssgp_drx_cycle");
-                Onbssgp_drx_cycleChanged();
-            }
-        }
-        private global::System.String _bssgp_drx_cycle;
-        partial void Onbssgp_drx_cycleChanging(global::System.String value);
-        partial void Onbssgp_drx_cycleChanged();
+        private global::System.String _U_Exchange_identification_timeFirst;
+        partial void OnU_Exchange_identification_timeFirstChanging(global::System.String value);
+        partial void OnU_Exchange_identification_timeFirstChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1241,168 +1121,324 @@ namespace GnPlatForm.SqlServer
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String bssgp_drx_timer
+        public Nullable<global::System.Int32> llcgprs_xid1type
         {
             get
             {
-                return _bssgp_drx_timer;
+                return _llcgprs_xid1type;
             }
             set
             {
-                Onbssgp_drx_timerChanging(value);
-                ReportPropertyChanging("bssgp_drx_timer");
-                _bssgp_drx_timer = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("bssgp_drx_timer");
-                Onbssgp_drx_timerChanged();
+                Onllcgprs_xid1typeChanging(value);
+                ReportPropertyChanging("llcgprs_xid1type");
+                _llcgprs_xid1type = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("llcgprs_xid1type");
+                Onllcgprs_xid1typeChanged();
             }
         }
-        private global::System.String _bssgp_drx_timer;
-        partial void Onbssgp_drx_timerChanging(global::System.String value);
-        partial void Onbssgp_drx_timerChanged();
+        private Nullable<global::System.Int32> _llcgprs_xid1type;
+        partial void Onllcgprs_xid1typeChanging(Nullable<global::System.Int32> value);
+        partial void Onllcgprs_xid1typeChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> sndcp_segment
+        public Nullable<global::System.Int32> llcgprs_xid1byte1
         {
             get
             {
-                return _sndcp_segment;
+                return _llcgprs_xid1byte1;
             }
             set
             {
-                Onsndcp_segmentChanging(value);
-                ReportPropertyChanging("sndcp_segment");
-                _sndcp_segment = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("sndcp_segment");
-                Onsndcp_segmentChanged();
+                Onllcgprs_xid1byte1Changing(value);
+                ReportPropertyChanging("llcgprs_xid1byte1");
+                _llcgprs_xid1byte1 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("llcgprs_xid1byte1");
+                Onllcgprs_xid1byte1Changed();
             }
         }
-        private Nullable<global::System.Int32> _sndcp_segment;
-        partial void Onsndcp_segmentChanging(Nullable<global::System.Int32> value);
-        partial void Onsndcp_segmentChanged();
+        private Nullable<global::System.Int32> _llcgprs_xid1byte1;
+        partial void Onllcgprs_xid1byte1Changing(Nullable<global::System.Int32> value);
+        partial void Onllcgprs_xid1byte1Changed();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String sndcp_m
+        public Nullable<global::System.Int32> llcgprs_xid1byte2
         {
             get
             {
-                return _sndcp_m;
+                return _llcgprs_xid1byte2;
             }
             set
             {
-                Onsndcp_mChanging(value);
-                ReportPropertyChanging("sndcp_m");
-                _sndcp_m = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("sndcp_m");
-                Onsndcp_mChanged();
+                Onllcgprs_xid1byte2Changing(value);
+                ReportPropertyChanging("llcgprs_xid1byte2");
+                _llcgprs_xid1byte2 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("llcgprs_xid1byte2");
+                Onllcgprs_xid1byte2Changed();
             }
         }
-        private global::System.String _sndcp_m;
-        partial void Onsndcp_mChanging(global::System.String value);
-        partial void Onsndcp_mChanged();
+        private Nullable<global::System.Int32> _llcgprs_xid1byte2;
+        partial void Onllcgprs_xid1byte2Changing(Nullable<global::System.Int32> value);
+        partial void Onllcgprs_xid1byte2Changed();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="GuangZhou_GnModel2", Name="Gb_XID")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Gb_XID : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Gb_XID object.
+        /// </summary>
+        /// <param name="fileNum">Initial value of the FileNum property.</param>
+        /// <param name="packetNum">Initial value of the PacketNum property.</param>
+        public static Gb_XID CreateGb_XID(global::System.Int32 fileNum, global::System.Int32 packetNum)
+        {
+            Gb_XID gb_XID = new Gb_XID();
+            gb_XID.FileNum = fileNum;
+            gb_XID.PacketNum = packetNum;
+            return gb_XID;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 FileNum
+        {
+            get
+            {
+                return _FileNum;
+            }
+            set
+            {
+                if (_FileNum != value)
+                {
+                    OnFileNumChanging(value);
+                    ReportPropertyChanging("FileNum");
+                    _FileNum = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("FileNum");
+                    OnFileNumChanged();
+                }
+            }
+        }
+        private global::System.Int32 _FileNum;
+        partial void OnFileNumChanging(global::System.Int32 value);
+        partial void OnFileNumChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 PacketNum
+        {
+            get
+            {
+                return _PacketNum;
+            }
+            set
+            {
+                if (_PacketNum != value)
+                {
+                    OnPacketNumChanging(value);
+                    ReportPropertyChanging("PacketNum");
+                    _PacketNum = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("PacketNum");
+                    OnPacketNumChanged();
+                }
+            }
+        }
+        private global::System.Int32 _PacketNum;
+        partial void OnPacketNumChanging(global::System.Int32 value);
+        partial void OnPacketNumChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> udp_length
+        public Nullable<global::System.Int32> BeginFileNum
         {
             get
             {
-                return _udp_length;
+                return _BeginFileNum;
             }
             set
             {
-                Onudp_lengthChanging(value);
-                ReportPropertyChanging("udp_length");
-                _udp_length = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("udp_length");
-                Onudp_lengthChanged();
+                OnBeginFileNumChanging(value);
+                ReportPropertyChanging("BeginFileNum");
+                _BeginFileNum = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("BeginFileNum");
+                OnBeginFileNumChanged();
             }
         }
-        private Nullable<global::System.Int32> _udp_length;
-        partial void Onudp_lengthChanging(Nullable<global::System.Int32> value);
-        partial void Onudp_lengthChanged();
+        private Nullable<global::System.Int32> _BeginFileNum;
+        partial void OnBeginFileNumChanging(Nullable<global::System.Int32> value);
+        partial void OnBeginFileNumChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String gsm_a_imeisv
+        public Nullable<global::System.Int32> BeginFrameNum
         {
             get
             {
-                return _gsm_a_imeisv;
+                return _BeginFrameNum;
             }
             set
             {
-                Ongsm_a_imeisvChanging(value);
-                ReportPropertyChanging("gsm_a_imeisv");
-                _gsm_a_imeisv = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("gsm_a_imeisv");
-                Ongsm_a_imeisvChanged();
+                OnBeginFrameNumChanging(value);
+                ReportPropertyChanging("BeginFrameNum");
+                _BeginFrameNum = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("BeginFrameNum");
+                OnBeginFrameNumChanged();
             }
         }
-        private global::System.String _gsm_a_imeisv;
-        partial void Ongsm_a_imeisvChanging(global::System.String value);
-        partial void Ongsm_a_imeisvChanged();
+        private Nullable<global::System.Int32> _BeginFrameNum;
+        partial void OnBeginFrameNumChanging(Nullable<global::System.Int32> value);
+        partial void OnBeginFrameNumChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> llcgprs_xidtype
+        public Nullable<global::System.DateTime> PacketTime
         {
             get
             {
-                return _llcgprs_xidtype;
+                return _PacketTime;
             }
             set
             {
-                Onllcgprs_xidtypeChanging(value);
-                ReportPropertyChanging("llcgprs_xidtype");
-                _llcgprs_xidtype = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("llcgprs_xidtype");
-                Onllcgprs_xidtypeChanged();
+                OnPacketTimeChanging(value);
+                ReportPropertyChanging("PacketTime");
+                _PacketTime = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PacketTime");
+                OnPacketTimeChanged();
             }
         }
-        private Nullable<global::System.Int32> _llcgprs_xidtype;
-        partial void Onllcgprs_xidtypeChanging(Nullable<global::System.Int32> value);
-        partial void Onllcgprs_xidtypeChanged();
+        private Nullable<global::System.DateTime> _PacketTime;
+        partial void OnPacketTimeChanging(Nullable<global::System.DateTime> value);
+        partial void OnPacketTimeChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> llcgprs_xidbyte
+        public Nullable<global::System.Int32> PacketTime_ms_
         {
             get
             {
-                return _llcgprs_xidbyte;
+                return _PacketTime_ms_;
             }
             set
             {
-                Onllcgprs_xidbyteChanging(value);
-                ReportPropertyChanging("llcgprs_xidbyte");
-                _llcgprs_xidbyte = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("llcgprs_xidbyte");
-                Onllcgprs_xidbyteChanged();
+                OnPacketTime_ms_Changing(value);
+                ReportPropertyChanging("PacketTime_ms_");
+                _PacketTime_ms_ = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PacketTime_ms_");
+                OnPacketTime_ms_Changed();
             }
         }
-        private Nullable<global::System.Int32> _llcgprs_xidbyte;
-        partial void Onllcgprs_xidbyteChanging(Nullable<global::System.Int32> value);
-        partial void Onllcgprs_xidbyteChanged();
+        private Nullable<global::System.Int32> _PacketTime_ms_;
+        partial void OnPacketTime_ms_Changing(Nullable<global::System.Int32> value);
+        partial void OnPacketTime_ms_Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String DumpFor
+        {
+            get
+            {
+                return _DumpFor;
+            }
+            set
+            {
+                OnDumpForChanging(value);
+                ReportPropertyChanging("DumpFor");
+                _DumpFor = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("DumpFor");
+                OnDumpForChanged();
+            }
+        }
+        private global::System.String _DumpFor;
+        partial void OnDumpForChanging(global::System.String value);
+        partial void OnDumpForChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> U_Exchange_identification
+        {
+            get
+            {
+                return _U_Exchange_identification;
+            }
+            set
+            {
+                OnU_Exchange_identificationChanging(value);
+                ReportPropertyChanging("U_Exchange_identification");
+                _U_Exchange_identification = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("U_Exchange_identification");
+                OnU_Exchange_identificationChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _U_Exchange_identification;
+        partial void OnU_Exchange_identificationChanging(Nullable<global::System.Int32> value);
+        partial void OnU_Exchange_identificationChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String bssgp_direction
+        {
+            get
+            {
+                return _bssgp_direction;
+            }
+            set
+            {
+                Onbssgp_directionChanging(value);
+                ReportPropertyChanging("bssgp_direction");
+                _bssgp_direction = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("bssgp_direction");
+                Onbssgp_directionChanged();
+            }
+        }
+        private global::System.String _bssgp_direction;
+        partial void Onbssgp_directionChanging(global::System.String value);
+        partial void Onbssgp_directionChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1433,24 +1469,24 @@ namespace GnPlatForm.SqlServer
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> llcgprs_xidbyte1
+        public Nullable<global::System.Int32> llcgprs_xid1byte1
         {
             get
             {
-                return _llcgprs_xidbyte1;
+                return _llcgprs_xid1byte1;
             }
             set
             {
-                Onllcgprs_xidbyte1Changing(value);
-                ReportPropertyChanging("llcgprs_xidbyte1");
-                _llcgprs_xidbyte1 = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("llcgprs_xidbyte1");
-                Onllcgprs_xidbyte1Changed();
+                Onllcgprs_xid1byte1Changing(value);
+                ReportPropertyChanging("llcgprs_xid1byte1");
+                _llcgprs_xid1byte1 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("llcgprs_xid1byte1");
+                Onllcgprs_xid1byte1Changed();
             }
         }
-        private Nullable<global::System.Int32> _llcgprs_xidbyte1;
-        partial void Onllcgprs_xidbyte1Changing(Nullable<global::System.Int32> value);
-        partial void Onllcgprs_xidbyte1Changed();
+        private Nullable<global::System.Int32> _llcgprs_xid1byte1;
+        partial void Onllcgprs_xid1byte1Changing(Nullable<global::System.Int32> value);
+        partial void Onllcgprs_xid1byte1Changed();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1481,48 +1517,144 @@ namespace GnPlatForm.SqlServer
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> llcgprs_xid2type
+        public Nullable<global::System.Int32> U_Exchange_identification1
         {
             get
             {
-                return _llcgprs_xid2type;
+                return _U_Exchange_identification1;
             }
             set
             {
-                Onllcgprs_xid2typeChanging(value);
-                ReportPropertyChanging("llcgprs_xid2type");
-                _llcgprs_xid2type = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("llcgprs_xid2type");
-                Onllcgprs_xid2typeChanged();
+                OnU_Exchange_identification1Changing(value);
+                ReportPropertyChanging("U_Exchange_identification1");
+                _U_Exchange_identification1 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("U_Exchange_identification1");
+                OnU_Exchange_identification1Changed();
             }
         }
-        private Nullable<global::System.Int32> _llcgprs_xid2type;
-        partial void Onllcgprs_xid2typeChanging(Nullable<global::System.Int32> value);
-        partial void Onllcgprs_xid2typeChanged();
+        private Nullable<global::System.Int32> _U_Exchange_identification1;
+        partial void OnU_Exchange_identification1Changing(Nullable<global::System.Int32> value);
+        partial void OnU_Exchange_identification1Changed();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> llcgprs_xid3type
+        public Nullable<global::System.Int32> U_Exchange_identification1_delayFirst
         {
             get
             {
-                return _llcgprs_xid3type;
+                return _U_Exchange_identification1_delayFirst;
             }
             set
             {
-                Onllcgprs_xid3typeChanging(value);
-                ReportPropertyChanging("llcgprs_xid3type");
-                _llcgprs_xid3type = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("llcgprs_xid3type");
-                Onllcgprs_xid3typeChanged();
+                OnU_Exchange_identification1_delayFirstChanging(value);
+                ReportPropertyChanging("U_Exchange_identification1_delayFirst");
+                _U_Exchange_identification1_delayFirst = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("U_Exchange_identification1_delayFirst");
+                OnU_Exchange_identification1_delayFirstChanged();
             }
         }
-        private Nullable<global::System.Int32> _llcgprs_xid3type;
-        partial void Onllcgprs_xid3typeChanging(Nullable<global::System.Int32> value);
-        partial void Onllcgprs_xid3typeChanged();
+        private Nullable<global::System.Int32> _U_Exchange_identification1_delayFirst;
+        partial void OnU_Exchange_identification1_delayFirstChanging(Nullable<global::System.Int32> value);
+        partial void OnU_Exchange_identification1_delayFirstChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String C1bssgp_direction
+        {
+            get
+            {
+                return _C1bssgp_direction;
+            }
+            set
+            {
+                OnC1bssgp_directionChanging(value);
+                ReportPropertyChanging("C1bssgp_direction");
+                _C1bssgp_direction = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("C1bssgp_direction");
+                OnC1bssgp_directionChanged();
+            }
+        }
+        private global::System.String _C1bssgp_direction;
+        partial void OnC1bssgp_directionChanging(global::System.String value);
+        partial void OnC1bssgp_directionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> C1llcgprs_xid1type
+        {
+            get
+            {
+                return _C1llcgprs_xid1type;
+            }
+            set
+            {
+                OnC1llcgprs_xid1typeChanging(value);
+                ReportPropertyChanging("C1llcgprs_xid1type");
+                _C1llcgprs_xid1type = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("C1llcgprs_xid1type");
+                OnC1llcgprs_xid1typeChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _C1llcgprs_xid1type;
+        partial void OnC1llcgprs_xid1typeChanging(Nullable<global::System.Int32> value);
+        partial void OnC1llcgprs_xid1typeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> C1llcgprs_xid1byte1
+        {
+            get
+            {
+                return _C1llcgprs_xid1byte1;
+            }
+            set
+            {
+                OnC1llcgprs_xid1byte1Changing(value);
+                ReportPropertyChanging("C1llcgprs_xid1byte1");
+                _C1llcgprs_xid1byte1 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("C1llcgprs_xid1byte1");
+                OnC1llcgprs_xid1byte1Changed();
+            }
+        }
+        private Nullable<global::System.Int32> _C1llcgprs_xid1byte1;
+        partial void OnC1llcgprs_xid1byte1Changing(Nullable<global::System.Int32> value);
+        partial void OnC1llcgprs_xid1byte1Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> C1llcgprs_xid1byte2
+        {
+            get
+            {
+                return _C1llcgprs_xid1byte2;
+            }
+            set
+            {
+                OnC1llcgprs_xid1byte2Changing(value);
+                ReportPropertyChanging("C1llcgprs_xid1byte2");
+                _C1llcgprs_xid1byte2 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("C1llcgprs_xid1byte2");
+                OnC1llcgprs_xid1byte2Changed();
+            }
+        }
+        private Nullable<global::System.Int32> _C1llcgprs_xid1byte2;
+        partial void OnC1llcgprs_xid1byte2Changing(Nullable<global::System.Int32> value);
+        partial void OnC1llcgprs_xid1byte2Changed();
 
         #endregion
     

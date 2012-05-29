@@ -40,7 +40,6 @@
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem2 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem3 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem22 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem24 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem25 = new DevExpress.XtraNavBar.NavBarItem();
@@ -48,6 +47,7 @@
             this.navBarItem27 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem28 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem29 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem34 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup2 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem4 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem5 = new DevExpress.XtraNavBar.NavBarItem();
@@ -73,16 +73,27 @@
             this.navBarItem21 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem23 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup7 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItem30 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem31 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem32 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem33 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem34 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroup8 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItem42 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem43 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem3 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem35 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem36 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroup9 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItem37 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem38 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem39 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem40 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem41 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem30 = new DevExpress.XtraNavBar.NavBarItem();
             this.dockPanel1 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
+            this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.navBarItem36 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem44 = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -178,11 +189,12 @@
             this.navBarGroup4,
             this.navBarGroup5,
             this.navBarGroup6,
-            this.navBarGroup7});
+            this.navBarGroup7,
+            this.navBarGroup8,
+            this.navBarGroup9});
             this.navBarControl1.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
             this.navBarItem1,
             this.navBarItem2,
-            this.navBarItem3,
             this.navBarItem4,
             this.navBarItem5,
             this.navBarItem6,
@@ -209,35 +221,44 @@
             this.navBarItem27,
             this.navBarItem28,
             this.navBarItem29,
-            this.navBarItem30,
             this.navBarItem31,
             this.navBarItem32,
             this.navBarItem33,
+            this.navBarItem37,
+            this.navBarItem38,
+            this.navBarItem39,
+            this.navBarItem40,
+            this.navBarItem41,
+            this.navBarItem42,
+            this.navBarItem43,
+            this.navBarItem30,
+            this.navBarItem3,
             this.navBarItem34,
             this.navBarItem35,
-            this.navBarItem36});
+            this.navBarItem36,
+            this.navBarItem44});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 140;
             this.navBarControl1.Size = new System.Drawing.Size(313, 426);
             this.navBarControl1.TabIndex = 16;
             this.navBarControl1.Text = "navBarControl1";
+            this.navBarControl1.Click += new System.EventHandler(this.navBarControl1_Click);
             // 
             // navBarGroup1
             // 
             this.navBarGroup1.Caption = "Gn接口http性能优化-TCP reset信令流程分析";
-            this.navBarGroup1.Expanded = true;
             this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem1),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem2),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem3),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem22),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem24),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem25),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem26),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem27),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem28),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem29)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem29),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem34)});
             this.navBarGroup1.Name = "navBarGroup1";
             // 
             // navBarItem1
@@ -251,12 +272,6 @@
             this.navBarItem2.Caption = "Gn接口http请求错误码SP分布";
             this.navBarItem2.Name = "navBarItem2";
             this.navBarItem2.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem2_LinkClicked);
-            // 
-            // navBarItem3
-            // 
-            this.navBarItem3.Caption = "ExportToXlsx";
-            this.navBarItem3.Name = "navBarItem3";
-            this.navBarItem3.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem3_LinkClicked);
             // 
             // navBarItem22
             // 
@@ -296,9 +311,15 @@
             // 
             // navBarItem29
             // 
-            this.navBarItem29.Caption = "navBarItem29";
+            this.navBarItem29.Caption = "统计时间";
             this.navBarItem29.Name = "navBarItem29";
             this.navBarItem29.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem29_LinkClicked);
+            // 
+            // navBarItem34
+            // 
+            this.navBarItem34.Caption = "ip2长度分布";
+            this.navBarItem34.Name = "navBarItem34";
+            this.navBarItem34.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem34_LinkClicked_1);
             // 
             // navBarGroup2
             // 
@@ -424,7 +445,6 @@
             // navBarGroup6
             // 
             this.navBarGroup6.Caption = "IP包分片优化专题-Gb接口IP分片优化建议";
-            this.navBarGroup6.Expanded = true;
             this.navBarGroup6.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem18),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem19),
@@ -466,57 +486,115 @@
             // navBarGroup7
             // 
             this.navBarGroup7.Caption = "IP包分片优化专题-Gb接口IP分片优化建议2";
-            this.navBarGroup7.Expanded = true;
             this.navBarGroup7.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem30),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem31),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem32),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem33),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem34),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem35),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem36)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem33)});
             this.navBarGroup7.Name = "navBarGroup7";
-            // 
-            // navBarItem30
-            // 
-            this.navBarItem30.Caption = "ip2_len > 1440比例分布";
-            this.navBarItem30.Name = "navBarItem30";
-            this.navBarItem30.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem30_LinkClicked);
             // 
             // navBarItem31
             // 
-            this.navBarItem31.Caption = "IP分片和SNDCP分片信令统计";
+            this.navBarItem31.Caption = "IP分片和SNDCP分片信令统计---1";
             this.navBarItem31.Name = "navBarItem31";
             this.navBarItem31.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem31_LinkClicked);
             // 
             // navBarItem32
             // 
-            this.navBarItem32.Caption = "IP分片之后的特征";
+            this.navBarItem32.Caption = "IP分片之后的特征---1";
             this.navBarItem32.Name = "navBarItem32";
             this.navBarItem32.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem32_LinkClicked);
             // 
             // navBarItem33
             // 
-            this.navBarItem33.Caption = "tcp_options_mss_val信令统计";
+            this.navBarItem33.Caption = "tcp_options_mss_val信令统计---1";
             this.navBarItem33.Name = "navBarItem33";
             this.navBarItem33.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem33_LinkClicked);
             // 
-            // navBarItem34
+            // navBarGroup8
             // 
-            this.navBarItem34.Caption = "IP分片IMEI";
-            this.navBarItem34.Name = "navBarItem34";
-            this.navBarItem34.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem34_LinkClicked);
+            this.navBarGroup8.Caption = "IP包分片优化专题-Gb接口IP分片优化建议3";
+            this.navBarGroup8.Expanded = true;
+            this.navBarGroup8.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem42),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem43),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem3),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem35),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem36),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem44)});
+            this.navBarGroup8.Name = "navBarGroup8";
+            // 
+            // navBarItem42
+            // 
+            this.navBarItem42.Caption = "ip2_len > 1440比例分布---1";
+            this.navBarItem42.Name = "navBarItem42";
+            this.navBarItem42.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem42_LinkClicked);
+            // 
+            // navBarItem43
+            // 
+            this.navBarItem43.Caption = "IP分片IMEI";
+            this.navBarItem43.Name = "navBarItem43";
+            this.navBarItem43.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem43_LinkClicked);
+            // 
+            // navBarItem3
+            // 
+            this.navBarItem3.Caption = "pdp->xid";
+            this.navBarItem3.Name = "navBarItem3";
+            this.navBarItem3.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem3_LinkClicked_1);
             // 
             // navBarItem35
             // 
-            this.navBarItem35.Caption = "navBarItem35";
+            this.navBarItem35.Caption = "pdp->xid->imsi";
             this.navBarItem35.Name = "navBarItem35";
-            this.navBarItem35.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem35_LinkClicked);
+            this.navBarItem35.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem35_LinkClicked_1);
             // 
-            // navBarItem36
+            // navBarGroup9
             // 
-            this.navBarItem36.Caption = "navBarItem36";
-            this.navBarItem36.Name = "navBarItem36";
+            this.navBarGroup9.Caption = "IP包分片优化专题-Gb接口XID参数优化";
+            this.navBarGroup9.Expanded = true;
+            this.navBarGroup9.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem37),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem38),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem39),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem40),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem41),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem30)});
+            this.navBarGroup9.Name = "navBarGroup9";
+            // 
+            // navBarItem37
+            // 
+            this.navBarItem37.Caption = "XID参数比例分布";
+            this.navBarItem37.Name = "navBarItem37";
+            this.navBarItem37.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem37_LinkClicked);
+            // 
+            // navBarItem38
+            // 
+            this.navBarItem38.Caption = "N201_U协商比例分布";
+            this.navBarItem38.Name = "navBarItem38";
+            this.navBarItem38.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem38_LinkClicked);
+            // 
+            // navBarItem39
+            // 
+            this.navBarItem39.Caption = "N201_U正确协商比例分布---1";
+            this.navBarItem39.Name = "navBarItem39";
+            this.navBarItem39.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem39_LinkClicked);
+            // 
+            // navBarItem40
+            // 
+            this.navBarItem40.Caption = "终端的问题";
+            this.navBarItem40.Name = "navBarItem40";
+            this.navBarItem40.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem40_LinkClicked);
+            // 
+            // navBarItem41
+            // 
+            this.navBarItem41.Caption = "N201协商发起的问题";
+            this.navBarItem41.Name = "navBarItem41";
+            this.navBarItem41.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem41_LinkClicked);
+            // 
+            // navBarItem30
+            // 
+            this.navBarItem30.Caption = "协议栈包头分布---1";
+            this.navBarItem30.Name = "navBarItem30";
+            this.navBarItem30.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem30_LinkClicked_1);
             // 
             // dockPanel1
             // 
@@ -531,18 +609,40 @@
             // 
             // dockPanel1_Container
             // 
+            this.dockPanel1_Container.Controls.Add(this.button1);
             this.dockPanel1_Container.Controls.Add(this.textBox1);
             this.dockPanel1_Container.Location = new System.Drawing.Point(4, 23);
             this.dockPanel1_Container.Name = "dockPanel1_Container";
             this.dockPanel1_Container.Size = new System.Drawing.Size(432, 70);
             this.dockPanel1_Container.TabIndex = 0;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(328, 17);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(99, 23);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "ExportToXlsx";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(33, 19);
+            this.textBox1.Location = new System.Drawing.Point(8, 19);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(302, 21);
             this.textBox1.TabIndex = 17;
+            // 
+            // navBarItem36
+            // 
+            this.navBarItem36.Caption = "navBarItem36";
+            this.navBarItem36.Name = "navBarItem36";
+            this.navBarItem36.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem36_LinkClicked);
+            // 
+            // navBarItem44
+            // 
+            this.navBarItem44.Caption = "navBarItem44";
+            this.navBarItem44.Name = "navBarItem44";
             // 
             // Form1
             // 
@@ -583,7 +683,6 @@
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
         private DevExpress.XtraNavBar.NavBarItem navBarItem1;
         private DevExpress.XtraNavBar.NavBarItem navBarItem2;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem3;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup2;
         private DevExpress.XtraNavBar.NavBarItem navBarItem4;
         private DevExpress.XtraNavBar.NavBarItem navBarItem5;
@@ -619,12 +718,24 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem28;
         private DevExpress.XtraNavBar.NavBarItem navBarItem29;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup7;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem30;
         private DevExpress.XtraNavBar.NavBarItem navBarItem31;
         private DevExpress.XtraNavBar.NavBarItem navBarItem32;
         private DevExpress.XtraNavBar.NavBarItem navBarItem33;
+        private DevExpress.XtraNavBar.NavBarGroup navBarGroup8;
+        private DevExpress.XtraNavBar.NavBarGroup navBarGroup9;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem37;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem38;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem39;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem40;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem41;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem42;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem43;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem30;
+        private System.Windows.Forms.Button button1;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem3;
         private DevExpress.XtraNavBar.NavBarItem navBarItem34;
         private DevExpress.XtraNavBar.NavBarItem navBarItem35;
         private DevExpress.XtraNavBar.NavBarItem navBarItem36;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem44;
     }
 }
