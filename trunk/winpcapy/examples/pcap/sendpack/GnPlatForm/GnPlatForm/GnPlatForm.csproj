@@ -134,6 +134,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model4.edmx</DependentUpon>
     </Compile>
+    <Compile Include="SqlServer\Model5.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model5.edmx</DependentUpon>
+    </Compile>
     <Compile Include="SqlServer\MySqlConvert0.cs" />
     <Compile Include="Key.Performance\ComputeKeyPerformance0.cs" />
     <Compile Include="Program.cs" />
@@ -190,6 +195,10 @@
     <EntityDeploy Include="SqlServer\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="SqlServer\Model5.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model5.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>

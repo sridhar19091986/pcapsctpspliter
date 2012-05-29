@@ -14,12 +14,16 @@ namespace AutoSql_Ts
 {
     class Program
     {
-         const int time_size = 15;
+        const int time_size = 15;
         static string conf_file = "config.xml";
         static int gb_pre_time = 24;
         static string gb_ts_xcd_script;
         static string gb_ts_table;
         static string gb_ts_in;
+
+        static Dictionary<string, DateTime> imsi_ts_dic = new Dictionary<string, DateTime>();
+
+        static List<Tuple<string, string>> imsi_ts_tb = new List<Tuple<string, string>>();
 
 
         //生成投诉信息库，读取文件信息？建表时的engine？不然报错？
@@ -49,6 +53,43 @@ namespace AutoSql_Ts
                 if (ar[0] == string.Empty) break;
                 read_ts_line(ar[0], ar[1]);
             }
+
+            string[] mm = new string[] { "00", "15", "30", "45" };
+            foreach (var m in imsi_ts_dic)
+            {
+                for (int i = 0; i < gb_pre_time * mm.Length; i++)
+                {
+                    var dt1 = RoundUp(m.Value.AddMinutes(-1 * i * time_size), TimeSpan.FromMinutes(time_size));
+                    string ts_table = dt1.ToString("yyyyMMddHHmm");
+                    Tuple<string, string> ts = new Tuple<string, string>(m.Key, "gb_common_" + ts_table);
+                    imsi_ts_tb.Add(ts);
+                }
+            }
+
+            int line=0;
+            var look_ts = imsi_ts_tb.ToLookup(e => e.Item2);
+            foreach (var m in look_ts)
+            {
+                string imsilist = m.Select(e => e.Item1).Aggregate((a, b) => a + "," + b);
+
+                string sql = string.Format("INSERT into {0} select * from  {1} where IMSI in ({2});",
+                    gb_ts_table, m.Key, imsilist);
+
+                sql = contact_sql(m.Key, sql);
+
+                line++;
+
+               
+
+                WriteToFile(sql);
+            }
+
+            WriteToFile("select '第" + line.ToString() + "行';");
+
+            WriteToFile("select '脚本运行完成!';");
+
+            Console.WriteLine("gb_ts_xcd_script.txt，脚本文件生成完毕！");
+
             Console.ReadKey();
         }
 
@@ -58,14 +99,9 @@ namespace AutoSql_Ts
         {
             string ts_imsi = imsi.Trim();
             DateTime ts_time = DateTime.Parse(ttime);
-            string[] mm = new string[] { "00", "15", "30", "45" };
-            for (int i = 0; i < gb_pre_time * mm.Length; i++)
-            {
-                var dt1 = RoundUp(ts_time.AddMinutes(-1 * i * time_size), TimeSpan.FromMinutes(time_size));
-                string ts_table = dt1.ToString("yyyyMMddHHmm");
-                ts_table = contact_sql(ts_table, ts_imsi);
-                WriteToFile(ts_table);
-            }
+            if (!imsi_ts_dic.ContainsKey(ts_imsi))
+                if (ts_imsi.Length == 15)
+                    imsi_ts_dic.Add(ts_imsi, ts_time);
         }
 
         /*
@@ -81,11 +117,10 @@ namespace AutoSql_Ts
             return new DateTime(((dt.Ticks + d.Ticks - 1) / d.Ticks) * d.Ticks);
         }
 
+
         //判断表是否存在最好是用存储过程，调用该存储过程执行 投诉数据的汇聚？
-        private static string contact_sql(string table, string imsi)
+        private static string contact_sql(string ts_table, string sql)
         {
-            string ts_table = "gb_common_" + table;
-            string sql = string.Format("INSERT into {0} select * from  {1} where IMSI='{2}';", gb_ts_table, ts_table, imsi);
 
             string procedure = string.Format(@"
 

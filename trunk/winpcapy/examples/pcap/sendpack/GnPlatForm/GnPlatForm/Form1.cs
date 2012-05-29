@@ -115,10 +115,17 @@ namespace GnPlatForm
         private GuangZhou_GnEntities2 servercontext2;
         private GuangZhou_GnEntities3 servercontext3;
 
+        private GuangZhou_GnEntities4 servercontext4;
+
         //private IEnumerable<mpos_gn_common> sqlserver_ienumerable;
         private ObjectQuery<mpos_gn_common> sqlserver_objectquery;
         private ObjectQuery<Gn_IP_Fragment> sqlerver_segment;
         private ObjectQuery<Gb_IP_Fragment> gb_ip_fragment;
+
+        private ObjectQuery<Gb_XID> gb_xid;
+
+        private ObjectQuery<Gb_PDP_XID> gb_pdp_xid;
+
         public HashSet<string> url_list;
 
         private void Form1_Load(object sender, EventArgs ee)
@@ -132,14 +139,24 @@ namespace GnPlatForm
             servercontext2 = new GuangZhou_GnEntities2();
             servercontext3 = new GuangZhou_GnEntities3();
 
+            servercontext4 = new GuangZhou_GnEntities4();
+
+
+
             servercontext.CommandTimeout = 0;
             servercontext1.CommandTimeout = 0;
             servercontext2.CommandTimeout = 0;
             servercontext3.CommandTimeout = 0;
+            servercontext4.CommandTimeout = 0;
 
             sqlserver_objectquery = servercontext.mpos_gn_common;
             sqlerver_segment = servercontext1.Gn_IP_Fragment;
-            gb_ip_fragment = servercontext2.Gb_IP_Fragment;
+
+            gb_ip_fragment = servercontext4.Gb_IP_Fragment;
+            gb_xid = servercontext2.Gb_XID;
+            gb_pdp_xid = servercontext2.Gb_PDP_XID;
+
+
             url_list = new HashSet<string>();
 
             var url_lists = servercontext3.url_result.Select(e => e.url);
@@ -281,13 +298,7 @@ namespace GnPlatForm
 
         private void navBarItem3_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Filter = "Excel2007文件(*.xlsx) |*.xlsx";
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-            {
 
-                gridView1.ExportToXlsx(saveFileDialog1.FileName);
-            }
         }
 
         private void navBarItem4_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
@@ -823,6 +834,8 @@ namespace GnPlatForm
                          };
             var dborder = ip.OrderByDescending(e => e.ip_cnt);
             gridControl1.DataSource = dborder.ToList();
+
+            textBox1.Text = ee.Link.Item.Caption;
             //refreshGrid(dborder);
         }
 
@@ -858,6 +871,8 @@ namespace GnPlatForm
             var dborder = ip.OrderByDescending(e => e.ip2_cnt);
             gridControl1.DataSource = dborder.ToList();
             //refreshGrid(dborder);
+
+            textBox1.Text = ee.Link.Item.Caption;
         }
 
         private void navBarItem20_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
@@ -888,6 +903,9 @@ namespace GnPlatForm
             var dborder = ip.OrderByDescending(e => e.ip2_cnt);
             gridControl1.DataSource = dborder.ToList();
             //refreshGrid(dborder);
+
+            textBox1.Text = ee.Link.Item.Caption;
+
         }
 
         private void navBarItem21_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
@@ -1002,6 +1020,8 @@ namespace GnPlatForm
                          };
             var dborder = ip.OrderByDescending(e => e.ip_cnt);
             gridControl1.DataSource = dborder.ToList();
+
+            textBox1.Text = ee.Link.Item.Caption;
         }
 
         //按照apn的维度，只分析get的成功率
@@ -1431,69 +1451,10 @@ namespace GnPlatForm
             textBox1.Text = ttim.ToString();
         }
 
-        //IP分片的识别：[ip_flags_mf]=Set或者[ip_frag_offset]>0。
-        //[ip_frag_offset]>0 没有写库
-        //Ip2包的识别：[sndcp_m] !=Null 或者[ip_frag_offset]>0。
+
         private void navBarItem30_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
         {
-            gridView1.PopulateColumns();
-            gridControl1.Refresh();
 
-            var totalsize = gb_ip_fragment.Where(e => e.bssgp_direction == "Down")
-                .Where(e => e.sndcp_m != null || e.sndcp_segment > 0)
-                 .Where(e => e.ip2_len != null)
-                .Sum(e => e.udp_length);
-
-            var totalcnt = gb_ip_fragment.Where(e => e.bssgp_direction == "Down")
-                  .Where(e => e.sndcp_m != null || e.sndcp_segment > 0)
-                  .Where(e => e.ip2_len != null)
-                  .Count();
-
-            var ip = from p in gb_ip_fragment.Where(e => e.bssgp_direction == "Down")
-                     where p.sndcp_m != null || p.sndcp_segment > 0
-                     where p.ip2_len != null
-                     group p by new
-                     {
-                         ip2len_over_1440 = p.ip2_len > 1440,
-                         p.ip_flags_mf,
-                         //p.ip_flags,
-                         //p.ip_flags_df,
-                         //p.ip_flags_mf,
-                         //p.ip_frag_offset
-                     }
-                         into ttt
-                         select new
-                         {
-                             //ttt.Key.ip_flags,
-                             //ttt.Key.ip_flags_df,
-                             //ttt.Key.ip_flags_mf,
-                             //ttt.Key.ip_frag_offset,
-
-                             ttt.Key.ip2len_over_1440,
-                             ttt.Key.ip_flags_mf,
-                             //ip2_min_size = ttt.Min(e => e.ip2_len),
-                             //ip2_avg_size = 1.0 * ttt.Sum(e => e.ip2_len) / ttt.Count(),
-                             //ip2_max_size = ttt.Max(e => e.ip2_len),
-
-                             diff_ip_udp_avg_size = ttt.Average(e => e.udp_length - e.ip2_len),
-
-                             ip2_min_size = ttt.Min(e => e.ip2_len),
-                             ip2_avg_size = 1.0 * ttt.Sum(e => e.ip2_len) / ttt.Count(),
-                             ip2_max_size = ttt.Max(e => e.ip2_len),
-
-                             ip2_total_size = ttt.Sum(e => e.ip2_len),
-                             //total_udp_size = totalsize,
-                             ip2_size_rate = 1.0 * ttt.Sum(e => e.ip2_len) / totalsize,
-
-                             ip2_total_cnt = ttt.Count(),
-                             //total_udp_cnt = totalcnt,
-                             ip2_cnt_rate = 1.0 * ttt.Count() / (totalcnt),
-
-
-                         };
-            var dborder = ip.OrderByDescending(e => e.ip2_total_cnt);
-            gridControl1.DataSource = dborder.ToList();
-            //refreshGrid(dborder);
         }
 
         //SNDCP分片的识别：[sndcp_m]=Set或者[sndcp_segment]>0。
@@ -1505,12 +1466,12 @@ namespace GnPlatForm
             var totalsize = gb_ip_fragment
                 .Where(e => e.bssgp_direction == "Down")
                 .Where(e => e.sndcp_m != null || e.sndcp_segment > 0)
-                .Sum(e => e.udp_length);
+                .Sum(e => e.ip_len);
 
             var totalcnt = gb_ip_fragment
                  .Where(e => e.bssgp_direction == "Down")
-          .Where(e => e.sndcp_m != null || e.sndcp_segment > 0)
-          .Count();
+                  .Where(e => e.sndcp_m != null || e.sndcp_segment > 0)
+                  .Count();
 
             var ip = from p in gb_ip_fragment.Where(e => e.bssgp_direction == "Down")
                      where p.sndcp_m != null || p.sndcp_segment > 0
@@ -1538,31 +1499,33 @@ namespace GnPlatForm
                              //ip2_avg_size = 1.0 * ttt.Sum(e => e.ip2_len) / ttt.Count(),
                              //ip2_max_size = ttt.Max(e => e.ip2_len),
 
-                             diff_ip_udp_avg_size = ttt.Average(e => e.ip_len - e.udp_length),
+                             //diff_ip_udp_avg_size = ttt.Average(e => e.ip_len - e.udp_length),
 
                              ip_min_size = ttt.Min(e => e.ip_len),
                              ip_max_size = ttt.Max(e => e.ip_len),
 
-                             ip2_min_size = ttt.Min(e => e.ip2_len),
-                             ip2_max_size = ttt.Max(e => e.ip2_len),
+                             //ip2_min_size = ttt.Min(e => e.ip2_len),
+                             //ip2_max_size = ttt.Max(e => e.ip2_len),
 
-                             udp_min_size = ttt.Min(e => e.udp_length),
-                             udp_avg_size = 1.0 * ttt.Sum(e => e.udp_length) / ttt.Count(),
-                             udp_max_size = ttt.Max(e => e.udp_length),
+                             //udp_min_size = ttt.Min(e => e.udp_length),
+                             //udp_avg_size = 1.0 * ttt.Sum(e => e.udp_length) / ttt.Count(),
+                             //udp_max_size = ttt.Max(e => e.udp_length),
 
-                             udp_total_size = ttt.Sum(e => e.ip_len),
+                             ip_total_size = ttt.Sum(e => e.ip_len),
                              //total_udp_size = totalsize,
-                             udp_size_rate = 1.0 * ttt.Sum(e => e.ip_len) / totalsize,
+                             ip_size_percent = 1.0 * ttt.Sum(e => e.ip_len) / totalsize,
 
-                             udp_total_cnt = ttt.Count(),
+                             ip_total_cnt = ttt.Count(),
                              //total_udp_cnt = totalcnt,
-                             udp_cnt_rate = 1.0 * ttt.Count() / (totalcnt),
+                             ip_cnt_percent = 1.0 * ttt.Count() / (totalcnt),
 
 
                          };
-            var dborder = ip.OrderBy(e => e.ip_flags_mf).ThenBy(e => e.sndcp_m).ThenBy(e => e.sndcp_segment);
+            var dborder = ip.OrderBy(e => e.ip_flags_mf).ThenBy(e => e.sndcp_m);
             gridControl1.DataSource = dborder.ToList();
             //refreshGrid(dborder);
+
+            textBox1.Text = ee.Link.Item.Caption;
         }
 
         private void navBarItem32_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
@@ -1572,13 +1535,13 @@ namespace GnPlatForm
 
             var totalsize = gb_ip_fragment
                   .Where(e => e.bssgp_direction == "Down")
-                .Where(e => e.sndcp_m != null || e.sndcp_segment > 0)
-                .Sum(e => e.udp_length);
+                    .Where(e => e.sndcp_m != null || e.sndcp_segment > 0)
+                    .Sum(e => e.ip_len);
 
             var totalcnt = gb_ip_fragment
                   .Where(e => e.bssgp_direction == "Down")
-          .Where(e => e.sndcp_m != null || e.sndcp_segment > 0)
-          .Count();
+                  .Where(e => e.sndcp_m != null || e.sndcp_segment > 0)
+                  .Count();
 
             var ip = from p in gb_ip_fragment.Where(e => e.bssgp_direction == "Down")
                      where p.sndcp_m != null || p.sndcp_segment > 0
@@ -1588,6 +1551,7 @@ namespace GnPlatForm
                          ip = p.ip_len == 1500,
                          udp = p.udp_length > 1480,
                          p.ip_flags_mf,
+                         p.sndcp_m,
 
                      }
                          into ttt
@@ -1596,27 +1560,27 @@ namespace GnPlatForm
                              ttt.Key.ip,
                              ttt.Key.udp,
                              ttt.Key.ip_flags_mf,
+                             ttt.Key.sndcp_m,
 
-                             //ip2_min_size = ttt.Min(e => e.ip2_len),
-                             //ip2_max_size = ttt.Max(e => e.ip2_len),
+                             ip_min_size = ttt.Min(e => e.ip_len),
+                             ip_avg_size = 1.0 * ttt.Sum(e => e.ip_len) / ttt.Count(),
+                             ip_max_size = ttt.Max(e => e.ip_len),
 
-                             ip2_min_size = ttt.Min(e => e.ip2_len),
-                             ip2_avg_size = 1.0 * ttt.Sum(e => e.ip2_len) / ttt.Count(),
-                             ip2_max_size = ttt.Max(e => e.ip2_len),
-
-                             ip2_total_size = ttt.Sum(e => e.ip_len),
-                             //total_ip2_size = totalsize,
-                             ip2_size_rate = 1.0 * ttt.Sum(e => e.ip_len) / totalsize,
-
-                             ip2_total_cnt = ttt.Count(),
-                             //total_ip2_cnt = totalcnt,
-                             ip2_cnt_rate = 1.0 * ttt.Count() / (totalcnt),
-
-
+                             ip_total_size = ttt.Sum(e => e.ip_len),
+                             ip_size_percent = 1.0 * ttt.Sum(e => e.ip_len) / totalsize,
+                             ip_total_cnt = ttt.Count(),
+                             ip_cnt_percent = 1.0 * ttt.Count() / (totalcnt),
                          };
-            var dborder = ip.OrderByDescending(e => e.ip2_total_cnt);
+            var dborder = ip.OrderByDescending(e => e.ip_total_cnt);
             gridControl1.DataSource = dborder.ToList();
-            //refreshGrid(dborder);
+
+            gridView1.Columns[0].Caption = "ip_len == 1500";
+            gridView1.Columns[1].Caption = "udp_length > 1480";
+            gridControl1.Refresh();
+
+            textBox1.Text = ee.Link.Item.Caption;
+
+
         }
 
         private void navBarItem33_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
@@ -1644,7 +1608,7 @@ namespace GnPlatForm
                      {
                          //p.ip2_dst_host,
                          p.bssgp_direction,
-                         mss = p.tcp_options_mss_val > 1360 || p.tcp_options_mss_val == 1360
+                         mss = p.tcp_options_mss_val > 1460 || p.tcp_options_mss_val == 1460
 
                      }
                          into ttt
@@ -1661,7 +1625,13 @@ namespace GnPlatForm
                          };
             var dborder = ip.OrderByDescending(e => e.bssgp_direction);
             gridControl1.DataSource = dborder.ToList();
-            refreshGrid(dborder, 1);
+            //refreshGrid(dborder, 1);
+
+            gridView1.Columns[1].Caption = "tcp_options_mss_val >= 1460";
+            gridControl1.Refresh();
+
+            textBox1.Text = ee.Link.Item.Caption;
+
         }
 
         //只有ip分片没有sndcp分片的终端的统计？
@@ -1671,6 +1641,124 @@ namespace GnPlatForm
         //e.BeginFileNum * 10 ^ 8 + 
 
         private void navBarItem34_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
+        {
+
+        }
+
+        private void navBarItem35_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
+        {
+            gridView1.PopulateColumns();
+            gridControl1.Refresh();
+
+            var imeity = servercontext2.imeitype.ToLookup(e => e.imei, e => e.imeiname);
+
+            var imsi_filenum_packetnum = gb_ip_fragment
+                .Where(e => e.gsm_a_imeisv != null)
+                .ToLookup(e => e.BeginFrameNum + e.BeginFileNum * 100000000,
+                e => e.gsm_a_imeisv);
+            //, e => e.gsm_a_imeisv);
+
+            var pdu_filenum_packetnum = gb_ip_fragment
+                .Where(e => e.llcgprs_xid1type != null)
+                .Where(e => e.llcgprs_xid1type == 5)
+                //.Where(e => e.bssgp_direction == "Up")
+                .ToLookup(e => e.BeginFrameNum + e.BeginFileNum * 100000000);
+            //e => e.llcgprs_xidbyte1 * 256 + e.llcgprs_xid1byte2);
+            //e => e.llcgprs_xidbyte1*256+e.llcgprs_xid1byte2);
+
+            //var pdu = from p in imsi_filenum_packetnum
+            //          join q in pdu_filenum_packetnum on p.Key equals q.Key
+            //          select new
+            //          {
+            //              p.Key,p.Select(e=>e.gsm_a_imeisv).FirstOrDefault(),
+            //              q.Select(e=>e.
+            //              Queryable.
+
+            //          };
+
+
+            //帧号，终端，pdu最大值
+            var ip = new List<Tuple<int, string, string, int, Gb_IP_Fragment>>();
+
+            string it = null;
+            string imei = null;
+            int cnt = 0;
+            //double N201U_max = 0;
+            //double N201U_cnt = 0;
+            //double N201U_min = 0;
+            //double N201U_avg = 0;
+
+            foreach (var m in imsi_filenum_packetnum)
+            {
+                imei = m.FirstOrDefault();
+                if (m.FirstOrDefault() != null)
+                    if (m.FirstOrDefault().Length > 8)
+                        it = m.FirstOrDefault().Substring(0, 8);
+                //it = imeity[m.FirstOrDefault().Substring(0, 8)].FirstOrDefault();
+
+                if (pdu_filenum_packetnum.Contains(m.Key))
+                {
+                    cnt = pdu_filenum_packetnum[m.Key].Count();
+                    foreach (Gb_IP_Fragment pdu in pdu_filenum_packetnum[m.Key])
+                    {
+                        var t = Tuple.Create((int)m.Key, imei, it, cnt, pdu);
+                        //t.Item1 = it;
+                        //t.Item2 = it;
+                        //t.Item3 = pdu;
+                        ip.Add(t);
+                    }
+                    //N201U_max = pdu_filenum_packetnum[m.Key].Max(e => e.Value);
+                    //N201U_cnt = pdu_filenum_packetnum[m.Key].Count();
+                    //N201U_min = pdu_filenum_packetnum[m.Key].Min(e => e.Value);
+                    //N201U_avg = pdu_filenum_packetnum[m.Key].Average(e => e.Value);
+                }
+
+                //var t = new Tuple<int?, string, string, double, double, double, double>
+                //         (m.Key, m.FirstOrDefault(), it, N201U_min, N201U_max, N201U_cnt, N201U_avg);
+
+                //ip.Add(t);
+
+            }
+
+            var dborder = from p in ip
+                          select new
+                          {
+                              p.Item1,
+                              p.Item2,
+                              p.Item3,
+                              p.Item4,
+                              p.Item5.BeginFileNum,
+                              p.Item5.BeginFrameNum,
+                              p.Item5.PacketNum,
+
+                              p.Item5.llcgprs_xid1type,
+                              p.Item5.llcgprs_xidbyte1,
+                              p.Item5.llcgprs_xid1byte2,
+                              p.Item5.bssgp_direction,
+
+                              N201_U = 256 * p.Item5.llcgprs_xidbyte1 + p.Item5.llcgprs_xid1byte2
+
+                          };
+
+            //gridControl1.DataSource = dborder.OrderByDescending(e=>e.Item4).OrderBy(e=>e.Item1).ThenBy(e=>e.PacketNum).ToList();
+
+            var imei_xid = from p in dborder
+                           where p.bssgp_direction == "Up"
+                           group p by p.Item3 into ttt
+                           select new
+                           {
+                               ttt.Key,
+                               cnt = ttt.Count(),
+                               N201_U_min = ttt.Min(e => e.N201_U),
+                               N201_U_max = ttt.Max(e => e.N201_U),
+                               N201_U_avg = ttt.Average(e => e.N201_U),
+                           };
+
+            gridControl1.DataSource = imei_xid.OrderByDescending(e => e.N201_U_avg).ToList();
+            //refreshGrid(dborder);
+        }
+
+        private void navBarItem43_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
         {
             gridView1.PopulateColumns();
             gridControl1.Refresh();
@@ -1713,116 +1801,410 @@ namespace GnPlatForm
             gridControl1.DataSource = dborder.ToList();
 
             //refreshGrid(dborder);
+
+            textBox1.Text = ee.Link.Item.Caption;
         }
 
-        private void navBarItem35_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
+        //IP分片的识别：[ip_flags_mf]=Set或者[ip_frag_offset]>0。
+        //[ip_frag_offset]>0 没有写库
+        //Ip2包的识别：[sndcp_m] !=Null 或者[ip_frag_offset]>0。
+        private void navBarItem42_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
+        {
+            gridView1.PopulateColumns();
+            gridControl1.Refresh();
+
+            var totalsize = gb_ip_fragment.Where(e => e.bssgp_direction == "Down")
+                .Where(e => e.sndcp_m != null || e.sndcp_segment > 0)
+                 .Where(e => e.ip2_len != null)
+                .Sum(e => e.ip2_len);
+
+            var totalcnt = gb_ip_fragment.Where(e => e.bssgp_direction == "Down")
+                  .Where(e => e.sndcp_m != null || e.sndcp_segment > 0)
+                  .Where(e => e.ip2_len != null)
+                  .Count();
+
+            var ip = from p in gb_ip_fragment.Where(e => e.bssgp_direction == "Down")
+                     where p.sndcp_m != null || p.sndcp_segment > 0
+                     where p.ip2_len != null
+                     group p by new
+                     {
+                         p.ip2_len,
+                         p.ip_flags_mf,
+                         p.sndcp_m,
+                         p.ip2_flags_mf,
+                         p.tcp_need_segment,
+                         //p.ip_flags,
+                         //p.ip_flags_df,
+                         //p.ip_flags_mf,
+                         //p.ip_frag_offset
+                     }
+                         into ttt
+                         select new
+                         {
+                             ttt.Key.ip2_len,
+                             ttt.Key.ip_flags_mf,
+                             ttt.Key.sndcp_m,
+                             ttt.Key.ip2_flags_mf,
+                             ttt.Key.tcp_need_segment,
+
+                             diff_ip_udp_avg_size = ttt.Average(e => e.udp_length - e.ip2_len),
+
+                             //ip2_min_size = ttt.Min(e => e.ip2_len),
+                             //ip2_avg_size = 1.0 * ttt.Sum(e => e.ip2_len) / ttt.Count(),
+                             //ip2_max_size = ttt.Max(e => e.ip2_len),
+
+                             ip2_total_size = ttt.Sum(e => e.ip2_len),
+                             ip2_size_rate = 1.0 * ttt.Sum(e => e.ip2_len) / totalsize,
+
+                             ip2_total_cnt = ttt.Count(),
+                             ip2_cnt_rate = 1.0 * ttt.Count() / (totalcnt),
+
+                         };
+            var dborder = ip.OrderByDescending(e => e.ip2_len);
+            gridControl1.DataSource = dborder.ToList();
+            //refreshGrid(dborder);
+
+            textBox1.Text = ee.Link.Item.Caption;
+        }
+
+        private void navBarItem39_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
+        {
+
+            var total = gb_xid.Where(e => e.llcgprs_xid1type == 5).Where(e => e.C1llcgprs_xid1type == 5).Count();
+            var xid = from p in gb_xid
+                      where p.llcgprs_xid1type == 5 && p.C1llcgprs_xid1type == 5
+                      group p by new
+                      {
+                          p.bssgp_direction,
+                          N201_U = p.llcgprs_xid1byte1 * 256 + p.llcgprs_xid1byte2,
+                          N201_U_Result = p.C1llcgprs_xid1byte1 * 256 + p.C1llcgprs_xid1byte2
+                      } into ttt
+
+                      select new
+
+                      {
+                          ttt.Key.bssgp_direction,
+                          ttt.Key.N201_U,
+                          ttt.Key.N201_U_Result,
+
+                          cnt = ttt.Count(),
+                          percent = 1.0 * ttt.Count() / total,
+
+                      };
+
+            //xid.OrderByDescending(e => e.cnt).Dump();
+
+            gridView1.PopulateColumns();
+            gridControl1.Refresh();
+            var dborder = xid.OrderByDescending(e => e.cnt);
+            gridControl1.DataSource = dborder.ToList();
+
+            textBox1.Text = ee.Link.Item.Caption;
+
+        }
+
+        private void navBarItem38_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
+        {
+            var total = gb_xid.Where(e => e.llcgprs_xid1type == 5).Count();
+            var xid = from p in gb_xid
+                      where p.llcgprs_xid1type == 5
+                      group p by new { p.bssgp_direction, N201_U_Ne = p.llcgprs_xid1byte1 * 256 + p.llcgprs_xid1byte2 } into ttt
+
+                      select new
+
+                      {
+                          ttt.Key.bssgp_direction,
+                          ttt.Key.N201_U_Ne,
+
+                          cnt = ttt.Count(),
+                          percent = 1.0 * ttt.Count() / total,
+
+                      };
+
+            // xid.OrderByDescending(e => e.cnt).Dump();
+            gridView1.PopulateColumns();
+            gridControl1.Refresh();
+            var dborder = xid.OrderByDescending(e => e.cnt);
+            gridControl1.DataSource = dborder.ToList();
+
+            textBox1.Text = ee.Link.Item.Caption;
+        }
+
+        private void navBarItem37_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
+        {
+            var total = gb_xid.Count();
+            var xid = from p in gb_xid
+
+                      group p by new { p.bssgp_direction, p.llcgprs_xid1type } into ttt
+
+                      select new
+
+                      {
+                          ttt.Key.bssgp_direction,
+                          ttt.Key.llcgprs_xid1type,
+
+                          cnt = ttt.Count(),
+                          percent = 1.0 * ttt.Count() / total,
+
+                      };
+
+            // xid.OrderByDescending(e => e.cnt).Dump();
+
+            gridView1.PopulateColumns();
+            gridControl1.Refresh();
+            var dborder = xid.OrderByDescending(e => e.cnt);
+            gridControl1.DataSource = dborder.ToList();
+
+            textBox1.Text = ee.Link.Item.Caption;
+
+        }
+
+        private void navBarItem30_LinkClicked_1(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
+        {
+            var total = (from p in gb_ip_fragment
+                         where p.ip_flags_mf == "Not set"
+                         where p.ip2_flags_mf == "Not set"
+                         where p.tcp_need_segment == 0
+                         where p.sndcp_m == "Not set"
+                         select p).Count();
+
+            var gb = from p in gb_ip_fragment
+                     where p.ip_flags_mf == "Not set"
+                     where p.ip2_flags_mf == "Not set"
+                     where p.tcp_need_segment == 0
+                     where p.sndcp_m == "Not set"
+                     //	   select p;
+                     group p by new { p.bssgp_direction, ip1_ip2_len = p.ip_len - p.ip2_len } into ttt
+                     select new
+                     {
+                         ttt.Key.bssgp_direction,
+                         ip1_ip2_len = ttt.Key.ip1_ip2_len,
+                         cnt = ttt.Count(),
+                         percent = 1.0 * ttt.Count() / total
+
+                     };
+
+            //gb.OrderByDescending(e => e.ip1_ip2_len).Dump();
+
+            gridView1.PopulateColumns();
+            gridControl1.Refresh();
+            var dborder = gb.OrderByDescending(e => e.ip1_ip2_len);
+            gridControl1.DataSource = dborder.ToList();
+
+            textBox1.Text = ee.Link.Item.Caption;
+
+        }
+
+        private void navBarItem40_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
+        {
+            var total = gb_xid.Where(e => e.bssgp_direction == "Down")
+                    .Where(e => e.llcgprs_xid1type == 5)
+                    .Where(e => e.C1llcgprs_xid1type == 5)
+                    .Where(e => e.llcgprs_xid1byte1 * 256 + e.llcgprs_xid1byte2 != 1504)
+                    .Count();
+
+            var xid = from p in gb_xid
+                      where p.bssgp_direction == "Down"
+                      where p.llcgprs_xid1type == 5 && p.C1llcgprs_xid1type == 5
+                      //where p.llcgprs_xid1byte1 * 256 + p.llcgprs_xid1byte2 != 1504
+                      group p by new
+                      {
+                          p.bssgp_direction,
+                          N201_U_Ne = p.llcgprs_xid1byte1 * 256 + p.llcgprs_xid1byte2,
+                          N201_U_Result = p.C1llcgprs_xid1byte1 * 256 + p.C1llcgprs_xid1byte2
+                      } into ttt
+                      select new
+                      {
+                          ttt.Key.bssgp_direction,
+                          ttt.Key.N201_U_Ne,
+                          ttt.Key.N201_U_Result,
+                          cnt = ttt.Count(),
+                          percent = 1.0 * ttt.Count() / total,
+                      };
+
+            // xid.OrderByDescending(e => e.N201_U_Result).ThenByDescending(e => e.cnt).Dump();
+
+            gridView1.PopulateColumns();
+            gridControl1.Refresh();
+            var dborder = xid.OrderByDescending(e => e.N201_U_Result).ThenByDescending(e => e.cnt);
+            gridControl1.DataSource = dborder.ToList();
+
+
+            textBox1.Text = ee.Link.Item.Caption;
+
+
+        }
+
+        private void navBarItem41_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
+        {
+            textBox1.Text = ee.Link.Item.Caption;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "Excel2007文件(*.xlsx) |*.xlsx";
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                saveFileDialog1.FileName = textBox1.Text + ".xlsx";
+                gridView1.ExportToXlsx(saveFileDialog1.FileName);
+            }
+        }
+
+        private void navBarItem3_LinkClicked_1(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
+        {
+            gridView1.PopulateColumns();
+            gridControl1.Refresh();
+
+            var pdp = from p in gb_pdp_xid
+                      group p by new { p.DumpFor } into ttt
+                      select new
+                      {
+                          ttt.Key.DumpFor,
+                          //ttt.Key.bssgp_direction,
+                          pdp_cnt = ttt.Where(e => e.PDP_Act_Request == 1).Count(),
+                          xid_cnt = ttt.Where(e => e.U_Exchange_identification != null).Count(),
+                          xid_delay = ttt.Average(e => e.U_Exchange_identification_delayFirst),
+
+                          percent = 1.0 * ttt.Where(e => e.U_Exchange_identification != null).Count() / ttt.Where(e => e.PDP_Act_Request == 1).Count(),
+                      };
+
+            var dborder = pdp.OrderBy(e => e.pdp_cnt);
+
+            gridControl1.DataSource = dborder;
+
+
+            textBox1.Text = ee.Link.Item.Caption;
+        }
+
+        private void navBarItem34_LinkClicked_1(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
+        {
+            gridView1.PopulateColumns();
+            gridControl1.Refresh();
+
+            var totalsize = sqlerver_segment
+                 .Where(e => e.ip2_len != null)
+                .Sum(e => e.ip2_len);
+
+            var totalcnt = sqlerver_segment
+                  .Where(e => e.ip2_len != null)
+                  .Count();
+
+            var ip = from p in sqlerver_segment
+                     where p.ip2_len != null
+                     group p by new
+                     {
+                         p.ip2_len,
+                         //p.ip_len,
+                         p.ip_flags_mf,
+                         p.ip2_flags_mf,
+                         p.tcp_need_segment,
+                     }
+                         into ttt
+                         select new
+                         {
+                             ttt.Key.ip2_len,
+
+                             ttt.Key.ip_flags_mf,
+                             ttt.Key.ip2_flags_mf,
+                             ttt.Key.tcp_need_segment,
+                             ip1_ip2_len = ttt.Average(e => e.ip_len - e.ip2_len),
+                             ip2_total_size = ttt.Sum(e => e.ip2_len),
+                             ip2_size_rate = 1.0 * ttt.Sum(e => e.ip2_len) / totalsize,
+                             ip2_total_cnt = ttt.Count(),
+                             ip2_cnt_rate = 1.0 * ttt.Count() / (totalcnt),
+
+                         };
+            var dborder = ip.OrderByDescending(e => e.ip2_len);
+            gridControl1.DataSource = dborder.ToList();
+            //refreshGrid(dborder);
+
+            textBox1.Text = ee.Link.Item.Caption;
+        }
+
+        private void navBarControl1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void navBarItem35_LinkClicked_1(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
         {
             gridView1.PopulateColumns();
             gridControl1.Refresh();
 
             var imeity = servercontext2.imeitype.ToLookup(e => e.imei, e => e.imeiname);
 
-            var imsi_filenum_packetnum = gb_ip_fragment
+            var imei_filenum_packetnum = gb_ip_fragment
                 .Where(e => e.gsm_a_imeisv != null)
-                .ToLookup(e => e.BeginFrameNum + e.BeginFileNum * 100000000,
-                e => e.gsm_a_imeisv);
-            //, e => e.gsm_a_imeisv);
+                .ToLookup(e => e.BeginFrameNum + e.BeginFileNum * 100000, e => e.gsm_a_imeisv);
 
-            var pdu_filenum_packetnum = gb_ip_fragment
-                .Where(e=>e.llcgprs_xid1type != null)
-                .Where(e => e.llcgprs_xid1type == 5)
-                //.Where(e => e.bssgp_direction == "Up")
-                .ToLookup(e => e.BeginFrameNum + e.BeginFileNum * 100000000);
-                //e => e.llcgprs_xidbyte1 * 256 + e.llcgprs_xid1byte2);
-            //e => e.llcgprs_xidbyte1*256+e.llcgprs_xid1byte2);
+            var pdp1 = gb_pdp_xid.Where(e => e.U_Exchange_identification == null)
+                      .ToLookup(e => e.BeginFrameNum + e.BeginFileNum * 100000);
 
-            //var pdu = from p in imsi_filenum_packetnum
-            //          join q in pdu_filenum_packetnum on p.Key equals q.Key
-            //          select new
-            //          {
-            //              p.Key,p.Select(e=>e.gsm_a_imeisv).FirstOrDefault(),
-            //              q.Select(e=>e.
-            //              Queryable.
-
-            //          };
-
-
-            //帧号，终端，pdu最大值
-            var ip = new List<Tuple<int,string, string,int,Gb_IP_Fragment>>();
-
-            string it = null;
+            List<Tuple<int?, string, string, string>> ip = new List<Tuple<int?, string, string, string>>();
             string imei = null;
-            int cnt=0;
-            //double N201U_max = 0;
-            //double N201U_cnt = 0;
-            //double N201U_min = 0;
-            //double N201U_avg = 0;
+            string it = null;
+            string apn = null;
 
-            foreach (var m in imsi_filenum_packetnum)
+            foreach (var m in pdp1)
             {
-                imei = m.FirstOrDefault();
-                if (m.FirstOrDefault() != null)
-                    if (m.FirstOrDefault().Length > 8)
-                        it = m.FirstOrDefault().Substring(0, 8);
-                        //it = imeity[m.FirstOrDefault().Substring(0, 8)].FirstOrDefault();
 
-                if (pdu_filenum_packetnum.Contains(m.Key))
-                {
-                    cnt = pdu_filenum_packetnum[m.Key].Count();
-                    foreach (Gb_IP_Fragment pdu in pdu_filenum_packetnum[m.Key])
-                    {
-                        var t = Tuple.Create((int)m.Key,imei,it,cnt,pdu);
-                        //t.Item1 = it;
-                        //t.Item2 = it;
-                        //t.Item3 = pdu;
-                        ip.Add(t);
-                    }
-                    //N201U_max = pdu_filenum_packetnum[m.Key].Max(e => e.Value);
-                    //N201U_cnt = pdu_filenum_packetnum[m.Key].Count();
-                    //N201U_min = pdu_filenum_packetnum[m.Key].Min(e => e.Value);
-                    //N201U_avg = pdu_filenum_packetnum[m.Key].Average(e => e.Value);
-                }
+                apn = m.FirstOrDefault().APN;
+                imei = imei_filenum_packetnum[m.Key].FirstOrDefault();
+                if (imei != null)
+                    if (imei.Length > 8)
+                        it = imeity[imei.Substring(0, 8)].FirstOrDefault();
 
-                //var t = new Tuple<int?, string, string, double, double, double, double>
-                //         (m.Key, m.FirstOrDefault(), it, N201U_min, N201U_max, N201U_cnt, N201U_avg);
-
-                //ip.Add(t);
-
+                Tuple<int?, string, string, string> t =
+                    new Tuple<int?, string, string, string>(m.Key, imei, it, apn);
+                ip.Add(t);
             }
 
-            var dborder = from p in ip
-                          select new
-                          {
-                              p.Item1,p.Item2,p.Item3,p.Item4,
-                              p.Item5.BeginFileNum,
-                              p.Item5.BeginFrameNum,
-                              p.Item5.PacketNum,
-                              
-                              p.Item5.llcgprs_xid1type,
-                              p.Item5.llcgprs_xidbyte1,
-                              p.Item5.llcgprs_xid1byte2,
-                              p.Item5.bssgp_direction,
+            var dborder = ip.Where(e => e.Item2 != null).OrderBy(e => e.Item1);
+            gridControl1.DataSource = dborder.ToList();
 
-                              N201_U=256*p.Item5.llcgprs_xidbyte1+p.Item5.llcgprs_xid1byte2
-
-                          };
-
-            //gridControl1.DataSource = dborder.OrderByDescending(e=>e.Item4).OrderBy(e=>e.Item1).ThenBy(e=>e.PacketNum).ToList();
-
-            var imei_xid = from p in dborder
-                           where p.bssgp_direction=="Up"
-                           group p by p.Item3 into ttt
-                           select new
-                           {
-                               ttt.Key,
-                               cnt=ttt.Count(),
-                               N201_U_min = ttt.Min(e => e.N201_U),
-                               N201_U_max = ttt.Max(e => e.N201_U),
-                               N201_U_avg = ttt.Average(e => e.N201_U),
-                           };
-
-            gridControl1.DataSource = imei_xid.OrderByDescending(e => e.N201_U_avg).ToList();
             //refreshGrid(dborder);
+            gridView1.Columns[0].Caption = "session_id";
+            gridView1.Columns[1].Caption = "gsm_a_imeisv";
+            gridView1.Columns[2].Caption = "gsm_a_imeisv_type";
+            gridView1.Columns[3].Caption = "apn";
+            gridControl1.Refresh();
+
+            textBox1.Text = ee.Link.Item.Caption;
+
+        }
+
+        //针对这个表，帮忙把SNDCP分成了2个片，3个片，以及IP分片而SNDCP不分片；
+        //IP和SNDCP都分片给我一个例子，最好是这个用户完整的例子（也就是可以看到这个用户N201U的协商），
+        //还有你给我的excle帮我都转成2003格式的把。
+
+        private void navBarItem36_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
+        {
+            //出现xid协商
+            var pdp = (from p in gb_pdp_xid
+                      where p.llcgprs_xid1type == 5
+                      select p.BeginFrameNum).ToList();
+
+            MessageBox.Show(pdp.Count.ToString());
+
+            //出现分片
+            var ip = (from p in gb_ip_fragment
+                     where p.sndcp_m == "Not set"
+                     where p.sndcp_segment == 2
+                     select p.BeginFrameNum).ToList();
+
+            MessageBox.Show(ip.Count.ToString());
+
+            var pdp_ip = pdp.Intersect(ip).ToList();
+
+            MessageBox.Show(pdp_ip.Count.ToString());
+
+            var dborder = pdp_ip;
+            gridControl1.DataSource = dborder;
+
+            gridView1.PopulateColumns();
+            gridControl1.Refresh();
+
         }
     }
 }
