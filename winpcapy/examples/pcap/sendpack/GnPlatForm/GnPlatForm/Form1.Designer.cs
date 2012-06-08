@@ -81,6 +81,7 @@
             this.navBarItem43 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem3 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem35 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem36 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup9 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem37 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem38 = new DevExpress.XtraNavBar.NavBarItem();
@@ -92,8 +93,6 @@
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.navBarItem36 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem44 = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -235,8 +234,7 @@
             this.navBarItem3,
             this.navBarItem34,
             this.navBarItem35,
-            this.navBarItem36,
-            this.navBarItem44});
+            this.navBarItem36});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 140;
@@ -513,19 +511,17 @@
             // navBarGroup8
             // 
             this.navBarGroup8.Caption = "IP包分片优化专题-Gb接口IP分片优化建议3";
-            this.navBarGroup8.Expanded = true;
             this.navBarGroup8.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem42),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem43),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem3),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem35),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem36),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem44)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem36)});
             this.navBarGroup8.Name = "navBarGroup8";
             // 
             // navBarItem42
             // 
-            this.navBarItem42.Caption = "ip2_len > 1440比例分布---1";
+            this.navBarItem42.Caption = "Gb接口ip2_len比例分布---1";
             this.navBarItem42.Name = "navBarItem42";
             this.navBarItem42.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem42_LinkClicked);
             // 
@@ -547,10 +543,15 @@
             this.navBarItem35.Name = "navBarItem35";
             this.navBarItem35.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem35_LinkClicked_1);
             // 
+            // navBarItem36
+            // 
+            this.navBarItem36.Caption = "各种分片形态用户完整的例子";
+            this.navBarItem36.Name = "navBarItem36";
+            this.navBarItem36.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem36_LinkClicked);
+            // 
             // navBarGroup9
             // 
             this.navBarGroup9.Caption = "IP包分片优化专题-Gb接口XID参数优化";
-            this.navBarGroup9.Expanded = true;
             this.navBarGroup9.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem37),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem38),
@@ -632,17 +633,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(302, 21);
             this.textBox1.TabIndex = 17;
-            // 
-            // navBarItem36
-            // 
-            this.navBarItem36.Caption = "navBarItem36";
-            this.navBarItem36.Name = "navBarItem36";
-            this.navBarItem36.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem36_LinkClicked);
-            // 
-            // navBarItem44
-            // 
-            this.navBarItem44.Caption = "navBarItem44";
-            this.navBarItem44.Name = "navBarItem44";
             // 
             // Form1
             // 
@@ -736,6 +726,5 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem34;
         private DevExpress.XtraNavBar.NavBarItem navBarItem35;
         private DevExpress.XtraNavBar.NavBarItem navBarItem36;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem44;
     }
 }

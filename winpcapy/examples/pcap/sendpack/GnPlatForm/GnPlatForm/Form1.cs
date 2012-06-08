@@ -2182,16 +2182,17 @@ namespace GnPlatForm
         {
             //出现xid协商
             var pdp = (from p in gb_pdp_xid
-                      where p.llcgprs_xid1type == 5
-                      select p.BeginFrameNum).ToList();
+                       where p.llcgprs_xid1type == 5
+                       select p.BeginFrameNum).ToList();
 
             MessageBox.Show(pdp.Count.ToString());
 
             //出现分片
             var ip = (from p in gb_ip_fragment
-                     where p.sndcp_m == "Not set"
-                     where p.sndcp_segment == 2
-                     select p.BeginFrameNum).ToList();
+                      where p.ip_flags_mf == "Set"
+                      where p.sndcp_m == "Set"
+                      where p.sndcp_segment == 0
+                      select p.BeginFrameNum).ToList();
 
             MessageBox.Show(ip.Count.ToString());
 

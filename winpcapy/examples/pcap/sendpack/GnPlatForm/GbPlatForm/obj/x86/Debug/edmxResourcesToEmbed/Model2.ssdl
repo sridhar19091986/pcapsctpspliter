@@ -1,8 +1,210 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="GuangZhou_GnModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
   <EntityContainer Name="GuangZhou_GnModelStoreContainer">
+    <EntitySet Name="Gb_Cell_Repeat" EntityType="GuangZhou_GnModel.Store.Gb_Cell_Repeat" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Gb_Cell_Syn" EntityType="GuangZhou_GnModel.Store.Gb_Cell_Syn" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Gb_DNS_Syn" EntityType="GuangZhou_GnModel.Store.Gb_DNS_Syn" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Gb_PDP_Fin" EntityType="GuangZhou_GnModel.Store.Gb_PDP_Fin" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="mpos_gb_gz" EntityType="GuangZhou_GnModel.Store.mpos_gb_gz" store:Type="Tables" Schema="dbo" />
   </EntityContainer>
+  <EntityType Name="Gb_Cell_Repeat">
+    <Key>
+      <PropertyRef Name="FileNum" />
+      <PropertyRef Name="PacketNum" />
+    </Key>
+    <Property Name="FileNum" Type="int" Nullable="false" />
+    <Property Name="PacketNum" Type="int" Nullable="false" />
+    <Property Name="BeginFileNum" Type="int" />
+    <Property Name="BeginFrameNum" Type="int" />
+    <Property Name="PacketTime" Type="datetime" />
+    <Property Name="PacketTime(ms)" Type="int" />
+    <Property Name="DumpFor" Type="nvarchar" MaxLength="30" />
+    <Property Name="TCP" Type="int" />
+    <Property Name="TCP_time" Type="nvarchar" MaxLength="200" />
+    <Property Name="TCP_MsgType" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip_len" Type="int" />
+    <Property Name="ip_src_host" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip_dst_host" Type="nvarchar" MaxLength="200" />
+    <Property Name="nsip_bvci" Type="int" />
+    <Property Name="bssgp_direction" Type="nvarchar" MaxLength="200" />
+    <Property Name="bssgp_imsi" Type="nvarchar" MaxLength="200" />
+    <Property Name="bssgp_tlli" Type="nvarchar" MaxLength="200" />
+    <Property Name="bssgp_lac" Type="int" />
+    <Property Name="bssgp_ci" Type="int" />
+    <Property Name="llcgprs_nu" Type="int" />
+    <Property Name="ip2_len" Type="int" />
+    <Property Name="ip2_src_host" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip2_dst_host" Type="nvarchar" MaxLength="200" />
+    <Property Name="tcp_seq" Type="nvarchar" MaxLength="200" />
+    <Property Name="tcp_srcport" Type="int" />
+    <Property Name="tcp_dstport" Type="int" />
+    <Property Name="tcp_ack" Type="nvarchar" MaxLength="200" />
+    <Property Name="tcp_nxtseq" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Gb_Cell_Syn">
+    <Key>
+      <PropertyRef Name="FileNum" />
+      <PropertyRef Name="PacketNum" />
+    </Key>
+    <Property Name="FileNum" Type="int" Nullable="false" />
+    <Property Name="PacketNum" Type="int" Nullable="false" />
+    <Property Name="BeginFileNum" Type="int" />
+    <Property Name="BeginFrameNum" Type="int" />
+    <Property Name="PacketTime" Type="datetime" />
+    <Property Name="PacketTime(ms)" Type="int" />
+    <Property Name="DumpFor" Type="nvarchar" MaxLength="30" />
+    <Property Name="Syn" Type="int" />
+    <Property Name="Syn_RepeatCounter" Type="int" />
+    <Property Name="llcgprs_nu" Type="int" />
+    <Property Name="ip2_src" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip2_dst" Type="nvarchar" MaxLength="200" />
+    <Property Name="syn_ip2_len" Type="int" />
+    <Property Name="syn_ip2_ttl" Type="int" />
+    <Property Name="tcp_seq" Type="nvarchar" MaxLength="200" />
+    <Property Name="tcp_srcport" Type="int" />
+    <Property Name="tcp_dstport" Type="int" />
+    <Property Name="tcp_options_mss_val" Type="int" />
+    <Property Name="tcp_options_wscale_val" Type="int" />
+    <Property Name="tcp_window_size" Type="int" />
+    <Property Name="bssgp_lac" Type="int" />
+    <Property Name="bssgp_ci" Type="int" />
+    <Property Name="bssgp_pdu_type" Type="nvarchar" MaxLength="200" />
+    <Property Name="Ack_Syn" Type="int" />
+    <Property Name="Ack_Syn_delayFirst" Type="int" />
+    <Property Name="Ack_Syn_RepeatCounter" Type="int" />
+    <Property Name="bssgp_imsi" Type="nvarchar" MaxLength="200" />
+    <Property Name="bssgp_peak_rate" Type="nvarchar" MaxLength="200" />
+    <Property Name="bssgp_precedence" Type="nvarchar" MaxLength="200" />
+    <Property Name="Ack_Syn_ip2_len" Type="int" />
+    <Property Name="Ack_Syn_ip2_ttl" Type="int" />
+    <Property Name="Ack_Syn_tcp_seq" Type="nvarchar" MaxLength="200" />
+    <Property Name="Ack_Syn_tcp_ack" Type="nvarchar" MaxLength="200" />
+    <Property Name="Ack_Syn_llcgprs_nu" Type="int" />
+    <Property Name="Ack_Push" Type="int" />
+    <Property Name="Ack_Push_delayFirst" Type="int" />
+    <Property Name="Ack_Push_MsgType" Type="nvarchar" MaxLength="200" />
+    <Property Name="Ack_Push_llcgprs_nu" Type="int" />
+    <Property Name="Ack_Push_tcp_seq" Type="nvarchar" MaxLength="200" />
+    <Property Name="Ack_Push_tcp_ack" Type="nvarchar" MaxLength="200" />
+    <Property Name="Ack_Push_ip2_len" Type="int" />
+    <Property Name="Ack_Push_ip2_ttl" Type="int" />
+    <Property Name="Ack" Type="int" />
+    <Property Name="Ack_delayFirst" Type="int" />
+    <Property Name="Ack_llcgprs_nu" Type="int" />
+    <Property Name="Ack_tcp_seq" Type="nvarchar" MaxLength="200" />
+    <Property Name="Ack_tcp_ack" Type="nvarchar" MaxLength="200" />
+    <Property Name="Ack_ip2_len" Type="int" />
+    <Property Name="Ack_ip2_ttl" Type="int" />
+  </EntityType>
+  <EntityType Name="Gb_DNS_Syn">
+    <Key>
+      <PropertyRef Name="FileNum" />
+      <PropertyRef Name="PacketNum" />
+    </Key>
+    <Property Name="FileNum" Type="int" Nullable="false" />
+    <Property Name="PacketNum" Type="int" Nullable="false" />
+    <Property Name="BeginFileNum" Type="int" />
+    <Property Name="BeginFrameNum" Type="int" />
+    <Property Name="PacketTime" Type="datetime" />
+    <Property Name="PacketTime(ms)" Type="int" />
+    <Property Name="DumpFor" Type="nvarchar" MaxLength="30" />
+    <Property Name="Query" Type="int" />
+    <Property Name="Query_time" Type="nvarchar" MaxLength="200" />
+    <Property Name="NS_BVCI" Type="nvarchar" MaxLength="200" />
+    <Property Name="TLLI" Type="nvarchar" MaxLength="200" />
+    <Property Name="MCC" Type="nvarchar" MaxLength="200" />
+    <Property Name="MNC" Type="nvarchar" MaxLength="200" />
+    <Property Name="LAC" Type="nvarchar" MaxLength="200" />
+    <Property Name="RAC" Type="nvarchar" MaxLength="200" />
+    <Property Name="CI" Type="nvarchar" MaxLength="200" />
+    <Property Name="Source_IP" Type="nvarchar" MaxLength="200" />
+    <Property Name="Dest_IP" Type="nvarchar" MaxLength="200" />
+    <Property Name="Source_Port" Type="nvarchar" MaxLength="200" />
+    <Property Name="Dest_Port" Type="nvarchar" MaxLength="200" />
+    <Property Name="Source_IP2" Type="nvarchar" MaxLength="200" />
+    <Property Name="Dest_IP2" Type="nvarchar" MaxLength="200" />
+    <Property Name="Source_Port2" Type="nvarchar" MaxLength="200" />
+    <Property Name="Dest_Port2" Type="nvarchar" MaxLength="200" />
+    <Property Name="SP_Name" Type="nvarchar" MaxLength="200" />
+    <Property Name="Query_Type" Type="nvarchar" MaxLength="200" />
+    <Property Name="Query_Class" Type="nvarchar" MaxLength="200" />
+    <Property Name="Query_Repeated" Type="int" />
+    <Property Name="Query_Repeated_delayFirst" Type="int" />
+    <Property Name="Response" Type="int" />
+    <Property Name="Response_delayFirst" Type="int" />
+    <Property Name="Response_timeFirst" Type="nvarchar" MaxLength="200" />
+    <Property Name="IMSI" Type="nvarchar" MaxLength="200" />
+    <Property Name="DNS_Reponse" Type="nvarchar" MaxLength="200" />
+    <Property Name="DNS_Opcode" Type="nvarchar" MaxLength="200" />
+    <Property Name="DNS_Authoritative" Type="nvarchar" MaxLength="200" />
+    <Property Name="DNS_Truncated" Type="nvarchar" MaxLength="200" />
+    <Property Name="Recursion_Desired" Type="nvarchar" MaxLength="200" />
+    <Property Name="Recursion_Available" Type="nvarchar" MaxLength="200" />
+    <Property Name="DNS_Authenticated" Type="nvarchar" MaxLength="200" />
+    <Property Name="DNS_Reply_Code" Type="nvarchar" MaxLength="200" />
+    <Property Name="Time_To_Live" Type="nvarchar" MaxLength="200" />
+    <Property Name="Data_Length" Type="int" />
+    <Property Name="SP_Address" Type="nvarchar" MaxLength="200" />
+    <Property Name="dns_count_answers" Type="int" />
+    <Property Name="dns_count_auth_rr" Type="int" />
+    <Property Name="dns_count_add_rr" Type="int" />
+    <Property Name="dns_count_queries" Type="int" />
+    <Property Name="udp2_length" Type="int" />
+    <Property Name="dns_resp_type" Type="int" />
+  </EntityType>
+  <EntityType Name="Gb_PDP_Fin">
+    <Key>
+      <PropertyRef Name="FileNum" />
+      <PropertyRef Name="PacketNum" />
+    </Key>
+    <Property Name="FileNum" Type="int" Nullable="false" />
+    <Property Name="PacketNum" Type="int" Nullable="false" />
+    <Property Name="BeginFileNum" Type="int" />
+    <Property Name="BeginFrameNum" Type="int" />
+    <Property Name="PacketTime" Type="datetime" />
+    <Property Name="PacketTime(ms)" Type="int" />
+    <Property Name="DumpFor" Type="nvarchar" MaxLength="30" />
+    <Property Name="PDP_Act_Request" Type="int" />
+    <Property Name="PDP_Act_Request_time" Type="nvarchar" MaxLength="200" />
+    <Property Name="TLLI" Type="nvarchar" MaxLength="200" />
+    <Property Name="CI" Type="nvarchar" MaxLength="200" />
+    <Property Name="APN" Type="nvarchar" MaxLength="200" />
+    <Property Name="LAC" Type="nvarchar" MaxLength="200" />
+    <Property Name="MCC" Type="nvarchar" MaxLength="200" />
+    <Property Name="MNC" Type="nvarchar" MaxLength="200" />
+    <Property Name="BVCI" Type="nvarchar" MaxLength="200" />
+    <Property Name="Source_IP" Type="nvarchar" MaxLength="200" />
+    <Property Name="Dest_IP" Type="nvarchar" MaxLength="200" />
+    <Property Name="Source_Port" Type="nvarchar" MaxLength="200" />
+    <Property Name="Dest_Port" Type="nvarchar" MaxLength="200" />
+    <Property Name="PDP_Request_Repeat" Type="int" />
+    <Property Name="PDP_Request_Repeat_delayFirst" Type="int" />
+    <Property Name="RADIO_Status" Type="int" />
+    <Property Name="RADIO_Status_delayFirst" Type="int" />
+    <Property Name="Radio_Cause" Type="nvarchar" MaxLength="200" />
+    <Property Name="LLC_Discarded" Type="int" />
+    <Property Name="LLC_Discarded_delayFirst" Type="int" />
+    <Property Name="Octets_Affected" Type="nvarchar" MaxLength="200" />
+    <Property Name="PDP_Act_Reject" Type="int" />
+    <Property Name="PDP_Act_Reject_delayFirst" Type="int" />
+    <Property Name="Reject_Cause" Type="nvarchar" MaxLength="200" />
+    <Property Name="Reject_IMSI" Type="nvarchar" MaxLength="200" />
+    <Property Name="Reject_BVCI" Type="nvarchar" MaxLength="200" />
+    <Property Name="Detach_Request" Type="int" />
+    <Property Name="Detach_Request_delayFirst" Type="int" />
+    <Property Name="PDP_Act_Accept" Type="int" />
+    <Property Name="PDP_Act_Accept_delayFirst" Type="int" />
+    <Property Name="PDP_Act_Accept_timeFirst" Type="nvarchar" MaxLength="200" />
+    <Property Name="IMSI" Type="nvarchar" MaxLength="200" />
+    <Property Name="MS_GPRS_Class" Type="nvarchar" MaxLength="200" />
+    <Property Name="MS_EDGE_Class" Type="nvarchar" MaxLength="200" />
+    <Property Name="Assign IP" Type="nvarchar" MaxLength="200" />
+    <Property Name="MS_GREN" Type="nvarchar" MaxLength="200" />
+    <Property Name="TCP_Fin" Type="int" />
+    <Property Name="TCP_Fin_delayFirst" Type="int" />
+    <Property Name="TCP_Fin_MsgType" Type="nvarchar" MaxLength="200" />
+    <Property Name="bssgp_pdu_type" Type="nvarchar" MaxLength="200" />
+  </EntityType>
   <EntityType Name="mpos_gb_gz">
     <Key>
       <PropertyRef Name="Session_ID" />

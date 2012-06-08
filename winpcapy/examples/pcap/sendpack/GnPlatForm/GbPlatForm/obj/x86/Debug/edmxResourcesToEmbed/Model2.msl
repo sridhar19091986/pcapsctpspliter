@@ -124,5 +124,203 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Gb_PDP_Fin">
+      <EntityTypeMapping TypeName="GuangZhou_GnModel.Gb_PDP_Fin">
+        <MappingFragment StoreEntitySet="Gb_PDP_Fin">
+          <ScalarProperty Name="bssgp_pdu_type" ColumnName="bssgp_pdu_type" />
+          <ScalarProperty Name="TCP_Fin_MsgType" ColumnName="TCP_Fin_MsgType" />
+          <ScalarProperty Name="TCP_Fin_delayFirst" ColumnName="TCP_Fin_delayFirst" />
+          <ScalarProperty Name="TCP_Fin" ColumnName="TCP_Fin" />
+          <ScalarProperty Name="MS_GREN" ColumnName="MS_GREN" />
+          <ScalarProperty Name="Assign_IP" ColumnName="Assign IP" />
+          <ScalarProperty Name="MS_EDGE_Class" ColumnName="MS_EDGE_Class" />
+          <ScalarProperty Name="MS_GPRS_Class" ColumnName="MS_GPRS_Class" />
+          <ScalarProperty Name="IMSI" ColumnName="IMSI" />
+          <ScalarProperty Name="PDP_Act_Accept_timeFirst" ColumnName="PDP_Act_Accept_timeFirst" />
+          <ScalarProperty Name="PDP_Act_Accept_delayFirst" ColumnName="PDP_Act_Accept_delayFirst" />
+          <ScalarProperty Name="PDP_Act_Accept" ColumnName="PDP_Act_Accept" />
+          <ScalarProperty Name="Detach_Request_delayFirst" ColumnName="Detach_Request_delayFirst" />
+          <ScalarProperty Name="Detach_Request" ColumnName="Detach_Request" />
+          <ScalarProperty Name="Reject_BVCI" ColumnName="Reject_BVCI" />
+          <ScalarProperty Name="Reject_IMSI" ColumnName="Reject_IMSI" />
+          <ScalarProperty Name="Reject_Cause" ColumnName="Reject_Cause" />
+          <ScalarProperty Name="PDP_Act_Reject_delayFirst" ColumnName="PDP_Act_Reject_delayFirst" />
+          <ScalarProperty Name="PDP_Act_Reject" ColumnName="PDP_Act_Reject" />
+          <ScalarProperty Name="Octets_Affected" ColumnName="Octets_Affected" />
+          <ScalarProperty Name="LLC_Discarded_delayFirst" ColumnName="LLC_Discarded_delayFirst" />
+          <ScalarProperty Name="LLC_Discarded" ColumnName="LLC_Discarded" />
+          <ScalarProperty Name="Radio_Cause" ColumnName="Radio_Cause" />
+          <ScalarProperty Name="RADIO_Status_delayFirst" ColumnName="RADIO_Status_delayFirst" />
+          <ScalarProperty Name="RADIO_Status" ColumnName="RADIO_Status" />
+          <ScalarProperty Name="PDP_Request_Repeat_delayFirst" ColumnName="PDP_Request_Repeat_delayFirst" />
+          <ScalarProperty Name="PDP_Request_Repeat" ColumnName="PDP_Request_Repeat" />
+          <ScalarProperty Name="Dest_Port" ColumnName="Dest_Port" />
+          <ScalarProperty Name="Source_Port" ColumnName="Source_Port" />
+          <ScalarProperty Name="Dest_IP" ColumnName="Dest_IP" />
+          <ScalarProperty Name="Source_IP" ColumnName="Source_IP" />
+          <ScalarProperty Name="BVCI" ColumnName="BVCI" />
+          <ScalarProperty Name="MNC" ColumnName="MNC" />
+          <ScalarProperty Name="MCC" ColumnName="MCC" />
+          <ScalarProperty Name="LAC" ColumnName="LAC" />
+          <ScalarProperty Name="APN" ColumnName="APN" />
+          <ScalarProperty Name="CI" ColumnName="CI" />
+          <ScalarProperty Name="TLLI" ColumnName="TLLI" />
+          <ScalarProperty Name="PDP_Act_Request_time" ColumnName="PDP_Act_Request_time" />
+          <ScalarProperty Name="PDP_Act_Request" ColumnName="PDP_Act_Request" />
+          <ScalarProperty Name="DumpFor" ColumnName="DumpFor" />
+          <ScalarProperty Name="PacketTime_ms_" ColumnName="PacketTime(ms)" />
+          <ScalarProperty Name="PacketTime" ColumnName="PacketTime" />
+          <ScalarProperty Name="BeginFrameNum" ColumnName="BeginFrameNum" />
+          <ScalarProperty Name="BeginFileNum" ColumnName="BeginFileNum" />
+          <ScalarProperty Name="PacketNum" ColumnName="PacketNum" />
+          <ScalarProperty Name="FileNum" ColumnName="FileNum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Gb_DNS_Syn">
+      <EntityTypeMapping TypeName="GuangZhou_GnModel.Gb_DNS_Syn">
+        <MappingFragment StoreEntitySet="Gb_DNS_Syn">
+          <ScalarProperty Name="dns_resp_type" ColumnName="dns_resp_type" />
+          <ScalarProperty Name="udp2_length" ColumnName="udp2_length" />
+          <ScalarProperty Name="dns_count_queries" ColumnName="dns_count_queries" />
+          <ScalarProperty Name="dns_count_add_rr" ColumnName="dns_count_add_rr" />
+          <ScalarProperty Name="dns_count_auth_rr" ColumnName="dns_count_auth_rr" />
+          <ScalarProperty Name="dns_count_answers" ColumnName="dns_count_answers" />
+          <ScalarProperty Name="SP_Address" ColumnName="SP_Address" />
+          <ScalarProperty Name="Data_Length" ColumnName="Data_Length" />
+          <ScalarProperty Name="Time_To_Live" ColumnName="Time_To_Live" />
+          <ScalarProperty Name="DNS_Reply_Code" ColumnName="DNS_Reply_Code" />
+          <ScalarProperty Name="DNS_Authenticated" ColumnName="DNS_Authenticated" />
+          <ScalarProperty Name="Recursion_Available" ColumnName="Recursion_Available" />
+          <ScalarProperty Name="Recursion_Desired" ColumnName="Recursion_Desired" />
+          <ScalarProperty Name="DNS_Truncated" ColumnName="DNS_Truncated" />
+          <ScalarProperty Name="DNS_Authoritative" ColumnName="DNS_Authoritative" />
+          <ScalarProperty Name="DNS_Opcode" ColumnName="DNS_Opcode" />
+          <ScalarProperty Name="DNS_Reponse" ColumnName="DNS_Reponse" />
+          <ScalarProperty Name="IMSI" ColumnName="IMSI" />
+          <ScalarProperty Name="Response_timeFirst" ColumnName="Response_timeFirst" />
+          <ScalarProperty Name="Response_delayFirst" ColumnName="Response_delayFirst" />
+          <ScalarProperty Name="Response" ColumnName="Response" />
+          <ScalarProperty Name="Query_Repeated_delayFirst" ColumnName="Query_Repeated_delayFirst" />
+          <ScalarProperty Name="Query_Repeated" ColumnName="Query_Repeated" />
+          <ScalarProperty Name="Query_Class" ColumnName="Query_Class" />
+          <ScalarProperty Name="Query_Type" ColumnName="Query_Type" />
+          <ScalarProperty Name="SP_Name" ColumnName="SP_Name" />
+          <ScalarProperty Name="Dest_Port2" ColumnName="Dest_Port2" />
+          <ScalarProperty Name="Source_Port2" ColumnName="Source_Port2" />
+          <ScalarProperty Name="Dest_IP2" ColumnName="Dest_IP2" />
+          <ScalarProperty Name="Source_IP2" ColumnName="Source_IP2" />
+          <ScalarProperty Name="Dest_Port" ColumnName="Dest_Port" />
+          <ScalarProperty Name="Source_Port" ColumnName="Source_Port" />
+          <ScalarProperty Name="Dest_IP" ColumnName="Dest_IP" />
+          <ScalarProperty Name="Source_IP" ColumnName="Source_IP" />
+          <ScalarProperty Name="CI" ColumnName="CI" />
+          <ScalarProperty Name="RAC" ColumnName="RAC" />
+          <ScalarProperty Name="LAC" ColumnName="LAC" />
+          <ScalarProperty Name="MNC" ColumnName="MNC" />
+          <ScalarProperty Name="MCC" ColumnName="MCC" />
+          <ScalarProperty Name="TLLI" ColumnName="TLLI" />
+          <ScalarProperty Name="NS_BVCI" ColumnName="NS_BVCI" />
+          <ScalarProperty Name="Query_time" ColumnName="Query_time" />
+          <ScalarProperty Name="Query" ColumnName="Query" />
+          <ScalarProperty Name="DumpFor" ColumnName="DumpFor" />
+          <ScalarProperty Name="PacketTime_ms_" ColumnName="PacketTime(ms)" />
+          <ScalarProperty Name="PacketTime" ColumnName="PacketTime" />
+          <ScalarProperty Name="BeginFrameNum" ColumnName="BeginFrameNum" />
+          <ScalarProperty Name="BeginFileNum" ColumnName="BeginFileNum" />
+          <ScalarProperty Name="PacketNum" ColumnName="PacketNum" />
+          <ScalarProperty Name="FileNum" ColumnName="FileNum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Gb_Cell_Syn">
+      <EntityTypeMapping TypeName="GuangZhou_GnModel.Gb_Cell_Syn">
+        <MappingFragment StoreEntitySet="Gb_Cell_Syn">
+          <ScalarProperty Name="Ack_ip2_ttl" ColumnName="Ack_ip2_ttl" />
+          <ScalarProperty Name="Ack_ip2_len" ColumnName="Ack_ip2_len" />
+          <ScalarProperty Name="Ack_tcp_ack" ColumnName="Ack_tcp_ack" />
+          <ScalarProperty Name="Ack_tcp_seq" ColumnName="Ack_tcp_seq" />
+          <ScalarProperty Name="Ack_llcgprs_nu" ColumnName="Ack_llcgprs_nu" />
+          <ScalarProperty Name="Ack_delayFirst" ColumnName="Ack_delayFirst" />
+          <ScalarProperty Name="Ack" ColumnName="Ack" />
+          <ScalarProperty Name="Ack_Push_ip2_ttl" ColumnName="Ack_Push_ip2_ttl" />
+          <ScalarProperty Name="Ack_Push_ip2_len" ColumnName="Ack_Push_ip2_len" />
+          <ScalarProperty Name="Ack_Push_tcp_ack" ColumnName="Ack_Push_tcp_ack" />
+          <ScalarProperty Name="Ack_Push_tcp_seq" ColumnName="Ack_Push_tcp_seq" />
+          <ScalarProperty Name="Ack_Push_llcgprs_nu" ColumnName="Ack_Push_llcgprs_nu" />
+          <ScalarProperty Name="Ack_Push_MsgType" ColumnName="Ack_Push_MsgType" />
+          <ScalarProperty Name="Ack_Push_delayFirst" ColumnName="Ack_Push_delayFirst" />
+          <ScalarProperty Name="Ack_Push" ColumnName="Ack_Push" />
+          <ScalarProperty Name="Ack_Syn_llcgprs_nu" ColumnName="Ack_Syn_llcgprs_nu" />
+          <ScalarProperty Name="Ack_Syn_tcp_ack" ColumnName="Ack_Syn_tcp_ack" />
+          <ScalarProperty Name="Ack_Syn_tcp_seq" ColumnName="Ack_Syn_tcp_seq" />
+          <ScalarProperty Name="Ack_Syn_ip2_ttl" ColumnName="Ack_Syn_ip2_ttl" />
+          <ScalarProperty Name="Ack_Syn_ip2_len" ColumnName="Ack_Syn_ip2_len" />
+          <ScalarProperty Name="bssgp_precedence" ColumnName="bssgp_precedence" />
+          <ScalarProperty Name="bssgp_peak_rate" ColumnName="bssgp_peak_rate" />
+          <ScalarProperty Name="bssgp_imsi" ColumnName="bssgp_imsi" />
+          <ScalarProperty Name="Ack_Syn_RepeatCounter" ColumnName="Ack_Syn_RepeatCounter" />
+          <ScalarProperty Name="Ack_Syn_delayFirst" ColumnName="Ack_Syn_delayFirst" />
+          <ScalarProperty Name="Ack_Syn" ColumnName="Ack_Syn" />
+          <ScalarProperty Name="bssgp_pdu_type" ColumnName="bssgp_pdu_type" />
+          <ScalarProperty Name="bssgp_ci" ColumnName="bssgp_ci" />
+          <ScalarProperty Name="bssgp_lac" ColumnName="bssgp_lac" />
+          <ScalarProperty Name="tcp_window_size" ColumnName="tcp_window_size" />
+          <ScalarProperty Name="tcp_options_wscale_val" ColumnName="tcp_options_wscale_val" />
+          <ScalarProperty Name="tcp_options_mss_val" ColumnName="tcp_options_mss_val" />
+          <ScalarProperty Name="tcp_dstport" ColumnName="tcp_dstport" />
+          <ScalarProperty Name="tcp_srcport" ColumnName="tcp_srcport" />
+          <ScalarProperty Name="tcp_seq" ColumnName="tcp_seq" />
+          <ScalarProperty Name="syn_ip2_ttl" ColumnName="syn_ip2_ttl" />
+          <ScalarProperty Name="syn_ip2_len" ColumnName="syn_ip2_len" />
+          <ScalarProperty Name="ip2_dst" ColumnName="ip2_dst" />
+          <ScalarProperty Name="ip2_src" ColumnName="ip2_src" />
+          <ScalarProperty Name="llcgprs_nu" ColumnName="llcgprs_nu" />
+          <ScalarProperty Name="Syn_RepeatCounter" ColumnName="Syn_RepeatCounter" />
+          <ScalarProperty Name="Syn" ColumnName="Syn" />
+          <ScalarProperty Name="DumpFor" ColumnName="DumpFor" />
+          <ScalarProperty Name="PacketTime_ms_" ColumnName="PacketTime(ms)" />
+          <ScalarProperty Name="PacketTime" ColumnName="PacketTime" />
+          <ScalarProperty Name="BeginFrameNum" ColumnName="BeginFrameNum" />
+          <ScalarProperty Name="BeginFileNum" ColumnName="BeginFileNum" />
+          <ScalarProperty Name="PacketNum" ColumnName="PacketNum" />
+          <ScalarProperty Name="FileNum" ColumnName="FileNum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Gb_Cell_Repeat">
+      <EntityTypeMapping TypeName="GuangZhou_GnModel.Gb_Cell_Repeat">
+        <MappingFragment StoreEntitySet="Gb_Cell_Repeat">
+          <ScalarProperty Name="tcp_nxtseq" ColumnName="tcp_nxtseq" />
+          <ScalarProperty Name="tcp_ack" ColumnName="tcp_ack" />
+          <ScalarProperty Name="tcp_dstport" ColumnName="tcp_dstport" />
+          <ScalarProperty Name="tcp_srcport" ColumnName="tcp_srcport" />
+          <ScalarProperty Name="tcp_seq" ColumnName="tcp_seq" />
+          <ScalarProperty Name="ip2_dst_host" ColumnName="ip2_dst_host" />
+          <ScalarProperty Name="ip2_src_host" ColumnName="ip2_src_host" />
+          <ScalarProperty Name="ip2_len" ColumnName="ip2_len" />
+          <ScalarProperty Name="llcgprs_nu" ColumnName="llcgprs_nu" />
+          <ScalarProperty Name="bssgp_ci" ColumnName="bssgp_ci" />
+          <ScalarProperty Name="bssgp_lac" ColumnName="bssgp_lac" />
+          <ScalarProperty Name="bssgp_tlli" ColumnName="bssgp_tlli" />
+          <ScalarProperty Name="bssgp_imsi" ColumnName="bssgp_imsi" />
+          <ScalarProperty Name="bssgp_direction" ColumnName="bssgp_direction" />
+          <ScalarProperty Name="nsip_bvci" ColumnName="nsip_bvci" />
+          <ScalarProperty Name="ip_dst_host" ColumnName="ip_dst_host" />
+          <ScalarProperty Name="ip_src_host" ColumnName="ip_src_host" />
+          <ScalarProperty Name="ip_len" ColumnName="ip_len" />
+          <ScalarProperty Name="TCP_MsgType" ColumnName="TCP_MsgType" />
+          <ScalarProperty Name="TCP_time" ColumnName="TCP_time" />
+          <ScalarProperty Name="TCP" ColumnName="TCP" />
+          <ScalarProperty Name="DumpFor" ColumnName="DumpFor" />
+          <ScalarProperty Name="PacketTime_ms_" ColumnName="PacketTime(ms)" />
+          <ScalarProperty Name="PacketTime" ColumnName="PacketTime" />
+          <ScalarProperty Name="BeginFrameNum" ColumnName="BeginFrameNum" />
+          <ScalarProperty Name="BeginFileNum" ColumnName="BeginFileNum" />
+          <ScalarProperty Name="PacketNum" ColumnName="PacketNum" />
+          <ScalarProperty Name="FileNum" ColumnName="FileNum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
