@@ -791,6 +791,7 @@ namespace GbPlatForm
             gridControl1.DataSource = null;
             gridView1.PopulateColumns();
             gridControl1.DataSource = gb_cell_repeat.OrderBy(e => e.BeginFrameNum).ThenBy(e => e.PacketNum);
+            gridView1.OptionsView.ColumnAutoWidth = false;
         }
 
         //会话详细记录
@@ -804,7 +805,7 @@ namespace GbPlatForm
             var sess = from p in mytcpsession
                        select new
                        {
-                           abc = imsi.Contains(p.imsi),
+                           ts_imsi= imsi.Contains(p.imsi),
                            p.session_id,
                            p.bsc_ip,
                            p.bsc_bvci,
@@ -813,21 +814,23 @@ namespace GbPlatForm
                            p.imsi,
                            p.duration,
                            p.ip2_total,
-                           p.ip_rate,
+                           p.seq_total,
+                           p.seq_ip2,
+                           p.headersize,
+                           p.seq_rate,
+                           p.ip2_rate,
                            p.packet_count,
                            p.packet_count_repeat,
-                           p.headersize,
+                           repeat_percent =p.packet_count == 0 ? 0 : (1.0 *p.packet_count_repeat / p.packet_count),
                            p.seq_nxt,
                            p.seq_max,
-                           p.seq_min,
-                           p.seq_ip2,
-                           p.seq_rate,
+                           p.seq_min,                                     
                        };
 
             gridControl1.DataSource = sess.ToList();
+
+            gridView1.OptionsView.ColumnAutoWidth = false;
             // mytcp = sessions;
-
-
         }
 
         //重传率
@@ -866,8 +869,8 @@ namespace GbPlatForm
             var mytcp = mytcpsession.ToList();
 
             var syn = from p in mytcp
-                      where p.seq_min != 0 && p.seq_max != 0
-                      where p.seq_max != null && p.seq_min != null
+                      //where p.seq_min != 0 && p.seq_max != 0
+                      //where p.seq_max != null && p.seq_min != null
                       group p by new { ts_cell = lac[p.lac].Contains(p.ci) } into ttt
                       select new
                       {
@@ -875,9 +878,10 @@ namespace GbPlatForm
                           cell_cnt = ttt.Select(e => e.lac.ToString() + e.ci.ToString()).Distinct().Count(),
                           packet_cnt = ttt.Sum(e => e.packet_count),
                           packet_repeat = ttt.Sum(e => e.packet_count_repeat),
-                          repeat_percent = ttt.Sum(e => e.packet_count) == 0 ? 0 : 1.0 * ttt.Sum(e => e.packet_count_repeat) / ttt.Sum(e => e.packet_count),
-                          gb_ip_rate = ttt.Sum(e => (double)e.duration) == 0 ? 0 : ttt.Sum(e => (double)e.ip2_total) / ttt.Sum(e => (double)e.duration),
-                          gb_seq_rate = ttt.Sum(e => (double)e.duration) == 0 ? 0 : ttt.Sum(e => (double)(e.seq_max - e.seq_min)) / ttt.Sum(e => (double)e.duration)
+                          repeat_percent = ttt.Sum(e => e.packet_count) == 0 ? 0 : (1.0 * ttt.Sum(e => e.packet_count_repeat) / ttt.Sum(e => e.packet_count)),
+                          gb_ip2_total=ttt.Sum(e=>e.ip2_total),
+                          gb_ip2_rate = ttt.Sum(e => (double)e.duration) == 0 ? 0 : (ttt.Sum(e => (double)e.ip2_total) / ttt.Sum(e => (double)e.duration)),
+                          gb_seq_rate = ttt.Sum(e => (double)e.duration) == 0 ? 0 : (ttt.Sum(e => (double)(e.seq_max - e.seq_min)) / ttt.Sum(e => (double)e.duration))
                       };
 
             gridControl1.DataSource = syn.ToList();
@@ -891,6 +895,8 @@ namespace GbPlatForm
             TimeSpan ts = maxt.Value - mint.Value;
             var ttim = mint.ToString() + "-" + maxt.ToString() + "," + ts.TotalSeconds.ToString();
             textBox1.Text = ttim.ToString();
+
+            gridView1.OptionsView.ColumnAutoWidth = true;
 
         }
 
@@ -935,8 +941,8 @@ namespace GbPlatForm
             var mytcp = mytcpsession.ToList();
 
             var syn = from p in mytcp
-                      where p.seq_min != 0 && p.seq_max != 0
-                      where p.seq_max != null && p.seq_min != null
+                      //where p.seq_min != 0 && p.seq_max != 0
+                      //where p.seq_max != null && p.seq_min != null
                       group p by new { ts_cell = lac[p.lac].Contains(p.ci), p.lac, p.ci } into ttt
                       select new
                       {
@@ -945,9 +951,10 @@ namespace GbPlatForm
                           ttt.Key.ci,
                           packet_cnt = ttt.Sum(e => e.packet_count),
                           packet_repeat = ttt.Sum(e => e.packet_count_repeat),
-                          repeat_percent = ttt.Sum(e => e.packet_count) == 0 ? 0 : 1.0 * ttt.Sum(e => e.packet_count_repeat) / ttt.Sum(e => e.packet_count),
-                          gb_ip_rate = ttt.Sum(e => (double)e.duration) == 0 ? 0 : ttt.Sum(e => (double)e.ip2_total) / ttt.Sum(e => (double)e.duration),
-                          gb_seq_rate = ttt.Sum(e => (double)e.duration) == 0 ? 0 : ttt.Sum(e => (double)(e.seq_max - e.seq_min)) / ttt.Sum(e => (double)e.duration)
+                          repeat_percent = ttt.Sum(e => e.packet_count) == 0 ? 0 : (1.0 * ttt.Sum(e => e.packet_count_repeat) / ttt.Sum(e => e.packet_count)),
+                          gb_ip2_total = ttt.Sum(e => e.ip2_total),
+                          gb_ip2_rate = ttt.Sum(e => (double)e.duration) == 0 ? 0 : (ttt.Sum(e => (double)e.ip2_total) / ttt.Sum(e => (double)e.duration)),
+                          gb_seq_rate = ttt.Sum(e => (double)e.duration) == 0 ? 0 : (ttt.Sum(e => (double)(e.seq_max - e.seq_min)) / ttt.Sum(e => (double)e.duration))
                       };
 
             gridControl1.DataSource = syn.OrderByDescending(e => e.repeat_percent).ToList();
@@ -1019,18 +1026,15 @@ namespace GbPlatForm
 
         private void button1_Click(object sender, EventArgs ee)
         {
-
-
-            int size = 50000;
-            int step = 1;
+            int size = 5000;
+            int step = 10;
             progressBar1.Maximum = step;
 
             Guangzhou_GbEntities gb = new Guangzhou_GbEntities();
 
             gb.DeleteDatabase();
             gb.CreateDatabase();
-
-
+            
             for (int i = 0; i < step; i++)
             {
                 progressBar1.Value = i;
@@ -1064,7 +1068,8 @@ namespace GbPlatForm
                     tcps.imsi = packet_down.Select(e => e.bssgp_imsi).FirstOrDefault();
 
                     //下行时延，包含3次握手
-                    TimeSpan? ts = pd_no_3tcp.Max(e => DateTime.Parse(e.TCP_time)) - pd_no_3tcp.Min(e => DateTime.Parse(e.TCP_time));
+                    TimeSpan? ts = pd_no_3tcp.Max(e => DateTime.Parse(e.TCP_time)) 
+                        - pd_no_3tcp.Min(e => DateTime.Parse(e.TCP_time));
                     tcps.duration = ts.Value.TotalMilliseconds;
 
                     //下行包，非3次握手
@@ -1097,6 +1102,7 @@ namespace GbPlatForm
                     //????
                     //正确计算seq的包长，
                     //tcps.seq_total = (tcps.seq_nxt > tcps.seq_max ? tcps.seq_nxt : tcps.seq_max) - tcps.seq_min;
+                    //不能用 seq_max
                     tcps.seq_total = tcps.seq_nxt - tcps.seq_min;
 
                     //包数量和重传的计算
@@ -1112,7 +1118,7 @@ namespace GbPlatForm
                     //速率的计算
                     if (tcps.duration != 0)
                     {
-                        tcps.ip_rate = 1.0 * (double)tcps.ip2_total / tcps.duration;
+                        tcps.ip2_rate = 1.0 * (double)tcps.ip2_total / tcps.duration;
                         tcps.seq_rate = 1.0 * (double)tcps.seq_total / tcps.duration;
                         tcps.ip_rate = 1.0 * (double)tcps.ip_total / tcps.duration;
                     }
@@ -1121,11 +1127,20 @@ namespace GbPlatForm
                     gb.myTcpSession.AddObject(tcps);
 
                 }
-                ThreadPool.QueueUserWorkItem(e => gb.SaveChanges());
+
+                gb.SaveChanges();
+
+                //容易出错？？？
+                //ThreadPool.QueueUserWorkItem(e => gb.SaveChanges());
 
 
             }
             MessageBox.Show("OK");
+        }
+
+        private void navBarItem23_ItemChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

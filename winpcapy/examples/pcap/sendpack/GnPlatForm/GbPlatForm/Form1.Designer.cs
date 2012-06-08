@@ -64,19 +64,19 @@
             this.navBarItem24 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem25 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem26 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem27 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem28 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem29 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem30 = new DevExpress.XtraNavBar.NavBarItem();
             this.dockPanel2 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel2_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dockPanel3 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel3_Container = new DevExpress.XtraBars.Docking.ControlContainer();
+            this.button1 = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.navBarItem27 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem28 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem29 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem30 = new DevExpress.XtraNavBar.NavBarItem();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
             this.dockPanel1.SuspendLayout();
             this.dockPanel1_Container.SuspendLayout();
@@ -365,15 +365,16 @@
             // 
             // navBarItem22
             // 
-            this.navBarItem22.Caption = "M-Trix生成的XCDR";
+            this.navBarItem22.Caption = "M-Trix生成的XCDR-1";
             this.navBarItem22.Name = "navBarItem22";
             this.navBarItem22.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem22_LinkClicked);
             // 
             // navBarItem23
             // 
-            this.navBarItem23.Caption = "会话详细记录";
+            this.navBarItem23.Caption = "会话详细记录-1";
             this.navBarItem23.Name = "navBarItem23";
             this.navBarItem23.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem23_LinkClicked);
+            this.navBarItem23.ItemChanged += new System.EventHandler(this.navBarItem23_ItemChanged);
             // 
             // navBarItem24
             // 
@@ -383,15 +384,41 @@
             // 
             // navBarItem25
             // 
-            this.navBarItem25.Caption = "投诉用户小区重传";
+            this.navBarItem25.Caption = "投诉用户小区重传-1";
             this.navBarItem25.Name = "navBarItem25";
             this.navBarItem25.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem25_LinkClicked);
             // 
             // navBarItem26
             // 
-            this.navBarItem26.Caption = "本次分析统计时间点";
+            this.navBarItem26.Caption = "本次分析统计时间点-1";
             this.navBarItem26.Name = "navBarItem26";
             this.navBarItem26.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem26_LinkClicked);
+            // 
+            // navBarItem27
+            // 
+            this.navBarItem27.Caption = "navBarItem27";
+            this.navBarItem27.Name = "navBarItem27";
+            this.navBarItem27.LinkPressed += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem27_LinkPressed);
+            this.navBarItem27.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem27_LinkClicked_1);
+            this.navBarItem27.ItemChanged += new System.EventHandler(this.navBarItem27_ItemChanged);
+            // 
+            // navBarItem28
+            // 
+            this.navBarItem28.Caption = "投诉用户小区重传-明细-1";
+            this.navBarItem28.Name = "navBarItem28";
+            this.navBarItem28.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem28_LinkClicked);
+            // 
+            // navBarItem29
+            // 
+            this.navBarItem29.Caption = "navBarItem29";
+            this.navBarItem29.Name = "navBarItem29";
+            this.navBarItem29.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem29_LinkClicked);
+            // 
+            // navBarItem30
+            // 
+            this.navBarItem30.Caption = "navBarItem30";
+            this.navBarItem30.Name = "navBarItem30";
+            this.navBarItem30.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem30_LinkClicked);
             // 
             // dockPanel2
             // 
@@ -439,6 +466,16 @@
             this.dockPanel3_Container.Size = new System.Drawing.Size(427, 27);
             this.dockPanel3_Container.TabIndex = 0;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(327, 4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // progressBar1
             // 
             this.progressBar1.Location = new System.Drawing.Point(0, 0);
@@ -461,42 +498,6 @@
             // 
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
-            // 
-            // navBarItem27
-            // 
-            this.navBarItem27.Caption = "navBarItem27";
-            this.navBarItem27.Name = "navBarItem27";
-            this.navBarItem27.LinkPressed += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem27_LinkPressed);
-            this.navBarItem27.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem27_LinkClicked_1);
-            this.navBarItem27.ItemChanged += new System.EventHandler(this.navBarItem27_ItemChanged);
-            // 
-            // navBarItem28
-            // 
-            this.navBarItem28.Caption = "投诉用户小区重传-明细";
-            this.navBarItem28.Name = "navBarItem28";
-            this.navBarItem28.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem28_LinkClicked);
-            // 
-            // navBarItem29
-            // 
-            this.navBarItem29.Caption = "navBarItem29";
-            this.navBarItem29.Name = "navBarItem29";
-            this.navBarItem29.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem29_LinkClicked);
-            // 
-            // navBarItem30
-            // 
-            this.navBarItem30.Caption = "navBarItem30";
-            this.navBarItem30.Name = "navBarItem30";
-            this.navBarItem30.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem30_LinkClicked);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(327, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
