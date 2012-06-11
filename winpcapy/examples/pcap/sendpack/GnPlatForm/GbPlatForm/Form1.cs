@@ -805,8 +805,9 @@ namespace GbPlatForm
             var sess = from p in mytcpsession
                        select new
                        {
-                           ts_imsi= imsi.Contains(p.imsi),
+                           ts_imsi = p.imsi==null?false:imsi.Contains(p.imsi),
                            p.session_id,
+                           p.direction,
                            p.bsc_ip,
                            p.bsc_bvci,
                            p.lac,
@@ -817,14 +818,16 @@ namespace GbPlatForm
                            p.seq_total,
                            p.seq_ip2,
                            p.headersize,
+                           flags = p.seq_ip2 + p.headersize,
+                           p.packet_discard_total,
                            p.seq_rate,
                            p.ip2_rate,
                            p.packet_count,
                            p.packet_count_repeat,
-                           repeat_percent =p.packet_count == 0 ? 0 : (1.0 *p.packet_count_repeat / p.packet_count),
+                           repeat_percent = p.packet_count == 0 ? 0 : (1.0 * p.packet_count_repeat / p.packet_count),
                            p.seq_nxt,
                            p.seq_max,
-                           p.seq_min,                                     
+                           p.seq_min,
                        };
 
             gridControl1.DataSource = sess.ToList();
@@ -871,15 +874,18 @@ namespace GbPlatForm
             var syn = from p in mytcp
                       //where p.seq_min != 0 && p.seq_max != 0
                       //where p.seq_max != null && p.seq_min != null
-                      group p by new { ts_cell = lac[p.lac].Contains(p.ci) } into ttt
+                      group p by new { ts_cell = lac[p.lac].Contains(p.ci), p.direction } into ttt
                       select new
                       {
                           ttt.Key.ts_cell,
+                          ttt.Key.direction,
                           cell_cnt = ttt.Select(e => e.lac.ToString() + e.ci.ToString()).Distinct().Count(),
                           packet_cnt = ttt.Sum(e => e.packet_count),
                           packet_repeat = ttt.Sum(e => e.packet_count_repeat),
                           repeat_percent = ttt.Sum(e => e.packet_count) == 0 ? 0 : (1.0 * ttt.Sum(e => e.packet_count_repeat) / ttt.Sum(e => e.packet_count)),
-                          gb_ip2_total=ttt.Sum(e=>e.ip2_total),
+                          gb_ip2_total = ttt.Sum(e => e.ip2_total),
+                          gb_seq_total = ttt.Sum(e => e.seq_total),
+                          duration=ttt.Sum(e=>e.duration),
                           gb_ip2_rate = ttt.Sum(e => (double)e.duration) == 0 ? 0 : (ttt.Sum(e => (double)e.ip2_total) / ttt.Sum(e => (double)e.duration)),
                           gb_seq_rate = ttt.Sum(e => (double)e.duration) == 0 ? 0 : (ttt.Sum(e => (double)(e.seq_max - e.seq_min)) / ttt.Sum(e => (double)e.duration))
                       };
@@ -943,16 +949,20 @@ namespace GbPlatForm
             var syn = from p in mytcp
                       //where p.seq_min != 0 && p.seq_max != 0
                       //where p.seq_max != null && p.seq_min != null
-                      group p by new { ts_cell = lac[p.lac].Contains(p.ci), p.lac, p.ci } into ttt
+                      group p by new { ts_cell = lac[p.lac].Contains(p.ci), p.lac, p.ci, p.direction } into ttt
                       select new
                       {
                           ttt.Key.ts_cell,
                           ttt.Key.lac,
                           ttt.Key.ci,
+                          ttt.Key.direction,
                           packet_cnt = ttt.Sum(e => e.packet_count),
                           packet_repeat = ttt.Sum(e => e.packet_count_repeat),
+                         
                           repeat_percent = ttt.Sum(e => e.packet_count) == 0 ? 0 : (1.0 * ttt.Sum(e => e.packet_count_repeat) / ttt.Sum(e => e.packet_count)),
                           gb_ip2_total = ttt.Sum(e => e.ip2_total),
+                          gb_seq_total = ttt.Sum(e => e.seq_total),
+                          duration = ttt.Sum(e => e.duration),
                           gb_ip2_rate = ttt.Sum(e => (double)e.duration) == 0 ? 0 : (ttt.Sum(e => (double)e.ip2_total) / ttt.Sum(e => (double)e.duration)),
                           gb_seq_rate = ttt.Sum(e => (double)e.duration) == 0 ? 0 : (ttt.Sum(e => (double)(e.seq_max - e.seq_min)) / ttt.Sum(e => (double)e.duration))
                       };
@@ -1024,17 +1034,16 @@ namespace GbPlatForm
         //????
         //？？？？？
 
-        private void button1_Click(object sender, EventArgs ee)
+        public void CreateTable(string direction)
         {
-            int size = 5000;
-            int step = 10;
-            progressBar1.Maximum = step;
-
             Guangzhou_GbEntities gb = new Guangzhou_GbEntities();
 
-            gb.DeleteDatabase();
-            gb.CreateDatabase();
-            
+            int packet_cnt = gb_cell_repeat.Count();
+            int size = 5000;
+            int step = packet_cnt / size + 1;
+
+            progressBar1.Maximum = step;
+
             for (int i = 0; i < step; i++)
             {
                 progressBar1.Value = i;
@@ -1051,7 +1060,7 @@ namespace GbPlatForm
                 //tcp的会话过程
                 foreach (var m in tcp_sessions)
                 {
-                    var packet_down = m.Where(e => e.bssgp_direction == "Down"); //本次只计算下行速率
+                    var packet_down = m.Where(e => e.bssgp_direction == direction); //本次只计算下行速率
 
                     var pd_no_3tcp = packet_down.Where(e => e.tcp_nxtseq != null);//不是3次握手的包
 
@@ -1060,6 +1069,7 @@ namespace GbPlatForm
 
                     myTcpSession tcps = new myTcpSession();
 
+                    tcps.direction = direction;
                     tcps.session_id = (int)m.Key;
                     tcps.bsc_ip = packet_down.Select(e => e.ip_dst_host).FirstOrDefault();
                     tcps.bsc_bvci = m.Where(e => e.nsip_bvci != null).Select(e => e.nsip_bvci).FirstOrDefault();
@@ -1068,7 +1078,7 @@ namespace GbPlatForm
                     tcps.imsi = packet_down.Select(e => e.bssgp_imsi).FirstOrDefault();
 
                     //下行时延，包含3次握手
-                    TimeSpan? ts = pd_no_3tcp.Max(e => DateTime.Parse(e.TCP_time)) 
+                    TimeSpan? ts = pd_no_3tcp.Max(e => DateTime.Parse(e.TCP_time))
                         - pd_no_3tcp.Min(e => DateTime.Parse(e.TCP_time));
                     tcps.duration = ts.Value.TotalMilliseconds;
 
@@ -1103,7 +1113,10 @@ namespace GbPlatForm
                     //正确计算seq的包长，
                     //tcps.seq_total = (tcps.seq_nxt > tcps.seq_max ? tcps.seq_nxt : tcps.seq_max) - tcps.seq_min;
                     //不能用 seq_max
-                    tcps.seq_total = tcps.seq_nxt - tcps.seq_min;
+                    //tcps.seq_total = tcps.seq_nxt - tcps.seq_min;//这个计算有错误
+
+                    //正确计算是，每个包进行计算。
+                    tcps.seq_total = pd_no_3tcp.Sum(e => Convert.ToInt64(e.tcp_nxtseq) - Convert.ToInt64(e.tcp_seq));
 
                     //包数量和重传的计算
                     tcps.packet_count = pd_no_3tcp.Count();
@@ -1123,6 +1136,11 @@ namespace GbPlatForm
                         tcps.ip_rate = 1.0 * (double)tcps.ip_total / tcps.duration;
                     }
 
+                    //丢包的九三
+
+                    if (tcps.packet_count_repeat == 0 && (tcps.seq_ip2 + tcps.headersize) < 0)
+                        tcps.packet_discard_total = 1;
+
                     //sessions.Add(tcps);
                     gb.myTcpSession.AddObject(tcps);
 
@@ -1135,12 +1153,24 @@ namespace GbPlatForm
 
 
             }
-            MessageBox.Show("OK");
+            string mess = string.Format("OK...size:{0}...step:{1}...cnt:{2}", size, step, packet_cnt);
+            MessageBox.Show(mess);
+        }
+
+        private void button1_Click(object sender, EventArgs ee)
+        {
+            Guangzhou_GbEntities gb = new Guangzhou_GbEntities();
+            gb.DeleteDatabase();
+            gb.CreateDatabase();
+            CreateTable("Down");
+            CreateTable("Up");
         }
 
         private void navBarItem23_ItemChanged(object sender, EventArgs e)
         {
 
         }
+
+  
     }
 }

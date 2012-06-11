@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Guangzhou_GbModelStoreContainer" CdmEntityContainer="Guangzhou_GbEntities">
+    <EntitySetMapping Name="myTcpSession">
+      <EntityTypeMapping TypeName="Guangzhou_GbModel.myTcpSession">
+        <MappingFragment StoreEntitySet="myTcpSession">
+          <ScalarProperty Name="packet_discard_total" ColumnName="packet_discard_total" />
+          <ScalarProperty Name="packet_count_repeat" ColumnName="packet_count_repeat" />
+          <ScalarProperty Name="packet_count" ColumnName="packet_count" />
+          <ScalarProperty Name="seq_ip2" ColumnName="seq_ip2" />
+          <ScalarProperty Name="headersize" ColumnName="headersize" />
+          <ScalarProperty Name="seq_rate" ColumnName="seq_rate" />
+          <ScalarProperty Name="seq_min" ColumnName="seq_min" />
+          <ScalarProperty Name="seq_nxt" ColumnName="seq_nxt" />
+          <ScalarProperty Name="seq_max" ColumnName="seq_max" />
+          <ScalarProperty Name="ip2_min_len" ColumnName="ip2_min_len" />
+          <ScalarProperty Name="seq_total" ColumnName="seq_total" />
+          <ScalarProperty Name="ip2_rate" ColumnName="ip2_rate" />
+          <ScalarProperty Name="ip2_total" ColumnName="ip2_total" />
+          <ScalarProperty Name="ip_rate" ColumnName="ip_rate" />
+          <ScalarProperty Name="ip_total" ColumnName="ip_total" />
+          <ScalarProperty Name="duration" ColumnName="duration" />
+          <ScalarProperty Name="bsc_bvci" ColumnName="bsc_bvci" />
+          <ScalarProperty Name="bsc_ip" ColumnName="bsc_ip" />
+          <ScalarProperty Name="ci" ColumnName="ci" />
+          <ScalarProperty Name="lac" ColumnName="lac" />
+          <ScalarProperty Name="imsi" ColumnName="imsi" />
+          <ScalarProperty Name="direction" ColumnName="direction" />
+          <ScalarProperty Name="session_id" ColumnName="session_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

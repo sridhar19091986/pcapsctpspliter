@@ -1,0 +1,16 @@
+        private static object[,] Event_Type = new object[,]{
+        {"CREATE_PDP",1},
+        {"DELETE_PDP",2},
+        {"UPDATE_PDP",3},
+        {"CONNECT",8},
+        {"SYN",9},
+        {"GET",4},
+        {"POST",5},
+        {"MMS_MO",6},
+        {"MMS_MT",7},
+        {"TCP_DATA",10},
+        {"UDP_DATA",11},
+        {"DNS",12},
+        {"Ping",13},
+        {"MMS_IND",14},
+       };

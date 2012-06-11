@@ -1,0 +1,47 @@
+﻿
+        public void getGetPerformance()
+        {
+            int eventvalue = MySqlConvert.getEventTypeValue("GET");
+
+            //var all = from p in mmts.AsParallel()
+            //          //where p.Query_Name != null
+            //          where p.Event_Type == eventvalue
+            //          select new
+            //          {
+            //              p.Event_Type,
+            //              p.Resp,
+            //              p.Duration,
+            //              p.Resp_DelayFirst,
+            //              p.URI_Main
+
+            //          };
+
+            //var alllist = all.ToList();
+
+            var alllists = from p in sqlserver_gn_table.AsParallel()
+                           where p.Event_Type == eventvalue
+                           select new
+                           {
+                               p.Event_Type,
+                               p.Resp,
+                               p.Duration,
+                               p.Resp_DelayFirst,
+
+                               p.my_URI_Main
+                           };
+
+            var db = from p in alllists
+                     group p by p.my_URI_Main into ttt  //23g业务类型区分
+                     select new
+                     {
+                         uri_main = ttt.Key,
+                         cnt_event = ttt.Count(),
+                         cnt_response = ttt.Where(e => e.Resp != null).Count(),
+                         cnt_rate = 1.0 * ttt.Where(e => e.Resp != null).Count() / ttt.Count(),
+                         response_dalay = ttt.Average(e => e.Resp_DelayFirst),
+                         duration = ttt.Average(e => e.Duration),
+                     };
+
+            var dborder = db.Where(e => e.cnt_event > 0).OrderByDescending(e => e.cnt_event);
+            MicroObjectDumper.Write(dborder);
+        }

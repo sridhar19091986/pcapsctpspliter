@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Guangzhou_GbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="Guangzhou_GbModelStoreContainer">
+          <EntitySet Name="myTcpSession" EntityType="Guangzhou_GbModel.Store.myTcpSession" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="myTcpSession">
+          <Key>
+            <PropertyRef Name="session_id" />
+            <PropertyRef Name="direction" />
+          </Key>
+          <Property Name="session_id" Type="int" Nullable="false" />
+          <Property Name="direction" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="imsi" Type="nvarchar" MaxLength="200" />
+          <Property Name="lac" Type="int" />
+          <Property Name="ci" Type="int" />
+          <Property Name="bsc_ip" Type="nvarchar" MaxLength="200" />
+          <Property Name="bsc_bvci" Type="int" />
+          <Property Name="duration" Type="float" />
+          <Property Name="ip_total" Type="decimal" />
+          <Property Name="ip_rate" Type="float" />
+          <Property Name="ip2_total" Type="decimal" />
+          <Property Name="ip2_rate" Type="float" />
+          <Property Name="seq_total" Type="decimal" />
+          <Property Name="ip2_min_len" Type="int" />
+          <Property Name="seq_max" Type="decimal" />
+          <Property Name="seq_nxt" Type="decimal" />
+          <Property Name="seq_min" Type="decimal" />
+          <Property Name="seq_rate" Type="float" />
+          <Property Name="headersize" Type="decimal" />
+          <Property Name="seq_ip2" Type="decimal" />
+          <Property Name="packet_count" Type="int" />
+          <Property Name="packet_count_repeat" Type="int" />
+          <Property Name="packet_discard_total" Type="int" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Guangzhou_GbModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="Guangzhou_GbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="myTcpSession" EntityType="Guangzhou_GbModel.myTcpSession" />
+        </EntityContainer>
+        <EntityType Name="myTcpSession">
+          <Key>
+            <PropertyRef Name="session_id" />
+            <PropertyRef Name="direction" />
+          </Key>
+          <Property Type="Int32" Name="session_id" Nullable="false" />
+          <Property Type="String" Name="direction" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="imsi" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="lac" />
+          <Property Type="Int32" Name="ci" />
+          <Property Type="String" Name="bsc_ip" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="bsc_bvci" />
+          <Property Type="Double" Name="duration" />
+          <Property Type="Decimal" Name="ip_total" Precision="18" Scale="0" />
+          <Property Type="Double" Name="ip_rate" />
+          <Property Type="Decimal" Name="ip2_total" Precision="18" Scale="0" />
+          <Property Type="Double" Name="ip2_rate" />
+          <Property Type="Decimal" Name="seq_total" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="ip2_min_len" />
+          <Property Type="Decimal" Name="seq_max" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="seq_nxt" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="seq_min" Precision="18" Scale="0" />
+          <Property Type="Double" Name="seq_rate" />
+          <Property Type="Decimal" Name="headersize" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="seq_ip2" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="packet_count" />
+          <Property Type="Int32" Name="packet_count_repeat" />
+          <Property Type="Int32" Name="packet_discard_total" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Guangzhou_GbModelStoreContainer" CdmEntityContainer="Guangzhou_GbEntities">
+          <EntitySetMapping Name="myTcpSession">
+            <EntityTypeMapping TypeName="Guangzhou_GbModel.myTcpSession">
+              <MappingFragment StoreEntitySet="myTcpSession">
+                <ScalarProperty Name="packet_discard_total" ColumnName="packet_discard_total" />
+                <ScalarProperty Name="packet_count_repeat" ColumnName="packet_count_repeat" />
+                <ScalarProperty Name="packet_count" ColumnName="packet_count" />
+                <ScalarProperty Name="seq_ip2" ColumnName="seq_ip2" />
+                <ScalarProperty Name="headersize" ColumnName="headersize" />
+                <ScalarProperty Name="seq_rate" ColumnName="seq_rate" />
+                <ScalarProperty Name="seq_min" ColumnName="seq_min" />
+                <ScalarProperty Name="seq_nxt" ColumnName="seq_nxt" />
+                <ScalarProperty Name="seq_max" ColumnName="seq_max" />
+                <ScalarProperty Name="ip2_min_len" ColumnName="ip2_min_len" />
+                <ScalarProperty Name="seq_total" ColumnName="seq_total" />
+                <ScalarProperty Name="ip2_rate" ColumnName="ip2_rate" />
+                <ScalarProperty Name="ip2_total" ColumnName="ip2_total" />
+                <ScalarProperty Name="ip_rate" ColumnName="ip_rate" />
+                <ScalarProperty Name="ip_total" ColumnName="ip_total" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+                <ScalarProperty Name="bsc_bvci" ColumnName="bsc_bvci" />
+                <ScalarProperty Name="bsc_ip" ColumnName="bsc_ip" />
+                <ScalarProperty Name="ci" ColumnName="ci" />
+                <ScalarProperty Name="lac" ColumnName="lac" />
+                <ScalarProperty Name="imsi" ColumnName="imsi" />
+                <ScalarProperty Name="direction" ColumnName="direction" />
+                <ScalarProperty Name="session_id" ColumnName="session_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model3">
+        <EntityTypeShape EntityType="Guangzhou_GbModel.myTcpSession" Width="2.125" PointX="0.75" PointY="0.75" Height="4.8259895833333326" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

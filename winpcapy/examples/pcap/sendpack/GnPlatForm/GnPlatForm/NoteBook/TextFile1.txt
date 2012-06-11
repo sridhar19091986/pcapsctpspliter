@@ -1,0 +1,38 @@
+﻿            var gn = from p in sqlserver_gn_table.Take(1000)
+                     //where p.my_DEST_IP == "10.0.0.172" || p.my_URI_Main_header == "10.0.0.172"
+                     where p.SynDirection == 0
+                     where p.Event_Type == 4
+                     //group p by p.my_URI_Main into tttt
+                     //计算各URI通过网关的成功率和时延,也可以指定uri
+                     //from p in tttt
+                     group p by p.my_URI_Main into tttt
+                     select new
+                     {
+                         my_URI_Main = tttt.Key,
+                         cnt = tttt.Count(),
+                         my_URI_Main_Detail = (from q in tttt
+                                               where q.my_URI_Main == tttt.Key
+                                               group q by
+                                               new { my_DEST_IP = q.my_DEST_IP == "10.0.0.172", my_URI_Main_header = q.my_URI_Main_header == "10.0.0.172" }
+                                                   into ttt
+                                                   select new
+                                                   {
+                                                       my_DEST_IP = ttt.Key.my_DEST_IP == true ? "toWap" : "toPub",
+                                                       my_URI_Main_header = ttt.Key.my_URI_Main_header == true ? "toWap" : "toPub",
+                                                       cnt = ttt.Count(),
+                                                       suc = ttt.Where(e => e.Resp != null).Count(),
+                                                       percent = 1.0 * ttt.Where(e => e.Resp != null).Count() / ttt.Count(),
+                                                       uri_size = ttt.Average(e => e.my_URI_Len),
+                                                       size = ttt.Average(e => e.IP_LEN_DL),
+                                                       rate = ttt.Average(e => e.Duration) == null ? 0 :
+                                                       1.0 * ttt.Average(e => e.IP_LEN_DL) / ttt.Average(e => (double)e.Duration),
+                                                       delay = ttt.Average(e => e.Duration)
+                                                   }).ToList()
+                     };
+            gridControl1.DataSource = gn.OrderByDescending(e => e.cnt).ToList();
+            gridControl1.Refresh();
+            gridView1.PopulateColumns();
+            //gridView1.OptionsView.ColumnAutoWidth = false;
+            gridView1.BestFitColumns();
+            //int rHandle = gridView1.FocusedRowHandle;
+            //gridView1.SetMasterRowExpanded(rHandle, !gridView1.GetMasterRowExpanded(rHandle));

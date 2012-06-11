@@ -1,0 +1,72 @@
+﻿字段	字段含义	字段说明
+Online_ID	一次上下文标记	每一次PDP创建后到PDP删除的会话标记一个相同的ID
+Session_ID	一次会话标记	会话标识由系统生成，对用户每一次串联分配一个标识，长度为18位
+Start_Date_Time	会话开始时间	会话第一帧时间，结构为：2011-08-10 20:00:00
+End_Date_Time	会话结束时间	会话最后一帧的时间，结构为：2011-08-10 20:00:00
+SGSN_IP	SGSG_IP	整型，如IP为10.246.112.47，存储为47.112.246.10的数值795932170
+SGSN	SGSG名称	根据SGSN IP，从外部导入数据中匹配SGSN名
+GGSN_IP	GGSN_IP	整型，如IP为10.246.112.47，存储为47.112.246.10的数值795932170
+GGSN	GGSN名称	根据GGSN IP，从外部导入数据中匹配GGSN名，若配置错误，可能缺漏
+LAC	位置区代码	从PDP创建/PDP更新消息中学习而来，十进制数值
+CI	小区代码（2G）	从PDP创建/PDP更新消息中学习而来，十进制数值
+SAC	小区代码（3G）	从PDP创建/PDP更新消息中学习而来，十进制数值
+IMSI	用户IMSI	从PDP创建消息中学习而来
+IMEI	用户IMEI	从PDP创建消息中学习而来
+Prefix_IMEI	用户IMEI前八位	从PDP创建消息中学习而来
+MSISDN	用户电话号码	从PDP创建消息中学习而来
+APN	APN	从PDP创建消息中学习而来
+RAT_TYPE	2/3G	1为3G,2为2G
+PROTOCOL	使用协议	1为WAP1.0，2为HTTP
+Event_Type	事件类型	"存为整数，对应关系如下：
+CREATE_PDP：1
+DELETE_PDP：2
+UPDATE_PDP：3
+CONNECT：8
+SYN：9
+GET：4
+POST：5
+MMS_MO：6
+MMS_MT：7
+TCP_DATA：10
+UDP_DATA：11
+DNS：12
+Ping：13
+MMS_IND：14"
+IP_LEN_UL	上行IP流量	单位为Byte
+IP_LEN_DL	下行IP流量	单位为Byte
+Count_Packet_UL	上行IP包数	IP包个数
+Count_Packet_DL	下行IP包数	IP包个数
+Duration	在线时长	第一帧时间到最后一帧时间长度，单位为毫秒
+SOURCE_IP	源IP	整型，如IP为10.246.112.47，存储为47.112.246.10的数值795932170
+DEST_IP	目标IP	整型，如IP为10.246.112.47，存储为47.112.246.10的数值795932170
+SOURCE_PORT	源端口	整数
+DEST_PORT	目标端口	整数
+URI	网址	用户上网对应网址，存在于Get/Post/MMS-MO/MMS-MT事件
+URI_Main	网站	用户上网对应的网站，存在于Get/Post/MMS-MO/MMS-MT事件
+Content_Type	文件内容	用户上网文件类型，存在于Get/Post/MMS-MO/MMS-MT事件
+User_Agent_Main	终端型号	手机上报的终端操作系统和浏览器型号，存在于Get/Post/MMS-MO/MMS-MT事件
+Service_TYPE	业务类型	业务识别代码，整数，对应关系如sheet“业务识别存储code”所示
+Sub_Service_Type	具体业务	具体业务识别代码，整数，对应关系如sheet“业务识别存储code”所示
+IsReassemble	是否有组包	组包则置1
+Delete_PDP	会话过程是否发生Delete PDP	发生则置1
+Delete_PDP_Direction	会话过程中Delete PDP的方向	0为上行，1为下行
+Abnormal_reason	异常原因代码	存为整数，对应关系如sheet“异常原因存储code”所示
+Repeat_Count	重发次数	重发则置1，否则为0
+Resp	信令响应/业务完成	有回应则置1，否则为0
+Resp_DelayFirst	信令响应/业务完成时延	请求到回应的时延，单位为毫秒
+Resp_cause	响应代码	存为整数
+abort	会话过程中是否发生中断/重置	会话中存在abort则置1，否则为0
+Disconnect	会话过程是否发生断开连接	仅对于WSP协议
+Result	业务响应	响应则置1，否则为0，存在于Get/Post/MMS-MO/MMS-MT事件
+Result_DelayFirst	业务响应时延	请求到响应的时延，单位为毫秒，存在于Get/Post/MMS-MO/MMS-MT事件
+MMS_request	彩信发送请求	彩信发送则置1，否则为0
+MMS_resp_status	彩信发送返回码	整数
+From	彩信息发送端号码	发送端电话号码
+To	彩信接收端号码	接收端电话号码
+Subject	彩信主题	字符
+Delivery_Report	是否要求彩信发送报告	是为1，否为0
+Query_Name	DNS查询域名	字符
+Query_Type	DNS查询类型	字符
+DNS_TTL	DNS查询生存时间	生存时间，单位为毫秒
+SP_Address	SP类型	无效字段
+Identifier	Ping事件的ID	整数
