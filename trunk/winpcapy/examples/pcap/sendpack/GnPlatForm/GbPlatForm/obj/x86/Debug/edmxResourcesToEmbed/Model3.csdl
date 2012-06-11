@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Guangzhou_GbModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="Guangzhou_GbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="myTcpSession" EntityType="Guangzhou_GbModel.myTcpSession" />
+  </EntityContainer>
+  <EntityType Name="myTcpSession">
+    <Key>
+      <PropertyRef Name="session_id" />
+      <PropertyRef Name="direction" />
+    </Key>
+    <Property Type="Int32" Name="session_id" Nullable="false" />
+    <Property Type="String" Name="direction" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="imsi" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="lac" />
+    <Property Type="Int32" Name="ci" />
+    <Property Type="String" Name="bsc_ip" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="bsc_bvci" />
+    <Property Type="Double" Name="duration" />
+    <Property Type="Decimal" Name="ip_total" Precision="18" Scale="0" />
+    <Property Type="Double" Name="ip_rate" />
+    <Property Type="Decimal" Name="ip2_total" Precision="18" Scale="0" />
+    <Property Type="Double" Name="ip2_rate" />
+    <Property Type="Decimal" Name="seq_total" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="ip2_min_len" />
+    <Property Type="Decimal" Name="seq_max" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="seq_nxt" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="seq_min" Precision="18" Scale="0" />
+    <Property Type="Double" Name="seq_rate" />
+    <Property Type="Decimal" Name="headersize" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="seq_ip2" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="packet_count" />
+    <Property Type="Int32" Name="packet_count_repeat" />
+    <Property Type="Int32" Name="packet_discard_total" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="road_testModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="road_testEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="rt_mr_temp" EntityType="road_testModel.rt_mr_temp" />
+  </EntityContainer>
+  <EntityType Name="rt_mr_temp">
+    <Key>
+      <PropertyRef Name="packet_num" />
+    </Key>
+    <Property Name="acc_suc" Type="Int32" />
+    <Property Name="bstxpwr" Type="Int32" />
+    <Property Name="bs_dtx" Type="Int64" />
+    <Property Name="bs_power" Type="Int64" />
+    <Property Name="call_id" Type="Decimal" />
+    <Property Name="channel_code" Type="Int64" />
+    <Property Name="channel_type" Type="Int64" />
+    <Property Name="ci" Type="Int64" />
+    <Property Name="drop_call" Type="Int32" />
+    <Property Name="handover_failure" Type="Int32" />
+    <Property Name="handover_in" Type="Int32" />
+    <Property Name="handover_out" Type="Int32" />
+    <Property Name="imei" Type="String" />
+    <Property Name="imsi" Type="String" />
+    <Property Name="lac" Type="Int64" />
+    <Property Name="latitude" Type="Double" />
+    <Property Name="lau_accept" Type="Int32" />
+    <Property Name="lau_request" Type="Int32" />
+    <Property Name="layer3_message_list" Type="String" />
+    <Property Name="longitude" Type="Double" />
+    <Property Name="loss_down" Type="Int32" />
+    <Property Name="loss_up" Type="Int32" />
+    <Property Name="loss_up_down" Type="Int32" />
+    <Property Name="meas_no" Type="Int64" />
+    <Property Name="moc_access_failure" Type="Int32" />
+    <Property Name="moc_acc_cnt" Type="Int32" />
+    <Property Name="ms_dtx" Type="Int32" />
+    <Property Name="ms_power" Type="Int64" />
+    <Property Name="mtc_access_failure" Type="Int32" />
+    <Property Name="mtc_acc_cnt" Type="Int32" />
+    <Property Name="mxtxpwr" Type="Int32" />
+    <Property Name="n_lac_cell0" Type="String" />
+    <Property Name="n_lac_cell0_Loss_down" Type="Int32" />
+    <Property Name="n_lac_cell0_Trans_mode_amend" Type="Int32" />
+    <Property Name="n_lac_cell1" Type="String" />
+    <Property Name="n_lac_cell1_Loss_down" Type="Int32" />
+    <Property Name="n_lac_cell1_Trans_mode_amend" Type="Int32" />
+    <Property Name="n_lac_cell2" Type="String" />
+    <Property Name="n_lac_cell2_Loss_down" Type="Int32" />
+    <Property Name="n_lac_cell2_Trans_mode_amend" Type="Int32" />
+    <Property Name="n_lac_cell3" Type="String" />
+    <Property Name="n_lac_cell3_Loss_down" Type="Int32" />
+    <Property Name="n_lac_cell3_Trans_mode_amend" Type="Int32" />
+    <Property Name="n_lac_cell4" Type="String" />
+    <Property Name="n_lac_cell4_Loss_down" Type="Int32" />
+    <Property Name="n_lac_cell4_Trans_mode_amend" Type="Int32" />
+    <Property Name="n_lac_cell5" Type="String" />
+    <Property Name="n_lac_cell5_Loss_down" Type="Int32" />
+    <Property Name="n_lac_cell5_Trans_mode_amend" Type="Int32" />
+    <Property Name="packet_num" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="rxlev_down" Type="Int32" />
+    <Property Name="rxlev_ncel0_digit" Type="Int32" />
+    <Property Name="rxlev_ncel1_digit" Type="Int32" />
+    <Property Name="rxlev_ncel2_digit" Type="Int32" />
+    <Property Name="rxlev_ncel3_digit" Type="Int32" />
+    <Property Name="rxlev_ncel4_digit" Type="Int32" />
+    <Property Name="rxlev_ncel5_digit" Type="Int32" />
+    <Property Name="rxlev_up" Type="Int32" />
+    <Property Name="rxqual_down" Type="Int32" />
+    <Property Name="rxqual_up" Type="Int32" />
+    <Property Name="ta" Type="Int64" />
+    <Property Name="tei" Type="Int64" />
+    <Property Name="time" Type="DateTime" />
+    <Property Name="tmsi" Type="Int64" />
+    <Property Name="Trans_mode_amend" Type="Int32" />
+    <Property Name="ts" Type="Int64" />
+    <Property Name="usergroup" Type="String" />
+  </EntityType>
+</Schema>

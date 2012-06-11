@@ -68,6 +68,7 @@
             this.navBarItem28 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem29 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem30 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroup7 = new DevExpress.XtraNavBar.NavBarGroup();
             this.dockPanel2 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel2_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -132,7 +133,8 @@
             this.navBarGroup3,
             this.navBarGroup4,
             this.navBarGroup5,
-            this.navBarGroup6});
+            this.navBarGroup6,
+            this.navBarGroup7});
             this.navBarControl1.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
             this.navBarItem1,
             this.navBarItem2,
@@ -420,6 +422,11 @@
             this.navBarItem30.Name = "navBarItem30";
             this.navBarItem30.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem30_LinkClicked);
             // 
+            // navBarGroup7
+            // 
+            this.navBarGroup7.Caption = "navBarGroup7";
+            this.navBarGroup7.Name = "navBarGroup7";
+            // 
             // dockPanel2
             // 
             this.dockPanel2.Controls.Add(this.dockPanel2_Container);
@@ -468,7 +475,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(327, 4);
+            this.button1.Location = new System.Drawing.Point(301, 4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
@@ -577,6 +584,7 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem29;
         private DevExpress.XtraNavBar.NavBarItem navBarItem30;
         private System.Windows.Forms.Button button1;
+        private DevExpress.XtraNavBar.NavBarGroup navBarGroup7;
 
     }
 }

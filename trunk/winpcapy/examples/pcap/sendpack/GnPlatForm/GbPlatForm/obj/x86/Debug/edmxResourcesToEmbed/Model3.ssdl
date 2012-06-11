@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Guangzhou_GbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="Guangzhou_GbModelStoreContainer">
+    <EntitySet Name="myTcpSession" EntityType="Guangzhou_GbModel.Store.myTcpSession" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="myTcpSession">
+    <Key>
+      <PropertyRef Name="session_id" />
+      <PropertyRef Name="direction" />
+    </Key>
+    <Property Name="session_id" Type="int" Nullable="false" />
+    <Property Name="direction" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="imsi" Type="nvarchar" MaxLength="200" />
+    <Property Name="lac" Type="int" />
+    <Property Name="ci" Type="int" />
+    <Property Name="bsc_ip" Type="nvarchar" MaxLength="200" />
+    <Property Name="bsc_bvci" Type="int" />
+    <Property Name="duration" Type="float" />
+    <Property Name="ip_total" Type="decimal" />
+    <Property Name="ip_rate" Type="float" />
+    <Property Name="ip2_total" Type="decimal" />
+    <Property Name="ip2_rate" Type="float" />
+    <Property Name="seq_total" Type="decimal" />
+    <Property Name="ip2_min_len" Type="int" />
+    <Property Name="seq_max" Type="decimal" />
+    <Property Name="seq_nxt" Type="decimal" />
+    <Property Name="seq_min" Type="decimal" />
+    <Property Name="seq_rate" Type="float" />
+    <Property Name="headersize" Type="decimal" />
+    <Property Name="seq_ip2" Type="decimal" />
+    <Property Name="packet_count" Type="int" />
+    <Property Name="packet_count_repeat" Type="int" />
+    <Property Name="packet_discard_total" Type="int" />
+  </EntityType>
+</Schema>

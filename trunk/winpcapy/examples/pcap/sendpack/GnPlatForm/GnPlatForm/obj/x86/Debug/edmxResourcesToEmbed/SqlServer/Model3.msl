@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GuangZhou_GnModel2StoreContainer" CdmEntityContainer="GuangZhou_GnEntities2">
+    <EntitySetMapping Name="imeitype">
+      <EntityTypeMapping TypeName="GuangZhou_GnModel2.imeitype">
+        <MappingFragment StoreEntitySet="imeitype">
+          <ScalarProperty Name="imeiname" ColumnName="imeiname" />
+          <ScalarProperty Name="imeifactory" ColumnName="imeifactory" />
+          <ScalarProperty Name="imei" ColumnName="imei" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Gb_XID">
+      <EntityTypeMapping TypeName="GuangZhou_GnModel2.Gb_XID">
+        <MappingFragment StoreEntitySet="Gb_XID">
+          <ScalarProperty Name="C1llcgprs_xid1byte2" ColumnName="1llcgprs_xid1byte2" />
+          <ScalarProperty Name="C1llcgprs_xid1byte1" ColumnName="1llcgprs_xid1byte1" />
+          <ScalarProperty Name="C1llcgprs_xid1type" ColumnName="1llcgprs_xid1type" />
+          <ScalarProperty Name="C1bssgp_direction" ColumnName="1bssgp_direction" />
+          <ScalarProperty Name="U_Exchange_identification1_delayFirst" ColumnName="U_Exchange_identification1_delayFirst" />
+          <ScalarProperty Name="U_Exchange_identification1" ColumnName="U_Exchange_identification1" />
+          <ScalarProperty Name="llcgprs_xid1byte2" ColumnName="llcgprs_xid1byte2" />
+          <ScalarProperty Name="llcgprs_xid1byte1" ColumnName="llcgprs_xid1byte1" />
+          <ScalarProperty Name="llcgprs_xid1type" ColumnName="llcgprs_xid1type" />
+          <ScalarProperty Name="bssgp_direction" ColumnName="bssgp_direction" />
+          <ScalarProperty Name="U_Exchange_identification" ColumnName="U_Exchange_identification" />
+          <ScalarProperty Name="DumpFor" ColumnName="DumpFor" />
+          <ScalarProperty Name="PacketTime_ms_" ColumnName="PacketTime(ms)" />
+          <ScalarProperty Name="PacketTime" ColumnName="PacketTime" />
+          <ScalarProperty Name="BeginFrameNum" ColumnName="BeginFrameNum" />
+          <ScalarProperty Name="BeginFileNum" ColumnName="BeginFileNum" />
+          <ScalarProperty Name="PacketNum" ColumnName="PacketNum" />
+          <ScalarProperty Name="FileNum" ColumnName="FileNum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Gb_PDP_XID">
+      <EntityTypeMapping TypeName="GuangZhou_GnModel2.Gb_PDP_XID">
+        <MappingFragment StoreEntitySet="Gb_PDP_XID">
+          <ScalarProperty Name="llcgprs_xid1byte2" ColumnName="llcgprs_xid1byte2" />
+          <ScalarProperty Name="llcgprs_xid1byte1" ColumnName="llcgprs_xid1byte1" />
+          <ScalarProperty Name="llcgprs_xid1type" ColumnName="llcgprs_xid1type" />
+          <ScalarProperty Name="bssgp_direction" ColumnName="bssgp_direction" />
+          <ScalarProperty Name="U_Exchange_identification_timeFirst" ColumnName="U_Exchange_identification_timeFirst" />
+          <ScalarProperty Name="U_Exchange_identification_delayFirst" ColumnName="U_Exchange_identification_delayFirst" />
+          <ScalarProperty Name="U_Exchange_identification" ColumnName="U_Exchange_identification" />
+          <ScalarProperty Name="Detach_Request_delayFirst" ColumnName="Detach_Request_delayFirst" />
+          <ScalarProperty Name="Detach_Request" ColumnName="Detach_Request" />
+          <ScalarProperty Name="Reject_BVCI" ColumnName="Reject_BVCI" />
+          <ScalarProperty Name="Reject_IMSI" ColumnName="Reject_IMSI" />
+          <ScalarProperty Name="Reject_Cause" ColumnName="Reject_Cause" />
+          <ScalarProperty Name="PDP_Act_Reject_delayFirst" ColumnName="PDP_Act_Reject_delayFirst" />
+          <ScalarProperty Name="PDP_Act_Reject" ColumnName="PDP_Act_Reject" />
+          <ScalarProperty Name="Octets_Affected" ColumnName="Octets_Affected" />
+          <ScalarProperty Name="LLC_Discarded_delayFirst" ColumnName="LLC_Discarded_delayFirst" />
+          <ScalarProperty Name="LLC_Discarded" ColumnName="LLC_Discarded" />
+          <ScalarProperty Name="Radio_Cause" ColumnName="Radio_Cause" />
+          <ScalarProperty Name="RADIO_Status_delayFirst" ColumnName="RADIO_Status_delayFirst" />
+          <ScalarProperty Name="RADIO_Status" ColumnName="RADIO_Status" />
+          <ScalarProperty Name="PDP_Request_Repeat_delayFirst" ColumnName="PDP_Request_Repeat_delayFirst" />
+          <ScalarProperty Name="PDP_Request_Repeat" ColumnName="PDP_Request_Repeat" />
+          <ScalarProperty Name="Dest_Port" ColumnName="Dest_Port" />
+          <ScalarProperty Name="Source_Port" ColumnName="Source_Port" />
+          <ScalarProperty Name="Dest_IP" ColumnName="Dest_IP" />
+          <ScalarProperty Name="Source_IP" ColumnName="Source_IP" />
+          <ScalarProperty Name="BVCI" ColumnName="BVCI" />
+          <ScalarProperty Name="MNC" ColumnName="MNC" />
+          <ScalarProperty Name="MCC" ColumnName="MCC" />
+          <ScalarProperty Name="LAC" ColumnName="LAC" />
+          <ScalarProperty Name="APN" ColumnName="APN" />
+          <ScalarProperty Name="CI" ColumnName="CI" />
+          <ScalarProperty Name="TLLI" ColumnName="TLLI" />
+          <ScalarProperty Name="PDP_Act_Request_time" ColumnName="PDP_Act_Request_time" />
+          <ScalarProperty Name="PDP_Act_Request" ColumnName="PDP_Act_Request" />
+          <ScalarProperty Name="DumpFor" ColumnName="DumpFor" />
+          <ScalarProperty Name="PacketTime_ms_" ColumnName="PacketTime(ms)" />
+          <ScalarProperty Name="PacketTime" ColumnName="PacketTime" />
+          <ScalarProperty Name="BeginFrameNum" ColumnName="BeginFrameNum" />
+          <ScalarProperty Name="BeginFileNum" ColumnName="BeginFileNum" />
+          <ScalarProperty Name="PacketNum" ColumnName="PacketNum" />
+          <ScalarProperty Name="FileNum" ColumnName="FileNum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

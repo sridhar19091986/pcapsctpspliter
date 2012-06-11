@@ -1,0 +1,34 @@
+﻿            //int eventvalue = Event_Type_MySql.getEventTypeValue("DNS");
+
+            //var all = from p in mmts
+            //          //where p.Query_Name != null
+            //          //where p.Event_Type == eventvalue
+            //          select new
+            //          {
+            //              p.Event_Type,
+            //              //p.Query_Name,
+            //              p.Resp,
+            //              p.Duration,
+            //              p.Resp_DelayFirst,
+            //              p.RAT_TYPE,
+            //              p.APN,
+            //              p.GGSN,
+            //              p.SGSN,
+            //              p.LAC,
+            //              p.CI,
+            //              p.IMSI,
+            //              p.Prefix_IMEI
+            //          };
+
+
+			  PropertyInfo[] field = typeof(MatchPoint<>).GetProperties();
+            int size = result.Count();
+            var fisfilter = field.Where(e => e.Name == 
+			"LastMatchWDL" || e.Name == "LastMatchGoals" || e.Name == "LastMatchOddEven");
+            foreach (PropertyInfo fi in fisfilter)
+            {
+                double[] Y = new double[size];
+                double[] X = new double[size];
+                double[] X1 = new double[size];
+                for (int i = 0; i < size; i++)
+                {

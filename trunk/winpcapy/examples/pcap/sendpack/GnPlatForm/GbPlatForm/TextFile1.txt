@@ -1,0 +1,31 @@
+﻿
+
+抽取BVCI 的TCP数据？？？？？？？？
+
+
+
+
+
+
+use [GuangZhou_Gn]
+alter table [mpos_gb_gz]  ADD PRIMARY KEY([Session_ID])
+
+ /****** Script for SelectTopNRows command from SSMS  ******/
+SELECT TOP 1000 [FileNum]
+      ,[PacketNum]
+      ,[Syn_RepeatCounter]
+      ,[bssgp_lac]
+      ,[bssgp_ci]
+      ,[Ack_Syn]
+      ,[Ack]
+      ,[Ack_Syn_delayFirst]
+      ,[Ack_delayFirst]
+      ,[Ack_Syn_RepeatCounter]
+      ,[syn_ip2_len]
+      ,[Ack_Syn_ip2_len]
+      ,[Ack_ip2_len]
+      ,tcp_seq
+      ,Ack_tcp_seq
+      ,llcgprs_nu
+      ,Ack_llcgprs_nu
+  FROM [GuangZhou_Gn].[dbo].[Gb_Cell_Syn]
