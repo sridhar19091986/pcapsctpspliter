@@ -84,7 +84,7 @@ namespace GbPlatForm
             gb.CommandTimeout = 0;
 
             sqlserver_mpos_gb_gz = gn.mpos_gb_gz;
-            gb_dns_syn = gn.Gb_DNS_Syn;
+            gb_dns_syn = gb.Gb_DNS_Syn;
             gb_pdp_fin = gn.Gb_PDP_Fin;
             gb_cell_syn = gn.Gb_Cell_Syn;
             gb_cell_repeat = gn.Gb_Cell_Repeat;
@@ -805,7 +805,7 @@ namespace GbPlatForm
             var sess = from p in mytcpsession
                        select new
                        {
-                           ts_imsi = p.imsi==null?false:imsi.Contains(p.imsi),
+                           ts_imsi = p.imsi == null ? false : imsi.Contains(p.imsi),
                            p.session_id,
                            p.direction,
                            p.bsc_ip,
@@ -824,10 +824,12 @@ namespace GbPlatForm
                            p.ip2_rate,
                            p.packet_count,
                            p.packet_count_repeat,
+                           p.packet_sack_total,
                            repeat_percent = p.packet_count == 0 ? 0 : (1.0 * p.packet_count_repeat / p.packet_count),
                            p.seq_nxt,
                            p.seq_max,
                            p.seq_min,
+
                        };
 
             gridControl1.DataSource = sess.ToList();
@@ -882,15 +884,20 @@ namespace GbPlatForm
                           cell_cnt = ttt.Select(e => e.lac.ToString() + e.ci.ToString()).Distinct().Count(),
                           packet_cnt = ttt.Sum(e => e.packet_count),
                           packet_repeat = ttt.Sum(e => e.packet_count_repeat),
+                          packet_sack = ttt.Sum(e => e.packet_sack_total),
                           repeat_percent = ttt.Sum(e => e.packet_count) == 0 ? 0 : (1.0 * ttt.Sum(e => e.packet_count_repeat) / ttt.Sum(e => e.packet_count)),
+                          sack_percent = ttt.Sum(e => e.packet_count) == 0 ? 0 : (1.0 * ttt.Sum(e => e.packet_sack_total) / ttt.Sum(e => e.packet_count)),
                           gb_ip2_total = ttt.Sum(e => e.ip2_total),
                           gb_seq_total = ttt.Sum(e => e.seq_total),
-                          duration=ttt.Sum(e=>e.duration),
+                          duration = ttt.Sum(e => e.duration),
                           gb_ip2_rate = ttt.Sum(e => (double)e.duration) == 0 ? 0 : (ttt.Sum(e => (double)e.ip2_total) / ttt.Sum(e => (double)e.duration)),
-                          gb_seq_rate = ttt.Sum(e => (double)e.duration) == 0 ? 0 : (ttt.Sum(e => (double)(e.seq_max - e.seq_min)) / ttt.Sum(e => (double)e.duration))
+                          gb_seq_rate = ttt.Sum(e => (double)e.duration) == 0 ? 0 : (ttt.Sum(e => (double)e.seq_total) / ttt.Sum(e => (double)e.duration)),
+                          tcp_session_cnt = ttt.Select(e => e.session_id).Distinct().Count(),
+                          packet_discard = 1.0 * ttt.Where(e => e.packet_discard_total == 1).Count() / ttt.Select(e => e.session_id).Distinct().Count()
                       };
 
-            gridControl1.DataSource = syn.ToList();
+            gridControl1.DataSource = syn.OrderByDescending(e => e.repeat_percent).ToList();
+
         }
 
         private void navBarItem26_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs eee)
@@ -907,6 +914,7 @@ namespace GbPlatForm
         }
 
         //执行数据库重新生成？
+
         private void navBarItem27_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
         {
 
@@ -958,13 +966,16 @@ namespace GbPlatForm
                           ttt.Key.direction,
                           packet_cnt = ttt.Sum(e => e.packet_count),
                           packet_repeat = ttt.Sum(e => e.packet_count_repeat),
-                         
+                          packet_sack = ttt.Sum(e => e.packet_sack_total),
                           repeat_percent = ttt.Sum(e => e.packet_count) == 0 ? 0 : (1.0 * ttt.Sum(e => e.packet_count_repeat) / ttt.Sum(e => e.packet_count)),
+                          sack_percent = ttt.Sum(e => e.packet_count) == 0 ? 0 : (1.0 * ttt.Sum(e => e.packet_sack_total) / ttt.Sum(e => e.packet_count)),
                           gb_ip2_total = ttt.Sum(e => e.ip2_total),
                           gb_seq_total = ttt.Sum(e => e.seq_total),
                           duration = ttt.Sum(e => e.duration),
                           gb_ip2_rate = ttt.Sum(e => (double)e.duration) == 0 ? 0 : (ttt.Sum(e => (double)e.ip2_total) / ttt.Sum(e => (double)e.duration)),
-                          gb_seq_rate = ttt.Sum(e => (double)e.duration) == 0 ? 0 : (ttt.Sum(e => (double)(e.seq_max - e.seq_min)) / ttt.Sum(e => (double)e.duration))
+                          gb_seq_rate = ttt.Sum(e => (double)e.duration) == 0 ? 0 : (ttt.Sum(e => (double)e.seq_total) / ttt.Sum(e => (double)e.duration)),
+                          tcp_session_cnt = ttt.Select(e => e.session_id).Distinct().Count(),
+                          packet_discard = 1.0 * ttt.Where(e => e.packet_discard_total == 1).Count() / ttt.Select(e => e.session_id).Distinct().Count()
                       };
 
             gridControl1.DataSource = syn.OrderByDescending(e => e.repeat_percent).ToList();
@@ -1038,7 +1049,7 @@ namespace GbPlatForm
         {
             Guangzhou_GbEntities gb = new Guangzhou_GbEntities();
 
-            int packet_cnt = gb_cell_repeat.Count();
+            int packet_cnt = gb_cell_repeat.Select(e => e.BeginFrameNum).Distinct().Count();
             int size = 5000;
             int step = packet_cnt / size + 1;
 
@@ -1138,8 +1149,28 @@ namespace GbPlatForm
 
                     //丢包的九三
 
-                    if (tcps.packet_count_repeat == 0 && (tcps.seq_ip2 + tcps.headersize) < 0)
-                        tcps.packet_discard_total = 1;
+                    /*
+                     * 未出现tcp重传? sndcp_set ?  tcp_segment? 
+                     * 但是 seq+包头!=ip？的问题？  这种情况可是tcp丢包？
+                     * */
+
+                    int sndcp = pd_no_3tcp.Where(e => e.sndcp_m == "Set").Count();
+                    int tcp = pd_no_3tcp.Where(e => e.tcp_need_segment == "Set").Count();
+
+                    if (tcps.packet_count_repeat == 0 && (tcps.seq_ip2 + tcps.headersize) != 0)
+                    {
+                        if (sndcp + tcp == 0)
+                            tcps.packet_discard_total = 1;
+                        else
+                        {
+                            if (sndcp != 0)
+                                tcps.packet_discard_total = 9;
+                            if (tcp != 0)
+                                tcps.packet_discard_total = 11;
+                        }
+                    }
+
+                    tcps.packet_sack_total = pd_no_3tcp.Where(e => e.tcp_options_sack_se_num > 0).Count();
 
                     //sessions.Add(tcps);
                     gb.myTcpSession.AddObject(tcps);
@@ -1153,8 +1184,10 @@ namespace GbPlatForm
 
 
             }
+
             string mess = string.Format("OK...size:{0}...step:{1}...cnt:{2}", size, step, packet_cnt);
             MessageBox.Show(mess);
+
         }
 
         private void button1_Click(object sender, EventArgs ee)
@@ -1171,6 +1204,7 @@ namespace GbPlatForm
 
         }
 
-  
+
     }
+
 }

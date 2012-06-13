@@ -425,6 +425,7 @@
             // navBarGroup7
             // 
             this.navBarGroup7.Caption = "navBarGroup7";
+            this.navBarGroup7.Expanded = true;
             this.navBarGroup7.Name = "navBarGroup7";
             // 
             // dockPanel2

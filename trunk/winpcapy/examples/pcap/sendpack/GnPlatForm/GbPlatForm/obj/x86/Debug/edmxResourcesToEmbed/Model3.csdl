@@ -1,8 +1,65 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="Guangzhou_GbModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
   <EntityContainer Name="Guangzhou_GbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Gb_DNS_Syn" EntityType="Guangzhou_GbModel.Gb_DNS_Syn" />
     <EntitySet Name="myTcpSession" EntityType="Guangzhou_GbModel.myTcpSession" />
   </EntityContainer>
+  <EntityType Name="Gb_DNS_Syn">
+    <Key>
+      <PropertyRef Name="FileNum" />
+      <PropertyRef Name="PacketNum" />
+    </Key>
+    <Property Type="Int32" Name="FileNum" Nullable="false" />
+    <Property Type="Int32" Name="PacketNum" Nullable="false" />
+    <Property Type="Int32" Name="BeginFileNum" />
+    <Property Type="Int32" Name="BeginFrameNum" />
+    <Property Type="DateTime" Name="PacketTime" />
+    <Property Type="Int32" Name="PacketTime_ms_" />
+    <Property Type="String" Name="DumpFor" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="Query" />
+    <Property Type="String" Name="Query_time" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="NS_BVCI" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="TLLI" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MCC" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MNC" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LAC" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="RAC" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CI" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Source_IP" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Dest_IP" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Source_Port" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Dest_Port" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Source_IP2" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Dest_IP2" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Source_Port2" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Dest_Port2" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="SP_Name" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Query_Type" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Query_Class" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="Query_Repeated" />
+    <Property Type="Int32" Name="Query_Repeated_delayFirst" />
+    <Property Type="Int32" Name="Response" />
+    <Property Type="Int32" Name="Response_delayFirst" />
+    <Property Type="String" Name="Response_timeFirst" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="IMSI" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="DNS_Reponse" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="DNS_Opcode" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="DNS_Authoritative" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="DNS_Truncated" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Recursion_Desired" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Recursion_Available" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="DNS_Authenticated" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="DNS_Reply_Code" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Time_To_Live" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="Data_Length" />
+    <Property Type="String" Name="SP_Address" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="dns_count_answers" />
+    <Property Type="Int32" Name="dns_count_auth_rr" />
+    <Property Type="Int32" Name="dns_count_add_rr" />
+    <Property Type="Int32" Name="dns_count_queries" />
+    <Property Type="Int32" Name="udp2_length" />
+    <Property Type="Int32" Name="dns_resp_type" />
+  </EntityType>
   <EntityType Name="myTcpSession">
     <Key>
       <PropertyRef Name="session_id" />
@@ -31,5 +88,6 @@
     <Property Type="Int32" Name="packet_count" />
     <Property Type="Int32" Name="packet_count_repeat" />
     <Property Type="Int32" Name="packet_discard_total" />
+    <Property Type="Int32" Name="packet_sack_total" />
   </EntityType>
 </Schema>
