@@ -11,3 +11,8 @@ iphone 手机发起的dns  ptr查询为自己的ip 的问题？
 
 
 5.？？？？
+
+
+
+
+6.未出现tcp重传? sndcp_set ?  tcp_segment?  但是 seq+包头!=ip？的问题？  这种情况可是tcp丢包？
