@@ -1733,6 +1733,78 @@ namespace GbPlatForm
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        public Nullable<global::System.Int32> llc_max
+        {
+            get
+            {
+                return _llc_max;
+            }
+            set
+            {
+                Onllc_maxChanging(value);
+                ReportPropertyChanging("llc_max");
+                _llc_max = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("llc_max");
+                Onllc_maxChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _llc_max;
+        partial void Onllc_maxChanging(Nullable<global::System.Int32> value);
+        partial void Onllc_maxChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> llc_min
+        {
+            get
+            {
+                return _llc_min;
+            }
+            set
+            {
+                Onllc_minChanging(value);
+                ReportPropertyChanging("llc_min");
+                _llc_min = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("llc_min");
+                Onllc_minChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _llc_min;
+        partial void Onllc_minChanging(Nullable<global::System.Int32> value);
+        partial void Onllc_minChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> llc_cnt
+        {
+            get
+            {
+                return _llc_cnt;
+            }
+            set
+            {
+                Onllc_cntChanging(value);
+                ReportPropertyChanging("llc_cnt");
+                _llc_cnt = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("llc_cnt");
+                Onllc_cntChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _llc_cnt;
+        partial void Onllc_cntChanging(Nullable<global::System.Int32> value);
+        partial void Onllc_cntChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
         public Nullable<global::System.Decimal> seq_max
         {
             get

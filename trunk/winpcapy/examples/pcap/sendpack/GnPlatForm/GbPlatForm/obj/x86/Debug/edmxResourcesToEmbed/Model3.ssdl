@@ -79,6 +79,9 @@
     <Property Name="ip2_rate" Type="float" />
     <Property Name="seq_total" Type="decimal" />
     <Property Name="ip2_min_len" Type="int" />
+    <Property Name="llc_max" Type="int" />
+    <Property Name="llc_min" Type="int" />
+    <Property Name="llc_cnt" Type="int" />
     <Property Name="seq_max" Type="decimal" />
     <Property Name="seq_nxt" Type="decimal" />
     <Property Name="seq_min" Type="decimal" />

@@ -79,6 +79,9 @@
     <Property Type="Double" Name="ip2_rate" />
     <Property Type="Decimal" Name="seq_total" Precision="18" Scale="0" />
     <Property Type="Int32" Name="ip2_min_len" />
+    <Property Type="Int32" Name="llc_max" />
+    <Property Type="Int32" Name="llc_min" />
+    <Property Type="Int32" Name="llc_cnt" />
     <Property Type="Decimal" Name="seq_max" Precision="18" Scale="0" />
     <Property Type="Decimal" Name="seq_nxt" Precision="18" Scale="0" />
     <Property Type="Decimal" Name="seq_min" Precision="18" Scale="0" />

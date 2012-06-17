@@ -70,6 +70,9 @@
           <ScalarProperty Name="seq_min" ColumnName="seq_min" />
           <ScalarProperty Name="seq_nxt" ColumnName="seq_nxt" />
           <ScalarProperty Name="seq_max" ColumnName="seq_max" />
+          <ScalarProperty Name="llc_cnt" ColumnName="llc_cnt" />
+          <ScalarProperty Name="llc_min" ColumnName="llc_min" />
+          <ScalarProperty Name="llc_max" ColumnName="llc_max" />
           <ScalarProperty Name="ip2_min_len" ColumnName="ip2_min_len" />
           <ScalarProperty Name="seq_total" ColumnName="seq_total" />
           <ScalarProperty Name="ip2_rate" ColumnName="ip2_rate" />
