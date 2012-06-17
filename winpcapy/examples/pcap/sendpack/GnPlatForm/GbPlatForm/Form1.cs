@@ -814,6 +814,12 @@ namespace GbPlatForm
                            p.ci,
                            p.imsi,
                            p.duration,
+
+                           p.llc_cnt,
+                           p.llc_max,
+                           p.llc_min,
+                           llc_discard = p.llc_cnt - (p.llc_max - p.llc_min)-1,
+
                            p.ip2_total,
                            p.seq_total,
                            p.seq_ip2,
@@ -1171,6 +1177,10 @@ namespace GbPlatForm
                     }
 
                     tcps.packet_sack_total = pd_no_3tcp.Where(e => e.tcp_options_sack_se_num > 0).Count();
+
+                    tcps.llc_max = packet_down.Max(e => e.llcgprs_nu);
+                    tcps.llc_min = packet_down.Min(e => e.llcgprs_nu);
+                    tcps.llc_cnt = packet_down.Count();
 
                     //sessions.Add(tcps);
                     gb.myTcpSession.AddObject(tcps);

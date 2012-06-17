@@ -153,6 +153,9 @@ namespace GnPlatForm
             sqlerver_segment = servercontext1.Gn_IP_Fragment;
 
             gb_ip_fragment = servercontext4.Gb_IP_Fragment;
+
+
+            //修改成远端？？
             gb_xid = servercontext2.Gb_XID;
             gb_pdp_xid = servercontext2.Gb_PDP_XID;
 
@@ -1870,8 +1873,14 @@ namespace GnPlatForm
         private void navBarItem39_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
         {
 
-            var total = gb_xid.Where(e => e.llcgprs_xid1type == 5).Where(e => e.C1llcgprs_xid1type == 5).Count();
+            var total = gb_xid
+                .Where(e => e.llcgprs_xid1type == 5)
+                .Where(e => e.C1llcgprs_xid1type == 5)
+                .Where(e => e.bssgp_direction != e.C1bssgp_direction)
+                .Count();
+
             var xid = from p in gb_xid
+                      where p.bssgp_direction != p.C1bssgp_direction
                       where p.llcgprs_xid1type == 5 && p.C1llcgprs_xid1type == 5
                       group p by new
                       {
@@ -1905,8 +1914,12 @@ namespace GnPlatForm
 
         private void navBarItem38_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
         {
-            var total = gb_xid.Where(e => e.llcgprs_xid1type == 5).Count();
+            var total = gb_xid
+                         .Where(e => e.bssgp_direction != e.C1bssgp_direction)
+                .Where(e => e.llcgprs_xid1type == 5).Count();
+
             var xid = from p in gb_xid
+                      where p.bssgp_direction != p.C1bssgp_direction
                       where p.llcgprs_xid1type == 5
                       group p by new { p.bssgp_direction, N201_U_Ne = p.llcgprs_xid1byte1 * 256 + p.llcgprs_xid1byte2 } into ttt
 
@@ -1932,9 +1945,12 @@ namespace GnPlatForm
 
         private void navBarItem37_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
         {
-            var total = gb_xid.Count();
-            var xid = from p in gb_xid
+            var total = gb_xid
+                .Where(e => e.bssgp_direction != e.C1bssgp_direction)
+                .Count();
 
+            var xid = from p in gb_xid
+                      where p.bssgp_direction != p.C1bssgp_direction
                       group p by new { p.bssgp_direction, p.llcgprs_xid1type } into ttt
 
                       select new
@@ -2000,12 +2016,14 @@ namespace GnPlatForm
             var total = gb_xid.Where(e => e.bssgp_direction == "Down")
                     .Where(e => e.llcgprs_xid1type == 5)
                     .Where(e => e.C1llcgprs_xid1type == 5)
-                    .Where(e => e.llcgprs_xid1byte1 * 256 + e.llcgprs_xid1byte2 != 1504)
+                     .Where(e => e.bssgp_direction != e.C1bssgp_direction)
+                //.Where(e => e.llcgprs_xid1byte1 * 256 + e.llcgprs_xid1byte2 != 1504)
                     .Count();
 
             var xid = from p in gb_xid
                       where p.bssgp_direction == "Down"
                       where p.llcgprs_xid1type == 5 && p.C1llcgprs_xid1type == 5
+                      where p.bssgp_direction != p.C1bssgp_direction
                       //where p.llcgprs_xid1byte1 * 256 + p.llcgprs_xid1byte2 != 1504
                       group p by new
                       {
@@ -2206,6 +2224,15 @@ namespace GnPlatForm
             gridView1.PopulateColumns();
             gridControl1.Refresh();
 
+        }
+
+        private void navBarItem44_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
+        {
+            var maxt = gb_xid.Max(e => e.PacketTime);
+            var mint = gb_xid.Min(e => e.PacketTime);
+            TimeSpan ts = maxt.Value - mint.Value;
+            var ttim = mint.Value.ToString() + "-" + maxt.Value.ToString() + "," + ts.TotalSeconds.ToString();
+            textBox1.Text = ttim.ToString();
         }
     }
 }
