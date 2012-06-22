@@ -68,6 +68,38 @@ namespace GnPlatForm.SqlServer
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<Gb_PDP_XID> Gb_PDP_XID
+        {
+            get
+            {
+                if ((_Gb_PDP_XID == null))
+                {
+                    _Gb_PDP_XID = base.CreateObjectSet<Gb_PDP_XID>("Gb_PDP_XID");
+                }
+                return _Gb_PDP_XID;
+            }
+        }
+        private ObjectSet<Gb_PDP_XID> _Gb_PDP_XID;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Gb_auth_imeisv> Gb_auth_imeisv
+        {
+            get
+            {
+                if ((_Gb_auth_imeisv == null))
+                {
+                    _Gb_auth_imeisv = base.CreateObjectSet<Gb_auth_imeisv>("Gb_auth_imeisv");
+                }
+                return _Gb_auth_imeisv;
+            }
+        }
+        private ObjectSet<Gb_auth_imeisv> _Gb_auth_imeisv;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<imeitype> imeitype
         {
             get
@@ -96,25 +128,25 @@ namespace GnPlatForm.SqlServer
             }
         }
         private ObjectSet<Gb_XID> _Gb_XID;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Gb_PDP_XID> Gb_PDP_XID
-        {
-            get
-            {
-                if ((_Gb_PDP_XID == null))
-                {
-                    _Gb_PDP_XID = base.CreateObjectSet<Gb_PDP_XID>("Gb_PDP_XID");
-                }
-                return _Gb_PDP_XID;
-            }
-        }
-        private ObjectSet<Gb_PDP_XID> _Gb_PDP_XID;
 
         #endregion
         #region AddTo Methods
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Gb_PDP_XID EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToGb_PDP_XID(Gb_PDP_XID gb_PDP_XID)
+        {
+            base.AddObject("Gb_PDP_XID", gb_PDP_XID);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Gb_auth_imeisv EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToGb_auth_imeisv(Gb_auth_imeisv gb_auth_imeisv)
+        {
+            base.AddObject("Gb_auth_imeisv", gb_auth_imeisv);
+        }
     
         /// <summary>
         /// Deprecated Method for adding a new object to the imeitype EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
@@ -131,14 +163,6 @@ namespace GnPlatForm.SqlServer
         {
             base.AddObject("Gb_XID", gb_XID);
         }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Gb_PDP_XID EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToGb_PDP_XID(Gb_PDP_XID gb_PDP_XID)
-        {
-            base.AddObject("Gb_PDP_XID", gb_PDP_XID);
-        }
 
         #endregion
     }
@@ -147,6 +171,258 @@ namespace GnPlatForm.SqlServer
     #endregion
     
     #region Entities
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="GuangZhou_GnModel2", Name="Gb_auth_imeisv")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Gb_auth_imeisv : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Gb_auth_imeisv object.
+        /// </summary>
+        /// <param name="fileNum">Initial value of the FileNum property.</param>
+        /// <param name="packetNum">Initial value of the PacketNum property.</param>
+        public static Gb_auth_imeisv CreateGb_auth_imeisv(global::System.Int32 fileNum, global::System.Int32 packetNum)
+        {
+            Gb_auth_imeisv gb_auth_imeisv = new Gb_auth_imeisv();
+            gb_auth_imeisv.FileNum = fileNum;
+            gb_auth_imeisv.PacketNum = packetNum;
+            return gb_auth_imeisv;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 FileNum
+        {
+            get
+            {
+                return _FileNum;
+            }
+            set
+            {
+                if (_FileNum != value)
+                {
+                    OnFileNumChanging(value);
+                    ReportPropertyChanging("FileNum");
+                    _FileNum = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("FileNum");
+                    OnFileNumChanged();
+                }
+            }
+        }
+        private global::System.Int32 _FileNum;
+        partial void OnFileNumChanging(global::System.Int32 value);
+        partial void OnFileNumChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 PacketNum
+        {
+            get
+            {
+                return _PacketNum;
+            }
+            set
+            {
+                if (_PacketNum != value)
+                {
+                    OnPacketNumChanging(value);
+                    ReportPropertyChanging("PacketNum");
+                    _PacketNum = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("PacketNum");
+                    OnPacketNumChanged();
+                }
+            }
+        }
+        private global::System.Int32 _PacketNum;
+        partial void OnPacketNumChanging(global::System.Int32 value);
+        partial void OnPacketNumChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> BeginFileNum
+        {
+            get
+            {
+                return _BeginFileNum;
+            }
+            set
+            {
+                OnBeginFileNumChanging(value);
+                ReportPropertyChanging("BeginFileNum");
+                _BeginFileNum = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("BeginFileNum");
+                OnBeginFileNumChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _BeginFileNum;
+        partial void OnBeginFileNumChanging(Nullable<global::System.Int32> value);
+        partial void OnBeginFileNumChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> BeginFrameNum
+        {
+            get
+            {
+                return _BeginFrameNum;
+            }
+            set
+            {
+                OnBeginFrameNumChanging(value);
+                ReportPropertyChanging("BeginFrameNum");
+                _BeginFrameNum = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("BeginFrameNum");
+                OnBeginFrameNumChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _BeginFrameNum;
+        partial void OnBeginFrameNumChanging(Nullable<global::System.Int32> value);
+        partial void OnBeginFrameNumChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> PacketTime
+        {
+            get
+            {
+                return _PacketTime;
+            }
+            set
+            {
+                OnPacketTimeChanging(value);
+                ReportPropertyChanging("PacketTime");
+                _PacketTime = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PacketTime");
+                OnPacketTimeChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _PacketTime;
+        partial void OnPacketTimeChanging(Nullable<global::System.DateTime> value);
+        partial void OnPacketTimeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> PacketTime_ms_
+        {
+            get
+            {
+                return _PacketTime_ms_;
+            }
+            set
+            {
+                OnPacketTime_ms_Changing(value);
+                ReportPropertyChanging("PacketTime_ms_");
+                _PacketTime_ms_ = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PacketTime_ms_");
+                OnPacketTime_ms_Changed();
+            }
+        }
+        private Nullable<global::System.Int32> _PacketTime_ms_;
+        partial void OnPacketTime_ms_Changing(Nullable<global::System.Int32> value);
+        partial void OnPacketTime_ms_Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String DumpFor
+        {
+            get
+            {
+                return _DumpFor;
+            }
+            set
+            {
+                OnDumpForChanging(value);
+                ReportPropertyChanging("DumpFor");
+                _DumpFor = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("DumpFor");
+                OnDumpForChanged();
+            }
+        }
+        private global::System.String _DumpFor;
+        partial void OnDumpForChanging(global::System.String value);
+        partial void OnDumpForChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> Auth
+        {
+            get
+            {
+                return _Auth;
+            }
+            set
+            {
+                OnAuthChanging(value);
+                ReportPropertyChanging("Auth");
+                _Auth = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Auth");
+                OnAuthChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _Auth;
+        partial void OnAuthChanging(Nullable<global::System.Int32> value);
+        partial void OnAuthChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String gsm_a_imeisv
+        {
+            get
+            {
+                return _gsm_a_imeisv;
+            }
+            set
+            {
+                Ongsm_a_imeisvChanging(value);
+                ReportPropertyChanging("gsm_a_imeisv");
+                _gsm_a_imeisv = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("gsm_a_imeisv");
+                Ongsm_a_imeisvChanged();
+            }
+        }
+        private global::System.String _gsm_a_imeisv;
+        partial void Ongsm_a_imeisvChanging(global::System.String value);
+        partial void Ongsm_a_imeisvChanged();
+
+        #endregion
+    
+    }
     
     /// <summary>
     /// No Metadata Documentation available.

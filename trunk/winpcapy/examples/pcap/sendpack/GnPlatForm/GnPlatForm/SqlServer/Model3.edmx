@@ -6,10 +6,32 @@
     <edmx:StorageModels>
     <Schema Namespace="GuangZhou_GnModel2.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="GuangZhou_GnModel2StoreContainer">
+          <EntitySet Name="Gb_auth_imeisv" EntityType="GuangZhou_GnModel2.Store.Gb_auth_imeisv" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Gb_PDP_XID" EntityType="GuangZhou_GnModel2.Store.Gb_PDP_XID" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Gb_XID" EntityType="GuangZhou_GnModel2.Store.Gb_XID" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="imeitype" EntityType="GuangZhou_GnModel2.Store.imeitype" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="imeitype" EntityType="GuangZhou_GnModel2.Store.imeitype" store:Type="Tables" store:Schema="dbo" store:Name="imeitype">
+            <DefiningQuery>SELECT 
+      [imeitype].[imei] AS [imei], 
+      [imeitype].[imeifactory] AS [imeifactory], 
+      [imeitype].[imeiname] AS [imeiname]
+      FROM [dbo].[imeitype] AS [imeitype]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
+        <EntityType Name="Gb_auth_imeisv">
+          <Key>
+            <PropertyRef Name="FileNum" />
+            <PropertyRef Name="PacketNum" />
+          </Key>
+          <Property Name="FileNum" Type="int" Nullable="false" />
+          <Property Name="PacketNum" Type="int" Nullable="false" />
+          <Property Name="BeginFileNum" Type="int" />
+          <Property Name="BeginFrameNum" Type="int" />
+          <Property Name="PacketTime" Type="datetime" />
+          <Property Name="PacketTime(ms)" Type="int" />
+          <Property Name="DumpFor" Type="nvarchar" MaxLength="30" />
+          <Property Name="Auth" Type="int" />
+          <Property Name="gsm_a_imeisv" Type="nvarchar" MaxLength="200" />
+        </EntityType>
         <EntityType Name="Gb_PDP_XID">
           <Key>
             <PropertyRef Name="FileNum" />
@@ -82,6 +104,9 @@
           <Property Name="1llcgprs_xid1byte1" Type="int" />
           <Property Name="1llcgprs_xid1byte2" Type="int" />
         </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Guangzhou_Gi.dbo.imeitype' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
         <EntityType Name="imeitype">
           <Key>
             <PropertyRef Name="imei" />
@@ -95,42 +120,11 @@
     <edmx:ConceptualModels>
       <Schema Namespace="GuangZhou_GnModel2" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="GuangZhou_GnEntities2" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="Gb_PDP_XID" EntityType="GuangZhou_GnModel2.Gb_PDP_XID" />
+          <EntitySet Name="Gb_auth_imeisv" EntityType="GuangZhou_GnModel2.Gb_auth_imeisv" />
           <EntitySet Name="imeitype" EntityType="GuangZhou_GnModel2.imeitype" />
           <EntitySet Name="Gb_XID" EntityType="GuangZhou_GnModel2.Gb_XID" />
-          <EntitySet Name="Gb_PDP_XID" EntityType="GuangZhou_GnModel2.Gb_PDP_XID" />
         </EntityContainer>
-        <EntityType Name="imeitype">
-          <Key>
-            <PropertyRef Name="imei" />
-          </Key>
-          <Property Type="String" Name="imei" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="imeifactory" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="imeiname" MaxLength="500" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Gb_XID">
-          <Key>
-            <PropertyRef Name="FileNum" />
-            <PropertyRef Name="PacketNum" />
-          </Key>
-          <Property Type="Int32" Name="FileNum" Nullable="false" />
-          <Property Type="Int32" Name="PacketNum" Nullable="false" />
-          <Property Type="Int32" Name="BeginFileNum" />
-          <Property Type="Int32" Name="BeginFrameNum" />
-          <Property Type="DateTime" Name="PacketTime" />
-          <Property Type="Int32" Name="PacketTime_ms_" />
-          <Property Type="String" Name="DumpFor" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="U_Exchange_identification" />
-          <Property Type="String" Name="bssgp_direction" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="llcgprs_xid1type" />
-          <Property Type="Int32" Name="llcgprs_xid1byte1" />
-          <Property Type="Int32" Name="llcgprs_xid1byte2" />
-          <Property Type="Int32" Name="U_Exchange_identification1" />
-          <Property Type="Int32" Name="U_Exchange_identification1_delayFirst" />
-          <Property Type="String" Name="C1bssgp_direction" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="C1llcgprs_xid1type" />
-          <Property Type="Int32" Name="C1llcgprs_xid1byte1" />
-          <Property Type="Int32" Name="C1llcgprs_xid1byte2" />
-        </EntityType>
         <EntityType Name="Gb_PDP_XID">
           <Key>
             <PropertyRef Name="FileNum" />
@@ -179,45 +173,59 @@
           <Property Type="Int32" Name="llcgprs_xid1byte1" />
           <Property Type="Int32" Name="llcgprs_xid1byte2" />
         </EntityType>
+        <EntityType Name="Gb_auth_imeisv">
+          <Key>
+            <PropertyRef Name="FileNum" />
+            <PropertyRef Name="PacketNum" />
+          </Key>
+          <Property Type="Int32" Name="FileNum" Nullable="false" />
+          <Property Type="Int32" Name="PacketNum" Nullable="false" />
+          <Property Type="Int32" Name="BeginFileNum" />
+          <Property Type="Int32" Name="BeginFrameNum" />
+          <Property Type="DateTime" Name="PacketTime" />
+          <Property Type="Int32" Name="PacketTime_ms_" />
+          <Property Type="String" Name="DumpFor" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Auth" />
+          <Property Type="String" Name="gsm_a_imeisv" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="imeitype">
+          <Key>
+            <PropertyRef Name="imei" />
+          </Key>
+          <Property Type="String" Name="imei" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="imeifactory" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="imeiname" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Gb_XID">
+          <Key>
+            <PropertyRef Name="FileNum" />
+            <PropertyRef Name="PacketNum" />
+          </Key>
+          <Property Type="Int32" Name="FileNum" Nullable="false" />
+          <Property Type="Int32" Name="PacketNum" Nullable="false" />
+          <Property Type="Int32" Name="BeginFileNum" />
+          <Property Type="Int32" Name="BeginFrameNum" />
+          <Property Type="DateTime" Name="PacketTime" />
+          <Property Type="Int32" Name="PacketTime_ms_" />
+          <Property Type="String" Name="DumpFor" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="U_Exchange_identification" />
+          <Property Type="String" Name="bssgp_direction" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="llcgprs_xid1type" />
+          <Property Type="Int32" Name="llcgprs_xid1byte1" />
+          <Property Type="Int32" Name="llcgprs_xid1byte2" />
+          <Property Type="Int32" Name="U_Exchange_identification1" />
+          <Property Type="Int32" Name="U_Exchange_identification1_delayFirst" />
+          <Property Type="String" Name="C1bssgp_direction" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="C1llcgprs_xid1type" />
+          <Property Type="Int32" Name="C1llcgprs_xid1byte1" />
+          <Property Type="Int32" Name="C1llcgprs_xid1byte2" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="GuangZhou_GnModel2StoreContainer" CdmEntityContainer="GuangZhou_GnEntities2" >
-        <EntitySetMapping Name="imeitype">
-            <EntityTypeMapping TypeName="GuangZhou_GnModel2.imeitype">
-              <MappingFragment StoreEntitySet="imeitype">
-                <ScalarProperty Name="imeiname" ColumnName="imeiname" />
-                <ScalarProperty Name="imeifactory" ColumnName="imeifactory" />
-                <ScalarProperty Name="imei" ColumnName="imei" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Gb_XID">
-            <EntityTypeMapping TypeName="GuangZhou_GnModel2.Gb_XID">
-              <MappingFragment StoreEntitySet="Gb_XID">
-                <ScalarProperty Name="C1llcgprs_xid1byte2" ColumnName="1llcgprs_xid1byte2" />
-                <ScalarProperty Name="C1llcgprs_xid1byte1" ColumnName="1llcgprs_xid1byte1" />
-                <ScalarProperty Name="C1llcgprs_xid1type" ColumnName="1llcgprs_xid1type" />
-                <ScalarProperty Name="C1bssgp_direction" ColumnName="1bssgp_direction" />
-                <ScalarProperty Name="U_Exchange_identification1_delayFirst" ColumnName="U_Exchange_identification1_delayFirst" />
-                <ScalarProperty Name="U_Exchange_identification1" ColumnName="U_Exchange_identification1" />
-                <ScalarProperty Name="llcgprs_xid1byte2" ColumnName="llcgprs_xid1byte2" />
-                <ScalarProperty Name="llcgprs_xid1byte1" ColumnName="llcgprs_xid1byte1" />
-                <ScalarProperty Name="llcgprs_xid1type" ColumnName="llcgprs_xid1type" />
-                <ScalarProperty Name="bssgp_direction" ColumnName="bssgp_direction" />
-                <ScalarProperty Name="U_Exchange_identification" ColumnName="U_Exchange_identification" />
-                <ScalarProperty Name="DumpFor" ColumnName="DumpFor" />
-                <ScalarProperty Name="PacketTime_ms_" ColumnName="PacketTime(ms)" />
-                <ScalarProperty Name="PacketTime" ColumnName="PacketTime" />
-                <ScalarProperty Name="BeginFrameNum" ColumnName="BeginFrameNum" />
-                <ScalarProperty Name="BeginFileNum" ColumnName="BeginFileNum" />
-                <ScalarProperty Name="PacketNum" ColumnName="PacketNum" />
-                <ScalarProperty Name="FileNum" ColumnName="FileNum" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Gb_PDP_XID">
             <EntityTypeMapping TypeName="GuangZhou_GnModel2.Gb_PDP_XID">
               <MappingFragment StoreEntitySet="Gb_PDP_XID">
@@ -266,6 +274,54 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Gb_auth_imeisv">
+            <EntityTypeMapping TypeName="GuangZhou_GnModel2.Gb_auth_imeisv">
+              <MappingFragment StoreEntitySet="Gb_auth_imeisv">
+                <ScalarProperty Name="gsm_a_imeisv" ColumnName="gsm_a_imeisv" />
+                <ScalarProperty Name="Auth" ColumnName="Auth" />
+                <ScalarProperty Name="DumpFor" ColumnName="DumpFor" />
+                <ScalarProperty Name="PacketTime_ms_" ColumnName="PacketTime(ms)" />
+                <ScalarProperty Name="PacketTime" ColumnName="PacketTime" />
+                <ScalarProperty Name="BeginFrameNum" ColumnName="BeginFrameNum" />
+                <ScalarProperty Name="BeginFileNum" ColumnName="BeginFileNum" />
+                <ScalarProperty Name="PacketNum" ColumnName="PacketNum" />
+                <ScalarProperty Name="FileNum" ColumnName="FileNum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="imeitype">
+            <EntityTypeMapping TypeName="GuangZhou_GnModel2.imeitype">
+              <MappingFragment StoreEntitySet="imeitype">
+                <ScalarProperty Name="imeiname" ColumnName="imeiname" />
+                <ScalarProperty Name="imeifactory" ColumnName="imeifactory" />
+                <ScalarProperty Name="imei" ColumnName="imei" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gb_XID">
+            <EntityTypeMapping TypeName="GuangZhou_GnModel2.Gb_XID">
+              <MappingFragment StoreEntitySet="Gb_XID">
+                <ScalarProperty Name="C1llcgprs_xid1byte2" ColumnName="1llcgprs_xid1byte2" />
+                <ScalarProperty Name="C1llcgprs_xid1byte1" ColumnName="1llcgprs_xid1byte1" />
+                <ScalarProperty Name="C1llcgprs_xid1type" ColumnName="1llcgprs_xid1type" />
+                <ScalarProperty Name="C1bssgp_direction" ColumnName="1bssgp_direction" />
+                <ScalarProperty Name="U_Exchange_identification1_delayFirst" ColumnName="U_Exchange_identification1_delayFirst" />
+                <ScalarProperty Name="U_Exchange_identification1" ColumnName="U_Exchange_identification1" />
+                <ScalarProperty Name="llcgprs_xid1byte2" ColumnName="llcgprs_xid1byte2" />
+                <ScalarProperty Name="llcgprs_xid1byte1" ColumnName="llcgprs_xid1byte1" />
+                <ScalarProperty Name="llcgprs_xid1type" ColumnName="llcgprs_xid1type" />
+                <ScalarProperty Name="bssgp_direction" ColumnName="bssgp_direction" />
+                <ScalarProperty Name="U_Exchange_identification" ColumnName="U_Exchange_identification" />
+                <ScalarProperty Name="DumpFor" ColumnName="DumpFor" />
+                <ScalarProperty Name="PacketTime_ms_" ColumnName="PacketTime(ms)" />
+                <ScalarProperty Name="PacketTime" ColumnName="PacketTime" />
+                <ScalarProperty Name="BeginFrameNum" ColumnName="BeginFrameNum" />
+                <ScalarProperty Name="BeginFileNum" ColumnName="BeginFileNum" />
+                <ScalarProperty Name="PacketNum" ColumnName="PacketNum" />
+                <ScalarProperty Name="FileNum" ColumnName="FileNum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -287,9 +343,10 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="Model3" ZoomLevel="55" >
-        <EntityTypeShape EntityType="GuangZhou_GnModel2.imeitype" Width="1.5" PointX="4.875" PointY="2.375" Height="1.4535937499999996" />
-        <EntityTypeShape EntityType="GuangZhou_GnModel2.Gb_XID" Width="1.5" PointX="0.75" PointY="0.75" Height="3.9828906249999996" />
         <EntityTypeShape EntityType="GuangZhou_GnModel2.Gb_PDP_XID" Width="1.5" PointX="3.375" PointY="4.75" Height="8.029765625" />
+        <EntityTypeShape EntityType="GuangZhou_GnModel2.Gb_auth_imeisv" Width="1.5" PointX="3.375" PointY="0.75" Height="2.4653124999999996" />
+        <EntityTypeShape EntityType="GuangZhou_GnModel2.imeitype" Width="1.5" PointX="5.375" PointY="0.75" Height="1.4535937499999996" />
+        <EntityTypeShape EntityType="GuangZhou_GnModel2.Gb_XID" Width="1.5" PointX="0.75" PointY="0.75" Height="3.9828906249999996" />
       </Diagram>
     </Diagrams>
   </Designer>

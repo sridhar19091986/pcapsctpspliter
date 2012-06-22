@@ -1,10 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="GuangZhou_GnModel2.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
   <EntityContainer Name="GuangZhou_GnModel2StoreContainer">
+    <EntitySet Name="Gb_auth_imeisv" EntityType="GuangZhou_GnModel2.Store.Gb_auth_imeisv" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Gb_PDP_XID" EntityType="GuangZhou_GnModel2.Store.Gb_PDP_XID" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Gb_XID" EntityType="GuangZhou_GnModel2.Store.Gb_XID" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="imeitype" EntityType="GuangZhou_GnModel2.Store.imeitype" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="imeitype" EntityType="GuangZhou_GnModel2.Store.imeitype" store:Type="Tables" store:Schema="dbo" store:Name="imeitype">
+      <DefiningQuery>SELECT 
+      [imeitype].[imei] AS [imei], 
+      [imeitype].[imeifactory] AS [imeifactory], 
+      [imeitype].[imeiname] AS [imeiname]
+      FROM [dbo].[imeitype] AS [imeitype]</DefiningQuery>
+    </EntitySet>
   </EntityContainer>
+  <EntityType Name="Gb_auth_imeisv">
+    <Key>
+      <PropertyRef Name="FileNum" />
+      <PropertyRef Name="PacketNum" />
+    </Key>
+    <Property Name="FileNum" Type="int" Nullable="false" />
+    <Property Name="PacketNum" Type="int" Nullable="false" />
+    <Property Name="BeginFileNum" Type="int" />
+    <Property Name="BeginFrameNum" Type="int" />
+    <Property Name="PacketTime" Type="datetime" />
+    <Property Name="PacketTime(ms)" Type="int" />
+    <Property Name="DumpFor" Type="nvarchar" MaxLength="30" />
+    <Property Name="Auth" Type="int" />
+    <Property Name="gsm_a_imeisv" Type="nvarchar" MaxLength="200" />
+  </EntityType>
   <EntityType Name="Gb_PDP_XID">
     <Key>
       <PropertyRef Name="FileNum" />
@@ -77,6 +99,9 @@
     <Property Name="1llcgprs_xid1byte1" Type="int" />
     <Property Name="1llcgprs_xid1byte2" Type="int" />
   </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'Guangzhou_Gi.dbo.imeitype' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
   <EntityType Name="imeitype">
     <Key>
       <PropertyRef Name="imei" />

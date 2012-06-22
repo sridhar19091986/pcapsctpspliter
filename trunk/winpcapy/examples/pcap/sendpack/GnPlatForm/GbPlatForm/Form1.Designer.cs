@@ -251,6 +251,7 @@
             // navBarGroup2
             // 
             this.navBarGroup2.Caption = "Export-Excel";
+            this.navBarGroup2.Expanded = true;
             this.navBarGroup2.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem5)});
             this.navBarGroup2.Name = "navBarGroup2";
@@ -264,6 +265,7 @@
             // navBarGroup3
             // 
             this.navBarGroup3.Caption = "gb_cell_syn";
+            this.navBarGroup3.Expanded = true;
             this.navBarGroup3.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem10),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem11),
@@ -312,6 +314,7 @@
             // navBarGroup4
             // 
             this.navBarGroup4.Caption = "service1.ess.apple.com DNS查询成功率优化建议";
+            this.navBarGroup4.Expanded = true;
             this.navBarGroup4.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem13),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem15)});
@@ -332,6 +335,7 @@
             // navBarGroup5
             // 
             this.navBarGroup5.Caption = "gb_pdp_fin";
+            this.navBarGroup5.Expanded = true;
             this.navBarGroup5.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem14),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem17)});
@@ -352,7 +356,6 @@
             // navBarGroup6
             // 
             this.navBarGroup6.Caption = "Gb_Cell_Repeat";
-            this.navBarGroup6.Expanded = true;
             this.navBarGroup6.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem22),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem23),
@@ -425,7 +428,6 @@
             // navBarGroup7
             // 
             this.navBarGroup7.Caption = "navBarGroup7";
-            this.navBarGroup7.Expanded = true;
             this.navBarGroup7.Name = "navBarGroup7";
             // 
             // dockPanel2

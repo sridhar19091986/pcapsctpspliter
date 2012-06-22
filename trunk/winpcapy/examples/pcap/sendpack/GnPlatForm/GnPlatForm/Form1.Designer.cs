@@ -90,6 +90,9 @@
             this.navBarItem41 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem30 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem44 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem45 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem46 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem48 = new DevExpress.XtraNavBar.NavBarItem();
             this.dockPanel1 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.button1 = new System.Windows.Forms.Button();
@@ -111,7 +114,7 @@
             this.gridControl1.Location = new System.Drawing.Point(3, 3);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(428, 353);
+            this.gridControl1.Size = new System.Drawing.Size(530, 448);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -133,15 +136,15 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(440, 359);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(543, 454);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // panel1
             // 
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(437, 3);
+            this.panel1.Location = new System.Drawing.Point(539, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1, 353);
+            this.panel1.Size = new System.Drawing.Size(1, 448);
             this.panel1.TabIndex = 2;
             // 
             // dockManager1
@@ -164,10 +167,10 @@
             this.dockPanel5.DockVertical = DevExpress.Utils.DefaultBoolean.True;
             this.dockPanel5.ID = new System.Guid("1d3829bc-d384-4e54-a943-7f0a766145d1");
             this.dockPanel5.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.dockPanel5.Location = new System.Drawing.Point(440, 0);
+            this.dockPanel5.Location = new System.Drawing.Point(543, 0);
             this.dockPanel5.Name = "dockPanel5";
             this.dockPanel5.OriginalSize = new System.Drawing.Size(321, 453);
-            this.dockPanel5.Size = new System.Drawing.Size(321, 456);
+            this.dockPanel5.Size = new System.Drawing.Size(321, 551);
             this.dockPanel5.Text = "报告数据输出";
             // 
             // dockPanel5_Container
@@ -175,7 +178,7 @@
             this.dockPanel5_Container.Controls.Add(this.navBarControl1);
             this.dockPanel5_Container.Location = new System.Drawing.Point(4, 23);
             this.dockPanel5_Container.Name = "dockPanel5_Container";
-            this.dockPanel5_Container.Size = new System.Drawing.Size(313, 429);
+            this.dockPanel5_Container.Size = new System.Drawing.Size(313, 524);
             this.dockPanel5_Container.TabIndex = 0;
             // 
             // navBarControl1
@@ -236,11 +239,14 @@
             this.navBarItem34,
             this.navBarItem35,
             this.navBarItem36,
-            this.navBarItem44});
+            this.navBarItem44,
+            this.navBarItem45,
+            this.navBarItem46,
+            this.navBarItem48});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 140;
-            this.navBarControl1.Size = new System.Drawing.Size(313, 429);
+            this.navBarControl1.Size = new System.Drawing.Size(313, 524);
             this.navBarControl1.TabIndex = 16;
             this.navBarControl1.Text = "navBarControl1";
             this.navBarControl1.Click += new System.EventHandler(this.navBarControl1_Click);
@@ -486,6 +492,7 @@
             // navBarGroup7
             // 
             this.navBarGroup7.Caption = "IP包分片优化专题-Gb接口IP分片优化建议2";
+            this.navBarGroup7.Expanded = true;
             this.navBarGroup7.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem31),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem32),
@@ -513,7 +520,6 @@
             // navBarGroup8
             // 
             this.navBarGroup8.Caption = "IP包分片优化专题-Gb接口IP分片优化建议3";
-            this.navBarGroup8.Expanded = true;
             this.navBarGroup8.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem42),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem43),
@@ -536,7 +542,8 @@
             // 
             // navBarItem3
             // 
-            this.navBarItem3.Caption = "pdp->xid";
+            this.navBarItem3.CanDrag = false;
+            this.navBarItem3.Caption = "pdp->xid---------2";
             this.navBarItem3.Name = "navBarItem3";
             this.navBarItem3.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem3_LinkClicked_1);
             // 
@@ -563,7 +570,10 @@
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem40),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem41),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem30),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem44)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem44),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem45),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem46),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem48)});
             this.navBarGroup9.Name = "navBarGroup9";
             // 
             // navBarItem37
@@ -580,7 +590,7 @@
             // 
             // navBarItem39
             // 
-            this.navBarItem39.Caption = "N201_U正确协商比例分布---1";
+            this.navBarItem39.Caption = "N201_U正确协商比例分布---1----2";
             this.navBarItem39.Name = "navBarItem39";
             this.navBarItem39.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem39_LinkClicked);
             // 
@@ -604,19 +614,38 @@
             // 
             // navBarItem44
             // 
-            this.navBarItem44.Caption = "navBarItem44";
+            this.navBarItem44.Caption = "统计时间";
             this.navBarItem44.Name = "navBarItem44";
             this.navBarItem44.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem44_LinkClicked);
+            // 
+            // navBarItem45
+            // 
+            this.navBarItem45.Caption = "Gb接口N201U协商发起方---1";
+            this.navBarItem45.Name = "navBarItem45";
+            this.navBarItem45.LinkPressed += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem45_LinkPressed);
+            this.navBarItem45.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem45_LinkClicked);
+            // 
+            // navBarItem46
+            // 
+            this.navBarItem46.Caption = "Gb接口N201U协商发起方----2";
+            this.navBarItem46.Name = "navBarItem46";
+            this.navBarItem46.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem46_LinkClicked);
+            // 
+            // navBarItem48
+            // 
+            this.navBarItem48.Caption = "N201U参数优化Gb信令流对比";
+            this.navBarItem48.Name = "navBarItem48";
+            this.navBarItem48.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem48_LinkClicked);
             // 
             // dockPanel1
             // 
             this.dockPanel1.Controls.Add(this.dockPanel1_Container);
             this.dockPanel1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Bottom;
             this.dockPanel1.ID = new System.Guid("93cb30ea-d126-481c-a0ee-b37173e761d8");
-            this.dockPanel1.Location = new System.Drawing.Point(0, 359);
+            this.dockPanel1.Location = new System.Drawing.Point(0, 454);
             this.dockPanel1.Name = "dockPanel1";
             this.dockPanel1.OriginalSize = new System.Drawing.Size(200, 97);
-            this.dockPanel1.Size = new System.Drawing.Size(440, 97);
+            this.dockPanel1.Size = new System.Drawing.Size(543, 97);
             this.dockPanel1.Text = "dockPanel1";
             // 
             // dockPanel1_Container
@@ -625,7 +654,7 @@
             this.dockPanel1_Container.Controls.Add(this.textBox1);
             this.dockPanel1_Container.Location = new System.Drawing.Point(4, 23);
             this.dockPanel1_Container.Name = "dockPanel1_Container";
-            this.dockPanel1_Container.Size = new System.Drawing.Size(432, 70);
+            this.dockPanel1_Container.Size = new System.Drawing.Size(535, 70);
             this.dockPanel1_Container.TabIndex = 0;
             // 
             // button1
@@ -649,7 +678,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(761, 456);
+            this.ClientSize = new System.Drawing.Size(864, 551);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.dockPanel1);
             this.Controls.Add(this.dockPanel5);
@@ -738,5 +767,8 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem35;
         private DevExpress.XtraNavBar.NavBarItem navBarItem36;
         private DevExpress.XtraNavBar.NavBarItem navBarItem44;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem45;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem46;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem48;
     }
 }

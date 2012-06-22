@@ -167,3 +167,18 @@ alter  COLUMN  [imei] nvarchar(50) not null
 
 go
 alter table [GuangZhou_Gn].[dbo].[imeitype] add CONSTRAINT PK_imei PRIMARY KEY (imei);
+
+
+
+USE [Guangzhou_Gi]
+GO
+select * into imeitype from GuangZhou_Gn.dbo.imeitype
+
+insert into [Guangzhou_Gi].[dbo].[imeitype]
+
+select cast([IMEI] as decimal) as [imei]
+      ,[厂商] as [imeifactory]
+      ,[型号] as [imeiname]
+
+  FROM [Guangzhou_Gi].[dbo].[NEW$]
+  where [IMEI] is not null
