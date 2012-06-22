@@ -303,7 +303,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="Model1" ZoomLevel="93">
+      <Diagram Name="Model1" ZoomLevel="39">
         <EntityTypeShape EntityType="GuangZhou_GnModel.mpos_gn_common" Width="1.5" PointX="0.75" PointY="0.75" Height="14.943177083333332" IsExpanded="true" />
       </Diagram>
     </Diagrams>

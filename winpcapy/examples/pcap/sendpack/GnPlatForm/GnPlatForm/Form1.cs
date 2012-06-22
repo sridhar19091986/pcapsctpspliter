@@ -126,6 +126,10 @@ namespace GnPlatForm
 
         private ObjectQuery<Gb_PDP_XID> gb_pdp_xid;
 
+        private ObjectQuery<Gb_auth_imeisv> gb_auth_imei;
+
+        private ObjectQuery<imeitype> gb_imeitypes;
+
         public HashSet<string> url_list;
 
         private void Form1_Load(object sender, EventArgs ee)
@@ -158,6 +162,10 @@ namespace GnPlatForm
             //修改成远端？？
             gb_xid = servercontext2.Gb_XID;
             gb_pdp_xid = servercontext2.Gb_PDP_XID;
+            gb_auth_imei = servercontext2.Gb_auth_imeisv;
+            gb_imeitypes = servercontext2.imeitype;
+
+
 
 
             url_list = new HashSet<string>();
@@ -1895,7 +1903,7 @@ namespace GnPlatForm
                           ttt.Key.bssgp_direction,
                           ttt.Key.N201_U,
                           ttt.Key.N201_U_Result,
-
+                          tlli_cnt = ttt.Select(e => e.BeginFrameNum).Distinct().Count(),
                           cnt = ttt.Count(),
                           percent = 1.0 * ttt.Count() / total,
 
@@ -2080,6 +2088,7 @@ namespace GnPlatForm
                       {
                           ttt.Key.DumpFor,
                           //ttt.Key.bssgp_direction,
+                          tlli_cnt = ttt.Select(e => e.BeginFrameNum).Distinct().Count(),
                           pdp_cnt = ttt.Where(e => e.PDP_Act_Request == 1).Count(),
                           xid_cnt = ttt.Where(e => e.U_Exchange_identification != null).Count(),
                           xid_delay = ttt.Average(e => e.U_Exchange_identification_delayFirst),
@@ -2233,6 +2242,208 @@ namespace GnPlatForm
             TimeSpan ts = maxt.Value - mint.Value;
             var ttim = mint.Value.ToString() + "-" + maxt.Value.ToString() + "," + ts.TotalSeconds.ToString();
             textBox1.Text = ttim.ToString();
+        }
+
+        private void navBarItem45_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
+        {
+            var imei = gb_auth_imei.ToLookup(e => e.BeginFrameNum, e => e.gsm_a_imeisv);
+
+            var types = gb_imeitypes.ToLookup(e => e.imei.PadLeft(Math.Abs(8 - e.imei.Length), '0'));
+
+            var total = gb_xid
+                .Where(e => e.llcgprs_xid1type == 5)
+                .Where(e => e.C1llcgprs_xid1type == 5)
+                .Where(e => e.bssgp_direction != e.C1bssgp_direction)
+         .Count();
+
+            var xid = from p in gb_xid.AsParallel().ToList()
+                      where p.bssgp_direction != p.C1bssgp_direction
+                      where p.llcgprs_xid1type == 5 && p.C1llcgprs_xid1type == 5
+                      group p by new
+                      {
+                          p.BeginFrameNum,
+                          p.bssgp_direction,
+                          N201_U = p.llcgprs_xid1byte1 * 256 + p.llcgprs_xid1byte2,
+                          N201_U_Result = p.C1llcgprs_xid1byte1 * 256 + p.C1llcgprs_xid1byte2
+                      } into ttt
+
+                      select new
+
+                      {
+                          ttt.Key.BeginFrameNum,
+                          ttt.Key.bssgp_direction,
+                          ttt.Key.N201_U,
+                          ttt.Key.N201_U_Result,
+
+                          gsm_a_imei = imei[ttt.Key.BeginFrameNum].FirstOrDefault(),
+                          imeisv = imei[ttt.Key.BeginFrameNum].FirstOrDefault() == null ? null :
+                   imei[ttt.Key.BeginFrameNum].FirstOrDefault().Substring(0, 8),
+
+                          imei_name = imei[ttt.Key.BeginFrameNum].FirstOrDefault() == null ? null :
+                           types[imei[ttt.Key.BeginFrameNum].FirstOrDefault().Substring(0, 8)].Select(e => e.imeiname).FirstOrDefault(),
+
+                          imei_fact = imei[ttt.Key.BeginFrameNum].FirstOrDefault() == null ? null :
+                          types[imei[ttt.Key.BeginFrameNum].FirstOrDefault().Substring(0, 8)].Select(e => e.imeifactory).FirstOrDefault(),
+
+                          //ttt.Key.N201_U,
+                          //ttt.Key.N201_U_Result,
+
+                          cnt = ttt.Count(),
+                          percent = 1.0 * ttt.Count() / total,
+
+                      };
+
+            gridView1.PopulateColumns();
+            gridControl1.Refresh();
+            var dborder = xid.OrderBy(e => e.BeginFrameNum);
+            gridControl1.DataSource = dborder.ToList();
+
+            textBox1.Text = ee.Link.Item.Caption;
+        }
+
+        private void navBarItem46_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
+        {
+            var imei = gb_auth_imei.ToLookup(e => e.BeginFrameNum, e => e.gsm_a_imeisv);
+
+            var types = gb_imeitypes.ToLookup(e => e.imei.PadLeft(Math.Abs(8 - e.imei.Length), '0'));
+
+            var total = gb_xid
+                .Where(e => e.llcgprs_xid1type == 5)
+                .Where(e => e.C1llcgprs_xid1type == 5)
+                .Where(e => e.bssgp_direction != e.C1bssgp_direction)
+         .Count();
+
+            var xid = from p in gb_xid.AsParallel().ToList()
+                      where p.bssgp_direction != p.C1bssgp_direction
+                      where p.llcgprs_xid1type == 5 && p.C1llcgprs_xid1type == 5
+                      group p by new
+                      {
+                          p.BeginFrameNum,
+                          p.bssgp_direction,
+                          N201_U = p.llcgprs_xid1byte1 * 256 + p.llcgprs_xid1byte2,
+                          N201_U_Result = p.C1llcgprs_xid1byte1 * 256 + p.C1llcgprs_xid1byte2
+                      } into ttt
+
+                      select new
+
+                      {
+                          ttt.Key.BeginFrameNum,
+                          ttt.Key.bssgp_direction,
+                          ttt.Key.N201_U,
+                          ttt.Key.N201_U_Result,
+
+                          imeisv=imei[ttt.Key.BeginFrameNum].FirstOrDefault(),
+
+                          imeisv_tac = imei[ttt.Key.BeginFrameNum].FirstOrDefault() == null ? null :
+                           imei[ttt.Key.BeginFrameNum].FirstOrDefault().Substring(0, 8),
+
+                          //imei_name = imei[ttt.Key.BeginFrameNum].FirstOrDefault() == null ? null :
+                          // types[imei[ttt.Key.BeginFrameNum].FirstOrDefault().Substring(0, 8)].Select(e => e.imeiname).FirstOrDefault(),
+
+                          //imei_fact = imei[ttt.Key.BeginFrameNum].FirstOrDefault() == null ? null :
+                          //types[imei[ttt.Key.BeginFrameNum].FirstOrDefault().Substring(0, 8)].Select(e => e.imeifactory).FirstOrDefault(),
+
+                          //ttt.Key.N201_U,
+                          //ttt.Key.N201_U_Result,
+
+                          cnt = ttt.Count(),
+                          percent = 1.0 * ttt.Count() / total,
+
+                      };
+
+            //xid.OrderByDescending(e => e.cnt).Dump();
+
+            var xid1 = from p in xid
+                       group p by new
+                       {
+                           p.imeisv_tac
+                       } into ttt
+                       select new
+                       {
+                           imeisv_tac=ttt.Key.imeisv_tac,
+                           type=types[ttt.Key.imeisv_tac].Select(e=>e.imeiname).FirstOrDefault(),
+                           imeisv_cnt = ttt.Select(e => e.imeisv).Distinct().Count(),
+                           comp = ttt.Where(e => e.bssgp_direction == "Down").Count()* ttt.Where(e => e.bssgp_direction == "Up").Count(),
+                           u_cnt = ttt.Where(e => e.bssgp_direction == "Up").Count(),
+                           d_cnt = ttt.Where(e => e.bssgp_direction == "Down").Count(),
+                           N201_U = ttt.Average(e => e.N201_U),
+                           N201_U_Result = ttt.Average(e => e.N201_U_Result),
+                       };
+
+            gridView1.PopulateColumns();
+            gridControl1.Refresh();
+            var dborder = xid1.OrderByDescending(e => e.imeisv_cnt).ThenByDescending(e => e.u_cnt + e.d_cnt);
+            gridControl1.DataSource = dborder.ToList();
+
+            textBox1.Text = ee.Link.Item.Caption;
+        }
+
+        private void navBarItem45_LinkPressed(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+
+        }
+
+      
+
+        private void navBarItem48_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
+        {
+            var imei = gb_auth_imei.ToLookup(e => e.BeginFrameNum, e => e.gsm_a_imeisv);
+
+            //var types = gb_imeitypes.ToLookup(e => e.imei.PadLeft(Math.Abs(8 - e.imei.Length), '0'));
+
+            var total = gb_pdp_xid
+                //.Where(e=>e.U_Exchange_identification)
+                //.Where(e => e.llcgprs_xid1type == 5)
+                //.Where(e => e.C1llcgprs_xid1type == 5)
+                //.Where(e => e.bssgp_direction != e.C1bssgp_direction)
+         .Count();
+
+            var xid = from p in gb_pdp_xid.AsParallel().ToList()
+                      //where p.llcgprs_xid1type == 5
+                      //where p.bssgp_direction != p.C1bssgp_direction
+                      //where p.llcgprs_xid1type == 5 && p.C1llcgprs_xid1type == 5
+                      group p by new
+                      {
+                          p.BeginFrameNum,
+                          p.bssgp_direction,
+                          p.U_Exchange_identification,
+                          //N201_U = p.llcgprs_xid1byte1 * 256 + p.llcgprs_xid1byte2,
+                          //N201_U_Result = p.C1llcgprs_xid1byte1 * 256 + p.C1llcgprs_xid1byte2
+                      } into ttt
+
+                      select new
+
+                      {
+                          ttt.Key.BeginFrameNum,
+                          ttt.Key.bssgp_direction,
+                          ttt.Key.U_Exchange_identification,
+                          //ttt.Key.N201_U,
+                          //ttt.Key.N201_U_Result,
+
+                          gsm_a_imei = imei[ttt.Key.BeginFrameNum].FirstOrDefault(),
+                          imeisv = imei[ttt.Key.BeginFrameNum].FirstOrDefault() == null ? null :
+                   imei[ttt.Key.BeginFrameNum].FirstOrDefault().Substring(0, 8),
+
+                          //imei_name = imei[ttt.Key.BeginFrameNum].FirstOrDefault() == null ? null :
+                          // types[imei[ttt.Key.BeginFrameNum].FirstOrDefault().Substring(0, 8)].Select(e => e.imeiname).FirstOrDefault(),
+
+                          //imei_fact = imei[ttt.Key.BeginFrameNum].FirstOrDefault() == null ? null :
+                          //types[imei[ttt.Key.BeginFrameNum].FirstOrDefault().Substring(0, 8)].Select(e => e.imeifactory).FirstOrDefault(),
+
+                          //ttt.Key.N201_U,
+                          //ttt.Key.N201_U_Result,
+
+                          cnt = ttt.Count(),
+                          percent = 1.0 * ttt.Count() / total,
+
+                      };
+
+            gridView1.PopulateColumns();
+            gridControl1.Refresh();
+            var dborder = xid.OrderByDescending(e => e.cnt);
+            gridControl1.DataSource = dborder.ToList();
+
+            textBox1.Text = ee.Link.Item.Caption;
         }
     }
 }
