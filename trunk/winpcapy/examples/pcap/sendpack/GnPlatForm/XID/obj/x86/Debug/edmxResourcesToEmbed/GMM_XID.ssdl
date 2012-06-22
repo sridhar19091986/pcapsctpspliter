@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Guangzhou_GbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="Guangzhou_GbModelStoreContainer">
+    <EntitySet Name="Gb_GMMSM_XID" EntityType="Guangzhou_GbModel.Store.Gb_GMMSM_XID" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Gb_XID" EntityType="Guangzhou_GbModel.Store.Gb_XID" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="Gb_GMMSM_XID">
+    <Key>
+      <PropertyRef Name="FileNum" />
+      <PropertyRef Name="PacketNum" />
+    </Key>
+    <Property Name="FileNum" Type="int" Nullable="false" />
+    <Property Name="PacketNum" Type="int" Nullable="false" />
+    <Property Name="BeginFileNum" Type="int" />
+    <Property Name="BeginFrameNum" Type="int" />
+    <Property Name="PacketTime" Type="datetime" />
+    <Property Name="PacketTime(ms)" Type="int" />
+    <Property Name="DumpFor" Type="nvarchar" MaxLength="30" />
+    <Property Name="mGMMSM" Type="int" />
+    <Property Name="mGMMSM_time" Type="nvarchar" MaxLength="200" />
+    <Property Name="mGMMSM_MsgType" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Gb_XID">
+    <Key>
+      <PropertyRef Name="FileNum" />
+      <PropertyRef Name="PacketNum" />
+    </Key>
+    <Property Name="FileNum" Type="int" Nullable="false" />
+    <Property Name="PacketNum" Type="int" Nullable="false" />
+    <Property Name="BeginFileNum" Type="int" />
+    <Property Name="BeginFrameNum" Type="int" />
+    <Property Name="PacketTime" Type="datetime" />
+    <Property Name="PacketTime(ms)" Type="int" />
+    <Property Name="DumpFor" Type="nvarchar" MaxLength="30" />
+    <Property Name="U_Exchange_identification" Type="int" />
+    <Property Name="bssgp_direction" Type="nvarchar" MaxLength="200" />
+    <Property Name="llcgprs_xid1type" Type="int" />
+    <Property Name="llcgprs_xid1byte1" Type="int" />
+    <Property Name="llcgprs_xid1byte2" Type="int" />
+    <Property Name="U_Exchange_identification1" Type="int" />
+    <Property Name="U_Exchange_identification1_delayFirst" Type="int" />
+    <Property Name="1bssgp_direction" Type="nvarchar" MaxLength="200" />
+    <Property Name="1llcgprs_xid1type" Type="int" />
+    <Property Name="1llcgprs_xid1byte1" Type="int" />
+    <Property Name="1llcgprs_xid1byte2" Type="int" />
+  </EntityType>
+</Schema>
