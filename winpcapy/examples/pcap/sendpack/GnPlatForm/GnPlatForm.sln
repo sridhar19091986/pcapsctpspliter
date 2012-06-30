@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GbPlatForm", "GbPlatForm\Gb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XID", "XID\XID.csproj", "{12502BAB-AC41-493C-9ADF-E4A0CDF2D6AB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiGnGi", "MultiGnGi\MultiGnGi.csproj", "{B598579B-B4BD-49C1-99D4-F849C792168C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -25,6 +27,10 @@ Global
 		{12502BAB-AC41-493C-9ADF-E4A0CDF2D6AB}.Debug|x86.Build.0 = Debug|x86
 		{12502BAB-AC41-493C-9ADF-E4A0CDF2D6AB}.Release|x86.ActiveCfg = Release|x86
 		{12502BAB-AC41-493C-9ADF-E4A0CDF2D6AB}.Release|x86.Build.0 = Release|x86
+		{B598579B-B4BD-49C1-99D4-F849C792168C}.Debug|x86.ActiveCfg = Debug|x86
+		{B598579B-B4BD-49C1-99D4-F849C792168C}.Debug|x86.Build.0 = Debug|x86
+		{B598579B-B4BD-49C1-99D4-F849C792168C}.Release|x86.ActiveCfg = Release|x86
+		{B598579B-B4BD-49C1-99D4-F849C792168C}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
