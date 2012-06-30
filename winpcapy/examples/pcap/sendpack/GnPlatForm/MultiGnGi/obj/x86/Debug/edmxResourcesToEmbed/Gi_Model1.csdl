@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Guangzhou_GiModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="Gi" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Gi_Get2x_Multi" EntityType="Guangzhou_GiModel.Gi_Get2x_Multi" />
+  </EntityContainer>
+  <EntityType Name="Gi_Get2x_Multi">
+    <Key>
+      <PropertyRef Name="FileNum" />
+      <PropertyRef Name="PacketNum" />
+    </Key>
+    <Property Name="FileNum" Type="Int32" Nullable="false" />
+    <Property Name="PacketNum" Type="Int32" Nullable="false" />
+    <Property Name="BeginFileNum" Type="Int32" />
+    <Property Name="BeginFrameNum" Type="Int32" />
+    <Property Name="PacketTime" Type="DateTime" />
+    <Property Name="PacketTime_ms_" Type="Int32" />
+    <Property Name="DumpFor" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+    <Property Name="Get2x" Type="Int32" />
+    <Property Name="Get2x_time" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Source_IP" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Dest_IP" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Source_Port" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Dest_Port" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Source_IP2" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Dest_IP2" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Source_Port2" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Dest_Port2" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Request_URI" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="URI_Main" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Host" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="X_Online_Host" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="User_Agent" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="User_Agent_Main" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Accept" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Referer" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Connection" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="ip_proto" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="ip2_proto" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="tcp_srcport" Type="Int32" />
+    <Property Name="tcp_dstport" Type="Int32" />
+    <Property Name="tcp_seq" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="tcp_nxtseq" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="tcp_need_segment" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="tcp_ack" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="ip_ttl" Type="Int32" />
+    <Property Name="ip2_ttl" Type="Int32" />
+    <Property Name="ip_len" Type="Int32" />
+    <Property Name="ip2_len" Type="Int32" />
+    <Property Name="ip_id" Type="Int32" />
+    <Property Name="ip2_id" Type="Int32" />
+    <Property Name="ip_flags_mf" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="ip2_flags_mf" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Get2x_Repeat" Type="Int32" />
+    <Property Name="Get2x_Repeat_delayFirst" Type="Int32" />
+    <Property Name="Response" Type="Int32" />
+    <Property Name="Response_delayFirst" Type="Int32" />
+    <Property Name="Response_timeFirst" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Response_Code" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Content_Type" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Content_Type_Part1" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Content_Type_Part2" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Server" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+  </EntityType>
+</Schema>

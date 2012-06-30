@@ -1,0 +1,11 @@
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\MultiGnGi\bin\Debug\MultiGnGi.exe.config
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\MultiGnGi\bin\Debug\MultiGnGi.exe
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\MultiGnGi\bin\Debug\MultiGnGi.pdb
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\MultiGnGi\obj\x86\Debug\ResolveAssemblyReference.cache
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\MultiGnGi\obj\x86\Debug\MultiGnGi.Form1.resources
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\MultiGnGi\obj\x86\Debug\MultiGnGi.Properties.Resources.resources
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\MultiGnGi\obj\x86\Debug\GenerateResource.read.1.tlog
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\MultiGnGi\obj\x86\Debug\GenerateResource.write.1.tlog
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\MultiGnGi\obj\x86\Debug\MultiGnGi.exe.licenses
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\MultiGnGi\obj\x86\Debug\MultiGnGi.exe
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\MultiGnGi\obj\x86\Debug\MultiGnGi.pdb
