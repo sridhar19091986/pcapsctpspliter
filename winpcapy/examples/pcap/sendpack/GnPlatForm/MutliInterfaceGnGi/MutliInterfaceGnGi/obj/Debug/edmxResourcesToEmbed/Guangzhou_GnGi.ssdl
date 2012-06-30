@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Guangzhou_GnGiModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="Guangzhou_GnGiModelStoreContainer">
+    <EntitySet Name="GnGi_Get2x_Multi" EntityType="Guangzhou_GnGiModel.Store.GnGi_Get2x_Multi" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+  </EntityContainer>
+  <EntityType Name="GnGi_Get2x_Multi">
+    <Key>
+      <PropertyRef Name="FileNum" />
+      <PropertyRef Name="PacketNum" />
+    </Key>
+    <Property Name="FileNum" Type="int" Nullable="false" />
+    <Property Name="PacketNum" Type="int" Nullable="false" />
+    <Property Name="BeginFileNum" Type="int" />
+    <Property Name="BeginFrameNum" Type="int" />
+    <Property Name="PacketTime" Type="datetime" />
+    <Property Name="PacketTime(ms)" Type="int" />
+    <Property Name="DumpFor" Type="nvarchar" MaxLength="30" />
+    <Property Name="Get2x" Type="int" />
+    <Property Name="Get2x_time" Type="nvarchar" MaxLength="200" />
+    <Property Name="Get2x_RepeatCounter" Type="int" />
+    <Property Name="Source_IP" Type="nvarchar" MaxLength="200" />
+    <Property Name="Dest_IP" Type="nvarchar" MaxLength="200" />
+    <Property Name="Source_Port" Type="nvarchar" MaxLength="200" />
+    <Property Name="Dest_Port" Type="nvarchar" MaxLength="200" />
+    <Property Name="Source_IP2" Type="nvarchar" MaxLength="200" />
+    <Property Name="Dest_IP2" Type="nvarchar" MaxLength="200" />
+    <Property Name="Source_Port2" Type="nvarchar" MaxLength="200" />
+    <Property Name="Dest_Port2" Type="nvarchar" MaxLength="200" />
+    <Property Name="Request_URI" Type="nvarchar" MaxLength="200" />
+    <Property Name="URI_Main" Type="nvarchar" MaxLength="200" />
+    <Property Name="Host" Type="nvarchar" MaxLength="200" />
+    <Property Name="X_Online_Host" Type="nvarchar" MaxLength="200" />
+    <Property Name="User_Agent" Type="nvarchar" MaxLength="200" />
+    <Property Name="User_Agent_Main" Type="nvarchar" MaxLength="200" />
+    <Property Name="Accept" Type="nvarchar" MaxLength="200" />
+    <Property Name="Referer" Type="nvarchar" MaxLength="200" />
+    <Property Name="Connection" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip_proto" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip2_proto" Type="nvarchar" MaxLength="200" />
+    <Property Name="tcp_srcport" Type="int" />
+    <Property Name="tcp_dstport" Type="int" />
+    <Property Name="tcp_seq" Type="nvarchar" MaxLength="200" />
+    <Property Name="tcp_nxtseq" Type="nvarchar" MaxLength="200" />
+    <Property Name="tcp_need_segment" Type="nvarchar" MaxLength="200" />
+    <Property Name="tcp_ack" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip_ttl" Type="int" />
+    <Property Name="ip2_ttl" Type="int" />
+    <Property Name="ip_len" Type="int" />
+    <Property Name="ip2_len" Type="int" />
+    <Property Name="ip_id" Type="int" />
+    <Property Name="ip2_id" Type="int" />
+    <Property Name="ip_flags_mf" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip2_flags_mf" Type="nvarchar" MaxLength="200" />
+    <Property Name="gtp_flags_payload" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+</Schema>
