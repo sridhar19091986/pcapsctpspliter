@@ -254,6 +254,7 @@
             // navBarGroup1
             // 
             this.navBarGroup1.Caption = "Gn接口http性能优化-TCP reset信令流程分析";
+            this.navBarGroup1.Expanded = true;
             this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem1),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem2),
@@ -330,6 +331,7 @@
             // navBarGroup2
             // 
             this.navBarGroup2.Caption = "Gn接口http性能优化-http请求无响应分析";
+            this.navBarGroup2.Expanded = true;
             this.navBarGroup2.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem4),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem5),
@@ -371,6 +373,7 @@
             // navBarGroup3
             // 
             this.navBarGroup3.Caption = "统计方法测试";
+            this.navBarGroup3.Expanded = true;
             this.navBarGroup3.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem9),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem10),
@@ -492,7 +495,6 @@
             // navBarGroup7
             // 
             this.navBarGroup7.Caption = "IP包分片优化专题-Gb接口IP分片优化建议2";
-            this.navBarGroup7.Expanded = true;
             this.navBarGroup7.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem31),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem32),

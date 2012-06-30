@@ -147,5 +147,14 @@ namespace XID
                 gridView1.ExportToXlsx(saveFileDialog1.FileName);
             }
         }
+
+        private void navBarItem4_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
+        {
+            var maxt = gb_gmm_xid.Max(e => e.PacketTime);
+            var mint = gb_gmm_xid.Min(e => e.PacketTime);
+            TimeSpan ts = maxt.Value - mint.Value;
+            var ttim = mint.Value.ToString() + "-" + maxt.Value.ToString() + "," + ts.TotalSeconds.ToString();
+            richTextBox1.Text = ttim.ToString();
+        }
     }
 }
