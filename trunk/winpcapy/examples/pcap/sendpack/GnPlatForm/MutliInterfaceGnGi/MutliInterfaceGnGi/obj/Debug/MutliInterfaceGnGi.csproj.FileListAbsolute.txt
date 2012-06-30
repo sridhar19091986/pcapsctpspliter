@@ -1,0 +1,12 @@
+G:\wysf\MutliInterfaceGnGi\MutliInterfaceGnGi\obj\Debug\ResolveAssemblyReference.cache
+G:\wysf\MutliInterfaceGnGi\MutliInterfaceGnGi\bin\Debug\MutliInterfaceGnGi.dll.config
+G:\wysf\MutliInterfaceGnGi\MutliInterfaceGnGi\bin\Debug\MutliInterfaceGnGi.dll
+G:\wysf\MutliInterfaceGnGi\MutliInterfaceGnGi\bin\Debug\MutliInterfaceGnGi.pdb
+G:\wysf\MutliInterfaceGnGi\MutliInterfaceGnGi\obj\Debug\MutliInterfaceGnGi.dll
+G:\wysf\MutliInterfaceGnGi\MutliInterfaceGnGi\obj\Debug\MutliInterfaceGnGi.pdb
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\MutliInterfaceGnGi\MutliInterfaceGnGi\bin\Debug\MutliInterfaceGnGi.dll.config
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\MutliInterfaceGnGi\MutliInterfaceGnGi\bin\Debug\MutliInterfaceGnGi.dll
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\MutliInterfaceGnGi\MutliInterfaceGnGi\bin\Debug\MutliInterfaceGnGi.pdb
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\MutliInterfaceGnGi\MutliInterfaceGnGi\obj\Debug\ResolveAssemblyReference.cache
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\MutliInterfaceGnGi\MutliInterfaceGnGi\obj\Debug\MutliInterfaceGnGi.dll
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\MutliInterfaceGnGi\MutliInterfaceGnGi\obj\Debug\MutliInterfaceGnGi.pdb
