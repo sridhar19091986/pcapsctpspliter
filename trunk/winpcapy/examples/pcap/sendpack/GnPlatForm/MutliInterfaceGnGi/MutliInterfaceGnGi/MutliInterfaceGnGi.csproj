@@ -34,8 +34,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Afterthought">
+      <HintPath>..\packages\EntityFramework.Patterns.0.6\lib\net40\Afterthought.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.4.3.1\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.Extended">
+      <HintPath>..\packages\EntityFramework.Extended.1.0.0.43\lib\net40\EntityFramework.Extended.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.Extensions">
+      <HintPath>..\packages\EntityFramework.Extensions.0.0.2\lib\net40\EntityFramework.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.Patterns">
+      <HintPath>..\packages\EntityFramework.Patterns.0.6\lib\net40\EntityFramework.Patterns.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -61,11 +77,15 @@
       <DependentUpon>Guangzhou_GnGi.edmx</DependentUpon>
     </Compile>
     <Compile Include="IService1.cs" />
+    <Compile Include="Models\BlogContext.cs" />
+    <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\Post.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service1.cs" />
     <Compile Include="Service1_1.cs" />
     <Compile Include="Service1_2.cs" />
     <Compile Include="Service1_3.cs" />
+    <Compile Include="Service1_4.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -73,6 +93,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Guangzhou_GnGi.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
@@ -84,6 +105,10 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>"$(SolutionDir)packages\EntityFramework.Patterns.0.6\tools\Afterthought.Amender.exe" "$(TargetPath)" "$(TargetDir)EntityFramework.Patterns.dll"
+</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -30,8 +30,10 @@ namespace MutliInterfaceGnGi
 
         public DataSet GetDataCollection(int value)
         {
+
             gz_gngi.ContextOptions.LazyLoadingEnabled = true;
             gz_gngi.GnGi_Get2x_Multi.MergeOption = MergeOption.NoTracking;
+
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
             switch (value)
@@ -44,10 +46,10 @@ namespace MutliInterfaceGnGi
                     dt = viewTableDetail_ip2_id(); break;
                 case 4:
                     dt = viewTableDetail_All(); break;
+                case 5:
+                    dt = viewTableDetail_All_FromCache(); break;
                 case 6:
                     dt = statTableGnGiLost(); break;
-                case 5:
-                    dt = getTableRandownRows(); break;
                 case 7:
                     dt = getTableAllRows(); break;
                 default:

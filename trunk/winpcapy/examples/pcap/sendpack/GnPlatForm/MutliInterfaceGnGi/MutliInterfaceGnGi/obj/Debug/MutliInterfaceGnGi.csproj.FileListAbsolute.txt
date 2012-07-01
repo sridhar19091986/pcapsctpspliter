@@ -10,3 +10,10 @@ G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\MutliInterfaceGnGi
 G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\MutliInterfaceGnGi\MutliInterfaceGnGi\obj\Debug\ResolveAssemblyReference.cache
 G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\MutliInterfaceGnGi\MutliInterfaceGnGi\obj\Debug\MutliInterfaceGnGi.dll
 G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\MutliInterfaceGnGi\MutliInterfaceGnGi\obj\Debug\MutliInterfaceGnGi.pdb
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\MutliInterfaceGnGi\MutliInterfaceGnGi\bin\Debug\Afterthought.dll
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\MutliInterfaceGnGi\MutliInterfaceGnGi\bin\Debug\EntityFramework.dll
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\MutliInterfaceGnGi\MutliInterfaceGnGi\bin\Debug\EntityFramework.Extended.dll
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\MutliInterfaceGnGi\MutliInterfaceGnGi\bin\Debug\EntityFramework.Extensions.dll
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\MutliInterfaceGnGi\MutliInterfaceGnGi\bin\Debug\EntityFramework.Patterns.dll
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\MutliInterfaceGnGi\MutliInterfaceGnGi\bin\Debug\EntityFramework.xml
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\MutliInterfaceGnGi\MutliInterfaceGnGi\bin\Debug\EntityFramework.Extended.xml
