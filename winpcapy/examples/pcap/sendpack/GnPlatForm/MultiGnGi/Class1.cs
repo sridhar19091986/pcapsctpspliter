@@ -6,6 +6,12 @@ using System.ServiceModel;
 using System.Runtime.Serialization;
 
 /*
+
+改进第1点，如果部署时，只要注释  app.config 的 localhost
+
+改进第2点，new client 时，重新配置时间。
+
+
 http://www.cnblogs.com/LingzhiSun/archive/2011/03/22/EF41_Find.html
 EF4.1为我们提供了一个新的API： DbSet<>.Find()。它可以帮助我们通过主键来查找对应的实体。
 并且如果相应的实体已经被ObjectContext缓存，EF会在缓存中直接返回对应的实体，而不会执行数据库访问。
@@ -97,5 +103,48 @@ SELECT
 [Extent1].[Name] AS [Name]
 FROM [dbo].[People] AS [Extent1]
 WHERE [Extent1].[PersonID] > 100
+
+http://www.mhzg.net/a/20122/201221310280533.html
+C#代码直接调用WCF服务时的协议设置代码
+
+
+private WSHttpBinding GetWSHttpBinding() 
+        { 
+            //wsHttpBinding 
+            WSHttpBinding ws = new WSHttpBinding(SecurityMode.None); 
+            ws.CloseTimeout = new TimeSpan(0, 1, 0); 
+            ws.OpenTimeout = new TimeSpan(0, 1, 0); 
+            ws.ReceiveTimeout = new TimeSpan(0, 20, 0); 
+            ws.SendTimeout = new TimeSpan(0, 1, 0); 
+            ws.BypassProxyOnLocal = false; 
+            ws.TransactionFlow = false; 
+            ws.HostNameComparisonMode = HostNameComparisonMode.StrongWildcard; 
+            ws.MaxBufferPoolSize = 524288; 
+            ws.MaxReceivedMessageSize = 2147483647; 
+            ws.MessageEncoding = WSMessageEncoding.Text; 
+            ws.TextEncoding = Encoding.UTF8; 
+            ws.UseDefaultWebProxy = true; 
+            ws.AllowCookies = false; 
+            ws.ReaderQuotas.MaxDepth = 6553600; 
+            ws.ReaderQuotas.MaxStringContentLength = 2147483647; 
+            ws.ReaderQuotas.MaxArrayLength = 6553600; 
+            ws.ReaderQuotas.MaxBytesPerRead = 6553600; 
+            ws.ReaderQuotas.MaxNameTableCharCount = 6553600; 
+            ws.ReliableSession.Ordered = true; 
+            ws.ReliableSession.InactivityTimeout = new TimeSpan(0, 20, 0); 
+            ws.ReliableSession.Enabled = true; 
+            ws.Security.Mode = SecurityMode.None; 
+            ws.Security.Transport.ClientCredentialType = HttpClientCredentialType.None; 
+            ws.Security.Transport.ProxyCredentialType = HttpProxyCredentialType.None; 
+            ws.Security.Transport.Realm = ""; 
+            ws.Security.Message.ClientCredentialType = MessageCredentialType.Windows; 
+            ws.Security.Message.NegotiateServiceCredential = true; 
+            ws.Security.Message.AlgorithmSuite = SecurityAlgorithmSuite.Default; 
+            ws.Security.Message.EstablishSecurityContext = false; 
+
+
+            return ws; 
+        } 
+
 
 **/
