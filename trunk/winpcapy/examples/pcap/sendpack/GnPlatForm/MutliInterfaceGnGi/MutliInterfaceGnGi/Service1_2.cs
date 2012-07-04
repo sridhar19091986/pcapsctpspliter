@@ -6,7 +6,11 @@ using System.ServiceModel;
 using System.Text;
 using System.Data;
 using System.Data.Objects;
-//using System.Data.DataSetExtensions;
+using System.Data.Entity;
+using System.Data.Entity.Design;
+using EntityFramework.Extensions;
+using EntityFramework.Caching;
+using EntityFramework.Batch;
 
 
 namespace MutliInterfaceGnGi
@@ -14,19 +18,19 @@ namespace MutliInterfaceGnGi
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     public partial class Service1 : IService1
     {
-        //IP_GnGi_TCPy-GnGi_Get2x_Multi---1
+        //IP_GnGi_TCPy-GnGiGw_Http_Any_Multi---1
         //串联条件已修改
         private DataTable viewTableDetail()
         {
-            var gngi = from p in gz_gngi.GnGi_Get2x_Multi
-                       group p by new { p.tcp_seq, p.tcp_nxtseq, p.tcp_ack, p.Request_URI, p.User_Agent } into ttt
+            var gngi = from p in gz_gngi.GnGiGw_Http_Any_Multi.FromCache()
+                       group p by new { p.tcp_seq, p.tcp_nxtseq, p.tcp_ack, p.http_request_uri, p.http_user_agent } into ttt
                        select new
                        {
                            ttt.Key.tcp_seq,
                            ttt.Key.tcp_nxtseq,
                            ttt.Key.tcp_ack,
-                           ttt.Key.Request_URI,
-                           ttt.Key.User_Agent,
+                           ttt.Key.http_request_uri,
+                           ttt.Key.http_user_agent,
                            total_cnt = ttt.Count(),
                            gtp_cnt = ttt.Where(e => e.gtp_flags_payload == "GTP").Count(),
                            gtp_percent = 1.0 * ttt.Where(e => e.gtp_flags_payload == "GTP").Count() / ttt.Count(),
@@ -37,7 +41,7 @@ namespace MutliInterfaceGnGi
                            ip2_proto = ttt.Select(e => e.ip2_proto),
                            ip_id = ttt.Select(e => e.ip_id),
                            ip2_id = ttt.Select(e => e.ip2_id),
-                           udp_port = ttt.Select(e => e.Source_Port == null ? "0" : e.Source_Port),
+                           udp_port = ttt.Select(e => e.udp_srcport == null ? 0 : e.udp_srcport),
 
                        };
 
@@ -49,8 +53,8 @@ namespace MutliInterfaceGnGi
                                 p.tcp_seq,
                                 p.tcp_nxtseq,
                                 p.tcp_ack,
-                                p.Request_URI,
-                                p.User_Agent,
+                                p.http_request_uri,
+                                p.http_user_agent,
                                 p.total_cnt,
                                 p.gtp_cnt,
                                 p.gtp_percent,
@@ -71,19 +75,19 @@ namespace MutliInterfaceGnGi
 
         }
 
-        //IP_GnGi_TCPy-GnGi_Get2x_Multi-ip2.id
+        //IP_GnGi_TCPy-GnGiGw_Http_Any_Multi-ip2.id
         private DataTable viewTableDetail_ip2_id()
         // private void navBarItem6_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
         {
-            var gngi = from p in gz_gngi.GnGi_Get2x_Multi
-                       group p by new { p.tcp_seq, p.tcp_nxtseq, p.tcp_ack, p.Request_URI, p.User_Agent, p.ip2_id } into ttt
+            var gngi = from p in gz_gngi.GnGiGw_Http_Any_Multi.FromCache()
+                       group p by new { p.tcp_seq, p.tcp_nxtseq, p.tcp_ack, p.http_request_uri, p.http_user_agent, p.ip2_id } into ttt
                        select new
                        {
                            ttt.Key.tcp_seq,
                            ttt.Key.tcp_nxtseq,
                            ttt.Key.tcp_ack,
-                           ttt.Key.Request_URI,
-                           ttt.Key.User_Agent,
+                           ttt.Key.http_request_uri,
+                           ttt.Key.http_user_agent,
                            ttt.Key.ip2_id,
                            total_cnt = ttt.Count(),
                            gtp_cnt = ttt.Where(e => e.gtp_flags_payload == "GTP").Count(),
@@ -110,15 +114,15 @@ namespace MutliInterfaceGnGi
         {
 
 
-            var gngi = from p in gz_gngi.GnGi_Get2x_Multi
-                       group p by new { p.tcp_seq, p.tcp_nxtseq, p.tcp_ack, p.Request_URI, p.User_Agent } into ttt
+            var gngi = from p in gz_gngi.GnGiGw_Http_Any_Multi.FromCache()
+                       group p by new { p.tcp_seq, p.tcp_nxtseq, p.tcp_ack, p.http_request_uri, p.http_user_agent } into ttt
                        select new
                        {
                            ttt.Key.tcp_seq,
                            ttt.Key.tcp_nxtseq,
                            ttt.Key.tcp_ack,
-                           ttt.Key.Request_URI,
-                           ttt.Key.User_Agent,
+                           ttt.Key.http_request_uri,
+                           ttt.Key.http_user_agent,
                            total_cnt = ttt.Count(),
                            gtp_cnt = ttt.Where(e => e.gtp_flags_payload == "GTP").Count(),
                            gtp_percent = 1.0 * ttt.Where(e => e.gtp_flags_payload == "GTP").Count() / ttt.Count(),
@@ -127,11 +131,11 @@ namespace MutliInterfaceGnGi
                            gre_cnt = ttt.Where(e => e.gtp_flags_payload == null && e.ip2_proto != null).Count(),
                            nat_cnt = ttt.Where(e => e.gtp_flags_payload == null && e.ip2_proto == null).Count(),
                            //判断地址的问题？
-                           ip_dst = ttt.Select(e => e.Dest_IP==null?"0":e.Dest_IP),
-                           ip2_dst = ttt.Select(e => e.Dest_IP2==null?"0":e.Dest_IP2),
+                           ip_dst = ttt.Select(e => e.ip_dst_host==null?"0":e.ip_dst_host),
+                           ip2_dst = ttt.Select(e => e.ip2_dst_host==null?"0":e.ip2_dst_host),
                            //端口的问题？
                            tcp_dst_port = ttt.Select(e => e.tcp_dstport==null?0:e.tcp_dstport),
-                           udp_dst_port = ttt.Select(e => e.Dest_Port==null?"0":e.Dest_Port),
+                           udp_dst_port = ttt.Select(e => e.udp_dstport==null?0:e.udp_dstport),
                            //判断分片的问题？
                            ip_seg = ttt.Select(e => e.ip_flags_mf==null?"0":e.ip_flags_mf),
                            ip2_seg = ttt.Select(e => e.ip2_flags_mf==null?"0":e.ip2_flags_mf),
@@ -158,8 +162,8 @@ namespace MutliInterfaceGnGi
                                 p.tcp_seq,
                                 p.tcp_nxtseq,
                                 p.tcp_ack,
-                                p.Request_URI,
-                                p.User_Agent,
+                                p.http_request_uri,
+                                p.http_user_agent,
                                 p.total_cnt,
                                 p.gtp_cnt,
                                 p.gtp_percent,

@@ -6,7 +6,11 @@ using System.ServiceModel;
 using System.Text;
 using System.Data;
 using System.Data.Objects;
-//using System.Data.DataSetExtensions;
+using System.Data.Entity;
+using System.Data.Entity.Design;
+using EntityFramework.Extensions;
+using EntityFramework.Caching;
+using EntityFramework.Batch;
 
 
 namespace MutliInterfaceGnGi
@@ -17,8 +21,8 @@ namespace MutliInterfaceGnGi
         public DataSet GetCase()
         {
             Guangzhou_GnGiEntities gz = new Guangzhou_GnGiEntities();
-            var query = from p in gz.GnGi_Get2x_Multi
-                        select new { p.Accept, p.BeginFileNum };
+            var query = from p in gz.GnGiGw_Http_Any_Multi
+                        select new { p.DumpFor, p.BeginFileNum };
             DataTable boundTable = query.ToDataTable();
             //DataTable boundTable = query.CopyToDataTable();
             DataSet ds = new DataSet();
@@ -26,13 +30,16 @@ namespace MutliInterfaceGnGi
             return ds;
         }
 
+
+
         Guangzhou_GnGiEntities gz_gngi = new Guangzhou_GnGiEntities();
 
         public DataSet GetDataCollection(int value)
         {
             gz_gngi.CommandTimeout = 0;
             gz_gngi.ContextOptions.LazyLoadingEnabled = true;
-            gz_gngi.GnGi_Get2x_Multi.MergeOption = MergeOption.NoTracking;
+            gz_gngi.GnGiGw_Http_Any_Multi.MergeOption = MergeOption.NoTracking;
+            gz_gngi.GnGiGw_Http_Any_Multi.Load();
 
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
@@ -64,8 +71,8 @@ namespace MutliInterfaceGnGi
         private string viewTableTimeDuration()
         //private void navBarItem7_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
         {
-            var maxt = gz_gngi.GnGi_Get2x_Multi.Max(e => e.PacketTime);
-            var mint = gz_gngi.GnGi_Get2x_Multi.Min(e => e.PacketTime);
+            var maxt = gz_gngi.GnGiGw_Http_Any_Multi.FromCache().Max(e => e.PacketTime);
+            var mint = gz_gngi.GnGiGw_Http_Any_Multi.FromCache().Min(e => e.PacketTime);
             TimeSpan ts = maxt.Value - mint.Value;
             var ttim = mint.Value.ToString() + "-" + maxt.Value.ToString() + "," + ts.TotalSeconds.ToString();
             //richTextBox1.Text = ttim.ToString();
@@ -76,26 +83,26 @@ namespace MutliInterfaceGnGi
         //private void navBarItem1_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
         {
             //clearColumns();
-            var gnget = gz_gngi.GnGi_Get2x_Multi;
-            var giget = gz_gngi.GnGi_Get2x_Multi;
+            var gnget = gz_gngi.GnGiGw_Http_Any_Multi.FromCache();
+            var giget = gz_gngi.GnGiGw_Http_Any_Multi.FromCache();
 
             var get = from p in gnget.ToList()
-                      join q in giget.ToList() on new { p.Request_URI, p.User_Agent, p.tcp_seq, p.tcp_nxtseq }
-                      equals new { q.Request_URI, q.User_Agent, q.tcp_seq, q.tcp_nxtseq }
+                      join q in giget.ToList() on new { p.http_request_uri, p.http_user_agent, p.tcp_seq, p.tcp_nxtseq }
+                      equals new { q.http_request_uri, q.http_user_agent, q.tcp_seq, q.tcp_nxtseq }
 
                       select new
                       {
                           gn_filenum = p.FileNum,
                           gn_packetnum = p.PacketNum,
-                          gn_packettime = p.Get2x_time,
+                          gn_packettime = p.Http_Any_time,
                           gi_filenum = q.FileNum,
                           gi_packetnum = q.PacketNum,
-                          gi_packettime = q.Get2x_time,
-                          dt = DateTime.Parse(p.Get2x_time) - DateTime.Parse(q.Get2x_time),
-                          gn_ip2 = q.Dest_IP2,
-                          gi_ip2 = p.Dest_IP2,
-                          p.User_Agent,
-                          p.Request_URI,
+                          gi_packettime = q.Http_Any_time,
+                          dt = DateTime.Parse(p.Http_Any_time) - DateTime.Parse(q.Http_Any_time),
+                          gn_ip2 = q.ip2_dst_host,
+                          gi_ip2 = p.ip2_dst_host,
+                          p.http_user_agent,
+                          p.http_request_uri,
                           p.tcp_seq,
                           p.tcp_nxtseq,
                       };
