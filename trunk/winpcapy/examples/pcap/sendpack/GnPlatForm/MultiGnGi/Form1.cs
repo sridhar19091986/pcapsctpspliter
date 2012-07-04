@@ -9,7 +9,9 @@ using System.Windows.Forms;
 using System.Data.Objects;
 //using MultiGnGi.MultiInterFace;
 using MultiGnGi.ServiceReference1;
+//using MultiGnGi.MutliInterfaceGnGi;
 using System.ServiceModel;
+using System.ServiceModel.Security;
 
 namespace MultiGnGi
 {
@@ -30,6 +32,8 @@ namespace MultiGnGi
         ObjectQuery<GnGi_Get2x_Multi> gngiget;
         private void Form1_Load(object sender, EventArgs e)
         {
+            numericUpDown1.Value = 5;
+
             Gn gndb = new Gn();
             Gi gidb = new Gi();
             Guangzhou_GnGiEntities gngidb = new Guangzhou_GnGiEntities();
@@ -421,17 +425,76 @@ namespace MultiGnGi
             gridView1.OptionsView.ColumnAutoWidth = false;
         }
 
-        private void execWcfService(int value)
+        private void initTcpBinding(ref NetTcpBinding nt)
         {
-            WSHttpBinding theC = new WSHttpBinding();
-            EndpointAddress address = new EndpointAddress("http://localhost:8732/Design_Time_Addresses/MutliInterfaceGnGi/Service1/");
-            Service1Client sv = new Service1Client(theC, address);
+            nt.CloseTimeout = new TimeSpan(2, 1, 0);
+            nt.OpenTimeout = new TimeSpan(2, 1, 0);
+            nt.ReceiveTimeout = new TimeSpan(2, 20, 0);
+            nt.SendTimeout = new TimeSpan(2, 1, 0);
+            nt.MaxBufferSize = 2147483647;
+            nt.MaxReceivedMessageSize = 2147483647;
+        }
+
+        private void initHttpBinding(ref WSHttpBinding ws)
+        {
+            ws.CloseTimeout = new TimeSpan(2, 1, 0);
+            ws.OpenTimeout = new TimeSpan(2, 1, 0);
+            ws.ReceiveTimeout = new TimeSpan(2, 20, 0);
+            ws.SendTimeout = new TimeSpan(2, 1, 0);
+            //ws.BypassProxyOnLocal = false;
+            //ws.TransactionFlow = false;
+            //ws.HostNameComparisonMode = HostNameComparisonMode.StrongWildcard;
+            ws.MaxBufferPoolSize = 2147483647;
+            ws.MaxReceivedMessageSize = 2147483647;
+
+            ws.MessageEncoding = WSMessageEncoding.Mtom;
+            //ws.TextEncoding = Encoding.UTF8;
+            //ws.UseDefaultWebProxy = true;
+            //ws.AllowCookies = false;
+            //ws.ReaderQuotas.MaxDepth = 6553600;
+            //ws.ReaderQuotas.MaxStringContentLength = 2147483647;
+            //ws.ReaderQuotas.MaxArrayLength = 6553600;
+            //ws.ReaderQuotas.MaxBytesPerRead = 6553600;
+            //ws.ReaderQuotas.MaxNameTableCharCount = 6553600;
+            //ws.ReliableSession.Ordered = true;
+            //ws.ReliableSession.InactivityTimeout = new TimeSpan(0, 20, 0);
+            //ws.ReliableSession.Enabled = true;
+            //ws.Security.Mode = SecurityMode.None;
+            //ws.Security.Transport.ClientCredentialType = HttpClientCredentialType.None;
+            //ws.Security.Transport.ProxyCredentialType = HttpProxyCredentialType.None;
+            //ws.Security.Transport.Realm = "";
+            //ws.Security.Message.ClientCredentialType = MessageCredentialType.Windows;
+            //ws.Security.Message.NegotiateServiceCredential = true;
+            //ws.Security.Message.AlgorithmSuite = SecurityAlgorithmSuite.Default;
+            //ws.Security.Message.EstablishSecurityContext = false; 
+        }
+
+        private void execWcfTcpService(int value)
+        {
+            NetTcpBinding nt = new NetTcpBinding();
+            initTcpBinding(ref nt);
+            EndpointAddress address = new EndpointAddress("net.tcp://192.168.4.209:64567/Service1");
+            Service1Client sv = new Service1Client(nt, address);
             clearColumns();
             DataSet ds = new DataSet();
             ds = sv.GetDataCollection(value);
             gridControl1.DataSource = ds.Tables[0];
             gridView1.OptionsView.ColumnAutoWidth = false;
         }
+
+        private void execWcfService(int value)
+        {
+            WSHttpBinding ws = new WSHttpBinding();
+            initHttpBinding(ref ws);
+            EndpointAddress address = new EndpointAddress("http://192.168.4.209:8732/Design_Time_Addresses/MutliInterfaceGnGi/Service1/");
+            Service1Client sv = new Service1Client(ws, address);
+            clearColumns();
+            DataSet ds = new DataSet();
+            ds = sv.GetDataCollection(value);
+            gridControl1.DataSource = ds.Tables[0];
+            gridView1.OptionsView.ColumnAutoWidth = false;
+        }
+
         private void navBarItem15_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             try
@@ -448,11 +511,23 @@ namespace MultiGnGi
         private void navBarItem16_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             WSHttpBinding theC = new WSHttpBinding();
-            EndpointAddress address = new EndpointAddress("http://localhost:8732/Design_Time_Addresses/MutliInterfaceGnGi/Service1/");
+            EndpointAddress address = new EndpointAddress("http://192.168.4.209:8732/Design_Time_Addresses/MutliInterfaceGnGi/Service1/");
             Service1Client sv = new Service1Client(theC, address);
 
             richTextBox1.Text = sv.GetData(10);
 
+        }
+
+        private void navBarItem17_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            try
+            {
+                execWcfTcpService((int)numericUpDown1.Value);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }
