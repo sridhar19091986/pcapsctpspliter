@@ -86,7 +86,9 @@
     <Compile Include="Service1_5.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <EntityDeploy Include="Guangzhou_GnGi.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Guangzhou_GnGi.Designer.cs</LastGenOutput>
