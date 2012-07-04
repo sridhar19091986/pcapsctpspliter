@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GuangZhou_GnModelStoreContainer" CdmEntityContainer="GuangZhou_GnEntities">
+    <EntitySetMapping Name="GnGiGw_Get2x">
+      <EntityTypeMapping TypeName="GuangZhou_GnModel.GnGiGw_Get2x">
+        <MappingFragment StoreEntitySet="GnGiGw_Get2x">
+          <ScalarProperty Name="http_connection_response" ColumnName="http_connection_response" />
+          <ScalarProperty Name="http_server" ColumnName="http_server" />
+          <ScalarProperty Name="http_content_type_part2" ColumnName="http_content_type_part2" />
+          <ScalarProperty Name="http_content_type_part1" ColumnName="http_content_type_part1" />
+          <ScalarProperty Name="http_content_type" ColumnName="http_content_type" />
+          <ScalarProperty Name="http_response_code" ColumnName="http_response_code" />
+          <ScalarProperty Name="Response_timeFirst" ColumnName="Response_timeFirst" />
+          <ScalarProperty Name="Response_delayFirst" ColumnName="Response_delayFirst" />
+          <ScalarProperty Name="Response" ColumnName="Response" />
+          <ScalarProperty Name="Get2x_Repeat_delayFirst" ColumnName="Get2x_Repeat_delayFirst" />
+          <ScalarProperty Name="Get2x_Repeat" ColumnName="Get2x_Repeat" />
+          <ScalarProperty Name="tcp_ack" ColumnName="tcp_ack" />
+          <ScalarProperty Name="tcp_nxtseq" ColumnName="tcp_nxtseq" />
+          <ScalarProperty Name="tcp_seq" ColumnName="tcp_seq" />
+          <ScalarProperty Name="http_connection" ColumnName="http_connection" />
+          <ScalarProperty Name="http_referer" ColumnName="http_referer" />
+          <ScalarProperty Name="http_accept" ColumnName="http_accept" />
+          <ScalarProperty Name="http_user_agent_main" ColumnName="http_user_agent_main" />
+          <ScalarProperty Name="http_user_agent" ColumnName="http_user_agent" />
+          <ScalarProperty Name="http_x_online_host" ColumnName="http_x_online_host" />
+          <ScalarProperty Name="http_host" ColumnName="http_host" />
+          <ScalarProperty Name="http_request_uri_main" ColumnName="http_request_uri_main" />
+          <ScalarProperty Name="http_request_uri" ColumnName="http_request_uri" />
+          <ScalarProperty Name="ip2_dst_host" ColumnName="ip2_dst_host" />
+          <ScalarProperty Name="ip2_src_host" ColumnName="ip2_src_host" />
+          <ScalarProperty Name="udp_dstport" ColumnName="udp_dstport" />
+          <ScalarProperty Name="udp_srcport" ColumnName="udp_srcport" />
+          <ScalarProperty Name="ip_dst_host" ColumnName="ip_dst_host" />
+          <ScalarProperty Name="ip_src_host" ColumnName="ip_src_host" />
+          <ScalarProperty Name="Get2x_time" ColumnName="Get2x_time" />
+          <ScalarProperty Name="Get2x" ColumnName="Get2x" />
+          <ScalarProperty Name="DumpFor" ColumnName="DumpFor" />
+          <ScalarProperty Name="PacketTime_ms_" ColumnName="PacketTime(ms)" />
+          <ScalarProperty Name="PacketTime" ColumnName="PacketTime" />
+          <ScalarProperty Name="BeginFrameNum" ColumnName="BeginFrameNum" />
+          <ScalarProperty Name="BeginFileNum" ColumnName="BeginFileNum" />
+          <ScalarProperty Name="PacketNum" ColumnName="PacketNum" />
+          <ScalarProperty Name="FileNum" ColumnName="FileNum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GnGiGw_Http_Any_Multi">
+      <EntityTypeMapping TypeName="GuangZhou_GnModel.GnGiGw_Http_Any_Multi">
+        <MappingFragment StoreEntitySet="GnGiGw_Http_Any_Multi">
+          <ScalarProperty Name="gtp_flags_payload" ColumnName="gtp_flags_payload" />
+          <ScalarProperty Name="ip2_flags_mf" ColumnName="ip2_flags_mf" />
+          <ScalarProperty Name="ip_flags_mf" ColumnName="ip_flags_mf" />
+          <ScalarProperty Name="ip2_id" ColumnName="ip2_id" />
+          <ScalarProperty Name="ip_id" ColumnName="ip_id" />
+          <ScalarProperty Name="ip2_len" ColumnName="ip2_len" />
+          <ScalarProperty Name="ip_len" ColumnName="ip_len" />
+          <ScalarProperty Name="ip2_ttl" ColumnName="ip2_ttl" />
+          <ScalarProperty Name="ip_ttl" ColumnName="ip_ttl" />
+          <ScalarProperty Name="tcp_ack" ColumnName="tcp_ack" />
+          <ScalarProperty Name="tcp_need_segment" ColumnName="tcp_need_segment" />
+          <ScalarProperty Name="tcp_nxtseq" ColumnName="tcp_nxtseq" />
+          <ScalarProperty Name="tcp_seq" ColumnName="tcp_seq" />
+          <ScalarProperty Name="tcp_dstport" ColumnName="tcp_dstport" />
+          <ScalarProperty Name="tcp_srcport" ColumnName="tcp_srcport" />
+          <ScalarProperty Name="ip2_proto" ColumnName="ip2_proto" />
+          <ScalarProperty Name="ip_proto" ColumnName="ip_proto" />
+          <ScalarProperty Name="http_user_agent" ColumnName="http_user_agent" />
+          <ScalarProperty Name="http_request_uri" ColumnName="http_request_uri" />
+          <ScalarProperty Name="ip2_dst_host" ColumnName="ip2_dst_host" />
+          <ScalarProperty Name="ip2_src_host" ColumnName="ip2_src_host" />
+          <ScalarProperty Name="udp_dstport" ColumnName="udp_dstport" />
+          <ScalarProperty Name="udp_srcport" ColumnName="udp_srcport" />
+          <ScalarProperty Name="ip_dst_host" ColumnName="ip_dst_host" />
+          <ScalarProperty Name="ip_src_host" ColumnName="ip_src_host" />
+          <ScalarProperty Name="Http_Any_RepeatCounter" ColumnName="Http_Any_RepeatCounter" />
+          <ScalarProperty Name="Http_Any_MsgType" ColumnName="Http_Any_MsgType" />
+          <ScalarProperty Name="Http_Any_time" ColumnName="Http_Any_time" />
+          <ScalarProperty Name="Http_Any" ColumnName="Http_Any" />
+          <ScalarProperty Name="DumpFor" ColumnName="DumpFor" />
+          <ScalarProperty Name="PacketTime_ms_" ColumnName="PacketTime(ms)" />
+          <ScalarProperty Name="PacketTime" ColumnName="PacketTime" />
+          <ScalarProperty Name="BeginFrameNum" ColumnName="BeginFrameNum" />
+          <ScalarProperty Name="BeginFileNum" ColumnName="BeginFileNum" />
+          <ScalarProperty Name="PacketNum" ColumnName="PacketNum" />
+          <ScalarProperty Name="FileNum" ColumnName="FileNum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RawFileList">
+      <EntityTypeMapping TypeName="GuangZhou_GnModel.RawFileList">
+        <MappingFragment StoreEntitySet="RawFileList">
+          <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+          <ScalarProperty Name="FileNum" ColumnName="FileNum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

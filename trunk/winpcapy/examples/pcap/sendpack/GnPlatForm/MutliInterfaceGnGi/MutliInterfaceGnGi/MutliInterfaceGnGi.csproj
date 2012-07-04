@@ -71,6 +71,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Service1_7.cs" />
+    <Compile Include="Guangzhou_Gi.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Guangzhou_Gi.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Guangzhou_Giw.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Guangzhou_Giw.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Guangzhou_Gn.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Guangzhou_Gn.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Service1_6.cs" />
     <Compile Include="Guangzhou_GnGi.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -92,6 +109,18 @@
     <EntityDeploy Include="Guangzhou_GnGi.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Guangzhou_GnGi.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="Guangzhou_Gi.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Guangzhou_Gi.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="Guangzhou_Gn.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Guangzhou_Gn.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="Guangzhou_Giw.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Guangzhou_Giw.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="packages.config" />
   </ItemGroup>
