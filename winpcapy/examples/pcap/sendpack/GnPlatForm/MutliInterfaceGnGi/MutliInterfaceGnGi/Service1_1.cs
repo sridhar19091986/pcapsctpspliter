@@ -11,6 +11,9 @@ using System.Data.Entity.Design;
 using EntityFramework.Extensions;
 using EntityFramework.Caching;
 using EntityFramework.Batch;
+using MutliInterface_Gi;
+using MutliInterface_Giw;
+using MutliInterface_Gn;
 
 
 namespace MutliInterfaceGnGi
@@ -34,12 +37,13 @@ namespace MutliInterfaceGnGi
 
         Guangzhou_GnGiEntities gz_gngi = new Guangzhou_GnGiEntities();
 
+
         public DataSet GetDataCollection(int value)
         {
-            gz_gngi.CommandTimeout = 0;
-            gz_gngi.ContextOptions.LazyLoadingEnabled = true;
-            gz_gngi.GnGiGw_Http_Any_Multi.MergeOption = MergeOption.NoTracking;
-            gz_gngi.GnGiGw_Http_Any_Multi.Load();
+            //gz_gngi.CommandTimeout = 0;
+            //gz_gngi.ContextOptions.LazyLoadingEnabled = true;
+            //gz_gngi.GnGiGw_Http_Any_Multi.MergeOption = MergeOption.NoTracking;
+            //gz_gngi.GnGiGw_Http_Any_Multi.Load();
 
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
@@ -54,15 +58,31 @@ namespace MutliInterfaceGnGi
                 case 4:
                     dt = viewTableDetail_All(); break;
                 case 5:
-                    dt = viewTableDetail_All_FromCache(); break;
-                case 8:
-                    dt = viewTableDetail_All_ToLookup();break;
+                    dt =viewKeyKPI_gn_FromCache(); break;
                 case 6:
-                    dt = statTableGnGiLost(); break;
+                    dt = viewKeyKPI_gi_FromCache(); break;
                 case 7:
+                    dt = viewKeyKPI_giw_FromCache(); break;
+                case 8:
+                    dt = viewKeyKPI_gi_from_giw_FromCache(); break;
+                case 9:
+                    dt = viewKeyKPI_gn_from_giw_FromCache(); break;
+                case 10:
+                    dt =viewLost_gn_from_giw_FromCache(); break;
+                case 11:
+                    dt = viewLost_gi_from_giw_FromCache(); break;
+                case 55:
+                    dt = viewTableDetail_All_FromCache(); break;
+                case 59:
+                    dt = viewTableDetail_All_FromCache_simple(); break;
+                case 58:
+                    dt = viewTableDetail_All_ToLookup(); break;
+                case 56:
+                    dt = statTableGnGiLost(); break;
+                case 57:
                     dt = getTableAllRows(); break;
                 default:
-                    dt =  getTableRandownRows(); break;
+                    dt = getTableRandownRows(); break;
             }
             ds.Tables.Add(dt);
             return ds;

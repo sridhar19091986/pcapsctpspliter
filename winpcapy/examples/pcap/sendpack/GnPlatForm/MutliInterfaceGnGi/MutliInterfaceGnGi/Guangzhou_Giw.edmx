@@ -1,0 +1,335 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GuangZhou_GiwModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="GuangZhou_GiwModelStoreContainer">
+          <EntitySet Name="GnGiGw_Get2x" EntityType="GuangZhou_GiwModel.Store.GnGiGw_Get2x" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="GnGiGw_Http_Any_Multi" EntityType="GuangZhou_GiwModel.Store.GnGiGw_Http_Any_Multi" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RawFileList" EntityType="GuangZhou_GiwModel.Store.RawFileList" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="GnGiGw_Get2x">
+          <Key>
+            <PropertyRef Name="FileNum" />
+            <PropertyRef Name="PacketNum" />
+          </Key>
+          <Property Name="FileNum" Type="int" Nullable="false" />
+          <Property Name="PacketNum" Type="int" Nullable="false" />
+          <Property Name="BeginFileNum" Type="int" />
+          <Property Name="BeginFrameNum" Type="int" />
+          <Property Name="PacketTime" Type="datetime" />
+          <Property Name="PacketTime(ms)" Type="int" />
+          <Property Name="DumpFor" Type="nvarchar" MaxLength="30" />
+          <Property Name="Get2x" Type="int" />
+          <Property Name="Get2x_time" Type="nvarchar" MaxLength="200" />
+          <Property Name="ip_src_host" Type="nvarchar" MaxLength="200" />
+          <Property Name="ip_dst_host" Type="nvarchar" MaxLength="200" />
+          <Property Name="udp_srcport" Type="nvarchar" MaxLength="200" />
+          <Property Name="udp_dstport" Type="nvarchar" MaxLength="200" />
+          <Property Name="ip2_src_host" Type="nvarchar" MaxLength="200" />
+          <Property Name="ip2_dst_host" Type="nvarchar" MaxLength="200" />
+          <Property Name="http_request_uri" Type="nvarchar" MaxLength="200" />
+          <Property Name="http_request_uri_main" Type="nvarchar" MaxLength="200" />
+          <Property Name="http_host" Type="nvarchar" MaxLength="200" />
+          <Property Name="http_x_online_host" Type="nvarchar" MaxLength="200" />
+          <Property Name="http_user_agent" Type="nvarchar" MaxLength="200" />
+          <Property Name="http_user_agent_main" Type="nvarchar" MaxLength="200" />
+          <Property Name="http_accept" Type="nvarchar" MaxLength="200" />
+          <Property Name="http_referer" Type="nvarchar" MaxLength="200" />
+          <Property Name="http_connection" Type="nvarchar" MaxLength="200" />
+          <Property Name="tcp_seq" Type="nvarchar" MaxLength="200" />
+          <Property Name="tcp_nxtseq" Type="nvarchar" MaxLength="200" />
+          <Property Name="tcp_ack" Type="nvarchar" MaxLength="200" />
+          <Property Name="Get2x_Repeat" Type="int" />
+          <Property Name="Get2x_Repeat_delayFirst" Type="int" />
+          <Property Name="Response" Type="int" />
+          <Property Name="Response_delayFirst" Type="int" />
+          <Property Name="Response_timeFirst" Type="nvarchar" MaxLength="200" />
+          <Property Name="http_response_code" Type="nvarchar" MaxLength="200" />
+          <Property Name="http_content_type" Type="nvarchar" MaxLength="200" />
+          <Property Name="http_content_type_part1" Type="nvarchar" MaxLength="200" />
+          <Property Name="http_content_type_part2" Type="nvarchar" MaxLength="200" />
+          <Property Name="http_server" Type="nvarchar" MaxLength="200" />
+          <Property Name="http_connection_response" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="GnGiGw_Http_Any_Multi">
+          <Key>
+            <PropertyRef Name="FileNum" />
+            <PropertyRef Name="PacketNum" />
+          </Key>
+          <Property Name="FileNum" Type="int" Nullable="false" />
+          <Property Name="PacketNum" Type="int" Nullable="false" />
+          <Property Name="BeginFileNum" Type="int" />
+          <Property Name="BeginFrameNum" Type="int" />
+          <Property Name="PacketTime" Type="datetime" />
+          <Property Name="PacketTime(ms)" Type="int" />
+          <Property Name="DumpFor" Type="nvarchar" MaxLength="30" />
+          <Property Name="Http_Any" Type="int" />
+          <Property Name="Http_Any_time" Type="nvarchar" MaxLength="200" />
+          <Property Name="Http_Any_MsgType" Type="nvarchar" MaxLength="200" />
+          <Property Name="Http_Any_RepeatCounter" Type="int" />
+          <Property Name="ip_src_host" Type="nvarchar" MaxLength="200" />
+          <Property Name="ip_dst_host" Type="nvarchar" MaxLength="200" />
+          <Property Name="udp_srcport" Type="int" />
+          <Property Name="udp_dstport" Type="int" />
+          <Property Name="ip2_src_host" Type="nvarchar" MaxLength="200" />
+          <Property Name="ip2_dst_host" Type="nvarchar" MaxLength="200" />
+          <Property Name="http_request_uri" Type="nvarchar" MaxLength="200" />
+          <Property Name="http_user_agent" Type="nvarchar" MaxLength="200" />
+          <Property Name="ip_proto" Type="nvarchar" MaxLength="200" />
+          <Property Name="ip2_proto" Type="nvarchar" MaxLength="200" />
+          <Property Name="tcp_srcport" Type="int" />
+          <Property Name="tcp_dstport" Type="int" />
+          <Property Name="tcp_seq" Type="nvarchar" MaxLength="200" />
+          <Property Name="tcp_nxtseq" Type="nvarchar" MaxLength="200" />
+          <Property Name="tcp_need_segment" Type="nvarchar" MaxLength="200" />
+          <Property Name="tcp_ack" Type="nvarchar" MaxLength="200" />
+          <Property Name="ip_ttl" Type="int" />
+          <Property Name="ip2_ttl" Type="int" />
+          <Property Name="ip_len" Type="int" />
+          <Property Name="ip2_len" Type="int" />
+          <Property Name="ip_id" Type="int" />
+          <Property Name="ip2_id" Type="int" />
+          <Property Name="ip_flags_mf" Type="nvarchar" MaxLength="200" />
+          <Property Name="ip2_flags_mf" Type="nvarchar" MaxLength="200" />
+          <Property Name="gtp_flags_payload" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="RawFileList">
+          <Key>
+            <PropertyRef Name="FileNum" />
+          </Key>
+          <Property Name="FileNum" Type="int" Nullable="false" />
+          <Property Name="FilePath" Type="varchar" MaxLength="255" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GuangZhou_GiwModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="GuangZhou_GiwEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="GnGiGw_Get2x" EntityType="GuangZhou_GiwModel.GnGiGw_Get2x" />
+          <EntitySet Name="GnGiGw_Http_Any_Multi" EntityType="GuangZhou_GiwModel.GnGiGw_Http_Any_Multi" />
+          <EntitySet Name="RawFileList" EntityType="GuangZhou_GiwModel.RawFileList" />
+        </EntityContainer>
+        <EntityType Name="GnGiGw_Get2x">
+          <Key>
+            <PropertyRef Name="FileNum" />
+            <PropertyRef Name="PacketNum" />
+          </Key>
+          <Property Type="Int32" Name="FileNum" Nullable="false" />
+          <Property Type="Int32" Name="PacketNum" Nullable="false" />
+          <Property Type="Int32" Name="BeginFileNum" />
+          <Property Type="Int32" Name="BeginFrameNum" />
+          <Property Type="DateTime" Name="PacketTime" />
+          <Property Type="Int32" Name="PacketTime_ms_" />
+          <Property Type="String" Name="DumpFor" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Get2x" />
+          <Property Type="String" Name="Get2x_time" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ip_src_host" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ip_dst_host" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="udp_srcport" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="udp_dstport" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ip2_src_host" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ip2_dst_host" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="http_request_uri" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="http_request_uri_main" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="http_host" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="http_x_online_host" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="http_user_agent" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="http_user_agent_main" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="http_accept" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="http_referer" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="http_connection" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="tcp_seq" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="tcp_nxtseq" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="tcp_ack" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Get2x_Repeat" />
+          <Property Type="Int32" Name="Get2x_Repeat_delayFirst" />
+          <Property Type="Int32" Name="Response" />
+          <Property Type="Int32" Name="Response_delayFirst" />
+          <Property Type="String" Name="Response_timeFirst" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="http_response_code" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="http_content_type" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="http_content_type_part1" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="http_content_type_part2" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="http_server" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="http_connection_response" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="GnGiGw_Http_Any_Multi">
+          <Key>
+            <PropertyRef Name="FileNum" />
+            <PropertyRef Name="PacketNum" />
+          </Key>
+          <Property Type="Int32" Name="FileNum" Nullable="false" />
+          <Property Type="Int32" Name="PacketNum" Nullable="false" />
+          <Property Type="Int32" Name="BeginFileNum" />
+          <Property Type="Int32" Name="BeginFrameNum" />
+          <Property Type="DateTime" Name="PacketTime" />
+          <Property Type="Int32" Name="PacketTime_ms_" />
+          <Property Type="String" Name="DumpFor" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Http_Any" />
+          <Property Type="String" Name="Http_Any_time" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Http_Any_MsgType" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Http_Any_RepeatCounter" />
+          <Property Type="String" Name="ip_src_host" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ip_dst_host" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="udp_srcport" />
+          <Property Type="Int32" Name="udp_dstport" />
+          <Property Type="String" Name="ip2_src_host" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ip2_dst_host" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="http_request_uri" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="http_user_agent" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ip_proto" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ip2_proto" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="tcp_srcport" />
+          <Property Type="Int32" Name="tcp_dstport" />
+          <Property Type="String" Name="tcp_seq" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="tcp_nxtseq" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="tcp_need_segment" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="tcp_ack" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ip_ttl" />
+          <Property Type="Int32" Name="ip2_ttl" />
+          <Property Type="Int32" Name="ip_len" />
+          <Property Type="Int32" Name="ip2_len" />
+          <Property Type="Int32" Name="ip_id" />
+          <Property Type="Int32" Name="ip2_id" />
+          <Property Type="String" Name="ip_flags_mf" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ip2_flags_mf" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="gtp_flags_payload" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="RawFileList">
+          <Key>
+            <PropertyRef Name="FileNum" />
+          </Key>
+          <Property Type="Int32" Name="FileNum" Nullable="false" />
+          <Property Type="String" Name="FilePath" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GuangZhou_GiwModelStoreContainer" CdmEntityContainer="GuangZhou_GiwEntities">
+          <EntitySetMapping Name="GnGiGw_Get2x">
+            <EntityTypeMapping TypeName="GuangZhou_GiwModel.GnGiGw_Get2x">
+              <MappingFragment StoreEntitySet="GnGiGw_Get2x">
+                <ScalarProperty Name="http_connection_response" ColumnName="http_connection_response" />
+                <ScalarProperty Name="http_server" ColumnName="http_server" />
+                <ScalarProperty Name="http_content_type_part2" ColumnName="http_content_type_part2" />
+                <ScalarProperty Name="http_content_type_part1" ColumnName="http_content_type_part1" />
+                <ScalarProperty Name="http_content_type" ColumnName="http_content_type" />
+                <ScalarProperty Name="http_response_code" ColumnName="http_response_code" />
+                <ScalarProperty Name="Response_timeFirst" ColumnName="Response_timeFirst" />
+                <ScalarProperty Name="Response_delayFirst" ColumnName="Response_delayFirst" />
+                <ScalarProperty Name="Response" ColumnName="Response" />
+                <ScalarProperty Name="Get2x_Repeat_delayFirst" ColumnName="Get2x_Repeat_delayFirst" />
+                <ScalarProperty Name="Get2x_Repeat" ColumnName="Get2x_Repeat" />
+                <ScalarProperty Name="tcp_ack" ColumnName="tcp_ack" />
+                <ScalarProperty Name="tcp_nxtseq" ColumnName="tcp_nxtseq" />
+                <ScalarProperty Name="tcp_seq" ColumnName="tcp_seq" />
+                <ScalarProperty Name="http_connection" ColumnName="http_connection" />
+                <ScalarProperty Name="http_referer" ColumnName="http_referer" />
+                <ScalarProperty Name="http_accept" ColumnName="http_accept" />
+                <ScalarProperty Name="http_user_agent_main" ColumnName="http_user_agent_main" />
+                <ScalarProperty Name="http_user_agent" ColumnName="http_user_agent" />
+                <ScalarProperty Name="http_x_online_host" ColumnName="http_x_online_host" />
+                <ScalarProperty Name="http_host" ColumnName="http_host" />
+                <ScalarProperty Name="http_request_uri_main" ColumnName="http_request_uri_main" />
+                <ScalarProperty Name="http_request_uri" ColumnName="http_request_uri" />
+                <ScalarProperty Name="ip2_dst_host" ColumnName="ip2_dst_host" />
+                <ScalarProperty Name="ip2_src_host" ColumnName="ip2_src_host" />
+                <ScalarProperty Name="udp_dstport" ColumnName="udp_dstport" />
+                <ScalarProperty Name="udp_srcport" ColumnName="udp_srcport" />
+                <ScalarProperty Name="ip_dst_host" ColumnName="ip_dst_host" />
+                <ScalarProperty Name="ip_src_host" ColumnName="ip_src_host" />
+                <ScalarProperty Name="Get2x_time" ColumnName="Get2x_time" />
+                <ScalarProperty Name="Get2x" ColumnName="Get2x" />
+                <ScalarProperty Name="DumpFor" ColumnName="DumpFor" />
+                <ScalarProperty Name="PacketTime_ms_" ColumnName="PacketTime(ms)" />
+                <ScalarProperty Name="PacketTime" ColumnName="PacketTime" />
+                <ScalarProperty Name="BeginFrameNum" ColumnName="BeginFrameNum" />
+                <ScalarProperty Name="BeginFileNum" ColumnName="BeginFileNum" />
+                <ScalarProperty Name="PacketNum" ColumnName="PacketNum" />
+                <ScalarProperty Name="FileNum" ColumnName="FileNum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GnGiGw_Http_Any_Multi">
+            <EntityTypeMapping TypeName="GuangZhou_GiwModel.GnGiGw_Http_Any_Multi">
+              <MappingFragment StoreEntitySet="GnGiGw_Http_Any_Multi">
+                <ScalarProperty Name="gtp_flags_payload" ColumnName="gtp_flags_payload" />
+                <ScalarProperty Name="ip2_flags_mf" ColumnName="ip2_flags_mf" />
+                <ScalarProperty Name="ip_flags_mf" ColumnName="ip_flags_mf" />
+                <ScalarProperty Name="ip2_id" ColumnName="ip2_id" />
+                <ScalarProperty Name="ip_id" ColumnName="ip_id" />
+                <ScalarProperty Name="ip2_len" ColumnName="ip2_len" />
+                <ScalarProperty Name="ip_len" ColumnName="ip_len" />
+                <ScalarProperty Name="ip2_ttl" ColumnName="ip2_ttl" />
+                <ScalarProperty Name="ip_ttl" ColumnName="ip_ttl" />
+                <ScalarProperty Name="tcp_ack" ColumnName="tcp_ack" />
+                <ScalarProperty Name="tcp_need_segment" ColumnName="tcp_need_segment" />
+                <ScalarProperty Name="tcp_nxtseq" ColumnName="tcp_nxtseq" />
+                <ScalarProperty Name="tcp_seq" ColumnName="tcp_seq" />
+                <ScalarProperty Name="tcp_dstport" ColumnName="tcp_dstport" />
+                <ScalarProperty Name="tcp_srcport" ColumnName="tcp_srcport" />
+                <ScalarProperty Name="ip2_proto" ColumnName="ip2_proto" />
+                <ScalarProperty Name="ip_proto" ColumnName="ip_proto" />
+                <ScalarProperty Name="http_user_agent" ColumnName="http_user_agent" />
+                <ScalarProperty Name="http_request_uri" ColumnName="http_request_uri" />
+                <ScalarProperty Name="ip2_dst_host" ColumnName="ip2_dst_host" />
+                <ScalarProperty Name="ip2_src_host" ColumnName="ip2_src_host" />
+                <ScalarProperty Name="udp_dstport" ColumnName="udp_dstport" />
+                <ScalarProperty Name="udp_srcport" ColumnName="udp_srcport" />
+                <ScalarProperty Name="ip_dst_host" ColumnName="ip_dst_host" />
+                <ScalarProperty Name="ip_src_host" ColumnName="ip_src_host" />
+                <ScalarProperty Name="Http_Any_RepeatCounter" ColumnName="Http_Any_RepeatCounter" />
+                <ScalarProperty Name="Http_Any_MsgType" ColumnName="Http_Any_MsgType" />
+                <ScalarProperty Name="Http_Any_time" ColumnName="Http_Any_time" />
+                <ScalarProperty Name="Http_Any" ColumnName="Http_Any" />
+                <ScalarProperty Name="DumpFor" ColumnName="DumpFor" />
+                <ScalarProperty Name="PacketTime_ms_" ColumnName="PacketTime(ms)" />
+                <ScalarProperty Name="PacketTime" ColumnName="PacketTime" />
+                <ScalarProperty Name="BeginFrameNum" ColumnName="BeginFrameNum" />
+                <ScalarProperty Name="BeginFileNum" ColumnName="BeginFileNum" />
+                <ScalarProperty Name="PacketNum" ColumnName="PacketNum" />
+                <ScalarProperty Name="FileNum" ColumnName="FileNum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RawFileList">
+            <EntityTypeMapping TypeName="GuangZhou_GiwModel.RawFileList">
+              <MappingFragment StoreEntitySet="RawFileList">
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+                <ScalarProperty Name="FileNum" ColumnName="FileNum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Guangzhou_Giw" ZoomLevel="87">
+        <EntityTypeShape EntityType="GuangZhou_GiwModel.GnGiGw_Get2x" Width="1.5" PointX="0.75" PointY="0.75" Height="7.3552864583333317" />
+        <EntityTypeShape EntityType="GuangZhou_GiwModel.GnGiGw_Http_Any_Multi" Width="1.5" PointX="2.75" PointY="0.75" Height="7.018046875" />
+        <EntityTypeShape EntityType="GuangZhou_GiwModel.RawFileList" Width="1.5" PointX="4.75" PointY="0.75" Height="1.2849739583333317" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
