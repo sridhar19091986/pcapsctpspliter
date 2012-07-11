@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Guangzhou_GnGiModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="Guangzhou_GnGiEntities" annotation:LazyLoadingEnabled="true" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+    <EntitySet Name="GnGiGw_Http_Any_Multi" EntityType="Guangzhou_GnGiModel.GnGiGw_Http_Any_Multi" />
+  </EntityContainer>
+  <EntityType Name="GnGiGw_Http_Any_Multi">
+    <Key>
+      <PropertyRef Name="FileNum" />
+      <PropertyRef Name="PacketNum" />
+    </Key>
+    <Property Type="Int32" Name="FileNum" Nullable="false" />
+    <Property Type="Int32" Name="PacketNum" Nullable="false" />
+    <Property Type="Int32" Name="BeginFileNum" />
+    <Property Type="Int32" Name="BeginFrameNum" />
+    <Property Type="DateTime" Name="PacketTime" />
+    <Property Type="Int32" Name="PacketTime_ms_" />
+    <Property Type="String" Name="DumpFor" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="Http_Any" />
+    <Property Type="String" Name="Http_Any_time" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Http_Any_MsgType" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="Http_Any_RepeatCounter" />
+    <Property Type="String" Name="ip_src_host" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ip_dst_host" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="udp_srcport" />
+    <Property Type="Int32" Name="udp_dstport" />
+    <Property Type="String" Name="ip2_src_host" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ip2_dst_host" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="http_request_uri" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="http_user_agent" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ip_proto" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ip2_proto" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="tcp_srcport" />
+    <Property Type="Int32" Name="tcp_dstport" />
+    <Property Type="String" Name="tcp_seq" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="tcp_nxtseq" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="tcp_need_segment" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="tcp_ack" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="ip_ttl" />
+    <Property Type="Int32" Name="ip2_ttl" />
+    <Property Type="Int32" Name="ip_len" />
+    <Property Type="Int32" Name="ip2_len" />
+    <Property Type="Int32" Name="ip_id" />
+    <Property Type="Int32" Name="ip2_id" />
+    <Property Type="String" Name="ip_flags_mf" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ip2_flags_mf" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="gtp_flags_payload" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>
