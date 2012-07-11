@@ -32,6 +32,7 @@ D:\guangzhou_0419\新建文件夹\MutliInterfaceGnGi\MutliInterfaceGnGi\obj\Debu
 D:\guangzhou_0419\新建文件夹\MutliInterfaceGnGi\MutliInterfaceGnGi\obj\Debug\MutliInterfaceGnGi.pdb
 \\192.168.4.209\guangzhou_0419\新建文件夹\MutliInterfaceGnGi\MutliInterfaceGnGi\bin\Debug\MutliInterfaceGnGi.dll.config
 \\192.168.4.209\guangzhou_0419\新建文件夹\MutliInterfaceGnGi\MutliInterfaceGnGi\bin\Debug\MutliInterfaceGnGi.dll
+\\192.168.4.209\guangzhou_0419\新建文件夹\MutliInterfaceGnGi\MutliInterfaceGnGi\bin\Debug\MutliInterfaceGnGi.pdb
 \\192.168.4.209\guangzhou_0419\新建文件夹\MutliInterfaceGnGi\MutliInterfaceGnGi\bin\Debug\Afterthought.dll
 \\192.168.4.209\guangzhou_0419\新建文件夹\MutliInterfaceGnGi\MutliInterfaceGnGi\bin\Debug\EntityFramework.dll
 \\192.168.4.209\guangzhou_0419\新建文件夹\MutliInterfaceGnGi\MutliInterfaceGnGi\bin\Debug\EntityFramework.Extended.dll
@@ -42,4 +43,3 @@ D:\guangzhou_0419\新建文件夹\MutliInterfaceGnGi\MutliInterfaceGnGi\obj\Debu
 \\192.168.4.209\guangzhou_0419\新建文件夹\MutliInterfaceGnGi\MutliInterfaceGnGi\obj\Debug\ResolveAssemblyReference.cache
 \\192.168.4.209\guangzhou_0419\新建文件夹\MutliInterfaceGnGi\MutliInterfaceGnGi\obj\Debug\MutliInterfaceGnGi.dll
 \\192.168.4.209\guangzhou_0419\新建文件夹\MutliInterfaceGnGi\MutliInterfaceGnGi\obj\Debug\MutliInterfaceGnGi.pdb
-\\192.168.4.209\guangzhou_0419\新建文件夹\MutliInterfaceGnGi\MutliInterfaceGnGi\bin\Debug\MutliInterfaceGnGi.pdb

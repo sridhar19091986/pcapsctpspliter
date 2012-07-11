@@ -11,15 +11,20 @@ using System.Data.Entity.Design;
 using EntityFramework.Extensions;
 using EntityFramework.Caching;
 using EntityFramework.Batch;
-using MutliInterface_Gi;
-using MutliInterface_Giw;
-using MutliInterface_Gn;
 
+using MutliInterfaceGnGi.ServerEntity.Gi;
+using MutliInterfaceGnGi.ServerEntity.Gw;
+using MutliInterfaceGnGi.ServerEntity.Gn;
+using MutliInterfaceGnGi.ServerEntity.Other;
+
+
+/*
 
 namespace MutliInterfaceGnGi
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
-    public partial class Service1 : IService1
+    public class MulitiInterfaceLostPacket:Service1
+
     {
         public DataSet GetCase()
         {
@@ -33,20 +38,62 @@ namespace MutliInterfaceGnGi
             return ds;
         }
 
-
-
         Guangzhou_GnGiEntities gz_gngi = new Guangzhou_GnGiEntities();
+        GuangZhou_GiEntities1 gz_gi = new GuangZhou_GiEntities1();
+        GuangZhou_GiwEntities gz_giw = new GuangZhou_GiwEntities();
+        GuangZhou_GnEntities gz_gn = new GuangZhou_GnEntities();
 
+        string tcp = "TCP";
+        string gre = "GRE";
+
+        private void EntitySetLazy()
+        {
+            gz_gn.CommandTimeout = 0;
+            gz_gn.ContextOptions.LazyLoadingEnabled = true;
+
+            gz_gi.CommandTimeout = 0;
+            gz_gi.ContextOptions.LazyLoadingEnabled = true;
+
+            gz_giw.CommandTimeout = 0;
+            gz_giw.ContextOptions.LazyLoadingEnabled = true;
+        }
+        private void EntityLoadCache_Get()
+        {
+            gz_gi.GnGiGw_Get2x.MergeOption = MergeOption.NoTracking;
+            gz_gi.GnGiGw_Get2x.Load();
+            gz_gi.RawFileList.Load();
+
+            gz_gn.GnGiGw_Get2x.MergeOption = MergeOption.NoTracking;
+            gz_gn.GnGiGw_Get2x.Load();
+            gz_gn.RawFileList.Load();
+
+            gz_giw.GnGiGw_Get2x.MergeOption = MergeOption.NoTracking;
+            gz_giw.GnGiGw_Get2x.Load();
+        }
+        private void EntityLoadCache_Syn()
+        {
+
+
+            gz_gn.GnGiGw_Syn.MergeOption = MergeOption.NoTracking;
+            gz_gi.GnGiGw_Syn.MergeOption = MergeOption.NoTracking;
+            gz_giw.GnGiGw_Syn.MergeOption = MergeOption.NoTracking;
+            gz_gn.GnGiGw_Syn.Load();
+            gz_gi.GnGiGw_Syn.Load();
+            gz_giw.GnGiGw_Syn.Load();
+
+
+        }
 
         public DataSet GetDataCollection(int value)
         {
-            //gz_gngi.CommandTimeout = 0;
-            //gz_gngi.ContextOptions.LazyLoadingEnabled = true;
-            //gz_gngi.GnGiGw_Http_Any_Multi.MergeOption = MergeOption.NoTracking;
-            //gz_gngi.GnGiGw_Http_Any_Multi.Load();
+            EntitySetLazy();
+
+            EntityLoadCache_Syn();
 
             DataSet ds = new DataSet();
+
             DataTable dt = new DataTable();
+
             switch (value)
             {
                 case 1:
@@ -58,19 +105,42 @@ namespace MutliInterfaceGnGi
                 case 4:
                     dt = viewTableDetail_All(); break;
                 case 5:
-                    dt =viewKeyKPI_gn_FromCache(); break;
+                    dt = viewKeyKPI_gn_FromCache(); break;
                 case 6:
                     dt = viewKeyKPI_gi_FromCache(); break;
                 case 7:
                     dt = viewKeyKPI_giw_FromCache(); break;
                 case 8:
-                    dt = viewKeyKPI_gi_from_giw_FromCache(); break;
+                    dt = viewKeyKPI_gi_from_giw_FromCache(tcp); break;
                 case 9:
-                    dt = viewKeyKPI_gn_from_giw_FromCache(); break;
+                    dt = viewKeyKPI_gn_from_giw_FromCache(tcp); break;
                 case 10:
-                    dt =viewLost_gn_from_giw_FromCache(); break;
+                    dt = viewKeyKPI_giw_from_giw_FromCache(tcp); break;
                 case 11:
-                    dt = viewLost_gi_from_giw_FromCache(); break;
+                    dt = viewKeyKPI_gi_from_giw_FromCache(gre); break;
+                case 12:
+                    dt = viewKeyKPI_gn_from_giw_FromCache(gre); break;
+                case 13:
+                    dt = viewKeyKPI_giw_from_giw_FromCache(gre); break;
+
+                    //
+                case 100:
+                    dt = viewKPI_upLost_FromCache(gre);break;
+                case 99:
+                    dt = viewKPI_upLost_FromCache(tcp);break;
+
+                case 14:
+                    dt = viewLost_gn_from_giw_FromCache(tcp); break;
+                case 15:
+                    dt = viewLost_gi_from_giw_FromCache(tcp); break;
+                case 16:
+                    dt = viewLost_gn_from_giw_FromCache(gre); break;
+                case 17:
+                    dt = viewLost_gi_from_giw_FromCache(gre); break;
+                case 18:
+
+                    //
+                    dt = viewAll_gigngw_from_giw_FromCache(); break;
                 case 55:
                     dt = viewTableDetail_All_FromCache(); break;
                 case 59:
@@ -136,3 +206,4 @@ namespace MutliInterfaceGnGi
         }
     }
 }
+*/

@@ -3,7 +3,7 @@
   <EntityContainer Name="GuangZhou_GiwEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="GnGiGw_Get2x" EntityType="GuangZhou_GiwModel.GnGiGw_Get2x" />
     <EntitySet Name="GnGiGw_Http_Any_Multi" EntityType="GuangZhou_GiwModel.GnGiGw_Http_Any_Multi" />
-    <EntitySet Name="RawFileList" EntityType="GuangZhou_GiwModel.RawFileList" />
+    <EntitySet Name="GnGiGw_Syn" EntityType="GuangZhou_GiwModel.GnGiGw_Syn" />
   </EntityContainer>
   <EntityType Name="GnGiGw_Get2x">
     <Key>
@@ -48,6 +48,9 @@
     <Property Type="String" Name="http_content_type_part2" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="http_server" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="http_connection_response" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ip2_id" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ip_id" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ip_proto" MaxLength="200" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="GnGiGw_Http_Any_Multi">
     <Key>
@@ -91,11 +94,43 @@
     <Property Type="String" Name="ip2_flags_mf" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="gtp_flags_payload" MaxLength="200" FixedLength="false" Unicode="true" />
   </EntityType>
-  <EntityType Name="RawFileList">
+  <EntityType Name="GnGiGw_Syn">
     <Key>
       <PropertyRef Name="FileNum" />
+      <PropertyRef Name="PacketNum" />
     </Key>
     <Property Type="Int32" Name="FileNum" Nullable="false" />
-    <Property Type="String" Name="FilePath" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="PacketNum" Nullable="false" />
+    <Property Type="Int32" Name="BeginFileNum" />
+    <Property Type="Int32" Name="BeginFrameNum" />
+    <Property Type="DateTime" Name="PacketTime" />
+    <Property Type="Int32" Name="PacketTime_ms_" />
+    <Property Type="String" Name="DumpFor" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="Syn" />
+    <Property Type="String" Name="Syn_time" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="Syn_RepeatCounter" />
+    <Property Type="String" Name="ip_dst_host" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ip_id" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ip_proto" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ip_src_host" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ip2_dst_host" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ip2_id" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ip2_src_host" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="tcp_ack" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="tcp_nxtseq" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="tcp_options_mss_val" />
+    <Property Type="Int32" Name="tcp_options_wscale_val" />
+    <Property Type="String" Name="tcp_seq" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="tcp_window_size" />
+    <Property Type="String" Name="udp_dstport" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="udp_srcport" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="Ack_Syn" />
+    <Property Type="Int32" Name="Ack_Syn_delayFirst" />
+    <Property Type="String" Name="acksyn_ack" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="acksyn_nxtseq" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="acksyn_seq" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="acksyn_mss" />
+    <Property Type="Int32" Name="acksyn_wscale" />
+    <Property Type="Int32" Name="acksyn_winsize" />
   </EntityType>
 </Schema>

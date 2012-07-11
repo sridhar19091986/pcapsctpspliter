@@ -42,6 +42,9 @@
           <Property Name="tcp_seq" Type="nvarchar" MaxLength="200" />
           <Property Name="tcp_nxtseq" Type="nvarchar" MaxLength="200" />
           <Property Name="tcp_ack" Type="nvarchar" MaxLength="200" />
+          <Property Name="ip2_id" Type="nvarchar" MaxLength="200" />
+          <Property Name="ip_id" Type="nvarchar" MaxLength="200" />
+          <Property Name="ip_proto" Type="nvarchar" MaxLength="200" />
           <Property Name="Get2x_Repeat" Type="int" />
           <Property Name="Get2x_Repeat_delayFirst" Type="int" />
           <Property Name="Response" Type="int" />
@@ -155,6 +158,9 @@
           <Property Type="String" Name="http_content_type_part2" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="http_server" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="http_connection_response" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ip2_id" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ip_id" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ip_proto" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="GnGiGw_Http_Any_Multi">
           <Key>
@@ -214,6 +220,9 @@
           <EntitySetMapping Name="GnGiGw_Get2x">
             <EntityTypeMapping TypeName="GuangZhou_GiModel.GnGiGw_Get2x">
               <MappingFragment StoreEntitySet="GnGiGw_Get2x">
+                <ScalarProperty Name="ip_proto" ColumnName="ip_proto" />
+                <ScalarProperty Name="ip_id" ColumnName="ip_id" />
+                <ScalarProperty Name="ip2_id" ColumnName="ip2_id" />
                 <ScalarProperty Name="http_connection_response" ColumnName="http_connection_response" />
                 <ScalarProperty Name="http_server" ColumnName="http_server" />
                 <ScalarProperty Name="http_content_type_part2" ColumnName="http_content_type_part2" />
