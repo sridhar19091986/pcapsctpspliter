@@ -4,6 +4,9 @@
     <EntitySetMapping Name="GnGiGw_Get2x">
       <EntityTypeMapping TypeName="GuangZhou_GiwModel.GnGiGw_Get2x">
         <MappingFragment StoreEntitySet="GnGiGw_Get2x">
+          <ScalarProperty Name="ip_proto" ColumnName="ip_proto" />
+          <ScalarProperty Name="ip_id" ColumnName="ip_id" />
+          <ScalarProperty Name="ip2_id" ColumnName="ip2_id" />
           <ScalarProperty Name="http_connection_response" ColumnName="http_connection_response" />
           <ScalarProperty Name="http_server" ColumnName="http_server" />
           <ScalarProperty Name="http_content_type_part2" ColumnName="http_content_type_part2" />
@@ -87,10 +90,41 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="RawFileList">
-      <EntityTypeMapping TypeName="GuangZhou_GiwModel.RawFileList">
-        <MappingFragment StoreEntitySet="RawFileList">
-          <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+    <EntitySetMapping Name="GnGiGw_Syn">
+      <EntityTypeMapping TypeName="GuangZhou_GiwModel.GnGiGw_Syn">
+        <MappingFragment StoreEntitySet="GnGiGw_Syn">
+          <ScalarProperty Name="acksyn_winsize" ColumnName="acksyn_winsize" />
+          <ScalarProperty Name="acksyn_wscale" ColumnName="acksyn_wscale" />
+          <ScalarProperty Name="acksyn_mss" ColumnName="acksyn_mss" />
+          <ScalarProperty Name="acksyn_seq" ColumnName="acksyn_seq" />
+          <ScalarProperty Name="acksyn_nxtseq" ColumnName="acksyn_nxtseq" />
+          <ScalarProperty Name="acksyn_ack" ColumnName="acksyn_ack" />
+          <ScalarProperty Name="Ack_Syn_delayFirst" ColumnName="Ack_Syn_delayFirst" />
+          <ScalarProperty Name="Ack_Syn" ColumnName="Ack_Syn" />
+          <ScalarProperty Name="udp_srcport" ColumnName="udp_srcport" />
+          <ScalarProperty Name="udp_dstport" ColumnName="udp_dstport" />
+          <ScalarProperty Name="tcp_window_size" ColumnName="tcp_window_size" />
+          <ScalarProperty Name="tcp_seq" ColumnName="tcp_seq" />
+          <ScalarProperty Name="tcp_options_wscale_val" ColumnName="tcp_options_wscale_val" />
+          <ScalarProperty Name="tcp_options_mss_val" ColumnName="tcp_options_mss_val" />
+          <ScalarProperty Name="tcp_nxtseq" ColumnName="tcp_nxtseq" />
+          <ScalarProperty Name="tcp_ack" ColumnName="tcp_ack" />
+          <ScalarProperty Name="ip2_src_host" ColumnName="ip2_src_host" />
+          <ScalarProperty Name="ip2_id" ColumnName="ip2_id" />
+          <ScalarProperty Name="ip2_dst_host" ColumnName="ip2_dst_host" />
+          <ScalarProperty Name="ip_src_host" ColumnName="ip_src_host" />
+          <ScalarProperty Name="ip_proto" ColumnName="ip_proto" />
+          <ScalarProperty Name="ip_id" ColumnName="ip_id" />
+          <ScalarProperty Name="ip_dst_host" ColumnName="ip_dst_host" />
+          <ScalarProperty Name="Syn_RepeatCounter" ColumnName="Syn_RepeatCounter" />
+          <ScalarProperty Name="Syn_time" ColumnName="Syn_time" />
+          <ScalarProperty Name="Syn" ColumnName="Syn" />
+          <ScalarProperty Name="DumpFor" ColumnName="DumpFor" />
+          <ScalarProperty Name="PacketTime_ms_" ColumnName="PacketTime(ms)" />
+          <ScalarProperty Name="PacketTime" ColumnName="PacketTime" />
+          <ScalarProperty Name="BeginFrameNum" ColumnName="BeginFrameNum" />
+          <ScalarProperty Name="BeginFileNum" ColumnName="BeginFileNum" />
+          <ScalarProperty Name="PacketNum" ColumnName="PacketNum" />
           <ScalarProperty Name="FileNum" ColumnName="FileNum" />
         </MappingFragment>
       </EntityTypeMapping>

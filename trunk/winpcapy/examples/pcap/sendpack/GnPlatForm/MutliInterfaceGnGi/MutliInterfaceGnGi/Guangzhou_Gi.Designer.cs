@@ -1091,6 +1091,78 @@ namespace MutliInterface_Gi
         private global::System.String _http_connection_response;
         partial void Onhttp_connection_responseChanging(global::System.String value);
         partial void Onhttp_connection_responseChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ip2_id
+        {
+            get
+            {
+                return _ip2_id;
+            }
+            set
+            {
+                Onip2_idChanging(value);
+                ReportPropertyChanging("ip2_id");
+                _ip2_id = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ip2_id");
+                Onip2_idChanged();
+            }
+        }
+        private global::System.String _ip2_id;
+        partial void Onip2_idChanging(global::System.String value);
+        partial void Onip2_idChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ip_id
+        {
+            get
+            {
+                return _ip_id;
+            }
+            set
+            {
+                Onip_idChanging(value);
+                ReportPropertyChanging("ip_id");
+                _ip_id = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ip_id");
+                Onip_idChanged();
+            }
+        }
+        private global::System.String _ip_id;
+        partial void Onip_idChanging(global::System.String value);
+        partial void Onip_idChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ip_proto
+        {
+            get
+            {
+                return _ip_proto;
+            }
+            set
+            {
+                Onip_protoChanging(value);
+                ReportPropertyChanging("ip_proto");
+                _ip_proto = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ip_proto");
+                Onip_protoChanged();
+            }
+        }
+        private global::System.String _ip_proto;
+        partial void Onip_protoChanging(global::System.String value);
+        partial void Onip_protoChanged();
 
         #endregion
     
