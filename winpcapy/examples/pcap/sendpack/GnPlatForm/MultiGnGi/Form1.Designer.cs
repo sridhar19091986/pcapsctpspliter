@@ -56,6 +56,7 @@
             this.navBarItem15 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem16 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem17 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem18 = new DevExpress.XtraNavBar.NavBarItem();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.listBox1 = new System.Windows.Forms.ListBox();
@@ -164,7 +165,8 @@
             this.navBarItem14,
             this.navBarItem15,
             this.navBarItem16,
-            this.navBarItem17});
+            this.navBarItem17,
+            this.navBarItem18});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 227;
@@ -244,6 +246,7 @@
             // navBarGroup3
             // 
             this.navBarGroup3.Caption = "通用工具";
+            this.navBarGroup3.Expanded = true;
             this.navBarGroup3.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem7),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem8),
@@ -295,7 +298,8 @@
             this.navBarGroup4.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem15),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem16),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem17)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem17),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem18)});
             this.navBarGroup4.Name = "navBarGroup4";
             // 
             // navBarItem15
@@ -315,6 +319,12 @@
             this.navBarItem17.Caption = "execWcfTcpService((int)numericUpDown1.Value)";
             this.navBarItem17.Name = "navBarItem17";
             this.navBarItem17.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem17_LinkClicked);
+            // 
+            // navBarItem18
+            // 
+            this.navBarItem18.Caption = "Time-execWcfTcpService((int)numericUpDown1.Value)";
+            this.navBarItem18.Name = "navBarItem18";
+            this.navBarItem18.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem18_LinkClicked);
             // 
             // xtraTabPage2
             // 
@@ -518,6 +528,7 @@
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private DevExpress.XtraNavBar.NavBarItem navBarItem16;
         private DevExpress.XtraNavBar.NavBarItem navBarItem17;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem18;
     }
 }
 

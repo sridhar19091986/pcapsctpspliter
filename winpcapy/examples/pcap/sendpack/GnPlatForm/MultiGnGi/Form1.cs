@@ -63,7 +63,7 @@ namespace MultiGnGi
         }
         private void formatColumns(int i)
         {
-            gridView1.Columns[i].DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            gridView1.Columns[i].DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss.fff";
             gridView1.Columns[i].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
         }
 
@@ -254,12 +254,9 @@ namespace MultiGnGi
 
         private void navBarItem8_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Filter = "Excel2007文件(*.xlsx) |*.xlsx";
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                gridView1.ExportToXlsx(saveFileDialog1.FileName);
-            }
+
+            gridView1.ExportToXlsx(@"C:\" + numericUpDown1.Value.ToString() + ".xlsx");
+
         }
 
         private void navBarItem9_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
@@ -510,9 +507,11 @@ namespace MultiGnGi
 
         private void navBarItem16_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
-            WSHttpBinding theC = new WSHttpBinding();
-            EndpointAddress address = new EndpointAddress("http://192.168.4.209:8732/Design_Time_Addresses/MutliInterfaceGnGi/Service1/");
-            Service1Client sv = new Service1Client(theC, address);
+            NetTcpBinding nt = new NetTcpBinding();
+            initTcpBinding(ref nt);
+            EndpointAddress address = new EndpointAddress("net.tcp://192.168.4.209:64567/Service1");
+            Service1Client sv = new Service1Client(nt, address);
+            clearColumns();
 
             richTextBox1.Text = sv.GetData(10);
 
@@ -523,6 +522,23 @@ namespace MultiGnGi
             try
             {
                 execWcfTcpService((int)numericUpDown1.Value);
+                //formatColumns(1);
+                //formatColumns(2);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void navBarItem18_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            try
+            {
+                execWcfTcpService((int)numericUpDown1.Value);
+                //formatColumns(1);
+              //  formatColumns(2);
+                //formatColumns(0);
             }
             catch (Exception ex)
             {
