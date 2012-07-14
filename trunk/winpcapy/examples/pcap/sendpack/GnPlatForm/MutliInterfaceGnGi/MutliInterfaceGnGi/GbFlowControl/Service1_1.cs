@@ -12,11 +12,11 @@ using EntityFramework.Extensions;
 using EntityFramework.Caching;
 using EntityFramework.Batch;
 
-using MutliInterfaceGnGi.ServerEntity.Gi;
-using MutliInterfaceGnGi.ServerEntity.Gw;
-using MutliInterfaceGnGi.ServerEntity.Gn;
-using MutliInterfaceGnGi.ServerEntity.Other;
-using MutliInterfaceGnGi.ServerEntity.Gb;
+using EntityClass.ServerEntity.Gi;
+using EntityClass.ServerEntity.Gw;
+using EntityClass.ServerEntity.Gn;
+using EntityClass.ServerEntity.Other;
+using EntityClass.ServerEntity.Gb;
 
 
 
@@ -97,7 +97,7 @@ namespace MutliInterfaceGnGi
         {
             EntitySetLazy();
 
-            EntityLoadCache_Gb();
+            //EntityLoadCache_Gb();
 
             //EntityLoadCache_Syn();
 
@@ -124,8 +124,9 @@ namespace MutliInterfaceGnGi
         private string viewTableTimeDuration()
         //private void navBarItem7_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
         {
-            var maxt = gz_gb.Gb_FlowControly.FromCache().Max(e => e.PacketTime);
-            var mint = gz_gb.Gb_FlowControly.FromCache().Min(e => e.PacketTime);
+            EntitySetLazy();
+            var maxt = gz_gb.Gb_FlowControly.Max(e => e.PacketTime);
+            var mint = gz_gb.Gb_FlowControly.Min(e => e.PacketTime);
             TimeSpan ts = maxt.Value - mint.Value;
             var ttim = mint.Value.ToString() + "-" + maxt.Value.ToString() + "," + ts.TotalSeconds.ToString();
             //richTextBox1.Text = ttim.ToString();
@@ -136,6 +137,7 @@ namespace MutliInterfaceGnGi
         //private void navBarItem1_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
         {
             //clearColumns();
+
             var gnget = gz_gngi.GnGiGw_Http_Any_Multi.FromCache();
             var giget = gz_gngi.GnGiGw_Http_Any_Multi.FromCache();
 

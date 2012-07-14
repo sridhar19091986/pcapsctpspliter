@@ -17,11 +17,11 @@ using EntityFramework.Batch;
 
 //using System.Data.DataSetExtensions;
 
-using MutliInterfaceGnGi.ServerEntity.Gi;
-using MutliInterfaceGnGi.ServerEntity.Gw;
-using MutliInterfaceGnGi.ServerEntity.Gn;
-using MutliInterfaceGnGi.ServerEntity.Other;
-using MutliInterfaceGnGi.ServerEntity.Gb;
+using EntityClass.ServerEntity.Gi;
+using EntityClass.ServerEntity.Gw;
+using EntityClass.ServerEntity.Gn;
+using EntityClass.ServerEntity.Other;
+using EntityClass.ServerEntity.Gb;
 
 
 namespace MutliInterfaceGnGi
