@@ -1,11 +1,11 @@
 go
 
  go
-alter TABLE [GnGi_Get2x_Multi]   alter  COLUMN [PacketNum] int  not null
+alter TABLE [Gb_Flow_Control_MS]   alter  COLUMN [PacketNum] int  not null
 go
-alter TABLE [GnGi_Get2x_Multi]  alter  COLUMN [FileNum] int  not null
+alter TABLE [Gb_Flow_Control_MS]  alter  COLUMN [FileNum] int  not null
 go
-alter table [GnGi_Get2x_Multi] add  PRIMARY KEY (PacketNum,FileNum);
+alter table [Gb_Flow_Control_MS] add  PRIMARY KEY (PacketNum,FileNum);
 
  go
 alter TABLE [Gn_Get2x_Multi]   alter  COLUMN [PacketNum] int  not null

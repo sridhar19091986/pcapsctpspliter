@@ -8,11 +8,23 @@ using System.Data;
 using System.Data.Objects;
 using System.Data.Entity;
 using System.Data.Entity.Design;
-using EntityFramework.Extensions;
-using EntityFramework.Caching;
-using EntityFramework.Batch;
+//using EntityFramework.Extensions;
+//using EntityFramework.Caching;
+//using EntityFramework.Batch;
 
 using MutliInterfaceGnGi.GbFlowControl;
+using System.IO;
+
+using EntityClass.ServerEntity.Gi;
+using EntityClass.ServerEntity.Gw;
+using EntityClass.ServerEntity.Gn;
+using EntityClass.ServerEntity.Other;
+using EntityClass.ServerEntity.Gb;
+
+using EFProviderWrapperToolkit;
+using EFTracingProvider;
+using EFCachingProvider.Caching;
+using EFCachingProvider;
 
 
 namespace MutliInterfaceGnGi
@@ -20,13 +32,30 @@ namespace MutliInterfaceGnGi
 
     public partial class Service1 : IService1
     {
+        public void Log(string msg)
+        {
+            EFTracingProviderConfiguration.RegisterProvider();
+            EFCachingProviderConfiguration.RegisterProvider();
+            EFTracingProviderConfiguration.LogToConsole = false;
+            TextWriter logFile = File.CreateText("SqlExcuteLog.txt");
+            ExtendedGuangZhou_GbEntities gz_gb_ex = new ExtendedGuangZhou_GbEntities();
+            gz_gb_ex.Log = logFile;
+
+        }
 
         private DataTable viewTableDetail_gb()
         {
-            var cnt_t = gz_gb.Gb_FlowControly.FromCache().Count();
-            var size_t = gz_gb.Gb_FlowControly.FromCache().Sum(e => e.ip_len);
+            EFTracingProviderConfiguration.RegisterProvider();
+            EFCachingProviderConfiguration.RegisterProvider();
+            EFTracingProviderConfiguration.LogToConsole = false;
+            TextWriter logFile = File.CreateText("SqlExcuteLog.txt");
+            ExtendedGuangZhou_GbEntities gz_gb_ex = new ExtendedGuangZhou_GbEntities();
+            gz_gb_ex.Log = logFile;
 
-            var gngi = from p in gz_gb.Gb_FlowControly.FromCache()
+            var cnt_t = gz_gb_ex.Gb_FlowControly.Count();
+            var size_t = gz_gb_ex.Gb_FlowControly.Sum(e => e.ip_len);
+
+            var gngi = from p in gz_gb_ex.Gb_FlowControly
                        group p by p.Flow_Control_MsgType into ttt
                        select new
                        {
