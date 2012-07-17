@@ -829,8 +829,9 @@ SELECT  * into  [Gb_FlowControlx]
             chartControl1.Series.Add(series1);
             chartControl1.Series.Add(series4);
 
-            chartControl1.Series.Add(series2);
+         
             chartControl1.Series.Add(series3);
+            chartControl1.Series.Add(series2);
 
             chartControl1.Series.Add(series5);
 
@@ -838,7 +839,7 @@ SELECT  * into  [Gb_FlowControlx]
             ChartTitle chartTitle1 = new ChartTitle();
             chartTitle1.Antialiasing = true;
             chartTitle1.Font = new Font("Tahoma", 12, FontStyle.Bold);
-            chartTitle1.Text = string.Format("Callid={0} down_total_len和FLOW-CONTROL-MS的Bucket_Size、Leak_Rate时间走势", callid);
+            chartTitle1.Text = string.Format("Callid={0} down_packet_rate和FLOW-CONTROL-MS的Bucket_Size、Leak_Rate时间走势", callid);
             chartControl1.Titles.Add(chartTitle1);
 
 
