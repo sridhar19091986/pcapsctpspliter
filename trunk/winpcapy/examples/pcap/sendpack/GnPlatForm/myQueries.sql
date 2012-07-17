@@ -8,11 +8,11 @@ go
 alter table [Gb_Flow_Control_MS] add  PRIMARY KEY (PacketNum,FileNum);
 
  go
-alter TABLE [Gn_Get2x_Multi]   alter  COLUMN [PacketNum] int  not null
+alter TABLE [Gb_FlowControlx]   alter  COLUMN [PacketNum] int  not null
 go
-alter TABLE [Gn_Get2x_Multi]  alter  COLUMN [FileNum] int  not null
+alter TABLE [Gb_FlowControlx]  alter  COLUMN [FileNum] int  not null
 go
-alter table [Gn_Get2x_Multi] add  PRIMARY KEY (PacketNum,FileNum);
+alter table [Gb_FlowControlx] add  PRIMARY KEY (PacketNum,FileNum);
 
  go
 alter TABLE [Gi_Get2x_Multi]   alter  COLUMN [PacketNum] int  not null
