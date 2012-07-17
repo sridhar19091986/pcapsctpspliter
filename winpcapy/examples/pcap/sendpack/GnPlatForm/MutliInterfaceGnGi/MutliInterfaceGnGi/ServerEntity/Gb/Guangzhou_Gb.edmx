@@ -4,11 +4,40 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="GuangZhou_GbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-        <EntityContainer Name="GuangZhou_GbModelStoreContainer">
-          <EntitySet Name="Gb_FlowControly" EntityType="GuangZhou_GbModel.Store.Gb_FlowControly" store:Type="Tables" Schema="dbo" />
+    <Schema Namespace="Guangzhou_GbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="Guangzhou_GbModelStoreContainer">
+          <EntitySet Name="Gb_Flow_Control_MS" EntityType="Guangzhou_GbModel.Store.Gb_Flow_Control_MS" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Gb_FlowControlx" EntityType="Guangzhou_GbModel.Store.Gb_FlowControlx" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
-        <EntityType Name="Gb_FlowControly">
+        <EntityType Name="Gb_Flow_Control_MS">
+          <Key>
+            <PropertyRef Name="FileNum" />
+            <PropertyRef Name="PacketNum" />
+          </Key>
+          <Property Name="FileNum" Type="int" Nullable="false" />
+          <Property Name="PacketNum" Type="int" Nullable="false" />
+          <Property Name="BeginFileNum" Type="int" />
+          <Property Name="BeginFrameNum" Type="int" />
+          <Property Name="PacketTime" Type="datetime" />
+          <Property Name="PacketTime(ms)" Type="int" />
+          <Property Name="DumpFor" Type="nvarchar" MaxLength="30" />
+          <Property Name="Flow_Control_MS" Type="int" />
+          <Property Name="Flow_Control_MS_time" Type="nvarchar" MaxLength="200" />
+          <Property Name="udp_srcport" Type="nvarchar" MaxLength="200" />
+          <Property Name="udp_dstport" Type="nvarchar" MaxLength="200" />
+          <Property Name="nsip_bvci" Type="nvarchar" MaxLength="200" />
+          <Property Name="ip_src_host" Type="nvarchar" MaxLength="200" />
+          <Property Name="ip_dst_host" Type="nvarchar" MaxLength="200" />
+          <Property Name="bssgp_tlli" Type="nvarchar" MaxLength="200" />
+          <Property Name="bssgp_ms_bucket_size" Type="nvarchar" MaxLength="200" />
+          <Property Name="bssgp_direction" Type="nvarchar" MaxLength="200" />
+          <Property Name="bssgp_bucket_leak_rate" Type="nvarchar" MaxLength="200" />
+          <Property Name="bssgp_bucket_full_ratio" Type="nvarchar" MaxLength="200" />
+          <Property Name="Flow_Control_MS_Ack" Type="int" />
+          <Property Name="Flow_Control_MS_Ack_delayFirst" Type="int" />
+          <Property Name="Flow_Control_MS_Ack_timeFirst" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Gb_FlowControlx">
           <Key>
             <PropertyRef Name="FileNum" />
             <PropertyRef Name="PacketNum" />
@@ -73,11 +102,40 @@
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="GuangZhou_GbModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-        <EntityContainer Name="GuangZhou_GbEntities" annotation:LazyLoadingEnabled="true" >
-          <EntitySet Name="Gb_FlowControly" EntityType="GuangZhou_GbModel.Gb_FlowControly" />
+      <Schema Namespace="Guangzhou_GbModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="Guangzhou_GbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Gb_Flow_Control_MS" EntityType="Guangzhou_GbModel.Gb_Flow_Control_MS" />
+          <EntitySet Name="Gb_FlowControlx" EntityType="Guangzhou_GbModel.Gb_FlowControlx" />
         </EntityContainer>
-        <EntityType Name="Gb_FlowControly">
+        <EntityType Name="Gb_Flow_Control_MS">
+          <Key>
+            <PropertyRef Name="FileNum" />
+            <PropertyRef Name="PacketNum" />
+          </Key>
+          <Property Name="FileNum" Type="Int32" Nullable="false" />
+          <Property Name="PacketNum" Type="Int32" Nullable="false" />
+          <Property Name="BeginFileNum" Type="Int32" />
+          <Property Name="BeginFrameNum" Type="Int32" />
+          <Property Name="PacketTime" Type="DateTime" />
+          <Property Name="PacketTime_ms_" Type="Int32" />
+          <Property Name="DumpFor" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="Flow_Control_MS" Type="Int32" />
+          <Property Name="Flow_Control_MS_time" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="udp_srcport" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="udp_dstport" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="nsip_bvci" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="ip_src_host" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="ip_dst_host" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="bssgp_tlli" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="bssgp_ms_bucket_size" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="bssgp_direction" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="bssgp_bucket_leak_rate" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="bssgp_bucket_full_ratio" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Flow_Control_MS_Ack" Type="Int32" />
+          <Property Name="Flow_Control_MS_Ack_delayFirst" Type="Int32" />
+          <Property Name="Flow_Control_MS_Ack_timeFirst" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Gb_FlowControlx">
           <Key>
             <PropertyRef Name="FileNum" />
             <PropertyRef Name="PacketNum" />
@@ -144,10 +202,34 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="GuangZhou_GbModelStoreContainer" CdmEntityContainer="GuangZhou_GbEntities" >
-          <EntitySetMapping Name="Gb_FlowControly">
-            <EntityTypeMapping TypeName="GuangZhou_GbModel.Gb_FlowControly">
-              <MappingFragment StoreEntitySet="Gb_FlowControly">
+        <EntityContainerMapping StorageEntityContainer="Guangzhou_GbModelStoreContainer" CdmEntityContainer="Guangzhou_GbEntities">
+          <EntitySetMapping Name="Gb_Flow_Control_MS"><EntityTypeMapping TypeName="Guangzhou_GbModel.Gb_Flow_Control_MS"><MappingFragment StoreEntitySet="Gb_Flow_Control_MS">
+            <ScalarProperty Name="FileNum" ColumnName="FileNum" />
+            <ScalarProperty Name="PacketNum" ColumnName="PacketNum" />
+            <ScalarProperty Name="BeginFileNum" ColumnName="BeginFileNum" />
+            <ScalarProperty Name="BeginFrameNum" ColumnName="BeginFrameNum" />
+            <ScalarProperty Name="PacketTime" ColumnName="PacketTime" />
+            <ScalarProperty Name="PacketTime_ms_" ColumnName="PacketTime(ms)" />
+            <ScalarProperty Name="DumpFor" ColumnName="DumpFor" />
+            <ScalarProperty Name="Flow_Control_MS" ColumnName="Flow_Control_MS" />
+            <ScalarProperty Name="Flow_Control_MS_time" ColumnName="Flow_Control_MS_time" />
+            <ScalarProperty Name="udp_srcport" ColumnName="udp_srcport" />
+            <ScalarProperty Name="udp_dstport" ColumnName="udp_dstport" />
+            <ScalarProperty Name="nsip_bvci" ColumnName="nsip_bvci" />
+            <ScalarProperty Name="ip_src_host" ColumnName="ip_src_host" />
+            <ScalarProperty Name="ip_dst_host" ColumnName="ip_dst_host" />
+            <ScalarProperty Name="bssgp_tlli" ColumnName="bssgp_tlli" />
+            <ScalarProperty Name="bssgp_ms_bucket_size" ColumnName="bssgp_ms_bucket_size" />
+            <ScalarProperty Name="bssgp_direction" ColumnName="bssgp_direction" />
+            <ScalarProperty Name="bssgp_bucket_leak_rate" ColumnName="bssgp_bucket_leak_rate" />
+            <ScalarProperty Name="bssgp_bucket_full_ratio" ColumnName="bssgp_bucket_full_ratio" />
+            <ScalarProperty Name="Flow_Control_MS_Ack" ColumnName="Flow_Control_MS_Ack" />
+            <ScalarProperty Name="Flow_Control_MS_Ack_delayFirst" ColumnName="Flow_Control_MS_Ack_delayFirst" />
+            <ScalarProperty Name="Flow_Control_MS_Ack_timeFirst" ColumnName="Flow_Control_MS_Ack_timeFirst" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Gb_FlowControlx">
+            <EntityTypeMapping TypeName="Guangzhou_GbModel.Gb_FlowControlx">
+              <MappingFragment StoreEntitySet="Gb_FlowControlx">
                 <ScalarProperty Name="bssgp_bucket_full_ratio" ColumnName="bssgp_bucket_full_ratio" />
                 <ScalarProperty Name="bssgp_R_default_ms" ColumnName="bssgp_R_default_ms" />
                 <ScalarProperty Name="bssgp_bmax_default_ms" ColumnName="bssgp_bmax_default_ms" />
@@ -227,8 +309,9 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="Guangzhou_Gb" >
-        <EntityTypeShape EntityType="GuangZhou_GbModel.Gb_FlowControly" Width="1.5" PointX="0.75" PointY="0.75" Height="10.390442708333332" />
+      <Diagram Name="GuangZhou_Gb" ZoomLevel="65">
+        <EntityTypeShape EntityType="Guangzhou_GbModel.Gb_Flow_Control_MS" Width="1.5" PointX="0.75" PointY="0.75" Height="4.6573697916666656" IsExpanded="true" />
+        <EntityTypeShape EntityType="Guangzhou_GbModel.Gb_FlowControlx" Width="1.5" PointX="3.375" PointY="0.75" Height="10.390442708333332" />
       </Diagram>
     </Diagrams>
   </Designer>
