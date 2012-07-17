@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GuangZhou_GiModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="GuangZhou_GiModelStoreContainer">
+    <EntitySet Name="GnGiGw_Get2x" EntityType="GuangZhou_GiModel.Store.GnGiGw_Get2x" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GnGiGw_Http_Any_Multi" EntityType="GuangZhou_GiModel.Store.GnGiGw_Http_Any_Multi" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GnGiGw_Syn" EntityType="GuangZhou_GiModel.Store.GnGiGw_Syn" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RawFileList" EntityType="GuangZhou_GiModel.Store.RawFileList" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="GnGiGw_Get2x">
+    <Key>
+      <PropertyRef Name="FileNum" />
+      <PropertyRef Name="PacketNum" />
+    </Key>
+    <Property Name="FileNum" Type="int" Nullable="false" />
+    <Property Name="PacketNum" Type="int" Nullable="false" />
+    <Property Name="BeginFileNum" Type="int" />
+    <Property Name="BeginFrameNum" Type="int" />
+    <Property Name="PacketTime" Type="datetime" />
+    <Property Name="PacketTime(ms)" Type="int" />
+    <Property Name="DumpFor" Type="nvarchar" MaxLength="30" />
+    <Property Name="Get2x" Type="int" />
+    <Property Name="Get2x_time" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip_src_host" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip_dst_host" Type="nvarchar" MaxLength="200" />
+    <Property Name="udp_srcport" Type="nvarchar" MaxLength="200" />
+    <Property Name="udp_dstport" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip2_src_host" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip2_dst_host" Type="nvarchar" MaxLength="200" />
+    <Property Name="http_request_uri" Type="nvarchar" MaxLength="200" />
+    <Property Name="http_request_uri_main" Type="nvarchar" MaxLength="200" />
+    <Property Name="http_host" Type="nvarchar" MaxLength="200" />
+    <Property Name="http_x_online_host" Type="nvarchar" MaxLength="200" />
+    <Property Name="http_user_agent" Type="nvarchar" MaxLength="200" />
+    <Property Name="http_user_agent_main" Type="nvarchar" MaxLength="200" />
+    <Property Name="http_accept" Type="nvarchar" MaxLength="200" />
+    <Property Name="http_referer" Type="nvarchar" MaxLength="200" />
+    <Property Name="http_connection" Type="nvarchar" MaxLength="200" />
+    <Property Name="tcp_seq" Type="nvarchar" MaxLength="200" />
+    <Property Name="tcp_nxtseq" Type="nvarchar" MaxLength="200" />
+    <Property Name="tcp_ack" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip2_id" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip_id" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip_proto" Type="nvarchar" MaxLength="200" />
+    <Property Name="Get2x_Repeat" Type="int" />
+    <Property Name="Get2x_Repeat_delayFirst" Type="int" />
+    <Property Name="Response" Type="int" />
+    <Property Name="Response_delayFirst" Type="int" />
+    <Property Name="Response_timeFirst" Type="nvarchar" MaxLength="200" />
+    <Property Name="http_response_code" Type="nvarchar" MaxLength="200" />
+    <Property Name="http_content_type" Type="nvarchar" MaxLength="200" />
+    <Property Name="http_content_type_part1" Type="nvarchar" MaxLength="200" />
+    <Property Name="http_content_type_part2" Type="nvarchar" MaxLength="200" />
+    <Property Name="http_server" Type="nvarchar" MaxLength="200" />
+    <Property Name="http_connection_response" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="GnGiGw_Http_Any_Multi">
+    <Key>
+      <PropertyRef Name="FileNum" />
+      <PropertyRef Name="PacketNum" />
+    </Key>
+    <Property Name="FileNum" Type="int" Nullable="false" />
+    <Property Name="PacketNum" Type="int" Nullable="false" />
+    <Property Name="BeginFileNum" Type="int" />
+    <Property Name="BeginFrameNum" Type="int" />
+    <Property Name="PacketTime" Type="datetime" />
+    <Property Name="PacketTime(ms)" Type="int" />
+    <Property Name="DumpFor" Type="nvarchar" MaxLength="30" />
+    <Property Name="Http_Any" Type="int" />
+    <Property Name="Http_Any_time" Type="nvarchar" MaxLength="200" />
+    <Property Name="Http_Any_MsgType" Type="nvarchar" MaxLength="200" />
+    <Property Name="Http_Any_RepeatCounter" Type="int" />
+    <Property Name="ip_src_host" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip_dst_host" Type="nvarchar" MaxLength="200" />
+    <Property Name="udp_srcport" Type="int" />
+    <Property Name="udp_dstport" Type="int" />
+    <Property Name="ip2_src_host" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip2_dst_host" Type="nvarchar" MaxLength="200" />
+    <Property Name="http_request_uri" Type="nvarchar" MaxLength="200" />
+    <Property Name="http_user_agent" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip_proto" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip2_proto" Type="nvarchar" MaxLength="200" />
+    <Property Name="tcp_srcport" Type="int" />
+    <Property Name="tcp_dstport" Type="int" />
+    <Property Name="tcp_seq" Type="nvarchar" MaxLength="200" />
+    <Property Name="tcp_nxtseq" Type="nvarchar" MaxLength="200" />
+    <Property Name="tcp_need_segment" Type="nvarchar" MaxLength="200" />
+    <Property Name="tcp_ack" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip_ttl" Type="int" />
+    <Property Name="ip2_ttl" Type="int" />
+    <Property Name="ip_len" Type="int" />
+    <Property Name="ip2_len" Type="int" />
+    <Property Name="ip_id" Type="int" />
+    <Property Name="ip2_id" Type="int" />
+    <Property Name="ip_flags_mf" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip2_flags_mf" Type="nvarchar" MaxLength="200" />
+    <Property Name="gtp_flags_payload" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="GnGiGw_Syn">
+    <Key>
+      <PropertyRef Name="FileNum" />
+      <PropertyRef Name="PacketNum" />
+    </Key>
+    <Property Name="FileNum" Type="int" Nullable="false" />
+    <Property Name="PacketNum" Type="int" Nullable="false" />
+    <Property Name="BeginFileNum" Type="int" />
+    <Property Name="BeginFrameNum" Type="int" />
+    <Property Name="PacketTime" Type="datetime" />
+    <Property Name="PacketTime(ms)" Type="int" />
+    <Property Name="DumpFor" Type="nvarchar" MaxLength="30" />
+    <Property Name="Syn" Type="int" />
+    <Property Name="Syn_time" Type="nvarchar" MaxLength="200" />
+    <Property Name="Syn_RepeatCounter" Type="int" />
+    <Property Name="ip_dst_host" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip_id" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip_proto" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip_src_host" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip2_dst_host" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip2_id" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip2_src_host" Type="nvarchar" MaxLength="200" />
+    <Property Name="tcp_ack" Type="nvarchar" MaxLength="200" />
+    <Property Name="tcp_nxtseq" Type="nvarchar" MaxLength="200" />
+    <Property Name="tcp_options_mss_val" Type="int" />
+    <Property Name="tcp_options_wscale_val" Type="int" />
+    <Property Name="tcp_seq" Type="nvarchar" MaxLength="200" />
+    <Property Name="tcp_window_size" Type="int" />
+    <Property Name="udp_dstport" Type="nvarchar" MaxLength="200" />
+    <Property Name="udp_srcport" Type="nvarchar" MaxLength="200" />
+    <Property Name="Ack_Syn" Type="int" />
+    <Property Name="Ack_Syn_delayFirst" Type="int" />
+    <Property Name="acksyn_ack" Type="nvarchar" MaxLength="200" />
+    <Property Name="acksyn_nxtseq" Type="nvarchar" MaxLength="200" />
+    <Property Name="acksyn_seq" Type="nvarchar" MaxLength="200" />
+    <Property Name="acksyn_mss" Type="int" />
+    <Property Name="acksyn_wscale" Type="int" />
+    <Property Name="acksyn_winsize" Type="int" />
+  </EntityType>
+  <EntityType Name="RawFileList">
+    <Key>
+      <PropertyRef Name="FileNum" />
+    </Key>
+    <Property Name="FileNum" Type="int" Nullable="false" />
+    <Property Name="FilePath" Type="varchar" MaxLength="255" />
+  </EntityType>
+</Schema>
