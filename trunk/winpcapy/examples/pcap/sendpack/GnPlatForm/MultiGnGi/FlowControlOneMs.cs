@@ -25,7 +25,14 @@ mongo dropall.js
     public class FlowControlOneMs
     {
         public object _id;
-        public int? BeginFrameNum;
+        
+        public int? BeginFrameNum; 
+
+        //public int lac;
+        //public int ci;
+
+  
+
         public int fcontrol_cnt;
         public int packet_cnt;
         public double bucket_size_avg;

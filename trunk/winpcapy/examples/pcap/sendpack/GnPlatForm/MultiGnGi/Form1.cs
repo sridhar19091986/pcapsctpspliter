@@ -20,6 +20,7 @@ using System.Data.Objects.SqlClient;
 //using EntityClass.ServerEntity.Gn;
 //using EntityClass.ServerEntity.Other;
 using EntityClass.ServerEntity.Gb;
+using EntityClass.ServerEntity.Gb_209;
 using DevExpress.XtraCharts;
 
 namespace MultiGnGi
@@ -773,7 +774,7 @@ SELECT  * into  [Gb_FlowControlx]
         }
 
 
-        private void gridControl1_Click(object sender, EventArgs e)
+        private void gridControl1_Click(object sender, EventArgs ee)
         {
             ClearChart();
 
@@ -793,12 +794,32 @@ SELECT  * into  [Gb_FlowControlx]
             var arrpr = pr.Split(',');
             var arrts = times.Split(',');
 
-            textBox1.Text = "first_delay:"+fd;
-            textBox2.Text = "leak_rate:"+lr;
-            textBox3.Text ="bucket_size:"+ bs;
-            textBox4.Text = "down_total_len:"+len;
-            textBox5.Text ="fcm_time:"+ times;
-            textBox6.Text = "down_packet_rate:"+pr;
+            textBox7.Text = "Callid=" + callid;
+
+            textBox1.Text = "first_delay(flow-control-ms发送时间序列second)：平均值=" + arrfd.Where(e => e != "").Average(e => double.Parse(e)).ToString("f1") + "," +
+                                        "最大值=" + arrfd.Where(e => e != "").Max(e => double.Parse(e)).ToString("f1") + "," +
+                                        "最小值" + arrfd.Where(e => e != "").Min(e => double.Parse(e)).ToString("f1") + "," +
+                                        "时间序列=" + fd;
+            textBox2.Text = "leak_rate(flow-control-ms参数值kbps)：平均值=" + arrlr.Where(e => e != "").Average(e => double.Parse(e)).ToString("f1") + "," +
+                                        "最大值=" + arrlr.Where(e => e != "").Max(e => double.Parse(e)).ToString("f1") + "," +
+                                        "最小值" + arrlr.Where(e => e != "").Min(e => double.Parse(e)).ToString("f1") + "," +
+                                        "时间序列=" + lr;
+            textBox3.Text = "bucket_size(flow-control-ms参数值Kbyte)：平均值=" + arrbs.Where(e => e != "").Average(e => double.Parse(e)).ToString("f1") + "," +
+                                        "最大值=" + arrbs.Where(e => e != "").Max(e => double.Parse(e)).ToString("f1") + "," +
+                                        "最小值" + arrbs.Where(e => e != "").Min(e => double.Parse(e)).ToString("f1") + "," +
+                                        "时间序列=" + bs;
+            textBox4.Text = "down_total_len(flow-control-ms之间MS下行包总长度Kbyte)：平均值=" + arrlen.Where(e => e != "").Average(e => double.Parse(e)).ToString("f1") + "," +
+                                        "最大值=" + arrlen.Where(e => e != "").Max(e => double.Parse(e)).ToString("f1") + "," +
+                                        "最小值" + arrlen.Where(e => e != "").Min(e => double.Parse(e)).ToString("f1") + "," +
+                                        "时间序列=" + len;
+            textBox5.Text = "fcm_time(flow-control-ms发送时间间隔second)：平均值=" + arrts.Where(e => e != "").Average(e => double.Parse(e)).ToString("f1") + "," +
+                                        "最大值=" + arrts.Where(e => e != "").Max(e => double.Parse(e)).ToString("f1") + "," +
+                                        "最小值" + arrts.Where(e => e != "").Min(e => double.Parse(e)).ToString("f1") + "," +
+                                        "时间序列=" + times;
+            textBox6.Text = "down_packet_rate(flow-control-ms之间MS下行速率kbps)：平均值=" + arrpr.Where(e => e != "").Average(e => double.Parse(e)).ToString("f1") + "," +
+                                        "最大值=" + arrpr.Where(e => e != "").Max(e => double.Parse(e)).ToString("f1") + "," +
+                                        "最小值" + arrpr.Where(e => e != "").Min(e => double.Parse(e)).ToString("f1") + "," +
+                                        "时间序列=" + pr;
 
 
 
@@ -807,17 +828,17 @@ SELECT  * into  [Gb_FlowControlx]
 
             Series series2 = new Series("bucket_size(KByte)", ViewType.Line);
             Series series3 = new Series("down_total_len(KByte)", ViewType.Line);
-     
+
             Series series5 = new Series("fcm_time(seconds)", ViewType.Line);
 
             double x, y, z, m, n, k;
             for (int i = 0; i < arrfd.Count(); i++)
             {
                 x = double.Parse(arrfd[i]);
-                y = double.Parse(arrlr[i]) ;
-                z = double.Parse(arrbs[i]) ;
-                m = double.Parse(arrlen[i]) ;
-                n =  double.Parse(arrpr[i]);
+                y = double.Parse(arrlr[i]);
+                z = double.Parse(arrbs[i]);
+                m = double.Parse(arrlen[i]);
+                n = double.Parse(arrpr[i]);
                 k = double.Parse(arrts[i]);
                 series1.Points.Add(new SeriesPoint(x, y));
                 series2.Points.Add(new SeriesPoint(x, z));
@@ -829,7 +850,7 @@ SELECT  * into  [Gb_FlowControlx]
             chartControl1.Series.Add(series1);
             chartControl1.Series.Add(series4);
 
-         
+
             chartControl1.Series.Add(series3);
             chartControl1.Series.Add(series2);
 
@@ -1010,6 +1031,91 @@ SELECT  * into  [Gb_FlowControlx]
             foreach (Series series in chartControl1.Series)
                 if (series.Label != null)
                     series.Label.Visible = checkBox1.Checked;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(textBox7.Text + "\r\n" +
+                       textBox1.Text + "\r\n" +
+                textBox2.Text + "\r\n" +
+                textBox3.Text + "\r\n" +
+                textBox4.Text + "\r\n" +
+                textBox5.Text + "\r\n" +
+                textBox6.Text);
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+            Clipboard.SetText(textBox7.Text + "\r\n" +
+          textBox1.Text.GetHeader(",时间序列") + "\r\n" +
+             textBox2.Text.GetHeader(",时间序列") + "\r\n" +
+          textBox3.Text.GetHeader(",时间序列") + "\r\n" +
+          textBox4.Text.GetHeader(",时间序列") + "\r\n" +
+          textBox5.Text.GetHeader(",时间序列") + "\r\n" +
+          textBox6.Text.GetHeader(",时间序列"));
+        }
+
+        /*计算bvci级流量控制
+         *    ,[bssgp_ms_bucket_size]
+      ,[bssgp_bucket_leak_rate]
+      ,[bssgp_bvc_bucket_size]
+      ,[bssgp_bmax_default_ms]
+      ,[bssgp_R_default_ms]
+      ,[bssgp_bucket_full_ratio]
+         * */
+
+        //再弄一个库出来
+        private void navBarItem23_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
+        {
+            FlowControlOneBvc fcob = new FlowControlOneBvc();
+            fcob.CreateCollection();
+            MessageBox.Show("ok");
+        }
+
+
+        //先弄一个库出来，
+        private void navBarItem24_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
+        {
+
+            LacCellBvci lcb = new LacCellBvci();
+            lcb.CreatCollection();
+            MessageBox.Show("ok");
+        }
+
+        private void navBarItem25_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
+        {
+            FlowControlOneBvc fcob = new FlowControlOneBvc();
+            var query = from p in fcob.QueryMongo()
+                        select new
+                            {
+                                p.lac_cell,
+                                p.PacketNum,
+                                p.Flow_Control_MsgType,
+                                p.Flow_Control_time,
+                            };
+            clearColumns();
+            var dborder = query.Take(100);
+            gridControl1.DataSource = dborder.AsParallel().ToList();
+            gridView1.OptionsView.ColumnAutoWidth = false;
+        }
+
+        private void navBarItem26_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
+        {
+            LacCellBvci lcb = new LacCellBvci();
+            var query = from p in lcb.QueryMongo()
+                        select new
+                            {
+                                p.lac_cell,
+                                p.src,
+                                p.dst,
+                                p.bvci,
+                            };
+            clearColumns();
+            var dborder = query.OrderBy(e => e.lac_cell);
+            gridControl1.DataSource = dborder.AsParallel().ToList();
+            gridView1.OptionsView.ColumnAutoWidth = false;
         }
     }
 }

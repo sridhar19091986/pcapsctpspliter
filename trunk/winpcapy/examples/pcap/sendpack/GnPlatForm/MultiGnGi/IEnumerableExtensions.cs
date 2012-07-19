@@ -7,6 +7,12 @@ namespace MultiGnGi
 {
     public static class IEnumerableExtensions
     {
+        public static string GetHeader(this string source, string postion)
+        {
+            int pos = source.IndexOf(postion);
+            return source.Substring(0, pos);
+        }
+
         public static string AggregateSum<T>(this IEnumerable<T> source,
                                    Func<T, int> select_sum, Func<T, string> select_msg, string msg_flag)
         {
