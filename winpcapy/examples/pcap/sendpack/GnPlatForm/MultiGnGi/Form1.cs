@@ -22,6 +22,7 @@ using System.Data.Objects.SqlClient;
 using EntityClass.ServerEntity.Gb;
 using EntityClass.ServerEntity.Gb_209;
 using DevExpress.XtraCharts;
+using System.Net;
 
 namespace MultiGnGi
 {
@@ -1183,6 +1184,17 @@ SELECT  * into  [Gb_FlowControlx]
             var dborder = query.OrderByDescending(e => e.fcontrol_cnt);
             gridControl1.DataSource = dborder.AsParallel().ToList();
             gridView1.OptionsView.ColumnAutoWidth = true;
+        }
+
+        /*
+         * http://stackoverflow.com/questions/461742/how-to-convert-an-ipv4-address-into-a-integer-in-c
+         * **/
+        private void button4_Click(object sender, EventArgs e)
+        {
+            int intAddress = BitConverter.ToInt32(IPAddress.Parse(textBox1.Text).GetAddressBytes(), 0);
+            textBox2.Text = intAddress.ToString();
+            //string ipAddress = new IPAddress(BitConverter.GetBytes(intAddress)).ToString(); 
+
         }
     }
 }
