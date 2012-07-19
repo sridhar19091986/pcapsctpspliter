@@ -776,6 +776,8 @@ SELECT  * into  [Gb_FlowControlx]
 
         private void gridControl1_Click(object sender, EventArgs ee)
         {
+            if (checkBox2.Checked == false) return;
+
             ClearChart();
 
             int[] a = this.gridView1.GetSelectedRows(); //传递实体类过去 获取选中的行
@@ -1090,15 +1092,25 @@ SELECT  * into  [Gb_FlowControlx]
             var query = from p in fcob.QueryMongo()
                         select new
                             {
-                                p.lac_cell,
                                 p.PacketNum,
-                                p.Flow_Control_MsgType,
                                 p.Flow_Control_time,
+                                p.lac_cell,
+                                p.Flow_Control_MsgType,
+                                p.bssgp_direction,
+                                p.ip_len,
+                                p.bssgp_bmax_default_ms,
+                                p.bssgp_bucket_full_ratio,
+                                p.bssgp_bucket_leak_rate,
+                                p.bssgp_bvc_bucket_size,
+                                p.bssgp_ms_bucket_size,
+                                p.bssgp_R_default_ms,
+
                             };
+
             clearColumns();
-            var dborder = query.Take(100);
+            var dborder = query;
             gridControl1.DataSource = dborder.AsParallel().ToList();
-            gridView1.OptionsView.ColumnAutoWidth = false;
+            gridView1.OptionsView.ColumnAutoWidth = true;
         }
 
         private void navBarItem26_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
@@ -1107,6 +1119,7 @@ SELECT  * into  [Gb_FlowControlx]
             var query = from p in lcb.QueryMongo()
                         select new
                             {
+                                p._id,
                                 p.lac_cell,
                                 p.src,
                                 p.dst,
@@ -1115,7 +1128,61 @@ SELECT  * into  [Gb_FlowControlx]
             clearColumns();
             var dborder = query.OrderBy(e => e.lac_cell);
             gridControl1.DataSource = dborder.AsParallel().ToList();
-            gridView1.OptionsView.ColumnAutoWidth = false;
+            gridView1.OptionsView.ColumnAutoWidth = true;
+        }
+
+        private void navBarItem27_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
+        {
+
+            string fc_msg = "BSSGP.FLOW-CONTROL-BVC";
+            //分组
+            FlowControlOneBvc fcob = new FlowControlOneBvc();
+            var fcobmongo = fcob.QueryMongo().Where(e=>e.lac_cell !=null).AsParallel().ToList();
+            var query = from p in fcobmongo
+                        group p by p.lac_cell into ttt
+                        select new
+                        {
+                            ttt.Key,
+                            fcontrol_cnt = ttt.Where(e => e.Flow_Control_MsgType == fc_msg).Count(),
+                            packet_cnt = ttt.Count(),
+                            //bssgp_R_default_ms = ttt.Where(e => e.Flow_Control_MsgType == fc_msg).Average(e => e.bssgp_R_default_ms),
+                            //bssgp_ms_bucket_size = ttt.Where(e => e.Flow_Control_MsgType == fc_msg).Min(e => e.bssgp_ms_bucket_size),
+                            //bssgp_bvc_bucket_size = ttt.Where(e => e.Flow_Control_MsgType == fc_msg).Max(e => e.bssgp_bvc_bucket_size),
+                            //bssgp_bucket_leak_rate = ttt.Where(e => e.Flow_Control_MsgType == fc_msg).Average(e => e.bssgp_bucket_leak_rate),
+                            //bssgp_bucket_full_ratio = ttt.Where(e => e.Flow_Control_MsgType == fc_msg).Min(e => e.bssgp_bucket_full_ratio),
+                            //bssgp_bmax_default_ms = ttt.Where(e => e.Flow_Control_MsgType == fc_msg).Max(e => e.bssgp_bmax_default_ms),
+
+                            //first_delay = ttt.Where(e => e.Flow_Control_MsgType == fc_msg).OrderBy(e => e.PacketNum)
+                            //                    .Select(e => new { fd = (e.Flow_Control_time - ttt.Min(f => f.Flow_Control_time)).TotalMilliseconds })
+                            //                    .Select(e => (e.fd / 1000).ToString("f1"))
+                            //                    .Aggregate((a, b) => a + "," + b),
+
+                            ////leak_rate = ttt.Where(e => e.Flow_Control_MsgType == fc_msg)
+                            ////.OrderBy(e => e.PacketNum)
+                            ////                .Select(e => (e.leak_rate).ToString("f1"))
+                            ////                .Aggregate((a, b) => a + "," + b),
+
+                            ////bucket_size = ttt.Where(e => e.Flow_Control_MsgType == fc_msg)
+                            ////.OrderBy(e => e.PacketNum)
+                            ////                 .Select(e => (e.bucket_size).ToString("f1"))
+                            ////                 .Aggregate((a, b) => a + "," + b),
+
+                            ////用扩展方法实现， 在fc消息之间进行ip.len的累加
+
+                            //down_total_len = ttt.OrderBy(e => e.PacketNum)
+                            //.AggregateSum(e => (int)e.ip_len, e => e.Flow_Control_MsgType, fc_msg),
+
+                            //down_packet_rate = ttt.OrderBy(e => e.PacketNum)
+                            //.AggregatePacketRate(e => (int)e.ip_len, e => e.Flow_Control_time, e => e.Flow_Control_MsgType, fc_msg),
+
+                            //fcm_time = ttt.OrderBy(e => e.PacketNum)
+                            //.AggregatePacketTime(e => e.Flow_Control_time, e => e.Flow_Control_MsgType, fc_msg),
+                        };
+
+            clearColumns();
+            var dborder = query.OrderByDescending(e => e.fcontrol_cnt);
+            gridControl1.DataSource = dborder.AsParallel().ToList();
+            gridView1.OptionsView.ColumnAutoWidth = true;
         }
     }
 }
