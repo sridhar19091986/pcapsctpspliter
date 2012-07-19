@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraCharts.XYDiagram xyDiagram1 = new DevExpress.XtraCharts.XYDiagram();
-            DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
-            DevExpress.XtraCharts.PointSeriesLabel pointSeriesLabel1 = new DevExpress.XtraCharts.PointSeriesLabel();
-            DevExpress.XtraCharts.LineSeriesView lineSeriesView1 = new DevExpress.XtraCharts.LineSeriesView();
-            DevExpress.XtraCharts.Series series2 = new DevExpress.XtraCharts.Series();
-            DevExpress.XtraCharts.PointSeriesLabel pointSeriesLabel2 = new DevExpress.XtraCharts.PointSeriesLabel();
-            DevExpress.XtraCharts.LineSeriesView lineSeriesView2 = new DevExpress.XtraCharts.LineSeriesView();
-            DevExpress.XtraCharts.SideBySideBarSeriesLabel sideBySideBarSeriesLabel1 = new DevExpress.XtraCharts.SideBySideBarSeriesLabel();
+            DevExpress.XtraCharts.XYDiagram xyDiagram2 = new DevExpress.XtraCharts.XYDiagram();
+            DevExpress.XtraCharts.Series series3 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.PointSeriesLabel pointSeriesLabel3 = new DevExpress.XtraCharts.PointSeriesLabel();
+            DevExpress.XtraCharts.LineSeriesView lineSeriesView3 = new DevExpress.XtraCharts.LineSeriesView();
+            DevExpress.XtraCharts.Series series4 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.PointSeriesLabel pointSeriesLabel4 = new DevExpress.XtraCharts.PointSeriesLabel();
+            DevExpress.XtraCharts.LineSeriesView lineSeriesView4 = new DevExpress.XtraCharts.LineSeriesView();
+            DevExpress.XtraCharts.SideBySideBarSeriesLabel sideBySideBarSeriesLabel2 = new DevExpress.XtraCharts.SideBySideBarSeriesLabel();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
@@ -75,6 +75,7 @@
             this.navBarItem24 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem25 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem26 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem27 = new DevExpress.XtraNavBar.NavBarItem();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.listBox1 = new System.Windows.Forms.ListBox();
@@ -107,7 +108,8 @@
             this.dockPanel3_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.panel2 = new System.Windows.Forms.Panel();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.navBarItem27 = new DevExpress.XtraNavBar.NavBarItem();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
@@ -123,14 +125,14 @@
             this.panel4.SuspendLayout();
             this.xtraTabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(pointSeriesLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(lineSeriesView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(series2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(pointSeriesLabel2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(lineSeriesView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(xyDiagram2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(series3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(pointSeriesLabel3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(lineSeriesView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(series4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(pointSeriesLabel4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(lineSeriesView4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
             this.hideContainerBottom.SuspendLayout();
             this.dockPanel1.SuspendLayout();
@@ -142,6 +144,7 @@
             this.dockPanel3.SuspendLayout();
             this.dockPanel3_Container.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // xtraTabControl1
@@ -461,6 +464,12 @@
             this.navBarItem26.Name = "navBarItem26";
             this.navBarItem26.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem26_LinkClicked);
             // 
+            // navBarItem27
+            // 
+            this.navBarItem27.Caption = "navBarItem27";
+            this.navBarItem27.Name = "navBarItem27";
+            this.navBarItem27.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem27_LinkClicked);
+            // 
             // xtraTabPage2
             // 
             this.xtraTabPage2.Controls.Add(this.tableLayoutPanel1);
@@ -476,6 +485,7 @@
             this.tableLayoutPanel1.Controls.Add(this.listBox1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel3, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel4, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panel5, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -590,7 +600,6 @@
             // 
             this.panel4.Controls.Add(this.button3);
             this.panel4.Controls.Add(this.button2);
-            this.panel4.Controls.Add(this.button1);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(394, 3);
             this.panel4.Name = "panel4";
@@ -619,7 +628,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(15, 12);
+            this.button1.Location = new System.Drawing.Point(42, 12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
@@ -636,29 +645,29 @@
             // 
             // chartControl1
             // 
-            xyDiagram1.AxisX.Range.ScrollingRange.SideMarginsEnabled = true;
-            xyDiagram1.AxisX.Range.SideMarginsEnabled = true;
-            xyDiagram1.AxisX.VisibleInPanesSerializable = "-1";
-            xyDiagram1.AxisY.Range.ScrollingRange.SideMarginsEnabled = true;
-            xyDiagram1.AxisY.Range.SideMarginsEnabled = true;
-            xyDiagram1.AxisY.VisibleInPanesSerializable = "-1";
-            this.chartControl1.Diagram = xyDiagram1;
+            xyDiagram2.AxisX.Range.ScrollingRange.SideMarginsEnabled = true;
+            xyDiagram2.AxisX.Range.SideMarginsEnabled = true;
+            xyDiagram2.AxisX.VisibleInPanesSerializable = "-1";
+            xyDiagram2.AxisY.Range.ScrollingRange.SideMarginsEnabled = true;
+            xyDiagram2.AxisY.Range.SideMarginsEnabled = true;
+            xyDiagram2.AxisY.VisibleInPanesSerializable = "-1";
+            this.chartControl1.Diagram = xyDiagram2;
             this.chartControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chartControl1.Location = new System.Drawing.Point(0, 0);
             this.chartControl1.Name = "chartControl1";
-            pointSeriesLabel1.LineVisible = true;
-            series1.Label = pointSeriesLabel1;
-            series1.Name = "Series 1";
-            series1.View = lineSeriesView1;
-            pointSeriesLabel2.LineVisible = true;
-            series2.Label = pointSeriesLabel2;
-            series2.Name = "Series 2";
-            series2.View = lineSeriesView2;
+            pointSeriesLabel3.LineVisible = true;
+            series3.Label = pointSeriesLabel3;
+            series3.Name = "Series 1";
+            series3.View = lineSeriesView3;
+            pointSeriesLabel4.LineVisible = true;
+            series4.Label = pointSeriesLabel4;
+            series4.Name = "Series 2";
+            series4.View = lineSeriesView4;
             this.chartControl1.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
-        series1,
-        series2};
-            sideBySideBarSeriesLabel1.LineVisible = true;
-            this.chartControl1.SeriesTemplate.Label = sideBySideBarSeriesLabel1;
+        series3,
+        series4};
+            sideBySideBarSeriesLabel2.LineVisible = true;
+            this.chartControl1.SeriesTemplate.Label = sideBySideBarSeriesLabel2;
             this.chartControl1.Size = new System.Drawing.Size(782, 351);
             this.chartControl1.TabIndex = 0;
             this.chartControl1.Click += new System.EventHandler(this.chartControl1_Click);
@@ -806,11 +815,25 @@
             this.checkBox2.Text = "Show Graphic";
             this.checkBox2.UseVisualStyleBackColor = true;
             // 
-            // navBarItem27
+            // panel5
             // 
-            this.navBarItem27.Caption = "navBarItem27";
-            this.navBarItem27.Name = "navBarItem27";
-            this.navBarItem27.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem27_LinkClicked);
+            this.panel5.Controls.Add(this.button4);
+            this.panel5.Controls.Add(this.button1);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(3, 3);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(385, 50);
+            this.panel5.TabIndex = 5;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(188, 12);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 3;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // Form1
             // 
@@ -838,14 +861,14 @@
             this.tableLayoutPanel2.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.xtraTabPage3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(pointSeriesLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(lineSeriesView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(series1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(pointSeriesLabel2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(lineSeriesView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(series2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(xyDiagram2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(pointSeriesLabel3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(lineSeriesView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(series3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(pointSeriesLabel4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(lineSeriesView4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(series4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).EndInit();
             this.hideContainerBottom.ResumeLayout(false);
@@ -859,6 +882,7 @@
             this.dockPanel3_Container.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -936,6 +960,8 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem26;
         private System.Windows.Forms.CheckBox checkBox2;
         private DevExpress.XtraNavBar.NavBarItem navBarItem27;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Button button4;
     }
 }
 
