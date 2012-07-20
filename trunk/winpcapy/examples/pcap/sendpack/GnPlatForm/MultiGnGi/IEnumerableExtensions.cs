@@ -13,6 +13,13 @@ namespace MultiGnGi
             return source.Substring(0, pos);
         }
 
+        public static int CountMessage(this string source, string msg)
+        {
+            var msgs = source.Split(',');
+            var cnt = msgs.Where(e => e == msg).Count();
+            return cnt;
+        }
+
         public static string AggregateSum<T>(this IEnumerable<T> source,
                                    Func<T, int> select_sum, Func<T, string> select_msg, string msg_flag)
         {
