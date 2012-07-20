@@ -774,10 +774,9 @@ SELECT  * into  [Gb_FlowControlx]
 
         }
 
-
-        private void gridControl1_Click(object sender, EventArgs ee)
+        private void show_graphic_fc_ms()
         {
-            if (checkBox2.Checked == false) return;
+
 
             ClearChart();
 
@@ -995,7 +994,236 @@ SELECT  * into  [Gb_FlowControlx]
             //this.Controls.Add(chartControl1);
             //series1.Points.Clear();
             //series2.Points.Clear();
+        }
 
+        private void show_graphic_fc_bvc()
+        {
+
+
+            ClearChart();
+
+            int[] a = this.gridView1.GetSelectedRows(); //传递实体类过去 获取选中的行
+            string fd = this.gridView1.GetRowCellValue(a[0], "fcb_delay_aggre").ToString();//获取选中行的内容
+            string lr = this.gridView1.GetRowCellValue(a[0], "bssgp_bucket_leak_rate").ToString();//获取选中行的内容
+            string bs = this.gridView1.GetRowCellValue(a[0], "bssgp_bvc_bucket_size").ToString();//获取选中行的内容
+            string len = this.gridView1.GetRowCellValue(a[0], "down_total_len").ToString();//获取选中行的内容
+            string pr = this.gridView1.GetRowCellValue(a[0], "down_packet_rate").ToString();//获取选中行的内容
+            string times = this.gridView1.GetRowCellValue(a[0], "fcb_time_aggre").ToString();//获取选中行的内容
+            string callid = this.gridView1.GetRowCellValue(a[0], "lac_cell").ToString();//获取选中行的内容
+
+            var arrfd = fd.Split(',');
+            var arrlr = lr.Split(',');
+            var arrbs = bs.Split(',');
+            var arrlen = len.Split(',');
+            var arrpr = pr.Split(',');
+            var arrts = times.Split(',');
+
+            textBox7.Text = "Cellid=" + callid;
+
+            textBox1.Text = "fcb_delay(flow-control-bvc发送时间序列second)：平均值=" + arrfd.Where(e => e != "").Average(e => double.Parse(e)).ToString("f1") + "," +
+                                        "最大值=" + arrfd.Where(e => e != "").Max(e => double.Parse(e)).ToString("f1") + "," +
+                                        "最小值" + arrfd.Where(e => e != "").Min(e => double.Parse(e)).ToString("f1") + "," +
+                                        "时间序列=" + fd;
+            textBox2.Text = "bvc_leak_rate(flow-control-bvc参数值kbps)：平均值=" + arrlr.Where(e => e != "").Average(e => double.Parse(e)).ToString("f1") + "," +
+                                        "最大值=" + arrlr.Where(e => e != "").Max(e => double.Parse(e)).ToString("f1") + "," +
+                                        "最小值" + arrlr.Where(e => e != "").Min(e => double.Parse(e)).ToString("f1") + "," +
+                                        "时间序列=" + lr;
+            textBox3.Text = "bvc_bucket_size(flow-control-bvc参数值Kbyte)：平均值=" + arrbs.Where(e => e != "").Average(e => double.Parse(e)).ToString("f1") + "," +
+                                        "最大值=" + arrbs.Where(e => e != "").Max(e => double.Parse(e)).ToString("f1") + "," +
+                                        "最小值" + arrbs.Where(e => e != "").Min(e => double.Parse(e)).ToString("f1") + "," +
+                                        "时间序列=" + bs;
+            textBox4.Text = "down_total_len(flow-control-bvc之间bvc下行包总长度Kbyte)：平均值=" + arrlen.Where(e => e != "").Average(e => double.Parse(e)).ToString("f1") + "," +
+                                        "最大值=" + arrlen.Where(e => e != "").Max(e => double.Parse(e)).ToString("f1") + "," +
+                                        "最小值" + arrlen.Where(e => e != "").Min(e => double.Parse(e)).ToString("f1") + "," +
+                                        "时间序列=" + len;
+            textBox5.Text = "fcb_time(flow-control-bvc发送时间间隔second)：平均值=" + arrts.Where(e => e != "").Average(e => double.Parse(e)).ToString("f1") + "," +
+                                        "最大值=" + arrts.Where(e => e != "").Max(e => double.Parse(e)).ToString("f1") + "," +
+                                        "最小值" + arrts.Where(e => e != "").Min(e => double.Parse(e)).ToString("f1") + "," +
+                                        "时间序列=" + times;
+            textBox6.Text = "down_packet_rate(flow-control-bvc之间bvc下行速率kbps)：平均值=" + arrpr.Where(e => e != "").Average(e => double.Parse(e)).ToString("f1") + "," +
+                                        "最大值=" + arrpr.Where(e => e != "").Max(e => double.Parse(e)).ToString("f1") + "," +
+                                        "最小值" + arrpr.Where(e => e != "").Min(e => double.Parse(e)).ToString("f1") + "," +
+                                        "时间序列=" + pr;
+
+
+
+            Series series1 = new Series("bvc_leak_rate(kbps)", ViewType.Line);
+            Series series4 = new Series("down_packet_rate(kbps)", ViewType.Line);
+
+            Series series2 = new Series("bvc_bucket_size(KByte)", ViewType.Line);
+            Series series3 = new Series("down_total_len(KByte)", ViewType.Line);
+
+            Series series5 = new Series("fcb_time(seconds)", ViewType.Line);
+
+            double x, y, z, m, n, k;
+            for (int i = 0; i < arrfd.Count(); i++)
+            {
+                x = double.Parse(arrfd[i]);
+                y = double.Parse(arrlr[i]);
+                z = double.Parse(arrbs[i]);
+                m = double.Parse(arrlen[i]);
+                n = double.Parse(arrpr[i]);
+                k = double.Parse(arrts[i]);
+                series1.Points.Add(new SeriesPoint(x, y));
+                series2.Points.Add(new SeriesPoint(x, z));
+                series3.Points.Add(new SeriesPoint(x, m));
+                series4.Points.Add(new SeriesPoint(x, n));
+                series5.Points.Add(new SeriesPoint(x, k));
+            }
+
+            chartControl1.Series.Add(series1);
+            chartControl1.Series.Add(series4);
+
+
+            chartControl1.Series.Add(series3);
+            chartControl1.Series.Add(series2);
+
+            chartControl1.Series.Add(series5);
+
+
+            ChartTitle chartTitle1 = new ChartTitle();
+            chartTitle1.Antialiasing = true;
+            chartTitle1.Font = new Font("Tahoma", 12, FontStyle.Bold);
+            chartTitle1.Text = string.Format("Cellid={0} down_packet_rate和FLOW-CONTROL-BVC的Bucket_Size、Leak_Rate时间走势", callid);
+            chartControl1.Titles.Add(chartTitle1);
+
+
+            series1.Label.Visible = true;
+            series2.Label.Visible = true;
+            series3.Label.Visible = true;
+            series4.Label.Visible = true;
+            series5.Label.Visible = true;
+
+
+            //chartControl1.Legend.TextColor = series1.Label.LineColor;
+            chartControl1.Legend.Antialiasing = true;
+            chartControl1.Legend.Font = new Font("Tahoma", 10, FontStyle.Bold);
+
+
+
+            XYDiagram diagram = (XYDiagram)chartControl1.Diagram;
+
+
+
+            // Customize the appearance of the Y-axis title.
+            diagram.AxisY.Title.Visible = true;
+            diagram.AxisY.Title.Alignment = StringAlignment.Center;
+            diagram.AxisY.Title.Text = "kbps";
+            diagram.AxisY.Title.TextColor = Color.Blue;
+            diagram.AxisY.Title.Antialiasing = true;
+            diagram.AxisY.Title.Font = new Font("Tahoma", 10, FontStyle.Bold);
+
+            diagram.AxisX.Visible = false;
+
+
+            // Add secondary axes to the diagram, and adjust their options.
+            diagram.SecondaryAxesX.Add(new SecondaryAxisX("My Axis X"));
+            diagram.SecondaryAxesY.Add(new SecondaryAxisY("My Axis Y"));
+            diagram.SecondaryAxesX[0].Alignment = AxisAlignment.Near;
+            diagram.SecondaryAxesY[0].Alignment = AxisAlignment.Near;
+
+            // Add a new additional pane to the diagram.
+            diagram.Panes.Add(new XYDiagramPane("My Pane"));
+
+            // Assign both the additional pane and, if required,
+            // the secondary axes to the second series. 
+            LineSeriesView myView = (LineSeriesView)series2.View;
+            myView.AxisX = diagram.SecondaryAxesX[0];
+            myView.AxisY = diagram.SecondaryAxesY[0];
+            // Note that the created pane has the zero index in the collection,
+            // because the existing Default pane is a separate entity.
+            myView.Pane = diagram.Panes[0];
+
+            // Assign both the additional pane and, if required,
+            // the secondary axes to the second series. 
+            myView = (LineSeriesView)series3.View;
+            myView.AxisX = diagram.SecondaryAxesX[0];
+            myView.AxisY = diagram.SecondaryAxesY[0];
+            // Note that the created pane has the zero index in the collection,
+            // because the existing Default pane is a separate entity.
+            myView.Pane = diagram.Panes[0];
+
+            // Customize the appearance of the Y-axis title.
+            myView.AxisY.Title.Visible = true;
+            myView.AxisY.Title.Alignment = StringAlignment.Center;
+            myView.AxisY.Title.Text = "KByte";
+            myView.AxisY.Title.TextColor = Color.Blue;
+            myView.AxisY.Title.Antialiasing = true;
+            myView.AxisY.Title.Font = new Font("Tahoma", 10, FontStyle.Bold);
+
+            myView.AxisX.Visible = false;
+
+            // Add secondary axes to the diagram, and adjust their options.
+            diagram.SecondaryAxesX.Add(new SecondaryAxisX("My Axis X1"));
+            diagram.SecondaryAxesY.Add(new SecondaryAxisY("My Axis Y1"));
+            diagram.SecondaryAxesX[1].Alignment = AxisAlignment.Near;
+            diagram.SecondaryAxesY[1].Alignment = AxisAlignment.Near;
+
+            // Add a new additional pane to the diagram.
+            diagram.Panes.Add(new XYDiagramPane("My Pane1"));
+            // Assign both the additional pane and, if required,
+            // the secondary axes to the second series. 
+            LineSeriesView myView1 = (LineSeriesView)series5.View;
+            myView1.AxisX = diagram.SecondaryAxesX[1];
+            myView1.AxisY = diagram.SecondaryAxesY[1];
+            // Note that the created pane has the zero index in the collection,
+            // because the existing Default pane is a separate entity.
+            myView1.Pane = diagram.Panes[1];
+
+
+            // Customize the appearance of the Y-axis title.
+            myView1.AxisY.Title.Visible = true;
+            myView1.AxisY.Title.Alignment = StringAlignment.Center;
+            myView1.AxisY.Title.Text = "second";
+            myView1.AxisY.Title.TextColor = Color.Blue;
+            myView1.AxisY.Title.Antialiasing = true;
+            myView1.AxisY.Title.Font = new Font("Tahoma", 10, FontStyle.Bold);
+
+            // Customize the appearance of the X-axis title.
+            myView1.AxisX.Title.Visible = true;
+            myView1.AxisX.Title.Alignment = StringAlignment.Center;
+            myView1.AxisX.Title.Text = "FLOW-CONTROL-BVC delay(seconds)";
+            myView1.AxisX.Title.TextColor = Color.Red;
+            myView1.AxisX.Title.Antialiasing = true;
+            myView1.AxisX.Title.Font = new Font("Tahoma", 10, FontStyle.Bold);
+            myView1.AxisX.Label.Staggered = true;
+
+
+
+            // Customize the layout of the diagram's panes.
+            diagram.PaneDistance = 10;
+            diagram.PaneLayoutDirection = PaneLayoutDirection.Vertical;
+            diagram.DefaultPane.SizeMode = PaneSizeMode.UseWeight;
+            diagram.DefaultPane.Weight = 1.2;
+
+
+
+            diagram.SecondaryAxesY[0].LogarithmicBase = 2;
+            diagram.SecondaryAxesY[0].Logarithmic = true;
+            diagram.AxisY.LogarithmicBase = 2;
+            diagram.AxisY.Logarithmic = true;
+
+            //SecondaryAxisY myAxisY = new SecondaryAxisY("my Y-Axis");
+            //myAxisY.Title.Text="KByte";
+
+            //diagram.SecondaryAxesY.Add(myAxisY);
+            //((LineSeriesView)series2.View).AxisY = myAxisY;
+            //diagram.SecondaryAxesY.Add(myAxisY);
+            //((PointSeriesView)series5.View).AxisY = myAxisY;
+
+            //this.xtraTabPage3.Controls.Add(chartControl1);
+
+            //this.Controls.Add(chartControl1);
+            //series1.Points.Clear();
+            //series2.Points.Clear();
+        }
+        private void gridControl1_Click(object sender, EventArgs ee)
+        {
+            if (checkBox2.Checked)
+                show_graphic_fc_ms();
+            if (checkBox3.Checked)
+                show_graphic_fc_bvc();
+            return;
         }
 
         private void navBarItem22_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
@@ -1093,7 +1321,7 @@ SELECT  * into  [Gb_FlowControlx]
             var query = from p in fcob.QueryMongo()
                         select new
                             {
-                                p.PacketNum,
+                                p._id,
                                 p.Flow_Control_time,
                                 p.lac_cell,
                                 p.Flow_Control_MsgType,
@@ -1109,7 +1337,7 @@ SELECT  * into  [Gb_FlowControlx]
                             };
 
             clearColumns();
-            var dborder = query;
+            var dborder = query.Take(1000);
             gridControl1.DataSource = dborder.AsParallel().ToList();
             gridView1.OptionsView.ColumnAutoWidth = true;
         }
@@ -1134,56 +1362,68 @@ SELECT  * into  [Gb_FlowControlx]
 
         private void navBarItem27_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
         {
-
+            string msfc_msg = "BSSGP.FLOW-CONTROL-MS";
             string fc_msg = "BSSGP.FLOW-CONTROL-BVC";
             //分组
             FlowControlOneBvc fcob = new FlowControlOneBvc();
-            var fcobmongo = fcob.QueryMongo().Where(e=>e.lac_cell !=null).AsParallel().ToList();
+            var fcobmongo = fcob.QueryMongo().Where(e => e.lac_cell != null).AsParallel().ToList();
             var query = from p in fcobmongo
                         group p by p.lac_cell into ttt
-                        select new
+                        select new FlowControlMapBvc
                         {
-                            ttt.Key,
-                            fcontrol_cnt = ttt.Where(e => e.Flow_Control_MsgType == fc_msg).Count(),
+                            _id = ttt.Key,
+                            lac_cell = ttt.Key,
+                            fcb_cnt = ttt.Where(e => e.Flow_Control_MsgType == fc_msg).Count(),
                             packet_cnt = ttt.Count(),
-                            //bssgp_R_default_ms = ttt.Where(e => e.Flow_Control_MsgType == fc_msg).Average(e => e.bssgp_R_default_ms),
-                            //bssgp_ms_bucket_size = ttt.Where(e => e.Flow_Control_MsgType == fc_msg).Min(e => e.bssgp_ms_bucket_size),
-                            //bssgp_bvc_bucket_size = ttt.Where(e => e.Flow_Control_MsgType == fc_msg).Max(e => e.bssgp_bvc_bucket_size),
+                            tlli_cnt = ttt.Select(e => e.tlli).Distinct().Count(),
+
+                            bssgp_R_default_ms = ttt.Where(e => e.Flow_Control_MsgType == fc_msg).Average(e => e.bssgp_R_default_ms),
+                            bssgp_ms_bucket_size = ttt.Where(e => e.Flow_Control_MsgType == fc_msg).Average(e => e.bssgp_ms_bucket_size),
+                            //bssgp_bvc_bucket_size = ttt.Where(e => e.Flow_Control_MsgType == fc_msg).Average(e => e.bssgp_bvc_bucket_size),
                             //bssgp_bucket_leak_rate = ttt.Where(e => e.Flow_Control_MsgType == fc_msg).Average(e => e.bssgp_bucket_leak_rate),
-                            //bssgp_bucket_full_ratio = ttt.Where(e => e.Flow_Control_MsgType == fc_msg).Min(e => e.bssgp_bucket_full_ratio),
-                            //bssgp_bmax_default_ms = ttt.Where(e => e.Flow_Control_MsgType == fc_msg).Max(e => e.bssgp_bmax_default_ms),
+                            bssgp_bucket_full_ratio = ttt.Where(e => e.Flow_Control_MsgType == fc_msg).Average(e => e.bssgp_bucket_full_ratio),
+                            bssgp_bmax_default_ms = ttt.Where(e => e.Flow_Control_MsgType == fc_msg).Average(e => e.bssgp_bmax_default_ms),
 
-                            //first_delay = ttt.Where(e => e.Flow_Control_MsgType == fc_msg).OrderBy(e => e.PacketNum)
-                            //                    .Select(e => new { fd = (e.Flow_Control_time - ttt.Min(f => f.Flow_Control_time)).TotalMilliseconds })
-                            //                    .Select(e => (e.fd / 1000).ToString("f1"))
-                            //                    .Aggregate((a, b) => a + "," + b),
+                            //用户级别
+                            ms_bucket_size = ttt.Where(e => e.Flow_Control_MsgType == msfc_msg).Where(e => e.bssgp_ms_bucket_size > 0).Average(e => e.bssgp_ms_bucket_size),
+                            ms_leak_rate = ttt.Where(e => e.Flow_Control_MsgType == msfc_msg).Where(e => e.bssgp_bucket_leak_rate > 0).Average(e => e.bssgp_bucket_leak_rate),
 
-                            ////leak_rate = ttt.Where(e => e.Flow_Control_MsgType == fc_msg)
-                            ////.OrderBy(e => e.PacketNum)
-                            ////                .Select(e => (e.leak_rate).ToString("f1"))
-                            ////                .Aggregate((a, b) => a + "," + b),
+                            fcb_delay_aggre = ttt.Where(e => e.Flow_Control_MsgType == fc_msg).OrderBy(e => e._id)
+                                                .Select(e => new { fd = (e.Flow_Control_time - ttt.Min(f => f.Flow_Control_time)).TotalMilliseconds })
+                                                .Select(e => (e.fd / 1000).ToString("f1"))
+                                                .Aggregate((a, b) => a + "," + b),
 
-                            ////bucket_size = ttt.Where(e => e.Flow_Control_MsgType == fc_msg)
-                            ////.OrderBy(e => e.PacketNum)
-                            ////                 .Select(e => (e.bucket_size).ToString("f1"))
-                            ////                 .Aggregate((a, b) => a + "," + b),
+                            bssgp_bucket_leak_rate = ttt.Where(e => e.Flow_Control_MsgType == fc_msg)
+                            .OrderBy(e => e._id)
+                                            .Select(e => (e.bssgp_bucket_leak_rate).ToString("f1"))
+                                            .Aggregate((a, b) => a + "," + b),
+
+                            bssgp_bvc_bucket_size = ttt.Where(e => e.Flow_Control_MsgType == fc_msg)
+                            .OrderBy(e => e._id)
+                                             .Select(e => (e.bssgp_bvc_bucket_size).ToString("f1"))
+                                             .Aggregate((a, b) => a + "," + b),
 
                             ////用扩展方法实现， 在fc消息之间进行ip.len的累加
+                            tlli_distinct_aggre = ttt.Select(e => e.tlli).Distinct().Aggregate((a, b) => a + "," + b),
 
-                            //down_total_len = ttt.OrderBy(e => e.PacketNum)
-                            //.AggregateSum(e => (int)e.ip_len, e => e.Flow_Control_MsgType, fc_msg),
+                            msg_distinct_aggre = ttt.Select(e => e.Flow_Control_MsgType).Distinct().Aggregate((a, b) => a + "," + b),
 
-                            //down_packet_rate = ttt.OrderBy(e => e.PacketNum)
-                            //.AggregatePacketRate(e => (int)e.ip_len, e => e.Flow_Control_time, e => e.Flow_Control_MsgType, fc_msg),
+                            down_total_len = ttt.OrderBy(e => e._id)
+                            .AggregateSum(e => (int)e.ip_len, e => e.Flow_Control_MsgType, fc_msg),
 
-                            //fcm_time = ttt.OrderBy(e => e.PacketNum)
-                            //.AggregatePacketTime(e => e.Flow_Control_time, e => e.Flow_Control_MsgType, fc_msg),
+                            down_packet_rate = ttt.OrderBy(e => e._id)
+                            .AggregatePacketRate(e => (int)e.ip_len, e => e.Flow_Control_time, e => e.Flow_Control_MsgType, fc_msg),
+
+
+                            fcb_time_aggre = ttt.OrderBy(e => e._id)
+                            .AggregatePacketTime(e => e.Flow_Control_time, e => e.Flow_Control_MsgType, fc_msg),
                         };
 
-            clearColumns();
-            var dborder = query.OrderByDescending(e => e.fcontrol_cnt);
-            gridControl1.DataSource = dborder.AsParallel().ToList();
-            gridView1.OptionsView.ColumnAutoWidth = true;
+            FlowControlMapBvc fcmb = new FlowControlMapBvc();
+            fcmb.BulkMongo(query.ToList());
+            MessageBox.Show("OK");
+
+
         }
 
         /*
@@ -1195,6 +1435,54 @@ SELECT  * into  [Gb_FlowControlx]
             textBox2.Text = intAddress.ToString();
             //string ipAddress = new IPAddress(BitConverter.GetBytes(intAddress)).ToString(); 
 
+        }
+
+        private void navBarItem28_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
+        {
+            FlowControlMapBvc fcmb = new FlowControlMapBvc();
+            clearColumns();
+            var dborder = from p in fcmb.QueryMongo().OrderByDescending(e => e.fcb_cnt)
+                          select new
+                          {
+                              p.lac_cell,
+                              p.fcb_cnt,
+                              p.packet_cnt,
+                              p.tlli_cnt,
+                              discard = p.msg_distinct_aggre.CountMessage("BSSGP.RADIO-STATUS"),
+                              p.ms_leak_rate,
+                              p.ms_bucket_size,
+                              p.bssgp_bmax_default_ms,
+                              p.bssgp_bucket_full_ratio,
+                              p.bssgp_bucket_leak_rate,
+                              p.bssgp_bvc_bucket_size,
+                              p.bssgp_ms_bucket_size,
+                              p.bssgp_R_default_ms,
+                              p.down_packet_rate,
+                              p.down_total_len,
+                              p.fcb_delay_aggre,
+                              p.fcb_time_aggre,
+                              p.msg_distinct_aggre,
+                              p.tlli_distinct_aggre
+                          };
+            gridControl1.DataSource = dborder.AsParallel().ToList();
+            gridView1.OptionsView.ColumnAutoWidth = true;
+        }
+
+        private void navBarItem29_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
+        {
+
+            clearColumns();
+            FlowControlOneBvc fcob = new FlowControlOneBvc();
+            var fcobmongo = fcob.QueryMongo().Where(e => e.lac_cell ==textBox8.Text).AsParallel().ToList();
+            var query = from p in fcobmongo
+                        group p by p.Flow_Control_MsgType into ttt
+                        select new
+                        {
+                            ttt.Key,
+                            cnt = ttt.Count(),
+                        };
+            gridControl1.DataSource = query.OrderByDescending(e => e.cnt).AsParallel().ToList();
+            gridView1.OptionsView.ColumnAutoWidth = true;
         }
     }
 }
