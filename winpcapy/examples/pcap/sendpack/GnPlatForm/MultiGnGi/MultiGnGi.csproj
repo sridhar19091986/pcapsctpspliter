@@ -73,6 +73,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="XmlToClass\12.cs">
+      <DependentUpon>12.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="XmlToClass\12.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>12.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Class1.cs" />
     <Compile Include="FlowControlOneBvc.cs" />
     <Compile Include="FlowControlOneMs.cs" />
@@ -90,6 +98,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="XmlToClass\Class1.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -103,6 +112,18 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="XmlToClass\12.pdml" />
+    <None Include="XmlToClass\12.xsc">
+      <DependentUpon>12.xsd</DependentUpon>
+    </None>
+    <None Include="XmlToClass\12.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>12.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XmlToClass\12.xss">
+      <DependentUpon>12.xsd</DependentUpon>
+    </None>
     <None Include="App.Config">
       <SubType>Designer</SubType>
     </None>
