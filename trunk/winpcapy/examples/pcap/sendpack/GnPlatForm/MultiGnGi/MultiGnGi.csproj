@@ -58,6 +58,7 @@
       <HintPath>..\MutliInterfaceGnGi\Mongodb\MongoDB.Driver.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
@@ -73,6 +74,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FlowControl\MongoConn.cs" />
     <Compile Include="XmlToClass\12.cs">
       <DependentUpon>12.xsd</DependentUpon>
     </Compile>
@@ -82,8 +84,8 @@
       <DependentUpon>12.xsd</DependentUpon>
     </Compile>
     <Compile Include="Class1.cs" />
-    <Compile Include="FlowControlOneBvc.cs" />
-    <Compile Include="FlowControlOneMs.cs" />
+    <Compile Include="FlowControl\FlowControlOneBvc.cs" />
+    <Compile Include="FlowControl\FlowControlOneMs.cs" />
     <Compile Include="IEnumerableExtensions.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

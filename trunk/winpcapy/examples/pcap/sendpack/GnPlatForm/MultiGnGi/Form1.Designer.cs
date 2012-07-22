@@ -78,6 +78,7 @@
             this.navBarItem27 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem28 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem29 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem30 = new DevExpress.XtraNavBar.NavBarItem();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.listBox1 = new System.Windows.Forms.ListBox();
@@ -111,9 +112,9 @@
             this.dockPanel3 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel3_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.textBox8 = new System.Windows.Forms.TextBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
@@ -157,7 +158,7 @@
             this.xtraTabControl1.Location = new System.Drawing.Point(0, 0);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
-            this.xtraTabControl1.Size = new System.Drawing.Size(788, 378);
+            this.xtraTabControl1.Size = new System.Drawing.Size(788, 444);
             this.xtraTabControl1.TabIndex = 0;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
@@ -168,7 +169,7 @@
             // 
             this.xtraTabPage1.Controls.Add(this.splitContainerControl1);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(782, 351);
+            this.xtraTabPage1.Size = new System.Drawing.Size(782, 417);
             this.xtraTabPage1.Text = "xtraTabPage1";
             // 
             // splitContainerControl1
@@ -180,7 +181,7 @@
             this.splitContainerControl1.Panel1.Text = "Panel1";
             this.splitContainerControl1.Panel2.Controls.Add(this.navBarControl1);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(782, 351);
+            this.splitContainerControl1.Size = new System.Drawing.Size(782, 417);
             this.splitContainerControl1.SplitterPosition = 519;
             this.splitContainerControl1.TabIndex = 0;
             this.splitContainerControl1.Text = "splitContainerControl1";
@@ -192,7 +193,7 @@
             this.gridControl1.Location = new System.Drawing.Point(0, 0);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(519, 351);
+            this.gridControl1.Size = new System.Drawing.Size(519, 417);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -243,11 +244,12 @@
             this.navBarItem26,
             this.navBarItem27,
             this.navBarItem28,
-            this.navBarItem29});
+            this.navBarItem29,
+            this.navBarItem30});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 227;
-            this.navBarControl1.Size = new System.Drawing.Size(258, 351);
+            this.navBarControl1.Size = new System.Drawing.Size(258, 417);
             this.navBarControl1.TabIndex = 0;
             this.navBarControl1.Text = "navBarControl1";
             this.navBarControl1.Click += new System.EventHandler(this.navBarControl1_Click);
@@ -445,7 +447,8 @@
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem26),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem27),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem28),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem29)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem29),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem30)});
             this.navBarGroup6.Name = "navBarGroup6";
             // 
             // navBarItem23
@@ -486,15 +489,21 @@
             // 
             // navBarItem29
             // 
-            this.navBarItem29.Caption = "navBarItem29";
+            this.navBarItem29.Caption = "lac_cell ==textBox8.Text";
             this.navBarItem29.Name = "navBarItem29";
             this.navBarItem29.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem29_LinkClicked);
+            // 
+            // navBarItem30
+            // 
+            this.navBarItem30.Caption = "navBarItem30";
+            this.navBarItem30.Name = "navBarItem30";
+            this.navBarItem30.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem30_LinkClicked);
             // 
             // xtraTabPage2
             // 
             this.xtraTabPage2.Controls.Add(this.tableLayoutPanel1);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(782, 351);
+            this.xtraTabPage2.Size = new System.Drawing.Size(782, 417);
             this.xtraTabPage2.Text = "xtraTabPage2";
             // 
             // tableLayoutPanel1
@@ -512,7 +521,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.02564F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 83.97436F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(782, 351);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(782, 417);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // listBox1
@@ -520,18 +529,18 @@
             this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 12;
-            this.listBox1.Location = new System.Drawing.Point(3, 59);
+            this.listBox1.Location = new System.Drawing.Point(3, 69);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(385, 289);
+            this.listBox1.Size = new System.Drawing.Size(385, 345);
             this.listBox1.TabIndex = 1;
             // 
             // panel3
             // 
             this.panel3.Controls.Add(this.tableLayoutPanel2);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(394, 59);
+            this.panel3.Location = new System.Drawing.Point(394, 69);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(385, 289);
+            this.panel3.Size = new System.Drawing.Size(385, 345);
             this.panel3.TabIndex = 3;
             // 
             // tableLayoutPanel2
@@ -557,7 +566,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(385, 289);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(385, 345);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // textBox1
@@ -623,7 +632,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(394, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(385, 50);
+            this.panel4.Size = new System.Drawing.Size(385, 60);
             this.panel4.TabIndex = 4;
             // 
             // button3
@@ -653,7 +662,7 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(3, 3);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(385, 50);
+            this.panel5.Size = new System.Drawing.Size(385, 60);
             this.panel5.TabIndex = 5;
             // 
             // button4
@@ -680,7 +689,7 @@
             // 
             this.xtraTabPage3.Controls.Add(this.chartControl1);
             this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(782, 351);
+            this.xtraTabPage3.Size = new System.Drawing.Size(782, 417);
             this.xtraTabPage3.Text = "xtraTabPage3";
             // 
             // chartControl1
@@ -743,7 +752,7 @@
             this.hideContainerBottom.Controls.Add(this.dockPanel1);
             this.hideContainerBottom.Controls.Add(this.dockPanel2);
             this.hideContainerBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.hideContainerBottom.Location = new System.Drawing.Point(0, 453);
+            this.hideContainerBottom.Location = new System.Drawing.Point(0, 519);
             this.hideContainerBottom.Name = "hideContainerBottom";
             this.hideContainerBottom.Size = new System.Drawing.Size(788, 20);
             // 
@@ -821,7 +830,7 @@
             this.dockPanel3.Controls.Add(this.dockPanel3_Container);
             this.dockPanel3.Dock = DevExpress.XtraBars.Docking.DockingStyle.Bottom;
             this.dockPanel3.ID = new System.Guid("9fbb95ef-5eed-458f-986b-aebb269ec0e1");
-            this.dockPanel3.Location = new System.Drawing.Point(0, 378);
+            this.dockPanel3.Location = new System.Drawing.Point(0, 444);
             this.dockPanel3.Name = "dockPanel3";
             this.dockPanel3.OriginalSize = new System.Drawing.Size(200, 75);
             this.dockPanel3.Size = new System.Drawing.Size(788, 75);
@@ -847,6 +856,13 @@
             this.panel2.Size = new System.Drawing.Size(780, 48);
             this.panel2.TabIndex = 0;
             // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(474, 13);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(199, 21);
+            this.textBox8.TabIndex = 4;
+            // 
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
@@ -867,18 +883,11 @@
             this.checkBox2.Text = "Show Graphic";
             this.checkBox2.UseVisualStyleBackColor = true;
             // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(474, 13);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(199, 21);
-            this.textBox8.TabIndex = 4;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(788, 473);
+            this.ClientSize = new System.Drawing.Size(788, 539);
             this.Controls.Add(this.xtraTabControl1);
             this.Controls.Add(this.dockPanel3);
             this.Controls.Add(this.hideContainerBottom);
@@ -1005,6 +1014,7 @@
         private System.Windows.Forms.CheckBox checkBox3;
         private DevExpress.XtraNavBar.NavBarItem navBarItem29;
         private System.Windows.Forms.TextBox textBox8;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem30;
     }
 }
 
