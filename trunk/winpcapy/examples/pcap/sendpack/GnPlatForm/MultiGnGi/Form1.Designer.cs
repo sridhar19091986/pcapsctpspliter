@@ -495,7 +495,7 @@
             // 
             // navBarItem30
             // 
-            this.navBarItem30.Caption = "navBarItem30";
+            this.navBarItem30.Caption = "bvci,fcb";
             this.navBarItem30.Name = "navBarItem30";
             this.navBarItem30.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem30_LinkClicked);
             // 
@@ -717,7 +717,7 @@
         series2};
             sideBySideBarSeriesLabel1.LineVisible = true;
             this.chartControl1.SeriesTemplate.Label = sideBySideBarSeriesLabel1;
-            this.chartControl1.Size = new System.Drawing.Size(782, 351);
+            this.chartControl1.Size = new System.Drawing.Size(782, 417);
             this.chartControl1.TabIndex = 0;
             this.chartControl1.Click += new System.EventHandler(this.chartControl1_Click);
             // 
