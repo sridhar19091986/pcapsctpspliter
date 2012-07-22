@@ -1448,7 +1448,7 @@ SELECT  * into  [Gb_FlowControlx]
                               p.fcb_cnt,
                               p.packet_cnt,
                               p.tlli_cnt,
-                              discard = p.msg_distinct_aggre.CountMessage("BSSGP.RADIO-STATUS"),
+                              radio_status = p.msg_distinct_aggre.CountMessage("BSSGP.RADIO-STATUS"),
                               p.ms_leak_rate,
                               p.ms_bucket_size,
                               p.bssgp_bmax_default_ms,
@@ -1473,7 +1473,7 @@ SELECT  * into  [Gb_FlowControlx]
 
             clearColumns();
             FlowControlOneBvc fcob = new FlowControlOneBvc();
-            var fcobmongo = fcob.QueryMongo().Where(e => e.lac_cell ==textBox8.Text).AsParallel().ToList();
+            var fcobmongo = fcob.QueryMongo().Where(e => e.lac_cell == textBox8.Text).AsParallel().ToList();
             var query = from p in fcobmongo
                         group p by p.Flow_Control_MsgType into ttt
                         select new
@@ -1483,6 +1483,51 @@ SELECT  * into  [Gb_FlowControlx]
                         };
             gridControl1.DataSource = query.OrderByDescending(e => e.cnt).AsParallel().ToList();
             gridView1.OptionsView.ColumnAutoWidth = true;
+        }
+
+        private void navBarItem30_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
+        {
+            clearColumns();
+            FlowControlMapBvc fcmb = new FlowControlMapBvc();
+            var bvc = fcmb.QueryMongo().ToList();
+            LacCellBvci lcb = new LacCellBvci();
+            var cell = from p in lcb.QueryMongo().ToList()
+                       group p by p.lac_cell into ttt
+                       select new
+                       {
+                           lac_cell = ttt.Key,
+                           bvci_aggre = ttt.Select(e => e.bvci).Aggregate((a, b) => a + "," + b),
+
+                       };
+            var query = from p in bvc
+                        join q in cell on p.lac_cell equals q.lac_cell
+                        select new
+                        {
+                            p.lac_cell,
+                            p.fcb_cnt,
+                            p.packet_cnt,
+                            p.tlli_cnt,
+                            q.bvci_aggre,
+                            radio_status = p.msg_distinct_aggre.CountMessage("BSSGP.RADIO-STATUS"),
+                            p.ms_leak_rate,
+                            p.ms_bucket_size,
+                            p.bssgp_bmax_default_ms,
+                            p.bssgp_bucket_full_ratio,
+                            p.bssgp_bucket_leak_rate,
+                            p.bssgp_bvc_bucket_size,
+                            p.bssgp_ms_bucket_size,
+                            p.bssgp_R_default_ms,
+                            p.down_packet_rate,
+                            p.down_total_len,
+                            p.fcb_delay_aggre,
+                            p.fcb_time_aggre,
+                            p.msg_distinct_aggre,
+                            p.tlli_distinct_aggre
+                        };
+
+            gridControl1.DataSource = query.OrderByDescending(e => e.fcb_cnt).AsParallel().ToList();
+            gridView1.OptionsView.ColumnAutoWidth = true;
+
         }
     }
 
