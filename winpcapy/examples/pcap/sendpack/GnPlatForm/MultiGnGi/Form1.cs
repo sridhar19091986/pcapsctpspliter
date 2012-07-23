@@ -254,11 +254,15 @@ namespace MultiGnGi
 
         private void navBarItem7_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
         {
-            //var maxt = gngiget.Max(e => e.PacketTime);
-            //var mint = gngiget.Min(e => e.PacketTime);
-            //TimeSpan ts = maxt.Value - mint.Value;
-            //var ttim = mint.Value.ToString() + "-" + maxt.Value.ToString() + "," + ts.TotalSeconds.ToString();
-            //richTextBox1.Text = ttim.ToString();
+            GuangZhou_GbEntities_209 gb = new GuangZhou_GbEntities_209();
+            gb.CommandTimeout = 0;
+            gb.ContextOptions.LazyLoadingEnabled = true;
+            gb.Gb_FlowControly.MergeOption = MergeOption.NoTracking;
+            var maxt = gb.Gb_FlowControly.Max(e => e.PacketTime);
+            var mint = gb.Gb_FlowControly.Min(e => e.PacketTime);
+            TimeSpan ts = maxt.Value - mint.Value;
+            var ttim = mint.Value.ToString() + "-" + maxt.Value.ToString() + "," + ts.TotalSeconds.ToString();
+            richTextBox1.Text = ttim.ToString();
         }
 
         private void navBarControl1_Click(object sender, EventArgs ee)
@@ -1010,6 +1014,7 @@ SELECT  * into  [Gb_FlowControlx]
             string pr = this.gridView1.GetRowCellValue(a[0], "down_packet_rate").ToString();//获取选中行的内容
             string times = this.gridView1.GetRowCellValue(a[0], "fcb_time_aggre").ToString();//获取选中行的内容
             string callid = this.gridView1.GetRowCellValue(a[0], "lac_cell").ToString();//获取选中行的内容
+            string bvci = this.gridView1.GetRowCellValue(a[0], "bvci").ToString();//获取选中行的内容
 
             var arrfd = fd.Split(',');
             var arrlr = lr.Split(',');
@@ -1018,7 +1023,7 @@ SELECT  * into  [Gb_FlowControlx]
             var arrpr = pr.Split(',');
             var arrts = times.Split(',');
 
-            textBox7.Text = "Cellid=" + callid;
+            textBox7.Text = "Cellid=" + callid + ",BVCI=" + bvci;
 
             textBox1.Text = "fcb_delay(flow-control-bvc发送时间序列second)：平均值=" + arrfd.Where(e => e != "").Average(e => double.Parse(e)).ToString("f1") + "," +
                                         "最大值=" + arrfd.Where(e => e != "").Max(e => double.Parse(e)).ToString("f1") + "," +
@@ -1084,7 +1089,7 @@ SELECT  * into  [Gb_FlowControlx]
             ChartTitle chartTitle1 = new ChartTitle();
             chartTitle1.Antialiasing = true;
             chartTitle1.Font = new Font("Tahoma", 12, FontStyle.Bold);
-            chartTitle1.Text = string.Format("Cellid={0} down_packet_rate和FLOW-CONTROL-BVC的Bucket_Size、Leak_Rate时间走势", callid);
+            chartTitle1.Text = string.Format("Cellid={0},BVCI={1} down_packet_rate和FLOW-CONTROL-BVC的Bucket_Size、Leak_Rate时间走势", callid, bvci);
             chartControl1.Titles.Add(chartTitle1);
 
 
@@ -1217,6 +1222,7 @@ SELECT  * into  [Gb_FlowControlx]
             //series1.Points.Clear();
             //series2.Points.Clear();
         }
+
         private void gridControl1_Click(object sender, EventArgs ee)
         {
             if (checkBox2.Checked)
@@ -1359,7 +1365,11 @@ SELECT  * into  [Gb_FlowControlx]
             gridControl1.DataSource = dborder.AsParallel().ToList();
             gridView1.OptionsView.ColumnAutoWidth = true;
         }
-
+        private long GenerateId()
+        {
+            byte[] buffer = Guid.NewGuid().ToByteArray();
+            return BitConverter.ToInt64(buffer, 0);
+        }
         private void navBarItem27_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
         {
             string msfc_msg = "BSSGP.FLOW-CONTROL-MS";
@@ -1368,11 +1378,12 @@ SELECT  * into  [Gb_FlowControlx]
             FlowControlOneBvc fcob = new FlowControlOneBvc();
             var fcobmongo = fcob.QueryMongo().Where(e => e.lac_cell != null).AsParallel().ToList();
             var query = from p in fcobmongo
-                        group p by p.lac_cell into ttt
+                        group p by new { p.lac_cell, p.bvci } into ttt
                         select new FlowControlMapBvc
                         {
-                            _id = ttt.Key,
-                            lac_cell = ttt.Key,
+                            _id = GenerateId(),
+                            lac_cell = ttt.Key.lac_cell,
+                            bvci=ttt.Key.bvci,
                             fcb_cnt = ttt.Where(e => e.Flow_Control_MsgType == fc_msg).Count(),
                             packet_cnt = ttt.Count(),
                             tlli_cnt = ttt.Select(e => e.tlli).Distinct().Count(),
@@ -1445,6 +1456,7 @@ SELECT  * into  [Gb_FlowControlx]
                           select new
                           {
                               p.lac_cell,
+                              p.bvci,
                               p.fcb_cnt,
                               p.packet_cnt,
                               p.tlli_cnt,
@@ -1527,6 +1539,11 @@ SELECT  * into  [Gb_FlowControlx]
 
             gridControl1.DataSource = query.OrderByDescending(e => e.fcb_cnt).AsParallel().ToList();
             gridView1.OptionsView.ColumnAutoWidth = true;
+
+        }
+
+        private void navBarItem31_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
 
         }
     }

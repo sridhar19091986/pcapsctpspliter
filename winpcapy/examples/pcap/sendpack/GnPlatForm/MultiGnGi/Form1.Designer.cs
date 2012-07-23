@@ -79,6 +79,7 @@
             this.navBarItem28 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem29 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem30 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem31 = new DevExpress.XtraNavBar.NavBarItem();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.listBox1 = new System.Windows.Forms.ListBox();
@@ -245,7 +246,8 @@
             this.navBarItem27,
             this.navBarItem28,
             this.navBarItem29,
-            this.navBarItem30});
+            this.navBarItem30,
+            this.navBarItem31});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 227;
@@ -448,7 +450,8 @@
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem27),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem28),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem29),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem30)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem30),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem31)});
             this.navBarGroup6.Name = "navBarGroup6";
             // 
             // navBarItem23
@@ -498,6 +501,12 @@
             this.navBarItem30.Caption = "bvci,fcb";
             this.navBarItem30.Name = "navBarItem30";
             this.navBarItem30.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem30_LinkClicked);
+            // 
+            // navBarItem31
+            // 
+            this.navBarItem31.Caption = "navBarItem31";
+            this.navBarItem31.Name = "navBarItem31";
+            this.navBarItem31.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem31_LinkClicked);
             // 
             // xtraTabPage2
             // 
@@ -1015,6 +1024,7 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem29;
         private System.Windows.Forms.TextBox textBox8;
         private DevExpress.XtraNavBar.NavBarItem navBarItem30;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem31;
     }
 }
 
