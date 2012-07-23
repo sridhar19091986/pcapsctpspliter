@@ -1,4 +1,14 @@
-﻿using System;
+﻿/*
+ * 
+ where Flow_Control_MsgType='BSSGP.FLOW-CONTROL-BVC'
+ and (nsip_bvci=39 or nsip_bvci=87) and ip_src_host='10.128.24.84'
+ order by FileNum
+ * 
+ * */
+
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -86,7 +96,7 @@ namespace MultiGnGi
 
 
 
-            var collection = MongoConn.GetMongoCollection(mongo_conn, mongodb_collection_name);
+            var collection = MongoConn.GetMongoCollection(mongo_conn, mongodb_collection_name, true);
 
             collection.InsertBatch(lcb);
         }
@@ -94,7 +104,7 @@ namespace MultiGnGi
         public IQueryable<LacCellBvci> QueryMongo()
         {
 
-            var collection = MongoConn.GetMongoCollection(mongo_conn, mongodb_collection_name);
+            var collection = MongoConn.GetMongoCollection(mongo_conn, mongodb_collection_name, false);
 
             var query = from p in collection.AsQueryable<LacCellBvci>()
                         select p;
@@ -110,7 +120,7 @@ namespace MultiGnGi
             {
                 if (listlaccellbvci == null)
                 {
-                    var collection = MongoConn.GetMongoCollection(mongo_conn, mongodb_collection_name);
+                    var collection = MongoConn.GetMongoCollection(mongo_conn, mongodb_collection_name, false);
 
                     listlaccellbvci = collection.AsQueryable<LacCellBvci>().ToList();
 
@@ -153,6 +163,7 @@ namespace MultiGnGi
         public double bssgp_bvc_bucket_size;
         public double bssgp_ms_bucket_size;
         public double bssgp_R_default_ms;
+        public string bvci;
 
         //private string mongo_conn = "mongodb://localhost/?safe=true";
         //private string mongo_conn = "mongodb://192.168.4.209/?safe=true";
@@ -212,6 +223,7 @@ namespace MultiGnGi
                 fcob.tlli = p.bssgp_tlli;
                 fcob.Flow_Control_time = DateTime.Parse(p.Flow_Control_time);
                 fcob.lac_cell = lcb.GetLacCell(p.ip_src_host, p.ip_dst_host, p.nsip_bvci.ToString());
+                fcob.bvci = p.nsip_bvci.ToString();
                 fcob.Flow_Control_MsgType = p.Flow_Control_MsgType;
                 fcob.ip_len = (int)p.ip_len;
                 fcob.bssgp_direction = p.bssgp_direction;
@@ -261,12 +273,13 @@ namespace MultiGnGi
                 if (fcob_col == null)
                 {
 
-                    fcob_col = MongoConn.GetMongoCollection(mongo_conn, mongodb_collection_name);
+                    fcob_col = MongoConn.GetMongoCollection(mongo_conn, mongodb_collection_name, true);//这个是提供给写操作的
                 }
                 return fcob_col;
             }
             set
             {
+
                 value = fcob_col;
             }
         }
@@ -274,14 +287,14 @@ namespace MultiGnGi
         public void BulkMongo(List<FlowControlOneBvc> fcob)
         {
 
-            var collection = MongoConn.GetMongoCollection(mongo_conn, mongodb_collection_name);
+            var collection = MongoConn.GetMongoCollection(mongo_conn, mongodb_collection_name, true);
 
             collection.InsertBatch(fcob);
         }
 
         public IQueryable<FlowControlOneBvc> QueryMongo()
         {
-            var collection = MongoConn.GetMongoCollection(mongo_conn, mongodb_collection_name);
+            var collection = MongoConn.GetMongoCollection(mongo_conn, mongodb_collection_name, false);
 
             var query = from p in collection.AsQueryable<FlowControlOneBvc>()
                         select p;
@@ -298,6 +311,7 @@ namespace MultiGnGi
         // public DateTime Flow_Control_time;
         public object _id;
         public string lac_cell;
+        public string bvci;
         public int fcb_cnt;
         public int packet_cnt;
         public int tlli_cnt;
@@ -339,7 +353,7 @@ namespace MultiGnGi
 
         public void BulkMongo(List<FlowControlMapBvc> fcmb)
         {
-            var collection = MongoConn.GetMongoCollection(mongo_conn, mongodb_collection_name);
+            var collection = MongoConn.GetMongoCollection(mongo_conn, mongodb_collection_name, true);
 
             collection.InsertBatch(fcmb);
         }
@@ -347,7 +361,7 @@ namespace MultiGnGi
         public IQueryable<FlowControlMapBvc> QueryMongo()
         {
 
-            var collection = MongoConn.GetMongoCollection(mongo_conn, mongodb_collection_name);
+            var collection = MongoConn.GetMongoCollection(mongo_conn, mongodb_collection_name, false);
 
             var query = from p in collection.AsQueryable<FlowControlMapBvc>()
                         select p;
