@@ -56,6 +56,56 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="MtrixEntity\XID\GMM_XID.Designer.cs">
+      <DependentUpon>GMM_XID.edmx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="MySqlEntity\GbPlatForm\Model1.Designer.cs">
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="MySqlEntity\GbPlatForm\Model2.Designer.cs">
+      <DependentUpon>Model2.edmx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="MySqlEntity\GbPlatForm\Model3.Designer.cs">
+      <DependentUpon>Model3.edmx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="MySqlEntity\MySql\Model1.Designer.cs">
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="MySqlEntity\SqlServer\Model1.Designer.cs">
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="MySqlEntity\SqlServer\Model2.Designer.cs">
+      <DependentUpon>Model2.edmx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="MySqlEntity\SqlServer\Model3.Designer.cs">
+      <DependentUpon>Model3.edmx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="MySqlEntity\SqlServer\Model4.Designer.cs">
+      <DependentUpon>Model4.edmx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="MySqlEntity\SqlServer\Model5.Designer.cs">
+      <DependentUpon>Model5.edmx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerEntity\Gb\ExtendedNorthwindEntities.cs" />
     <Compile Include="ServerEntity\Gb\GuangZhou_Gb.Designer.cs">
@@ -68,12 +118,29 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="ServerEntity\Gi\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ServerEntity\Gn\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ServerEntity\Gw\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ServerEntity\Other\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ServerEntity\Gi\" />
-    <Folder Include="ServerEntity\Gn\" />
-    <Folder Include="ServerEntity\Gw\" />
-    <Folder Include="ServerEntity\Other\" />
+    <Folder Include="MySqlEntity\SqlServer\SelfEntity\" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="ServerEntity\Gb\GuangZhou_Gb.edmx">
@@ -86,6 +153,62 @@
       <SubType>Designer</SubType>
     </None>
     <EntityDeploy Include="ServerEntity\Gb_209\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="MySqlEntity\MySql\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="MySqlEntity\SqlServer\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="MySqlEntity\SqlServer\Model2.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model2.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="MySqlEntity\SqlServer\Model3.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model3.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="MySqlEntity\SqlServer\Model4.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model4.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="MySqlEntity\SqlServer\Model5.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model5.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="MySqlEntity\GbPlatForm\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="MySqlEntity\GbPlatForm\Model2.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model2.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="MySqlEntity\GbPlatForm\Model3.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model3.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="MtrixEntity\XID\GMM_XID.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>GMM_XID.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="ServerEntity\Gi\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="ServerEntity\Gn\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="ServerEntity\Gw\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="ServerEntity\Other\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>

@@ -52,10 +52,10 @@ namespace MutliInterfaceGnGi
             ExtendedGuangZhou_GbEntities gz_gb_ex = new ExtendedGuangZhou_GbEntities();
             gz_gb_ex.Log = logFile;
 
-            var cnt_t = gz_gb_ex.Gb_FlowControly.Count();
-            var size_t = gz_gb_ex.Gb_FlowControly.Sum(e => e.ip_len);
+            var cnt_t = gz_gb_ex.Gb_FlowControlx.Count();
+            var size_t = gz_gb_ex.Gb_FlowControlx.Sum(e => e.ip_len);
 
-            var gngi = from p in gz_gb_ex.Gb_FlowControly
+            var gngi = from p in gz_gb_ex.Gb_FlowControlx
                        group p by p.Flow_Control_MsgType into ttt
                        select new
                        {

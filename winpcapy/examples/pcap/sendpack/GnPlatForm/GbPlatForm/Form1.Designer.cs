@@ -352,7 +352,6 @@
             // navBarGroup6
             // 
             this.navBarGroup6.Caption = "Gb_Cell_Repeat";
-            this.navBarGroup6.Expanded = true;
             this.navBarGroup6.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem22),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem23),

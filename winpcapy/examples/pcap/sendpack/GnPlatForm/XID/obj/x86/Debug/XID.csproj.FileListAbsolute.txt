@@ -1,6 +1,14 @@
 G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\XID\bin\Debug\XID.exe.config
 G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\XID\bin\Debug\XID.exe
 G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\XID\bin\Debug\XID.pdb
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\XID\bin\Debug\EntityClass.dll
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\XID\bin\Debug\EFTracingProvider.dll
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\XID\bin\Debug\EFCachingProvider.dll
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\XID\bin\Debug\EFProviderWrapperToolkit.dll
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\XID\bin\Debug\EntityClass.pdb
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\XID\bin\Debug\EFTracingProvider.pdb
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\XID\bin\Debug\EFCachingProvider.pdb
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\XID\bin\Debug\EFProviderWrapperToolkit.pdb
 G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\XID\obj\x86\Debug\ResolveAssemblyReference.cache
 G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\XID\obj\x86\Debug\XID.Form1.resources
 G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\XID\obj\x86\Debug\XID.Properties.Resources.resources
