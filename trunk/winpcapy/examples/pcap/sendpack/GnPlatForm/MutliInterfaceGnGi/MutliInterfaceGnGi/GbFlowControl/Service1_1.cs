@@ -28,6 +28,7 @@ namespace MutliInterfaceGnGi
     {
         public DataSet GetCase()
         {
+   
             Guangzhou_GnGiEntities gz = new Guangzhou_GnGiEntities();
             var query = from p in gz.GnGiGw_Http_Any_Multi
                         select new { p.DumpFor, p.BeginFileNum };
@@ -38,11 +39,18 @@ namespace MutliInterfaceGnGi
             return ds;
         }
 
-        Guangzhou_GnGiEntities gz_gngi = new Guangzhou_GnGiEntities();
-        GuangZhou_GiEntities1 gz_gi = new GuangZhou_GiEntities1();
-        GuangZhou_GiwEntities gz_giw = new GuangZhou_GiwEntities();
-        GuangZhou_GnEntities gz_gn = new GuangZhou_GnEntities();
-        GuangZhou_GbEntities gz_gb = new GuangZhou_GbEntities();
+        GuangZhou_GnGiEntities gz_gngi = new GuangZhou_GnGiEntities();
+        GuangZhou_GiEntities gz_gi = new GuangZhou_GiEntities();
+        GuangZhou_GnGiEntities gz_giw = new GuangZhou_GnGiEntities();
+        GuangZhou_GnGiEntities gz_gn = new GuangZhou_GnGiEntities();
+        Guangzhou_GbEntities gz_gb = new Guangzhou_GbEntities();
+
+       
+        //Guangzhou_GnGiEntities gz_gngi = new Guangzhou_GnGiEntities();
+        //GuangZhou_GiEntities1 gz_gi = new GuangZhou_GiEntities1();
+        //GuangZhou_GiwEntities gz_giw = new GuangZhou_GiwEntities();
+        //GuangZhou_GnEntities gz_gn = new GuangZhou_GnEntities();
+        //GuangZhou_GbEntities gz_gb = new GuangZhou_GbEntities();
 
         string tcp = "TCP";
         string gre = "GRE";

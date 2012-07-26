@@ -1,6 +1,14 @@
 G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\GbPlatForm\bin\Debug\GbPlatForm.exe.config
 G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\GbPlatForm\bin\Debug\GbPlatForm.exe
 G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\GbPlatForm\bin\Debug\GbPlatForm.pdb
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\GbPlatForm\bin\Debug\EntityClass.dll
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\GbPlatForm\bin\Debug\EFTracingProvider.dll
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\GbPlatForm\bin\Debug\EFCachingProvider.dll
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\GbPlatForm\bin\Debug\EFProviderWrapperToolkit.dll
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\GbPlatForm\bin\Debug\EntityClass.pdb
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\GbPlatForm\bin\Debug\EFTracingProvider.pdb
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\GbPlatForm\bin\Debug\EFCachingProvider.pdb
+G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\GbPlatForm\bin\Debug\EFProviderWrapperToolkit.pdb
 G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\GbPlatForm\obj\x86\Debug\ResolveAssemblyReference.cache
 G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\GbPlatForm\obj\x86\Debug\GbPlatForm.Form1.resources
 G:\pcapsctpspliter\winpcapy\examples\pcap\sendpack\GnPlatForm\GbPlatForm\obj\x86\Debug\GbPlatForm.Properties.Resources.resources

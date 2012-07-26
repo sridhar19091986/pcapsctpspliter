@@ -1014,7 +1014,7 @@ SELECT  * into  [Gb_FlowControlx]
             string pr = this.gridView1.GetRowCellValue(a[0], "down_packet_rate").ToString();//获取选中行的内容
             string times = this.gridView1.GetRowCellValue(a[0], "fcb_time_aggre").ToString();//获取选中行的内容
             string callid = this.gridView1.GetRowCellValue(a[0], "lac_cell").ToString();//获取选中行的内容
-            string bvci = this.gridView1.GetRowCellValue(a[0], "bvci").ToString();//获取选中行的内容
+            string bvci = this.gridView1.GetRowCellValue(a[0], "bvci_aggre").ToString();//获取选中行的内容
 
             var arrfd = fd.Split(',');
             var arrlr = lr.Split(',');
@@ -1376,14 +1376,21 @@ SELECT  * into  [Gb_FlowControlx]
             string fc_msg = "BSSGP.FLOW-CONTROL-BVC";
             //分组
             FlowControlOneBvc fcob = new FlowControlOneBvc();
-            var fcobmongo = fcob.QueryMongo().Where(e => e.lac_cell != null).AsParallel().ToList();
+
+           var fcobmongo = fcob.QueryMongo().Where(e => e.lac_cell != null).AsParallel().ToList();
+
+
+            //var fcobmongo = fcob.QueryMongo().Where(e => e.lac_cell != null).AsParallel().AsEnumerable();
+
+
             var query = from p in fcobmongo
-                        group p by new { p.lac_cell, p.bvci } into ttt
+                        group p by p.lac_cell into ttt
                         select new FlowControlMapBvc
                         {
                             _id = GenerateId(),
-                            lac_cell = ttt.Key.lac_cell,
-                            bvci=ttt.Key.bvci,
+                            lac_cell = ttt.Key,
+                            //lac_cell = ttt.Key.lac_cell,
+                            //bvci=ttt.Key.bvci,
                             fcb_cnt = ttt.Where(e => e.Flow_Control_MsgType == fc_msg).Count(),
                             packet_cnt = ttt.Count(),
                             tlli_cnt = ttt.Select(e => e.tlli).Distinct().Count(),

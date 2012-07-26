@@ -93,14 +93,14 @@ m = function () {
         packet_cnt: 1,
         bvci: this.bvci,
         tlli: this.tlli,
-        Flow_Control_MsgType: this.Flow_Control_MsgType,
-        bssgp_R_default_ms: this.bssgp_R_default_ms,
+        Flow_Control_MsgType: this.Flow_Control_MsgType.toString(),
+        bssgp_R_default_ms: this.bssgp_R_default_ms.toString(),
         bssgp_ms_bucket_size: this.bssgp_ms_bucket_size,
         bssgp_bvc_bucket_size: this.bssgp_bvc_bucket_size,
         bssgp_bucket_leak_rate: this.bssgp_bucket_leak_rate,
         bssgp_bucket_full_ratio: this.bssgp_bucket_full_ratio,
         bssgp_bmax_default_ms: this.bssgp_bmax_default_ms,
-        Flow_Control_time: this.Flow_Control_time
+        Flow_Control_time: this.Flow_Control_time.toString()
       
 
     });
@@ -110,7 +110,7 @@ r = function (key, values) {
 
     var fc_msg = "BSSGP.FLOW-CONTROL-BVC";
 
-    var result = { fcb_cnt: 0, packet_cnt: 0, tlli: "", bvci: "", bssgp_R_default_ms: "" };
+    var result = { fcb_cnt: 0, packet_cnt: 0, tlli: "", bvci: "", bssgp_R_default_ms: "", Flow_Control_time: "" };
 
     values.forEach(function (doc) {
 
@@ -118,7 +118,9 @@ r = function (key, values) {
 
             result.fcb_cnt += doc.fcb_cnt;
 
-            result.bssgp_R_default_ms += doc.bssgp_R_default_ms.toString() + ",";
+            result.bssgp_R_default_ms += doc.bssgp_R_default_ms + ",";
+
+            result.Flow_Control_time += doc.Flow_Control_time + ",";
 
         }
 
@@ -133,16 +135,17 @@ r = function (key, values) {
     return result;
 }
 
-f = function finalizef(key, value) {
+f = function finalizef(key, values) {
 
-    value.average = 0;
-    return value;
+    values.average = 0;
+    return values;
 
 }
 
 
+res = t.mapReduce(m, r, { out: "FlowControlMapBvc" });
 
-res = t.mapReduce(m, r, { finalize: f, out: "FlowControlMapBvc" });
+//res = t.mapReduce(m, r, { finalize: f, out: "FlowControlMapBvc" });
 
 
 printjson(res)

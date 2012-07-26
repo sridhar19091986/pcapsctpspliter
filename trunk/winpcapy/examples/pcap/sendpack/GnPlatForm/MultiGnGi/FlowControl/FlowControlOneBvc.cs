@@ -240,6 +240,11 @@ namespace MultiGnGi
                 //}
             });
 
+            /*
+             * 
+             * tolist 修改成  asienumble,预计可以解决内存不足的问题
+             * */
+
             //BulkMongo(fcob_list);
             //fcob_list.Clear();
             //var fclook = fc.AsParallel().ToList();
