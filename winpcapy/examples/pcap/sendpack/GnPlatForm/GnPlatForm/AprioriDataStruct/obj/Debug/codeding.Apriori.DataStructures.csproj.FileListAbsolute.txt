@@ -1,5 +1,0 @@
-G:\datamining\AprioriDemo\codeding.Apriori.DataStructures\bin\Debug\codeding.Apriori.DataStructures.dll
-G:\datamining\AprioriDemo\codeding.Apriori.DataStructures\bin\Debug\codeding.Apriori.DataStructures.pdb
-G:\datamining\AprioriDemo\codeding.Apriori.DataStructures\obj\Debug\ResolveAssemblyReference.cache
-G:\datamining\AprioriDemo\codeding.Apriori.DataStructures\obj\Debug\codeding.Apriori.DataStructures.dll
-G:\datamining\AprioriDemo\codeding.Apriori.DataStructures\obj\Debug\codeding.Apriori.DataStructures.pdb
