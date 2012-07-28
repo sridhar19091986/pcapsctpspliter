@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Guangzhou_GbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="Guangzhou_GbModelStoreContainer">
+          <EntitySet Name="Gb_GMMSM_XID" EntityType="Guangzhou_GbModel.Store.Gb_GMMSM_XID" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Gb_XID" EntityType="Guangzhou_GbModel.Store.Gb_XID" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="Gb_GMMSM_XID">
+          <Key>
+            <PropertyRef Name="FileNum" />
+            <PropertyRef Name="PacketNum" />
+          </Key>
+          <Property Name="FileNum" Type="int" Nullable="false" />
+          <Property Name="PacketNum" Type="int" Nullable="false" />
+          <Property Name="BeginFileNum" Type="int" />
+          <Property Name="BeginFrameNum" Type="int" />
+          <Property Name="PacketTime" Type="datetime" />
+          <Property Name="PacketTime(ms)" Type="int" />
+          <Property Name="DumpFor" Type="nvarchar" MaxLength="30" />
+          <Property Name="mGMMSM" Type="int" />
+          <Property Name="mGMMSM_time" Type="nvarchar" MaxLength="200" />
+          <Property Name="mGMMSM_MsgType" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Gb_XID">
+          <Key>
+            <PropertyRef Name="FileNum" />
+            <PropertyRef Name="PacketNum" />
+          </Key>
+          <Property Name="FileNum" Type="int" Nullable="false" />
+          <Property Name="PacketNum" Type="int" Nullable="false" />
+          <Property Name="BeginFileNum" Type="int" />
+          <Property Name="BeginFrameNum" Type="int" />
+          <Property Name="PacketTime" Type="datetime" />
+          <Property Name="PacketTime(ms)" Type="int" />
+          <Property Name="DumpFor" Type="nvarchar" MaxLength="30" />
+          <Property Name="U_Exchange_identification" Type="int" />
+          <Property Name="bssgp_direction" Type="nvarchar" MaxLength="200" />
+          <Property Name="llcgprs_xid1type" Type="int" />
+          <Property Name="llcgprs_xid1byte1" Type="int" />
+          <Property Name="llcgprs_xid1byte2" Type="int" />
+          <Property Name="U_Exchange_identification1" Type="int" />
+          <Property Name="U_Exchange_identification1_delayFirst" Type="int" />
+          <Property Name="1bssgp_direction" Type="nvarchar" MaxLength="200" />
+          <Property Name="1llcgprs_xid1type" Type="int" />
+          <Property Name="1llcgprs_xid1byte1" Type="int" />
+          <Property Name="1llcgprs_xid1byte2" Type="int" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Guangzhou_GbModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="Guangzhou_GbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Gb_GMMSM_XID" EntityType="Guangzhou_GbModel.Gb_GMMSM_XID" />
+          <EntitySet Name="Gb_XID" EntityType="Guangzhou_GbModel.Gb_XID" />
+        </EntityContainer>
+        <EntityType Name="Gb_GMMSM_XID">
+          <Key>
+            <PropertyRef Name="FileNum" />
+            <PropertyRef Name="PacketNum" />
+          </Key>
+          <Property Name="FileNum" Type="Int32" Nullable="false" />
+          <Property Name="PacketNum" Type="Int32" Nullable="false" />
+          <Property Name="BeginFileNum" Type="Int32" />
+          <Property Name="BeginFrameNum" Type="Int32" />
+          <Property Name="PacketTime" Type="DateTime" />
+          <Property Name="PacketTime_ms_" Type="Int32" />
+          <Property Name="DumpFor" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="mGMMSM" Type="Int32" />
+          <Property Name="mGMMSM_time" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="mGMMSM_MsgType" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Gb_XID">
+          <Key>
+            <PropertyRef Name="FileNum" />
+            <PropertyRef Name="PacketNum" />
+          </Key>
+          <Property Name="FileNum" Type="Int32" Nullable="false" />
+          <Property Name="PacketNum" Type="Int32" Nullable="false" />
+          <Property Name="BeginFileNum" Type="Int32" />
+          <Property Name="BeginFrameNum" Type="Int32" />
+          <Property Name="PacketTime" Type="DateTime" />
+          <Property Name="PacketTime_ms_" Type="Int32" />
+          <Property Name="DumpFor" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="U_Exchange_identification" Type="Int32" />
+          <Property Name="bssgp_direction" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="llcgprs_xid1type" Type="Int32" />
+          <Property Name="llcgprs_xid1byte1" Type="Int32" />
+          <Property Name="llcgprs_xid1byte2" Type="Int32" />
+          <Property Name="U_Exchange_identification1" Type="Int32" />
+          <Property Name="U_Exchange_identification1_delayFirst" Type="Int32" />
+          <Property Name="C1bssgp_direction" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="C1llcgprs_xid1type" Type="Int32" />
+          <Property Name="C1llcgprs_xid1byte1" Type="Int32" />
+          <Property Name="C1llcgprs_xid1byte2" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Guangzhou_GbModelStoreContainer" CdmEntityContainer="Guangzhou_GbEntities">
+          <EntitySetMapping Name="Gb_GMMSM_XID"><EntityTypeMapping TypeName="Guangzhou_GbModel.Gb_GMMSM_XID"><MappingFragment StoreEntitySet="Gb_GMMSM_XID">
+            <ScalarProperty Name="FileNum" ColumnName="FileNum" />
+            <ScalarProperty Name="PacketNum" ColumnName="PacketNum" />
+            <ScalarProperty Name="BeginFileNum" ColumnName="BeginFileNum" />
+            <ScalarProperty Name="BeginFrameNum" ColumnName="BeginFrameNum" />
+            <ScalarProperty Name="PacketTime" ColumnName="PacketTime" />
+            <ScalarProperty Name="PacketTime_ms_" ColumnName="PacketTime(ms)" />
+            <ScalarProperty Name="DumpFor" ColumnName="DumpFor" />
+            <ScalarProperty Name="mGMMSM" ColumnName="mGMMSM" />
+            <ScalarProperty Name="mGMMSM_time" ColumnName="mGMMSM_time" />
+            <ScalarProperty Name="mGMMSM_MsgType" ColumnName="mGMMSM_MsgType" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Gb_XID"><EntityTypeMapping TypeName="Guangzhou_GbModel.Gb_XID"><MappingFragment StoreEntitySet="Gb_XID">
+            <ScalarProperty Name="FileNum" ColumnName="FileNum" />
+            <ScalarProperty Name="PacketNum" ColumnName="PacketNum" />
+            <ScalarProperty Name="BeginFileNum" ColumnName="BeginFileNum" />
+            <ScalarProperty Name="BeginFrameNum" ColumnName="BeginFrameNum" />
+            <ScalarProperty Name="PacketTime" ColumnName="PacketTime" />
+            <ScalarProperty Name="PacketTime_ms_" ColumnName="PacketTime(ms)" />
+            <ScalarProperty Name="DumpFor" ColumnName="DumpFor" />
+            <ScalarProperty Name="U_Exchange_identification" ColumnName="U_Exchange_identification" />
+            <ScalarProperty Name="bssgp_direction" ColumnName="bssgp_direction" />
+            <ScalarProperty Name="llcgprs_xid1type" ColumnName="llcgprs_xid1type" />
+            <ScalarProperty Name="llcgprs_xid1byte1" ColumnName="llcgprs_xid1byte1" />
+            <ScalarProperty Name="llcgprs_xid1byte2" ColumnName="llcgprs_xid1byte2" />
+            <ScalarProperty Name="U_Exchange_identification1" ColumnName="U_Exchange_identification1" />
+            <ScalarProperty Name="U_Exchange_identification1_delayFirst" ColumnName="U_Exchange_identification1_delayFirst" />
+            <ScalarProperty Name="C1bssgp_direction" ColumnName="1bssgp_direction" />
+            <ScalarProperty Name="C1llcgprs_xid1type" ColumnName="1llcgprs_xid1type" />
+            <ScalarProperty Name="C1llcgprs_xid1byte1" ColumnName="1llcgprs_xid1byte1" />
+            <ScalarProperty Name="C1llcgprs_xid1byte2" ColumnName="1llcgprs_xid1byte2" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="GMM_XID">
+        <EntityTypeShape EntityType="Guangzhou_GbModel.Gb_GMMSM_XID" Width="1.5" PointX="0.75" PointY="0.75" Height="2.6339322916666665" IsExpanded="true" />
+        <EntityTypeShape EntityType="Guangzhou_GbModel.Gb_XID" Width="3.625" PointX="2.75" PointY="0.75" Height="3.9828906249999996" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
