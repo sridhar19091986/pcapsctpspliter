@@ -17,6 +17,7 @@ namespace OfflineInspect.FollowControl
         public string dst;
         public string bvci;
         public string lac_cell;
+        public int cnt;
 
 
         private string mongo_db = "Guangzhou_FlowControl";
@@ -75,7 +76,7 @@ namespace OfflineInspect.FollowControl
                          ttt.Key.nsip_bvci,
                          ttt.Key.ip_src_host,
                          ttt.Key.ip_dst_host,
-                         cnt = ttt.Count()
+                         cnt = ttt.Count(),
                      };
 
             var bv = from p in fc.ToList()
@@ -91,6 +92,7 @@ namespace OfflineInspect.FollowControl
                          src = p.ip_src_host,
                          dst = p.ip_dst_host,
                          bvci = p.nsip_bvci.ToString(),
+                         cnt = p.cnt,
                      };
 
             BulkMongo(bv.ToList());
@@ -126,7 +128,8 @@ namespace OfflineInspect.FollowControl
         public string GetLacCell(string src, string dst, string bvci)
         {
             var query = from p in ListLacCellBvci
-                        where (p.src == src && p.dst == dst && p.bvci == bvci) || (p.dst == src && p.src == dst && p.bvci == bvci)
+                        where (p.src == src && p.dst == dst && p.bvci == bvci)
+                        || (p.dst == src && p.src == dst && p.bvci == bvci)
                         select p;
             return query.Select(e => e.lac_cell).FirstOrDefault();
         }

@@ -1,4 +1,6 @@
-﻿/*
+﻿//#define abc
+
+/*
  * 
  * 重传率和丢包率同时进行统计
  * 
@@ -13,6 +15,10 @@ using System.Text;
 
 namespace OfflineInspect.ReTransmission
 {
+
+#if abc
+    
+
     class RetransStatics
     {
 
@@ -53,4 +59,6 @@ namespace OfflineInspect.ReTransmission
 
         }
     }
+
+#endif
 }
