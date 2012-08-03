@@ -1,10 +1,17 @@
-﻿using System;
+﻿//#define abc
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace OfflineInspect.ReTransmission
 {
+
+#if abc
+    
+
     public class myTcpSession11
     {
         public int? session_id;
@@ -200,4 +207,5 @@ namespace OfflineInspect.ReTransmission
     class TcpSession
     {
     }
+    #endif
 }

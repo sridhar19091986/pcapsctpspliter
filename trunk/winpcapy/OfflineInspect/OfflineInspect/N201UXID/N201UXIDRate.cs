@@ -1,4 +1,7 @@
-﻿using System;
+﻿
+//#define abc
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +13,9 @@ using System.Data.Objects;
 
 namespace OfflineInspect.N201UXID
 {
+#if abc
+		  
+	
     public class N201UXIDRate : CommonToolx, IDisposable
     {
         public object _id;
@@ -135,4 +141,6 @@ namespace OfflineInspect.N201UXID
 
         }
     }
+
+#endif
 }

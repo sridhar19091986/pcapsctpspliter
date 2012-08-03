@@ -1,10 +1,16 @@
-﻿using System;
+﻿//#define abc
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace OfflineInspect.ComplainsTopic
 {
+#if abc
+    
+
+
     class DnsSynKpi
     {
         private void navBarItem4_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
@@ -98,4 +104,6 @@ namespace OfflineInspect.ComplainsTopic
 
         }
     }
+
+#endif
 }
