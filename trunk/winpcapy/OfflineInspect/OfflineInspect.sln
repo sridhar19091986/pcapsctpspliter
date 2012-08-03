@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewInspect", "ViewInspect\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataProcessExtension", "DataProcessExtension\DataProcessExtension.csproj", "{36AF46B0-B23D-4552-A885-B3E4C494F290}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoSql_Ts", "AutoSql_Ts\AutoSql_Ts\AutoSql_Ts.csproj", "{545C5A79-91CD-439C-AE0E-5C1EBEEFA051}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,16 @@ Global
 		{36AF46B0-B23D-4552-A885-B3E4C494F290}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{36AF46B0-B23D-4552-A885-B3E4C494F290}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{36AF46B0-B23D-4552-A885-B3E4C494F290}.Release|x86.ActiveCfg = Release|Any CPU
+		{545C5A79-91CD-439C-AE0E-5C1EBEEFA051}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{545C5A79-91CD-439C-AE0E-5C1EBEEFA051}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{545C5A79-91CD-439C-AE0E-5C1EBEEFA051}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{545C5A79-91CD-439C-AE0E-5C1EBEEFA051}.Debug|x86.ActiveCfg = Debug|x86
+		{545C5A79-91CD-439C-AE0E-5C1EBEEFA051}.Debug|x86.Build.0 = Debug|x86
+		{545C5A79-91CD-439C-AE0E-5C1EBEEFA051}.Release|Any CPU.ActiveCfg = Release|x86
+		{545C5A79-91CD-439C-AE0E-5C1EBEEFA051}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{545C5A79-91CD-439C-AE0E-5C1EBEEFA051}.Release|Mixed Platforms.Build.0 = Release|x86
+		{545C5A79-91CD-439C-AE0E-5C1EBEEFA051}.Release|x86.ActiveCfg = Release|x86
+		{545C5A79-91CD-439C-AE0E-5C1EBEEFA051}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -27,11 +27,11 @@ namespace OfflineInspect.N201UXID
         private string mongo_db = "Guangzhou_FlowControl";
         private string mongo_collection = "FlowControlBeforeMessage";
         private string mongo_conn = "mongodb://192.168.4.209/?safe=true";
-        private MongoCrud<FlowControlBeforeMessage> mongo_fcbm;
+        private MongoCrud<N201UXIDBeforeMessage> mongo_fcbm;
 
-        public FlowControlBeforeMessage()
+        public N201UXIDBeforeMessage()
         {
-            mongo_fcbm = new MongoCrud<FlowControlBeforeMessage>(mongo_conn, mongo_db, mongo_collection);
+            mongo_fcbm = new MongoCrud<N201UXIDBeforeMessage>(mongo_conn, mongo_db, mongo_collection);
         }
         #region Implementing IDisposable and the Dispose Pattern Properly
         private bool disposed = false; // to detect redundant calls
@@ -40,7 +40,7 @@ namespace OfflineInspect.N201UXID
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-        ~FlowControlBeforeMessage()
+        ~N201UXIDBeforeMessage()
         {
             Dispose(false);
         }
@@ -75,7 +75,7 @@ namespace OfflineInspect.N201UXID
                 value = fcbm_col;
             }
         }
-        public IQueryable<FlowControlBeforeMessage> QueryMongo()
+        public IQueryable<N201UXIDBeforeMessage> QueryMongo()
         {
             return mongo_fcbm.QueryMongo();
         }
@@ -98,7 +98,7 @@ namespace OfflineInspect.N201UXID
                         .OrderByDescending(e => e.PacketNum).FirstOrDefault();
                     if (fcb != null)
                     {
-                        FlowControlBeforeMessage fcbm = new FlowControlBeforeMessage();
+                        N201UXIDBeforeMessage fcbm = new N201UXIDBeforeMessage();
 
                         fcbm._id = m.Key;
 
@@ -122,5 +122,62 @@ namespace OfflineInspect.N201UXID
                 }
             }
         }
+
+
+        private void navBarItem1_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
+        {
+            gridControl1.DataSource = null;
+            gridView1.PopulateColumns();
+
+            var gmm = gb_gmm_xid.ToLookup(a => a.BeginFrameNum);
+            //var xid = gb_xid.ToLookup(a => a.BeginFrameNum);
+            var xid2 = gb_xid.Where(e => e.llcgprs_xid1type == 5).ToList();
+
+            var xid1 = from p in xid2
+                       let packetnum = gmm[p.BeginFrameNum]
+                                .Where(e => e.mGMMSM_MsgType != "GMMSM.GMM Information")
+                       .Where(e => e.mGMMSM_MsgType != "GMMSM.SM Status")
+                       .Where(e => e.PacketNum < p.PacketNum)  //gmm的帧号要小于xid的帧号
+                       .OrderByDescending(e => e.PacketNum)
+                       .Select(e => e.PacketNum).FirstOrDefault()
+                       let tpacketnum = gmm[p.BeginFrameNum].Where(e => e.PacketNum == packetnum)
+                       select new
+                       {
+                           p.BeginFrameNum,
+                           gmmPacketNum = packetnum,
+                           p.PacketNum,
+                           gmmPacketTime = tpacketnum.Count() == 0 ? p.PacketTime : tpacketnum.Select(e => e.PacketTime).FirstOrDefault().Value.AddMilliseconds((int)tpacketnum.Select(e => e.PacketTime_ms_).FirstOrDefault().Value),
+                           PacketTime = p.PacketTime.Value.AddMilliseconds((int)p.PacketTime_ms_),
+                           gmmMsgType = tpacketnum.Select(e => e.mGMMSM_MsgType).FirstOrDefault(),
+                           p.bssgp_direction,
+                           p.llcgprs_xid1type,
+                       };
+
+            var xid3 = from p in xid1
+                       let dt = p.PacketTime - p.gmmPacketTime
+                       select new
+                       {
+                           p.BeginFrameNum,
+                           p.gmmPacketNum,
+                           p.PacketNum,
+                           p.gmmPacketTime,
+                           p.PacketTime,
+                           p.gmmMsgType,
+                           duration = dt.Value.TotalMilliseconds,
+                           p.bssgp_direction,
+                           p.llcgprs_xid1type
+                       };
+
+            var dborder = xid3.OrderBy(e => e.BeginFrameNum);
+            gridControl1.DataSource = dborder.ToList();
+
+            gridView1.Columns[3].DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss.fff";
+            gridView1.Columns[3].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+
+            gridView1.Columns[4].DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss.fff";
+            gridView1.Columns[4].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+
+        }
+
     }
 }
