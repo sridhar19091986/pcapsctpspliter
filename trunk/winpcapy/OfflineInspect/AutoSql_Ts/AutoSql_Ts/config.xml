@@ -1,0 +1,14 @@
+<configuration>
+  <!--投诉时间的匹配-->
+  <gb_pre_time>24</gb_pre_time>
+  <!--投诉文件，注意格式-->
+	<gb_ts_in>ts.csv</gb_ts_in>
+  <!--生成数据库中的目标表格-->
+	<gb_ts_table>gb_2012_05_15_tousu</gb_ts_table>
+  <!--生成目标表格的脚本文件-->
+	<gb_ts_xcd_script>gb_ts_xcd_script.txt</gb_ts_xcd_script>
+
+
+  <mysqlconn>gb_ts_xcd_script.txt</mysqlconn>
+
+</configuration>
