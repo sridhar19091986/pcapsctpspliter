@@ -62,6 +62,8 @@
   <ItemGroup>
     <Compile Include="CommonTools\CommonToolx.cs" />
     <Compile Include="CommonTools\IEnumerableExtensions.cs" />
+    <Compile Include="ComplainsTopic\DnsSynKpi.cs" />
+    <Compile Include="ComplainsTopic\KeyPerformance.cs" />
     <Compile Include="FollowControl\FlowControlBeforeMessageMap.cs" />
     <Compile Include="N201UXID\N201UXIDBeforeMessage.cs" />
     <Compile Include="FollowControl\FlowControlMessageRate.cs" />
@@ -71,6 +73,8 @@
     <Compile Include="FollowControl\FlowControlOneMs.cs" />
     <Compile Include="FollowControl\LacCellBvci.cs" />
     <Compile Include="Mongo\MongoCrud.cs" />
+    <Compile Include="ReTransmission\RetransStatics.cs" />
+    <Compile Include="ReTransmission\TcpSession.cs" />
     <Content Include="Mongo\Template.txt" />
     <Compile Include="MultiInterface\GiGETRateMap.cs" />
     <Compile Include="MultiInterface\GnGETRateMap.cs" />

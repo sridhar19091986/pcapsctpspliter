@@ -47,6 +47,7 @@
     <Folder Include="Aforge\" />
     <Folder Include="Apriori\" />
     <Folder Include="Kmeans\" />
+    <Folder Include="Mapreduce\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

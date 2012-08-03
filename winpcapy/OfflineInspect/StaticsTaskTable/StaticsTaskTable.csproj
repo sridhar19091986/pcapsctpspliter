@@ -41,6 +41,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="KeyPerformance\ComputeKeyPerformance0.cs" />
+    <Compile Include="KeyPerformance\ComputeKeyPerformance1.cs" />
+    <Compile Include="KeyPerformance\ComputeKeyPerformance2.cs" />
+    <Compile Include="KeyPerformance\ComputeKeyPerformance3.cs" />
+    <Compile Include="KeyPerformance\ElementDumper.cs" />
+    <Compile Include="MySqlToSqlServer\MySqlConvert0.cs" />
+    <Compile Include="MySqlToSqlServer\MySqlConvert1.cs" />
+    <Compile Include="MySqlToSqlServer\MySqlConvert2.cs" />
+    <Compile Include="MySqlToSqlServer\MySqlConvert3.cs" />
+    <Compile Include="MySqlToSqlServer\MySqlConvert4.cs" />
+    <Compile Include="MySqlToSqlServer\MySqlConvert5.cs" />
+    <Compile Include="MySqlToSqlServer\MySqlToSqlServer2.cs" />
+    <Compile Include="MySqlToSqlServer\SqlBulkOfClass.cs" />
+    <Compile Include="MySqlToSqlServer\SychronizeCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
