@@ -27,7 +27,7 @@ using System.Threading.Tasks;
 
 namespace OfflineInspect.FollowControl
 {
-    public class FlowControlMapMs
+    public class FlowControlMapMs : IDisposable
     {
         public object _id;
         public int? BeginFrameNum;
@@ -55,6 +55,31 @@ namespace OfflineInspect.FollowControl
         {
             mongo_fcmm = new MongoCrud<FlowControlMapMs>(mongo_conn, mongo_db, mongo_collection);
         }
+        #region Implementing IDisposable and the Dispose Pattern Properly
+        private bool disposed = false; // to detect redundant calls
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        ~FlowControlMapMs()
+        {
+            Dispose(false);
+        }
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                if (disposing)
+                {
+                    // Free other state (managed objects).
+                }
+                // Free your own state (unmanaged objects).
+                // Set large fields to null.
+                disposed = true;
+            }
+        }
+        #endregion
         private MongoCollection fcmm_col = null;
         private MongoCollection FCMM_col
         {

@@ -7,7 +7,7 @@ using OfflineInspect.CommonTools;
 
 namespace OfflineInspect.FollowControl
 {
-    public class FlowControlBeforeMessageMap : CommonToolx
+    public class FlowControlBeforeMessageMap : CommonToolx, IDisposable
     {
         public object _id;
         public string fcBeforMsgs;
@@ -27,7 +27,31 @@ namespace OfflineInspect.FollowControl
         {
             mongo_fcbmm = new MongoCrud<FlowControlBeforeMessageMap>(mongo_conn, mongo_db, mongo_collection);
         }
-
+        #region Implementing IDisposable and the Dispose Pattern Properly
+        private bool disposed = false; // to detect redundant calls
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        ~FlowControlBeforeMessageMap()
+        {
+            Dispose(false);
+        }
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                if (disposing)
+                {
+                    // Free other state (managed objects).
+                }
+                // Free your own state (unmanaged objects).
+                // Set large fields to null.
+                disposed = true;
+            }
+        }
+        #endregion
         public void BulkMongo(List<FlowControlBeforeMessageMap> fcbmm)
         {
             mongo_fcbmm.BulkMongo(fcbmm, true);

@@ -7,7 +7,7 @@ using OfflineInspect.CommonTools;
 
 namespace OfflineInspect.FollowControl
 {
-    public class FlowControlMapBvc : CommonToolx
+    public class FlowControlMapBvc : CommonToolx, IDisposable
     {
         public object _id;
         public string lac_cell;
@@ -39,7 +39,31 @@ namespace OfflineInspect.FollowControl
         {
             mongo_fcmb = new MongoCrud<FlowControlMapBvc>(mongo_conn, mongo_db, mongo_collection);
         }
-
+        #region Implementing IDisposable and the Dispose Pattern Properly
+        private bool disposed = false; // to detect redundant calls
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        ~FlowControlMapBvc()
+        {
+            Dispose(false);
+        }
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                if (disposing)
+                {
+                    // Free other state (managed objects).
+                }
+                // Free your own state (unmanaged objects).
+                // Set large fields to null.
+                disposed = true;
+            }
+        }
+        #endregion
         public void BulkMongo(List<FlowControlMapBvc> fcmb)
         {
             mongo_fcmb.BulkMongo(fcmb, true);
