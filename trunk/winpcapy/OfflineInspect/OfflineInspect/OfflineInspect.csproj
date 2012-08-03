@@ -63,7 +63,7 @@
     <Compile Include="CommonTools\CommonToolx.cs" />
     <Compile Include="CommonTools\IEnumerableExtensions.cs" />
     <Compile Include="FollowControl\FlowControlBeforeMessageMap.cs" />
-    <Compile Include="FollowControl\FlowControlBeforeMessage.cs" />
+    <Compile Include="N201UXID\N201UXIDBeforeMessage.cs" />
     <Compile Include="FollowControl\FlowControlMessageRate.cs" />
     <Compile Include="FollowControl\FlowControlMapMs.cs" />
     <Compile Include="FollowControl\FlowControlMapBvc.cs" />
@@ -76,6 +76,7 @@
     <Compile Include="MultiInterface\GnGETRateMap.cs" />
     <Compile Include="MultiInterface\GwGETRateMap.cs" />
     <Compile Include="MultiInterface\RelationKeyWords.cs" />
+    <Compile Include="N201UXID\N201UXIDRate.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
