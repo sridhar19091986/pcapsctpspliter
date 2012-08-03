@@ -10,7 +10,7 @@ using System.Data.Objects;
 
 namespace OfflineInspect.FollowControl
 {
-    public class FlowControlMessageRate : CommonToolx
+    public class FlowControlMessageRate : CommonToolx, IDisposable
     {
         public object _id;
         public string message_type;
@@ -30,7 +30,31 @@ namespace OfflineInspect.FollowControl
         {
             mongo_fcmr = new MongoCrud<FlowControlMessageRate>(mongo_conn, mongo_db, mongo_collection);
         }
-
+        #region Implementing IDisposable and the Dispose Pattern Properly
+        private bool disposed = false; // to detect redundant calls
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        ~FlowControlMessageRate()
+        {
+            Dispose(false);
+        }
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                if (disposing)
+                {
+                    // Free other state (managed objects).
+                }
+                // Free your own state (unmanaged objects).
+                // Set large fields to null.
+                disposed = true;
+            }
+        }
+        #endregion
         public void BulkMongo(List<FlowControlMessageRate> fcmr)
         {
             mongo_fcmr.BulkMongo(fcmr, true);

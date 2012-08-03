@@ -10,7 +10,7 @@ using OfflineInspect.CommonTools;
 
 namespace OfflineInspect.FollowControl
 {
-    public class LacCellBvci : CommonToolx
+    public class LacCellBvci : CommonToolx, IDisposable
     {
         public object _id;
         public string src;
@@ -28,11 +28,35 @@ namespace OfflineInspect.FollowControl
         {
             mongo_lac_cell_bvci = new MongoCrud<LacCellBvci>(mongo_conn, mongo_db, mongo_collection);
         }
-
+        #region Implementing IDisposable and the Dispose Pattern Properly
+        private bool disposed = false; // to detect redundant calls
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        ~LacCellBvci()
+        {
+            Dispose(false);
+        }
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                if (disposing)
+                {
+                    // Free other state (managed objects).
+                }
+                // Free your own state (unmanaged objects).
+                // Set large fields to null.
+                disposed = true;
+            }
+        }
+        #endregion
         public void CreatCollection()
         {
             GuangZhou_GbEntities_fc gb = new GuangZhou_GbEntities_fc();
-            gb.CommandTimeout =0;
+            gb.CommandTimeout = 0;
             gb.ContextOptions.LazyLoadingEnabled = true;
             gb.Gb_FlowControly.MergeOption = MergeOption.NoTracking;
             var fc = from p in gb.Gb_FlowControly
@@ -62,7 +86,7 @@ namespace OfflineInspect.FollowControl
                      where p.ip_dst_host != null
                      select new LacCellBvci
                      {
-                         _id=GenerateId(),
+                         _id = GenerateId(),
                          lac_cell = p.bssgp_lac.ToString() + "-" + p.bssgp_ci.ToString(),
                          src = p.ip_src_host,
                          dst = p.ip_dst_host,

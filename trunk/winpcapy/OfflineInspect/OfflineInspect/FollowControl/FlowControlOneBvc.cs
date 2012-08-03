@@ -10,7 +10,7 @@ using MongoDB.Driver;
 
 namespace OfflineInspect.FollowControl
 {
-    public class FlowControlOneBvc
+    public class FlowControlOneBvc : IDisposable
     {
         public object _id;
         public DateTime Flow_Control_time;
@@ -37,7 +37,31 @@ namespace OfflineInspect.FollowControl
         {
             mongo_fcob = new MongoCrud<FlowControlOneBvc>(mongo_conn, mongo_db, mongo_collection);
         }
-
+        #region Implementing IDisposable and the Dispose Pattern Properly
+        private bool disposed = false; // to detect redundant calls
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        ~FlowControlOneBvc()
+        {
+            Dispose(false);
+        }
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                if (disposing)
+                {
+                    // Free other state (managed objects).
+                }
+                // Free your own state (unmanaged objects).
+                // Set large fields to null.
+                disposed = true;
+            }
+        }
+        #endregion
         public void CreateCollection()
         {
             for (int j = 0; j < maxfilenum; j++)
