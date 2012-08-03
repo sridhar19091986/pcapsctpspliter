@@ -71,7 +71,9 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="MySql\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
     <EntityDeploy Include="SqlServer\ip209\GuangZhou\GbFlowControl\Model1.edmx">
