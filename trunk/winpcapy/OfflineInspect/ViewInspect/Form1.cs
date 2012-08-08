@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using OfflineInspect.FollowControl;
 using OfflineInspect.MultiInterface;
+using OfflineInspect.ReTransmission;
 
 namespace ViewInspect
 {
@@ -18,40 +19,6 @@ namespace ViewInspect
             InitializeComponent();
         }
 
-        #region CommonFunction
-
-        private void chartControl1_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-        }
-
-        private void dockPanel1_Click(object sender, EventArgs e)
-        {
-        }
-        private void splitContainerControl1_SizeChanged(object sender, EventArgs e)
-        {
-            splitContainerControl1.SplitterPosition = 7 * splitContainerControl1.Width / 10;
-        }
-        private void clearColumns()
-        {
-            gridControl1.DataSource = null;
-            gridView1.PopulateColumns();
-        }
-        private void clearColumns2()
-        {
-            gridControl2.DataSource = null;
-            gridView2.PopulateColumns();
-        }
-
-        private void formatColumns(int i)
-        {
-            gridView1.Columns[i].DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss.fff";
-            gridView1.Columns[i].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-        }
-        #endregion
 
         #region FlowControlView
         //FlowControlOneBvc
@@ -339,6 +306,61 @@ namespace ViewInspect
             var dborder = query.OrderByDescending(e => e.get_cnt).Take(1000);
             gridControl2.DataSource = dborder.AsParallel().ToList();
             gridView2.OptionsView.ColumnAutoWidth = true;
+        }
+
+        private void navBarItem14_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
+        {
+            TlliTcpSession tts = new TlliTcpSession();
+            var query = from p in tts.mongo_tts.QueryMongo()
+                        select new
+                        {
+                            p._id,
+                            p.bsc_bvci,
+                            p.bsc_ip,
+                            p.ci,
+                            p.direction,
+                            p.ip_aggre,
+                            p.ip2_aggre,
+                            p.llc_aggre,
+                            p.msg_aggre,
+                            p.tcp_aggre,
+                            p.seq_total_aggre,
+                            p.seq_total_reduce,
+                            p.down_rate,
+                            p.duration,
+                            p.headersize,
+                            p.imsi,
+                            p.ip_rate,
+                            p.ip_total,
+                            p.ip2_min_len,
+                            p.ip2_rate,
+                            p.ip2_total,
+                            p.lac,
+                            p.llc_cnt,
+                            p.llc_max,
+                            p.llc_min,
+                            p.packet_count,
+                            p.packet_count_repeat,
+                            p.packet_discard_total,
+                            p.packet_sack_total,
+                            p.seq_ip2,
+                            p.seq_max,
+                            p.seq_min,
+                            //p.seq_nxt,
+                            p.seq_rate,
+                            //p.seq_total,
+                            p.seq_totals,
+                            p.session_id
+                        };
+            clearColumns3();
+            var dborder = query.OrderByDescending(e => e._id).Take(100);
+            gridControl3.DataSource = dborder.AsParallel().ToList();
+            //gridView3.OptionsView.ColumnAutoWidth = false;
+            //gridView3.OptionsView.ShowViewCaption= true;
+            gridView3.OptionsView.ColumnAutoWidth = false;
+            gridView3.BestFitColumns();
+
+
         }
     }
 }

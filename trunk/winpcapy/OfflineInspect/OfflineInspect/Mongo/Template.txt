@@ -1,89 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace OfflineInspect.Mongo
-{
-    public class  Template
+﻿ 
+ 
+ 
+ public class LacCellBvci : CommonToolx, IDisposable
     {
         public object _id;
 
+        private string mongo_collection = CommonAttribute.LacCellBvci[0];
+        private string mongo_db = CommonAttribute.LacCellBvci[1];
+        private string mongo_conn = CommonAttribute.LacCellBvci[2];
 
-        private string mongo_db = "Guangzhou_FlowControl";
-        private string mongo_collection = "FlowControlOneMs";
-        private string mongo_conn = "mongodb://192.168.4.209/?safe=true";
-        private MongoCrud<FlowControlOneMs> mongo_fcom;
-        private int maxfilenum = 1;
+        public  MongoCrud<LacCellBvci> mongo_lac_cell_bvci;
 
-        public FlowControlOneMs()
+        public LacCellBvci()
         {
-            mongo_fcom = new MongoCrud<FlowControlOneMs>(mongo_conn, mongo_db, mongo_collection);
+            mongo_lac_cell_bvci = new MongoCrud<LacCellBvci>(mongo_conn, mongo_db, mongo_collection);
         }
-
-        public IQueryable<FlowControlOneMs> QueryMongo()
+        #region Implementing IDisposable and the Dispose Pattern Properly
+        private bool disposed = false; // to detect redundant calls
+        public void Dispose()
         {
-            return mongo_fcom.QueryMongo();
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
-
-        private MongoCollection fcom_col = null;
-        private MongoCollection FCOM_col
+        ~LacCellBvci()
         {
-            get
+            Dispose(false);
+        }
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposed)
             {
-                if (fcom_col == null)
-                {
-                    fcom_col = mongo_fcom.GetMongoCollection(true);
-                }
-                return fcom_col;
-            }
-            set
-            {
-                value = fcom_col;
+                if (disposing){}
+                disposed = true;
             }
         }
-
-        public void CreateCollection()
+        #endregion
+        public void CreatCollection()
         {
-            for (int j = 0; j < maxfilenum; j++)
-                CreateCollection(j);
-        }
 
-        private void CreateCollection(int filenum)
-        {
-            GuangZhou_GbEntities_fc_ms gb = new GuangZhou_GbEntities_fc_ms();
-            gb.ContextOptions.LazyLoadingEnabled = true;
-            gb.Gb_FlowControlx.MergeOption = MergeOption.NoTracking;
-            //查询
-            var fcms = from e in gb.Gb_FlowControlx.Where(p => p.FileNum == filenum)
-                       select new
-                       {
-                           e.BeginFrameNum,
-                           e.PacketNum,
-                           //e.PacketTime,
-                           e.Flow_Control_time,
-                           e.Flow_Control_MsgType,
-                           e.bssgp_direction,
-                           //e.bssgp_tlli,
-                           e.bssgp_ms_bucket_size,
-                           e.bssgp_bucket_leak_rate,
-                           e.ip_len
-                       };
-
-            Parallel.ForEach(fcms, p =>
-            {
-                FlowControlOneMs fcom = new FlowControlOneMs();
-                fcom._id = (int)p.PacketNum;
-                fcom.BeginFrameNum = p.BeginFrameNum;
-                fcom.Flow_Control_time = DateTime.Parse(p.Flow_Control_time);
-                fcom.PacketNum = p.PacketNum;
-                fcom.ip_len = p.ip_len;
-                fcom.Flow_Control_MsgType = p.Flow_Control_MsgType;
-                fcom.bssgp_direction = p.bssgp_direction;
-                fcom.bucket_size = Convert.ToDouble(p.bssgp_ms_bucket_size) / 1000.0;   //转换成KByte
-                fcom.leak_rate = Convert.ToDouble(p.bssgp_bucket_leak_rate) / 1000.0; //转化成kbps
-                FCOM_col.Insert(fcom);
-            });
         }
     }
-}
