@@ -65,11 +65,14 @@ namespace OfflineInspect.MultiInterface
         public int get_len;
         public int respone_len;
 
-        private string mongo_db = "MultiInterface";
-        private string mongo_collection = "GiGETRateMap";
-        private string mongo_conn = "mongodb://192.168.4.209/?safe=true";
+        private string mongo_collection = CommonAttribute.GiGETRateMap[0];
+        private string mongo_db = CommonAttribute.GiGETRateMap[1];
+        private string mongo_conn = CommonAttribute.GiGETRateMap[2];
+        private string ip_itface = CommonAttribute.GiGETRateMap[3];
+        private string ip_proto_tcp = CommonAttribute.GiGETRateMap[4];
+        private string ip_proto_gre = CommonAttribute.GiGETRateMap[5];
 
-        private MongoCrud<GiGETRateMap> mongo_get;
+        public MongoCrud<GiGETRateMap> mongo_get;
 
         public GiGETRateMap()
         {
@@ -102,6 +105,7 @@ namespace OfflineInspect.MultiInterface
         }
         #endregion
 
+        /*
         private MongoCollection get_col = null;
         private MongoCollection GET_col
         {
@@ -123,16 +127,14 @@ namespace OfflineInspect.MultiInterface
         {
             return mongo_get.QueryMongo();
         }
-
+        **/
         public void CreateCollection()
         {
             CreateCollectionTCP();
             CreateCollectionGRE();
         }
 
-        private string ip_itface = "Gi";
-        private string ip_proto_tcp = "TCP";
-        private string ip_proto_gre = "GRE";
+
 
         /*
          * 
@@ -207,7 +209,9 @@ namespace OfflineInspect.MultiInterface
                 //信令回放
                 get.packetnum_aggre = q.packetnum_arr
                     .Select(e => e.FileNum.ToString() + "-" + e.PacketNum.ToString()).Aggregate((a, b) => a + "," + b);//这里进行集合aggre
-                GET_col.Insert(get);
+
+                mongo_get.MongoCol.Insert(get);
+                //GET_col.Insert(get);
             });
         }
 
@@ -278,7 +282,8 @@ namespace OfflineInspect.MultiInterface
                 //信令回放
                 get.packetnum_aggre = q.packetnum_arr
                     .Select(e => e.FileNum.ToString() + "-" + e.PacketNum.ToString()).Aggregate((a, b) => a + "," + b);//这里进行集合aggre
-                GET_col.Insert(get);
+                //GET_col.Insert(get);
+                mongo_get.MongoCol.Insert(get);
 
             });
         }

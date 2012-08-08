@@ -40,11 +40,13 @@ namespace OfflineInspect.FollowControl
         public double leak_rate;
         public double bucket_ratio;//???
 
-        private string mongo_db = "Guangzhou_FlowControl";
-        private string mongo_collection = "FlowControlOneMs";
-        private string mongo_conn = "mongodb://192.168.4.209/?safe=true";
-        private MongoCrud<FlowControlOneMs> mongo_fcom;
-        private int maxfilenum = 1;
+        private string mongo_collection = CommonAttribute.FlowControlOneMs[0];
+        private string mongo_db = CommonAttribute.FlowControlOneMs[1];
+        private string mongo_conn = CommonAttribute.FlowControlOneMs[2];
+        private int maxfilenum = Int32.Parse(CommonAttribute.FlowControlOneMs[3]);
+
+        public MongoCrud<FlowControlOneMs> mongo_fcom;
+
 
         public FlowControlOneMs()
         {
@@ -75,6 +77,7 @@ namespace OfflineInspect.FollowControl
             }
         }
         #endregion
+        /*
         public IQueryable<FlowControlOneMs> QueryMongo()
         {
             return mongo_fcom.QueryMongo();
@@ -96,7 +99,7 @@ namespace OfflineInspect.FollowControl
                 value = fcom_col;
             }
         }
-
+        **/
         public void CreateCollection()
         {
             for (int j = 0; j < maxfilenum; j++)
@@ -136,7 +139,9 @@ namespace OfflineInspect.FollowControl
                     fcom.bssgp_direction = p.bssgp_direction;
                     fcom.bucket_size = Convert.ToDouble(p.bssgp_ms_bucket_size) / 1000.0;   //转换成KByte
                     fcom.leak_rate = Convert.ToDouble(p.bssgp_bucket_leak_rate) / 1000.0; //转化成kbps
-                    FCOM_col.Insert(fcom);
+                    //FCOM_col.Insert(fcom);
+                    //mongo_fcom.ListT.Insert(fcom);
+                    mongo_fcom.MongoCol.Insert(fcom);
                 });
         }
     }

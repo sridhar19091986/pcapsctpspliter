@@ -30,10 +30,13 @@ namespace OfflineInspect.FollowControl
         public string down_packet_rate;
         public string fcb_time_aggre;
 
-        private string mongo_db = "Guangzhou_FlowControl";
-        private string mongo_collection = "FlowControlMapBvc";
-        private string mongo_conn = "mongodb://192.168.4.209/?safe=true";
-        private MongoCrud<FlowControlMapBvc> mongo_fcmb;
+        private string mongo_collection = CommonAttribute.FlowControlMapBvc[0];
+        private string mongo_db = CommonAttribute.FlowControlMapBvc[1];
+        private string mongo_conn = CommonAttribute.FlowControlMapBvc[2];
+        private string msfc_msg = CommonAttribute.FlowControlMapBvc[3];
+        private string fc_msg = CommonAttribute.FlowControlMapBvc[4];
+
+        public MongoCrud<FlowControlMapBvc> mongo_fcmb;
 
         public FlowControlMapBvc()
         {
@@ -64,6 +67,8 @@ namespace OfflineInspect.FollowControl
             }
         }
         #endregion
+
+        /*
         public void BulkMongo(List<FlowControlMapBvc> fcmb)
         {
             mongo_fcmb.BulkMongo(fcmb, true);
@@ -73,14 +78,12 @@ namespace OfflineInspect.FollowControl
         {
             return mongo_fcmb.QueryMongo();
         }
-
-        private string msfc_msg = "BSSGP.FLOW-CONTROL-MS";
-        private string fc_msg = "BSSGP.FLOW-CONTROL-BVC";
+        **/
 
         public void CreateCollection()
         {
             FlowControlOneBvc fcob = new FlowControlOneBvc();
-            var fcobmongo = fcob.QueryMongo().Where(e => e.lac_cell != null).AsParallel().ToList();
+            var fcobmongo = fcob.mongo_fcob.QueryMongo().Where(e => e.lac_cell != null).AsParallel().ToList();
             var query = from p in fcobmongo
                         group p by p.lac_cell into ttt
                         select new FlowControlMapBvc
@@ -131,7 +134,8 @@ namespace OfflineInspect.FollowControl
                             .AggregatePacketTime(e => e.Flow_Control_time, e => e.Flow_Control_MsgType, fc_msg),
                         };
 
-            BulkMongo(query.ToList());
+            mongo_fcmb.BulkMongo(query.ToList(), true);
+            //BulkMongo(query.ToList());
         }
     }
 }

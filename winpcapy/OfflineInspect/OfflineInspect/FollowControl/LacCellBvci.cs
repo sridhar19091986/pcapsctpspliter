@@ -1,4 +1,18 @@
-﻿using System;
+﻿/*算法优化，2012.8.8
+ * 
+ * 尽量增加代码的复用度
+ * 
+ * 
+ * 1.每个子类，只写实现方法，即完成统计的算法。
+ * 
+ * 2.每个子类，只写销毁方法，即完成算法后立即销毁。
+ * 
+ * 3.变化部分放入公共部分，以方便修改。
+ * 
+ * */
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,11 +33,11 @@ namespace OfflineInspect.FollowControl
         public string lac_cell;
         public int cnt;
 
+        private string mongo_collection = CommonAttribute.LacCellBvci[0];
+        private string mongo_db = CommonAttribute.LacCellBvci[1];
+        private string mongo_conn = CommonAttribute.LacCellBvci[2];
 
-        private string mongo_db = "Guangzhou_FlowControl";
-        private string mongo_collection = "LacCellBvci";
-        private string mongo_conn = "mongodb://192.168.4.209/?safe=true";
-        private MongoCrud<LacCellBvci> mongo_lac_cell_bvci;
+        public  MongoCrud<LacCellBvci> mongo_lac_cell_bvci;
 
         public LacCellBvci()
         {
@@ -94,10 +108,11 @@ namespace OfflineInspect.FollowControl
                          bvci = p.nsip_bvci.ToString(),
                          cnt = p.cnt,
                      };
-
-            BulkMongo(bv.ToList());
+            mongo_lac_cell_bvci.BulkMongo(bv.ToList(), true);
+            //BulkMongo(bv.ToList());
         }
 
+        /*
         public void BulkMongo(List<LacCellBvci> lcb)
         {
             mongo_lac_cell_bvci.BulkMongo(lcb, true);
@@ -124,10 +139,11 @@ namespace OfflineInspect.FollowControl
                 value = listlaccellbvci;
             }
         }
-
+        **/
         public string GetLacCell(string src, string dst, string bvci)
         {
-            var query = from p in ListLacCellBvci
+            //var query = from p in ListLacCellBvci
+            var query = from p in mongo_lac_cell_bvci.ListT
                         where (p.src == src && p.dst == dst && p.bvci == bvci)
                         || (p.dst == src && p.src == dst && p.bvci == bvci)
                         select p;

@@ -18,10 +18,11 @@ namespace OfflineInspect.FollowControl
         public double leak_rate;
         public double full_rate_avg;
 
-        private string mongo_db = "Guangzhou_FlowControl";
-        private string mongo_collection = "FlowControlBeforeMessageMap";
-        private string mongo_conn = "mongodb://192.168.4.209/?safe=true";
-        private MongoCrud<FlowControlBeforeMessageMap> mongo_fcbmm;
+        private string mongo_collection = CommonAttribute.FlowControlBeforeMessageMap[0];
+        private string mongo_db = CommonAttribute.FlowControlBeforeMessageMap[1];
+        private string mongo_conn = CommonAttribute.FlowControlBeforeMessageMap[2];
+
+        public MongoCrud<FlowControlBeforeMessageMap> mongo_fcbmm;
 
         public FlowControlBeforeMessageMap()
         {
@@ -52,6 +53,8 @@ namespace OfflineInspect.FollowControl
             }
         }
         #endregion
+
+        /*
         public void BulkMongo(List<FlowControlBeforeMessageMap> fcbmm)
         {
             mongo_fcbmm.BulkMongo(fcbmm, true);
@@ -61,11 +64,12 @@ namespace OfflineInspect.FollowControl
         {
             return mongo_fcbmm.QueryMongo();
         }
+        **/
 
         public void CreateCollection()
         {
             FlowControlBeforeMessage fcbm = new FlowControlBeforeMessage();
-            var fcBeforMsgs = fcbm.QueryMongo().ToList();
+            var fcBeforMsgs = fcbm.mongo_fcbm.ListT;
             var dborders = from p in fcBeforMsgs
                            group p by p.fcb_msg into ttt
                            select new FlowControlBeforeMessageMap
@@ -80,7 +84,8 @@ namespace OfflineInspect.FollowControl
                                full_rate_avg = ttt.Average(e => e.bssgp_bucket_full_ratio),
 
                            };
-            BulkMongo(dborders.OrderByDescending(e => e.cnt).ToList());
+            mongo_fcbmm.BulkMongo(dborders.OrderByDescending(e => e.cnt).ToList(), true);
+            //BulkMongo(dborders.OrderByDescending(e => e.cnt).ToList());
         }
     }
 }
