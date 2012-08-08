@@ -78,6 +78,12 @@
             this.navBarItem12 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem13 = new DevExpress.XtraNavBar.NavBarItem();
             this.xtraTabPage5 = new DevExpress.XtraTab.XtraTabPage();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.gridControl3 = new DevExpress.XtraGrid.GridControl();
+            this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.navBarControl3 = new DevExpress.XtraNavBar.NavBarControl();
+            this.navBarGroup3 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItem14 = new DevExpress.XtraNavBar.NavBarItem();
             this.xtraTabPage6 = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage7 = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage8 = new DevExpress.XtraTab.XtraTabPage();
@@ -107,6 +113,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl2)).BeginInit();
+            this.xtraTabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
+            this.splitContainer3.Panel1.SuspendLayout();
+            this.splitContainer3.Panel2.SuspendLayout();
+            this.splitContainer3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.navBarControl3)).BeginInit();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -580,9 +594,72 @@
             // 
             // xtraTabPage5
             // 
+            this.xtraTabPage5.Controls.Add(this.splitContainer3);
             this.xtraTabPage5.Name = "xtraTabPage5";
             this.xtraTabPage5.Size = new System.Drawing.Size(760, 367);
-            this.xtraTabPage5.Text = "xtraTabPage5";
+            this.xtraTabPage5.Text = "ReTransmission";
+            // 
+            // splitContainer3
+            // 
+            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer3.Name = "splitContainer3";
+            // 
+            // splitContainer3.Panel1
+            // 
+            this.splitContainer3.Panel1.Controls.Add(this.gridControl3);
+            // 
+            // splitContainer3.Panel2
+            // 
+            this.splitContainer3.Panel2.Controls.Add(this.navBarControl3);
+            this.splitContainer3.Size = new System.Drawing.Size(760, 367);
+            this.splitContainer3.SplitterDistance = 572;
+            this.splitContainer3.TabIndex = 0;
+            // 
+            // gridControl3
+            // 
+            this.gridControl3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl3.Location = new System.Drawing.Point(0, 0);
+            this.gridControl3.MainView = this.gridView3;
+            this.gridControl3.Name = "gridControl3";
+            this.gridControl3.Size = new System.Drawing.Size(572, 367);
+            this.gridControl3.TabIndex = 0;
+            this.gridControl3.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView3});
+            // 
+            // gridView3
+            // 
+            this.gridView3.GridControl = this.gridControl3;
+            this.gridView3.Name = "gridView3";
+            // 
+            // navBarControl3
+            // 
+            this.navBarControl3.ActiveGroup = this.navBarGroup3;
+            this.navBarControl3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.navBarControl3.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
+            this.navBarGroup3});
+            this.navBarControl3.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
+            this.navBarItem14});
+            this.navBarControl3.Location = new System.Drawing.Point(0, 0);
+            this.navBarControl3.Name = "navBarControl3";
+            this.navBarControl3.OptionsNavPane.ExpandedWidth = 140;
+            this.navBarControl3.Size = new System.Drawing.Size(184, 367);
+            this.navBarControl3.TabIndex = 0;
+            this.navBarControl3.Text = "navBarControl3";
+            // 
+            // navBarGroup3
+            // 
+            this.navBarGroup3.Caption = "navBarGroup3";
+            this.navBarGroup3.Expanded = true;
+            this.navBarGroup3.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem14)});
+            this.navBarGroup3.Name = "navBarGroup3";
+            // 
+            // navBarItem14
+            // 
+            this.navBarItem14.Caption = "TlliTcpSession";
+            this.navBarItem14.Name = "navBarItem14";
+            this.navBarItem14.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem14_LinkClicked);
             // 
             // xtraTabPage6
             // 
@@ -649,6 +726,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl2)).EndInit();
+            this.xtraTabPage5.ResumeLayout(false);
+            this.splitContainer3.Panel1.ResumeLayout(false);
+            this.splitContainer3.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
+            this.splitContainer3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.navBarControl3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -709,6 +794,12 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem11;
         private DevExpress.XtraNavBar.NavBarItem navBarItem12;
         private DevExpress.XtraNavBar.NavBarItem navBarItem13;
+        private System.Windows.Forms.SplitContainer splitContainer3;
+        private DevExpress.XtraGrid.GridControl gridControl3;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
+        private DevExpress.XtraNavBar.NavBarControl navBarControl3;
+        private DevExpress.XtraNavBar.NavBarGroup navBarGroup3;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem14;
     }
 }
 

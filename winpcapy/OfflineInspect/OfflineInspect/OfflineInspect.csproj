@@ -79,8 +79,10 @@
     <Compile Include="FollowControl\FlowControlOneMs.cs" />
     <Compile Include="FollowControl\LacCellBvci.cs" />
     <Compile Include="Mongo\MongoCrud.cs" />
+    <Compile Include="ReTransmission\CommonAttribute.cs" />
     <Compile Include="ReTransmission\RetransStatics.cs" />
-    <Compile Include="ReTransmission\TcpSession.cs" />
+    <Compile Include="ReTransmission\TlliTcpSession.cs" />
+    <Content Include="Mongo\Template2.txt" />
     <Content Include="Mongo\Template.txt" />
     <Compile Include="MultiInterface\GiGETRateMap.cs" />
     <Compile Include="MultiInterface\GnGETRateMap.cs" />

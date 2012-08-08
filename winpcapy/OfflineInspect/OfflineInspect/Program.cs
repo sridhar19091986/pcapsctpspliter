@@ -26,9 +26,11 @@ namespace OfflineInspect
         {
             Console.WriteLine("begin batch offline inspect items!");
 
-            OfflineInspect.MultiInterface.CommonAttribute.ExecMultiInterface();
+            //OfflineInspect.MultiInterface.CommonAttribute.ExecMultiInterface();
 
-            OfflineInspect.FollowControl.CommonAttribute.ExecFlowControl();
+            //OfflineInspect.FollowControl.CommonAttribute.ExecFlowControl();
+
+            OfflineInspect.ReTransmission.CommonAttribute.ExecReTransmission();
 
             Console.WriteLine("complete.");
 
