@@ -46,10 +46,13 @@ namespace OfflineInspect.FollowControl
         public string down_packet_rate;
         public string fcm_time;
 
-        private string mongo_db = "Guangzhou_FlowControl";
-        private string mongo_collection = "FlowControlMapMs";
-        private string mongo_conn = "mongodb://192.168.4.209/?safe=true";
-        private MongoCrud<FlowControlMapMs> mongo_fcmm;
+        private string mongo_collection = CommonAttribute.FlowControlMapMs[0];
+        private string mongo_db = CommonAttribute.FlowControlMapMs[1];
+        private string mongo_conn = CommonAttribute.FlowControlMapMs[2];
+        private string fc_msg = CommonAttribute.FlowControlMapMs[3];
+
+
+        public MongoCrud<FlowControlMapMs> mongo_fcmm;
 
         public FlowControlMapMs()
         {
@@ -80,6 +83,8 @@ namespace OfflineInspect.FollowControl
             }
         }
         #endregion
+
+        /*
         private MongoCollection fcmm_col = null;
         private MongoCollection FCMM_col
         {
@@ -101,14 +106,14 @@ namespace OfflineInspect.FollowControl
         {
             return mongo_fcmm.QueryMongo();
         }
+        **/
 
-        private string fc_msg = "BSSGP.FLOW-CONTROL-MS";
 
         public void CreateCollection()
         {
             FlowControlOneMs fcom = new FlowControlOneMs();
 
-            var fcommongo = fcom.QueryMongo().AsParallel().ToLookup(e => e.BeginFrameNum);
+            var fcommongo = fcom.mongo_fcom.QueryMongo().AsParallel().ToLookup(e => e.BeginFrameNum);
 
             foreach (var ttt in fcommongo)
             {
@@ -145,7 +150,8 @@ namespace OfflineInspect.FollowControl
                     fcmm.down_packet_rate = ttt.OrderBy(e => e.PacketNum).AggregatePacketRate(e => (int)e.ip_len, e => e.Flow_Control_time, e => e.Flow_Control_MsgType, fc_msg);
                     fcmm.fcm_time = ttt.OrderBy(e => e.PacketNum).AggregatePacketTime(e => e.Flow_Control_time, e => e.Flow_Control_MsgType, fc_msg);
 
-                    FCMM_col.Insert(fcmm);
+                    //FCMM_col.Insert(fcmm);
+                    mongo_fcmm.MongoCol.Insert(fcmm);
                 };
             }
         }

@@ -27,11 +27,13 @@ namespace OfflineInspect.FollowControl
         public double bssgp_R_default_ms;
         public string bvci;
 
-        private string mongo_db = "Guangzhou_FlowControl";
-        private string mongo_collection = "FlowControlOneBvc";
-        private string mongo_conn = "mongodb://192.168.4.209/?safe=true";
-        private MongoCrud<FlowControlOneBvc> mongo_fcob;
-        private int maxfilenum = 3;
+        private string mongo_collection = CommonAttribute.FlowControlOneBvc[0];
+        private string mongo_db = CommonAttribute.FlowControlOneBvc[1];
+        private string mongo_conn = CommonAttribute.FlowControlOneBvc[2];
+        private int maxfilenum = Int32.Parse(CommonAttribute.FlowControlOneBvc[3]);
+
+        public MongoCrud<FlowControlOneBvc> mongo_fcob;
+
 
         public FlowControlOneBvc()
         {
@@ -115,11 +117,13 @@ namespace OfflineInspect.FollowControl
                 fcob.bssgp_ms_bucket_size = Convert.ToDouble(p.bssgp_ms_bucket_size) / 1000.0;
                 fcob.bssgp_R_default_ms = Convert.ToDouble(p.bssgp_R_default_ms) / 1000.0;
 
-                FCOB_col.Insert(fcob);
+                //FCOB_col.Insert(fcob);
+                mongo_fcob.MongoCol.Insert(fcob);
             });
 
         }
 
+        /*
         private MongoCollection fcob_col = null;
         private MongoCollection FCOB_col
         {
@@ -141,5 +145,6 @@ namespace OfflineInspect.FollowControl
         {
             return mongo_fcob.QueryMongo();
         }
+         * */
     }
 }

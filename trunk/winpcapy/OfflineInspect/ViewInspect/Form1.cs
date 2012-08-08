@@ -58,7 +58,7 @@ namespace ViewInspect
         private void navBarItem1_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             FlowControlOneBvc fcob = new FlowControlOneBvc();
-            var query = from p in fcob.QueryMongo()
+            var query = from p in fcob.mongo_fcob.QueryMongo()
                         select new
                         {
                             p._id,
@@ -85,7 +85,7 @@ namespace ViewInspect
         private void navBarItem2_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
         {
             LacCellBvci lcb = new LacCellBvci();
-            var query = from p in lcb.QueryMongo()
+            var query = from p in lcb.mongo_lac_cell_bvci.QueryMongo()
                         select new
                         {
                             p._id,
@@ -104,7 +104,7 @@ namespace ViewInspect
         {
             FlowControlMapBvc fcmb = new FlowControlMapBvc();
             clearColumns();
-            var dborder = from p in fcmb.QueryMongo().OrderByDescending(e => e.fcb_cnt)
+            var dborder = from p in fcmb.mongo_fcmb.QueryMongo().OrderByDescending(e => e.fcb_cnt)
                           select new
                           {
                               p.lac_cell,
@@ -136,9 +136,9 @@ namespace ViewInspect
         {
             clearColumns();
             FlowControlMapBvc fcmb = new FlowControlMapBvc();
-            var bvc = fcmb.QueryMongo().ToList();
+            var bvc = fcmb.mongo_fcmb.ListT;
             LacCellBvci lcb = new LacCellBvci();
-            var cell = from p in lcb.QueryMongo().ToList()
+            var cell = from p in lcb.mongo_lac_cell_bvci.ListT
                        group p by p.lac_cell into ttt
                        select new
                        {
@@ -179,7 +179,7 @@ namespace ViewInspect
         private void navBarItem5_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
         {
             FlowControlMapMs fcmm = new FlowControlMapMs();
-            var query = from p in fcmm.QueryMongo()
+            var query = from p in fcmm.mongo_fcmm.QueryMongo()
                         select new
                         {
                             p.BeginFrameNum,
@@ -210,7 +210,7 @@ namespace ViewInspect
         private void navBarItem6_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
         {
             FlowControlOneMs fcom = new FlowControlOneMs();
-            var query = from p in fcom.QueryMongo()
+            var query = from p in fcom.mongo_fcom.QueryMongo()
                         select new
                         {
                             p._id,
@@ -237,7 +237,7 @@ namespace ViewInspect
         private void navBarItem7_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
         {
             FlowControlMessageRate fcmr = new FlowControlMessageRate();
-            var query = from p in fcmr.QueryMongo()
+            var query = from p in fcmr.mongo_fcmr.QueryMongo()
                         select new
                         {
                             p._id,
@@ -258,7 +258,7 @@ namespace ViewInspect
         private void navBarItem8_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
         {
             FlowControlBeforeMessage fcbm = new FlowControlBeforeMessage();
-            var query = from p in fcbm.QueryMongo()
+            var query = from p in fcbm.mongo_fcbm.QueryMongo()
                         select new
                         {
                             p._id,
@@ -282,7 +282,7 @@ namespace ViewInspect
         private void navBarItem9_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
         {
             FlowControlBeforeMessageMap fcbmm = new FlowControlBeforeMessageMap();
-            var query = from p in fcbmm.QueryMongo()
+            var query = from p in fcbmm.mongo_fcbmm.QueryMongo()
                         select new
                         {
                             p._id,
@@ -314,7 +314,7 @@ namespace ViewInspect
         private void navBarItem10_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
         {
             GiGETRateMap giget = new GiGETRateMap();
-            var query = from p in giget.QueryMongo()
+            var query = from p in giget.mongo_get.QueryMongo()
                         select new
                         {
                             p._id,

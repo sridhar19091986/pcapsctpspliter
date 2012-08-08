@@ -110,7 +110,7 @@ namespace AutoSql_Ts
             Console.ReadKey();
 
             BatchInsert bi = new BatchInsert(mysqlconn);
-            bi.BatchInsert(batchsql);
+            bi.BatchInsertToMySql(batchsql);
         }
 
 

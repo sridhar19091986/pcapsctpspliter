@@ -42,7 +42,7 @@ namespace AutoSql_Ts
             this.mysqlconn = new MySqlConnection(sqlconnstr);
         }
 
-        public void BatchInsert(List<string> batchsql)
+        public void BatchInsertToMySql(List<string> batchsql)
         {
             Parallel.ForEach(batchsql, new ParallelOptions { MaxDegreeOfParallelism = 10 }, sql =>
                 {

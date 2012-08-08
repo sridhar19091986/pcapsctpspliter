@@ -25,10 +25,12 @@ namespace OfflineInspect.FollowControl
         public DateTime? fc_packettime;
         public string fc_msg;
 
-        private string mongo_db = "Guangzhou_FlowControl";
-        private string mongo_collection = "FlowControlBeforeMessage";
-        private string mongo_conn = "mongodb://192.168.4.209/?safe=true";
-        private MongoCrud<FlowControlBeforeMessage> mongo_fcbm;
+        private string mongo_collection = CommonAttribute.FlowControlBeforeMessage[0];
+        private string mongo_db = CommonAttribute.FlowControlBeforeMessage[1];
+        private string mongo_conn = CommonAttribute.FlowControlBeforeMessage[2];
+        private string msfc_msg = CommonAttribute.FlowControlBeforeMessage[3];
+
+        public MongoCrud<FlowControlBeforeMessage> mongo_fcbm;
 
         public FlowControlBeforeMessage()
         {
@@ -59,8 +61,8 @@ namespace OfflineInspect.FollowControl
             }
         }
         #endregion
+        /*
         private MongoCollection fcbm_col = null;
-
         private MongoCollection FCBM_col
         {
             get
@@ -80,13 +82,13 @@ namespace OfflineInspect.FollowControl
         {
             return mongo_fcbm.QueryMongo();
         }
+        **/
 
-        private string msfc_msg = "BSSGP.FLOW-CONTROL-MS";
 
         public void CreateCollection()
         {
             FlowControlOneMs fcom = new FlowControlOneMs();
-            var beginframes = fcom.QueryMongo().AsParallel().ToLookup(e => e.BeginFrameNum);
+            var beginframes = fcom.mongo_fcom.QueryMongo().AsParallel().ToLookup(e => e.BeginFrameNum);
             foreach (var m in beginframes)
             {
                 var fc = m.Where(e => e.Flow_Control_MsgType.StartsWith(msfc_msg)).OrderBy(e => e.PacketNum).FirstOrDefault();
@@ -118,7 +120,8 @@ namespace OfflineInspect.FollowControl
                         fcbm.fcb_packetnum = fcb.PacketNum;
                         fcbm.fcb_packettime = fcb.Flow_Control_time;
 
-                        FCBM_col.Insert(fcbm);
+                        mongo_fcbm.MongoCol.Insert(fcbm);
+                        //FCBM_col.Insert(fcbm);
                     }
                 }
             }

@@ -64,11 +64,13 @@
     <Compile Include="CommonTools\IEnumerableExtensions.cs" />
     <Compile Include="ComplainsTopic\DnsSynKpi.cs" />
     <Compile Include="ComplainsTopic\KeyPerformance.cs" />
+    <Compile Include="FollowControl\CommonAttribute.cs" />
     <Compile Include="FollowControl\FlowControlBeforeMessageMap.cs" />
     <Compile Include="FollowControl\FlowControlBeforeMessage.cs" />
     <Compile Include="HttpPerformance\Class1.cs" />
     <Compile Include="IpSegment\Class1.cs" />
     <Compile Include="IpSegment\KeyPerformance.cs" />
+    <Compile Include="MultiInterface\CommonAttribute.cs" />
     <Compile Include="N201UXID\N201UXIDBeforeMessage.cs" />
     <Compile Include="FollowControl\FlowControlMessageRate.cs" />
     <Compile Include="FollowControl\FlowControlMapMs.cs" />
