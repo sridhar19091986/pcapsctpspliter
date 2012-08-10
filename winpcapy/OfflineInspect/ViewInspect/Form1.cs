@@ -51,7 +51,7 @@ namespace ViewInspect
         //LacCellBvci
         private void navBarItem2_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
         {
-            LacCellBvci lcb = new LacCellBvci();
+            OfflineInspect.FollowControl.LacCellBvci lcb = new OfflineInspect.FollowControl.LacCellBvci();
             var query = from p in lcb.mongo_lac_cell_bvci.QueryMongo()
                         select new
                         {
@@ -60,6 +60,7 @@ namespace ViewInspect
                             p.src,
                             p.dst,
                             p.bvci,
+                            p.cnt,
                         };
             clearColumns();
             var dborder = query.OrderBy(e => e.lac_cell);
@@ -104,7 +105,7 @@ namespace ViewInspect
             clearColumns();
             FlowControlMapBvc fcmb = new FlowControlMapBvc();
             var bvc = fcmb.mongo_fcmb.ListT;
-            LacCellBvci lcb = new LacCellBvci();
+            OfflineInspect.FollowControl.LacCellBvci lcb = new OfflineInspect.FollowControl.LacCellBvci();
             var cell = from p in lcb.mongo_lac_cell_bvci.ListT
                        group p by p.lac_cell into ttt
                        select new
@@ -315,42 +316,72 @@ namespace ViewInspect
                         select new
                         {
                             p._id,
+                            p.session_id,
                             p.bsc_bvci,
+                            p.lac_ci,
                             p.bsc_ip,
                             p.ci,
                             p.direction,
-                            p.ip_aggre,
-                            p.ip2_aggre,
-                            p.llc_aggre,
-                            p.msg_aggre,
-                            p.tcp_aggre,
+                            p.seq_tcp_min,
+                            p.seq_nxt_max,
+                            p.ip_total_aggre,
+                            p.seq_total_count,
                             p.seq_total_aggre,
                             p.seq_total_reduce,
-                            p.down_rate,
+                            p.seq_total_lost,
                             p.duration,
-                            p.headersize,
-                            p.imsi,
-                            p.ip_rate,
-                            p.ip_total,
-                            p.ip2_min_len,
-                            p.ip2_rate,
-                            p.ip2_total,
-                            p.lac,
-                            p.llc_cnt,
-                            p.llc_max,
-                            p.llc_min,
-                            p.packet_count,
-                            p.packet_count_repeat,
-                            p.packet_discard_total,
-                            p.packet_sack_total,
-                            p.seq_ip2,
-                            p.seq_max,
-                            p.seq_min,
-                            //p.seq_nxt,
-                            p.seq_rate,
-                            //p.seq_total,
-                            p.seq_totals,
-                            p.session_id
+                            p.seq_total_aggre_rate,
+                     
+
+                            p.ip_addr_aggre,
+                            p.ip2_addr_aggre,
+                            p.ip_ttl_aggre,
+                            p.ip2_ttl_aggre,
+                            p.ip_flags_mf,
+                            p.ip2_flags_mf,
+                            p.tcp_flags_cwr,
+                            p.tcp_win_size,
+                         
+                            p.tcp_port_aggre,
+                            p.sndcp_m,
+                            p.tcp_need_segment,
+                            p.msg_aggre,
+
+                            p.tcp_seq_aggre,
+                            p.tcp_nxt_aggre,
+                            //p.ip_aggre,
+                            //p.ip2_aggre,
+                            //p.llc_aggre,
+                            //p.msg_aggre,
+                            //p.tcp_aggre,
+                            //p.seq_total_lost,
+                            //p.seq_total_aggre,
+                            //p.seq_total_reduce,
+                            //p.down_rate,
+                            //p.duration,
+                            //p.headersize,
+                            //p.imsi,
+                            //p.ip_rate,
+                            //p.ip_total,
+                            //p.ip2_min_len,
+                            //p.ip2_rate,
+                            //p.ip2_total,
+                            //p.lac,
+                            //p.llc_cnt,
+                            //p.llc_max,
+                            //p.llc_min,
+                            //p.packet_count,
+                            //p.packet_count_repeat,
+                            //p.packet_discard_total,
+                            //p.packet_sack_total,
+                            //p.seq_ip2,
+                            //p.seq_max,
+                            //p.seq_min,
+                            ////p.seq_nxt,
+                            //p.seq_rate,
+                            ////p.seq_total,
+                            //p.seq_totals,
+                            //p.session_id
                         };
             clearColumns3();
             var dborder = query.OrderByDescending(e => e._id).Take(100);
@@ -359,8 +390,26 @@ namespace ViewInspect
             //gridView3.OptionsView.ShowViewCaption= true;
             gridView3.OptionsView.ColumnAutoWidth = false;
             gridView3.BestFitColumns();
+        }
 
-
+        private void navBarItem15_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
+        {
+            OfflineInspect.ReTransmission.LacCellBvci lcb = new OfflineInspect.ReTransmission.LacCellBvci();
+            var query = from p in lcb.mongo_lac_cell_bvci.QueryMongo()
+                        select new
+                        {
+                            p._id,
+                            p.lac_cell,
+                            p.src,
+                            p.dst,
+                            p.bvci,
+                            p.cnt,
+                        };
+            clearColumns3();
+            var dborder = query.OrderByDescending(e => e._id).Take(100);
+            gridControl3.DataSource = dborder.AsParallel().ToList();
+            gridView3.OptionsView.ColumnAutoWidth = false;
+            gridView3.BestFitColumns();
         }
     }
 }

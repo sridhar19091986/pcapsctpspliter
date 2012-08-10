@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraCharts.SideBySideBarSeriesLabel sideBySideBarSeriesLabel2 = new DevExpress.XtraCharts.SideBySideBarSeriesLabel();
+            DevExpress.XtraCharts.SideBySideBarSeriesLabel sideBySideBarSeriesLabel1 = new DevExpress.XtraCharts.SideBySideBarSeriesLabel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -84,6 +84,7 @@
             this.navBarControl3 = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup3 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem14 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem15 = new DevExpress.XtraNavBar.NavBarItem();
             this.xtraTabPage6 = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage7 = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage8 = new DevExpress.XtraTab.XtraTabPage();
@@ -98,7 +99,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             this.xtraTabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesLabel2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesLabel1)).BeginInit();
             this.xtraTabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -313,8 +314,8 @@
             this.chartControl1.Location = new System.Drawing.Point(0, 0);
             this.chartControl1.Name = "chartControl1";
             this.chartControl1.SeriesSerializable = new DevExpress.XtraCharts.Series[0];
-            sideBySideBarSeriesLabel2.LineVisible = true;
-            this.chartControl1.SeriesTemplate.Label = sideBySideBarSeriesLabel2;
+            sideBySideBarSeriesLabel1.LineVisible = true;
+            this.chartControl1.SeriesTemplate.Label = sideBySideBarSeriesLabel1;
             this.chartControl1.Size = new System.Drawing.Size(760, 367);
             this.chartControl1.TabIndex = 0;
             this.chartControl1.Click += new System.EventHandler(this.chartControl1_Click);
@@ -639,7 +640,8 @@
             this.navBarControl3.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
             this.navBarGroup3});
             this.navBarControl3.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
-            this.navBarItem14});
+            this.navBarItem14,
+            this.navBarItem15});
             this.navBarControl3.Location = new System.Drawing.Point(0, 0);
             this.navBarControl3.Name = "navBarControl3";
             this.navBarControl3.OptionsNavPane.ExpandedWidth = 140;
@@ -652,7 +654,8 @@
             this.navBarGroup3.Caption = "navBarGroup3";
             this.navBarGroup3.Expanded = true;
             this.navBarGroup3.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem14)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem14),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem15)});
             this.navBarGroup3.Name = "navBarGroup3";
             // 
             // navBarItem14
@@ -660,6 +663,12 @@
             this.navBarItem14.Caption = "TlliTcpSession";
             this.navBarItem14.Name = "navBarItem14";
             this.navBarItem14.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem14_LinkClicked);
+            // 
+            // navBarItem15
+            // 
+            this.navBarItem15.Caption = "LacCellBvci";
+            this.navBarItem15.Name = "navBarItem15";
+            this.navBarItem15.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem15_LinkClicked);
             // 
             // xtraTabPage6
             // 
@@ -708,7 +717,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             this.xtraTabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesLabel2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).EndInit();
             this.xtraTabPage3.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -800,6 +809,7 @@
         private DevExpress.XtraNavBar.NavBarControl navBarControl3;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup3;
         private DevExpress.XtraNavBar.NavBarItem navBarItem14;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem15;
     }
 }
 
