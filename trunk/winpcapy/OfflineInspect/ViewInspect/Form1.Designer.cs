@@ -85,6 +85,7 @@
             this.navBarGroup3 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem14 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem15 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem16 = new DevExpress.XtraNavBar.NavBarItem();
             this.xtraTabPage6 = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage7 = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage8 = new DevExpress.XtraTab.XtraTabPage();
@@ -641,7 +642,8 @@
             this.navBarGroup3});
             this.navBarControl3.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
             this.navBarItem14,
-            this.navBarItem15});
+            this.navBarItem15,
+            this.navBarItem16});
             this.navBarControl3.Location = new System.Drawing.Point(0, 0);
             this.navBarControl3.Name = "navBarControl3";
             this.navBarControl3.OptionsNavPane.ExpandedWidth = 140;
@@ -655,7 +657,8 @@
             this.navBarGroup3.Expanded = true;
             this.navBarGroup3.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem14),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem15)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem15),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem16)});
             this.navBarGroup3.Name = "navBarGroup3";
             // 
             // navBarItem14
@@ -669,6 +672,12 @@
             this.navBarItem15.Caption = "LacCellBvci";
             this.navBarItem15.Name = "navBarItem15";
             this.navBarItem15.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem15_LinkClicked);
+            // 
+            // navBarItem16
+            // 
+            this.navBarItem16.Caption = "TlliLLCSession";
+            this.navBarItem16.Name = "navBarItem16";
+            this.navBarItem16.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem16_LinkClicked);
             // 
             // xtraTabPage6
             // 
@@ -810,6 +819,7 @@
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup3;
         private DevExpress.XtraNavBar.NavBarItem navBarItem14;
         private DevExpress.XtraNavBar.NavBarItem navBarItem15;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem16;
     }
 }
 

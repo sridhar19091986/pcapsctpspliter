@@ -70,6 +70,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="SqlServer\Local\Gb_LLC_ReTransmission\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
     <Compile Include="SqlServer\Local\Gb_TCP_ReTransmission\Gb_TCP_ReTransmission.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -104,6 +109,10 @@
     <EntityDeploy Include="SqlServer\Local\Gb_TCP_ReTransmission\Gb_TCP_ReTransmission.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Gb_TCP_ReTransmission.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="SqlServer\Local\Gb_LLC_ReTransmission\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

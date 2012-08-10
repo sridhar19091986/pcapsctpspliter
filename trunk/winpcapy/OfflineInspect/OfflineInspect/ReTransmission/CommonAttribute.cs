@@ -9,9 +9,9 @@ namespace OfflineInspect.ReTransmission
     {
         private static string remote = "mongodb://localhost/?safe=true";
         private static string db = "ReTransmission";
-        public static string[] TlliTcpSession = new String[] { "GiGETRateMap", db, remote, "3", "5000" };
         public static string[] LacCellBvci = new String[] { "LacCellBvci", db, remote };
-        public static string[] TlliLLCSession = new String[] { "GiGETRateMap", db, remote, "3", "5000" };
+        public static string[] TlliTcpSession = new String[] { "TlliTcpSession", db, remote, "3", "5000" };
+        public static string[] TlliLLCSession = new String[] { "TlliLLCSession", db, remote, "3", "5000" };
         public static string[] GwGETRateMap = new String[] { "GwGETRateMap", db, remote, "Gw", "TCP", "GRE" };
 
         public static void ExecReTransmission()
@@ -26,6 +26,12 @@ namespace OfflineInspect.ReTransmission
             {
                 tts.CreateCollection();
                 Console.WriteLine("TlliTcpSession tts = new TlliTcpSession();ok");
+            }
+            GC.Collect();
+            using (TlliLLCSession tls = new TlliLLCSession())
+            {
+                tls.CreateCollection();
+                Console.WriteLine("TlliLLCSession tls = new TlliLLCSession();ok");
             }
             GC.Collect();
         }
