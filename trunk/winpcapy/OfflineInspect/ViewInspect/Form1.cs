@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using OfflineInspect.FollowControl;
+using OfflineInspect.FlowControl;
 using OfflineInspect.MultiInterface;
 using OfflineInspect.ReTransmission;
 
@@ -50,7 +50,7 @@ namespace ViewInspect
         //LacCellBvci
         private void navBarItem2_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
         {
-            OfflineInspect.FollowControl.LacCellBvci lcb = new OfflineInspect.FollowControl.LacCellBvci();
+            OfflineInspect.FlowControl.LacCellBvci lcb = new OfflineInspect.FlowControl.LacCellBvci();
             var query = from p in lcb.mongo_lac_cell_bvci.QueryMongo()
                         select new
                         {
@@ -104,7 +104,7 @@ namespace ViewInspect
             clearColumns();
             FlowControlMapBvc fcmb = new FlowControlMapBvc();
             var bvc = fcmb.mongo_fcmb.ListT;
-            OfflineInspect.FollowControl.LacCellBvci lcb = new OfflineInspect.FollowControl.LacCellBvci();
+            OfflineInspect.FlowControl.LacCellBvci lcb = new OfflineInspect.FlowControl.LacCellBvci();
             var cell = from p in lcb.mongo_lac_cell_bvci.ListT
                        group p by p.lac_cell into ttt
                        select new

@@ -15,7 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using OfflineInspect.FollowControl;
+using OfflineInspect.FlowControl;
 using OfflineInspect.MultiInterface;
 
 namespace OfflineInspect
@@ -28,7 +28,7 @@ namespace OfflineInspect
 
             //OfflineInspect.MultiInterface.CommonAttribute.ExecMultiInterface();
 
-            //OfflineInspect.FollowControl.CommonAttribute.ExecFlowControl();
+            //OfflineInspect.FlowControl.CommonAttribute.ExecFlowControl();
 
             OfflineInspect.ReTransmission.CommonAttribute.ExecReTransmission();
 

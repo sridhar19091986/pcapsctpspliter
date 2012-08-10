@@ -125,7 +125,7 @@ namespace OfflineInspect.ReTransmission
 
         public void CreateCollection(int filenum)
         {
-            var tcpsession = gb.Gb_TCP_ReTransmission.Where(e => e.BeginFileNum== filenum);
+            var tcpsession = gb.Gb_TCP_ReTransmission.Where(e => e.BeginFileNum == filenum);
             CreateTable("Up", tcpsession);
             CreateTable("Down", tcpsession);
         }

@@ -44,7 +44,7 @@ namespace OfflineInspect.ReTransmission
         public string imsi;
         public int llc_nu_count;
         public string llc_nu_aggre;
-        public string msg_aggre;//消息聚合
+        public string msg_aggre;
         public Int16 llc_nu_continue;
     }
 
