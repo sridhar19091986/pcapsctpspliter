@@ -80,7 +80,9 @@
     <Compile Include="FollowControl\LacCellBvci.cs" />
     <Compile Include="Mongo\MongoCrud.cs" />
     <Compile Include="ReTransmission\CommonAttribute.cs" />
+    <Compile Include="ReTransmission\LacCellBvci.cs" />
     <Compile Include="ReTransmission\RetransStatics.cs" />
+    <Compile Include="ReTransmission\TlliLlcSession.cs" />
     <Compile Include="ReTransmission\TlliTcpSession.cs" />
     <Content Include="Mongo\Template2.txt" />
     <Content Include="Mongo\Template.txt" />
