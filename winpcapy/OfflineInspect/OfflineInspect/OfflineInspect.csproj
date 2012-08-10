@@ -64,20 +64,20 @@
     <Compile Include="CommonTools\IEnumerableExtensions.cs" />
     <Compile Include="ComplainsTopic\DnsSynKpi.cs" />
     <Compile Include="ComplainsTopic\KeyPerformance.cs" />
-    <Compile Include="FollowControl\CommonAttribute.cs" />
-    <Compile Include="FollowControl\FlowControlBeforeMessageMap.cs" />
-    <Compile Include="FollowControl\FlowControlBeforeMessage.cs" />
+    <Compile Include="FlowControl\CommonAttribute.cs" />
+    <Compile Include="FlowControl\FlowControlBeforeMessageMap.cs" />
+    <Compile Include="FlowControl\FlowControlBeforeMessage.cs" />
     <Compile Include="HttpPerformance\Class1.cs" />
     <Compile Include="IpSegment\Class1.cs" />
     <Compile Include="IpSegment\KeyPerformance.cs" />
     <Compile Include="MultiInterface\CommonAttribute.cs" />
     <Compile Include="N201UXID\N201UXIDBeforeMessage.cs" />
-    <Compile Include="FollowControl\FlowControlMessageRate.cs" />
-    <Compile Include="FollowControl\FlowControlMapMs.cs" />
-    <Compile Include="FollowControl\FlowControlMapBvc.cs" />
-    <Compile Include="FollowControl\FlowControlOneBvc.cs" />
-    <Compile Include="FollowControl\FlowControlOneMs.cs" />
-    <Compile Include="FollowControl\LacCellBvci.cs" />
+    <Compile Include="FlowControl\FlowControlMessageRate.cs" />
+    <Compile Include="FlowControl\FlowControlMapMs.cs" />
+    <Compile Include="FlowControl\FlowControlMapBvc.cs" />
+    <Compile Include="FlowControl\FlowControlOneBvc.cs" />
+    <Compile Include="FlowControl\FlowControlOneMs.cs" />
+    <Compile Include="FlowControl\LacCellBvci.cs" />
     <Compile Include="Mongo\MongoCrud.cs" />
     <Compile Include="ReTransmission\CommonAttribute.cs" />
     <Compile Include="ReTransmission\LacCellBvci.cs" />
@@ -108,7 +108,10 @@
       <Name>EntitySqlTable</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="AccessPerformance\" />
+    <Folder Include="DnsPerformance\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
