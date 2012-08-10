@@ -5,9 +5,9 @@ using System.Text;
 using OfflineInspect.Mongo;
 using OfflineInspect.CommonTools;
 
-namespace OfflineInspect.FollowControl
+namespace OfflineInspect.FlowControl
 {
-    public class FlowControlMapBvc : CommonToolx, IDisposable
+    public class FlowControlMapBvcDocument
     {
         public object _id;
         public string lac_cell;
@@ -29,18 +29,20 @@ namespace OfflineInspect.FollowControl
         public string down_total_len;
         public string down_packet_rate;
         public string fcb_time_aggre;
-
+    }
+    public class FlowControlMapBvc : CommonToolx, IDisposable
+    {
         private string mongo_collection = CommonAttribute.FlowControlMapBvc[0];
         private string mongo_db = CommonAttribute.FlowControlMapBvc[1];
         private string mongo_conn = CommonAttribute.FlowControlMapBvc[2];
         private string msfc_msg = CommonAttribute.FlowControlMapBvc[3];
         private string fc_msg = CommonAttribute.FlowControlMapBvc[4];
 
-        public MongoCrud<FlowControlMapBvc> mongo_fcmb;
+        public MongoCrud<FlowControlMapBvcDocument> mongo_fcmb;
 
         public FlowControlMapBvc()
         {
-            mongo_fcmb = new MongoCrud<FlowControlMapBvc>(mongo_conn, mongo_db, mongo_collection);
+            mongo_fcmb = new MongoCrud<FlowControlMapBvcDocument>(mongo_conn, mongo_db, mongo_collection);
         }
         #region Implementing IDisposable and the Dispose Pattern Properly
         private bool disposed = false; // to detect redundant calls
@@ -86,7 +88,7 @@ namespace OfflineInspect.FollowControl
             var fcobmongo = fcob.mongo_fcob.QueryMongo().Where(e => e.lac_cell != null).AsParallel().ToList();
             var query = from p in fcobmongo
                         group p by p.lac_cell into ttt
-                        select new FlowControlMapBvc
+                        select new FlowControlMapBvcDocument
                         {
                             _id = GenerateId(),
                             lac_cell = ttt.Key,

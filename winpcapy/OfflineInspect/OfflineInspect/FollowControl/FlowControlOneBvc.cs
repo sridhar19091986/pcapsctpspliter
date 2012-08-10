@@ -8,9 +8,9 @@ using EntitySqlTable.SqlServer.ip209.GuangZhou.GbFlowControl;
 using System.Threading.Tasks;
 using MongoDB.Driver;
 
-namespace OfflineInspect.FollowControl
+namespace OfflineInspect.FlowControl
 {
-    public class FlowControlOneBvc : IDisposable
+    public class FlowControlOneBvcDocument
     {
         public object _id;
         public DateTime Flow_Control_time;
@@ -26,18 +26,19 @@ namespace OfflineInspect.FollowControl
         public double bssgp_ms_bucket_size;
         public double bssgp_R_default_ms;
         public string bvci;
-
+    }
+    public class FlowControlOneBvc : IDisposable
+    {
         private string mongo_collection = CommonAttribute.FlowControlOneBvc[0];
         private string mongo_db = CommonAttribute.FlowControlOneBvc[1];
         private string mongo_conn = CommonAttribute.FlowControlOneBvc[2];
         private int maxfilenum = Int32.Parse(CommonAttribute.FlowControlOneBvc[3]);
 
-        public MongoCrud<FlowControlOneBvc> mongo_fcob;
-
+        public MongoCrud<FlowControlOneBvcDocument> mongo_fcob;
 
         public FlowControlOneBvc()
         {
-            mongo_fcob = new MongoCrud<FlowControlOneBvc>(mongo_conn, mongo_db, mongo_collection);
+            mongo_fcob = new MongoCrud<FlowControlOneBvcDocument>(mongo_conn, mongo_db, mongo_collection);
         }
         #region Implementing IDisposable and the Dispose Pattern Properly
         private bool disposed = false; // to detect redundant calls
@@ -101,7 +102,7 @@ namespace OfflineInspect.FollowControl
 
             Parallel.ForEach(fc, p =>
             {
-                FlowControlOneBvc fcob = new FlowControlOneBvc();
+                FlowControlOneBvcDocument fcob = new FlowControlOneBvcDocument();
                 fcob._id = p.FileNum * 100000000 + p.PacketNum;
                 fcob.tlli = p.bssgp_tlli;
                 fcob.Flow_Control_time = DateTime.Parse(p.Flow_Control_time);

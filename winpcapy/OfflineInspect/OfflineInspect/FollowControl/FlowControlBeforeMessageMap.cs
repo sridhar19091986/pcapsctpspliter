@@ -5,9 +5,9 @@ using System.Text;
 using OfflineInspect.Mongo;
 using OfflineInspect.CommonTools;
 
-namespace OfflineInspect.FollowControl
+namespace OfflineInspect.FlowControl
 {
-    public class FlowControlBeforeMessageMap : CommonToolx, IDisposable
+    public class FlowControlBeforeMessageMapDocument
     {
         public object _id;
         public string fcBeforMsgs;
@@ -17,16 +17,18 @@ namespace OfflineInspect.FollowControl
         public double bucket_size_avg;
         public double leak_rate;
         public double full_rate_avg;
-
+    }
+    public class FlowControlBeforeMessageMap : CommonToolx, IDisposable
+    {
         private string mongo_collection = CommonAttribute.FlowControlBeforeMessageMap[0];
         private string mongo_db = CommonAttribute.FlowControlBeforeMessageMap[1];
         private string mongo_conn = CommonAttribute.FlowControlBeforeMessageMap[2];
 
-        public MongoCrud<FlowControlBeforeMessageMap> mongo_fcbmm;
+        public MongoCrud<FlowControlBeforeMessageMapDocument> mongo_fcbmm;
 
         public FlowControlBeforeMessageMap()
         {
-            mongo_fcbmm = new MongoCrud<FlowControlBeforeMessageMap>(mongo_conn, mongo_db, mongo_collection);
+            mongo_fcbmm = new MongoCrud<FlowControlBeforeMessageMapDocument>(mongo_conn, mongo_db, mongo_collection);
         }
         #region Implementing IDisposable and the Dispose Pattern Properly
         private bool disposed = false; // to detect redundant calls
@@ -72,7 +74,7 @@ namespace OfflineInspect.FollowControl
             var fcBeforMsgs = fcbm.mongo_fcbm.ListT;
             var dborders = from p in fcBeforMsgs
                            group p by p.fcb_msg into ttt
-                           select new FlowControlBeforeMessageMap
+                           select new FlowControlBeforeMessageMapDocument
                            {
                                _id = GenerateId(),
                                fcBeforMsgs = ttt.Key,

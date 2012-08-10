@@ -25,9 +25,9 @@ using System.Data.Objects;
 using OfflineInspect.CommonTools;
 using System.Threading.Tasks;
 
-namespace OfflineInspect.FollowControl
+namespace OfflineInspect.FlowControl
 {
-    public class FlowControlMapMs : IDisposable
+    public class FlowControlMapMsDocument
     {
         public object _id;
         public int? BeginFrameNum;
@@ -45,18 +45,19 @@ namespace OfflineInspect.FollowControl
         public string down_total_len;
         public string down_packet_rate;
         public string fcm_time;
-
+    }
+    public class FlowControlMapMs : IDisposable
+    {
         private string mongo_collection = CommonAttribute.FlowControlMapMs[0];
         private string mongo_db = CommonAttribute.FlowControlMapMs[1];
         private string mongo_conn = CommonAttribute.FlowControlMapMs[2];
         private string fc_msg = CommonAttribute.FlowControlMapMs[3];
 
-
-        public MongoCrud<FlowControlMapMs> mongo_fcmm;
+        public MongoCrud<FlowControlMapMsDocument> mongo_fcmm;
 
         public FlowControlMapMs()
         {
-            mongo_fcmm = new MongoCrud<FlowControlMapMs>(mongo_conn, mongo_db, mongo_collection);
+            mongo_fcmm = new MongoCrud<FlowControlMapMsDocument>(mongo_conn, mongo_db, mongo_collection);
         }
         #region Implementing IDisposable and the Dispose Pattern Properly
         private bool disposed = false; // to detect redundant calls
@@ -119,7 +120,7 @@ namespace OfflineInspect.FollowControl
             {
                 if (ttt.Where(e => e.Flow_Control_MsgType == fc_msg).Count() > 0)
                 {
-                    FlowControlMapMs fcmm = new FlowControlMapMs();
+                    FlowControlMapMsDocument fcmm = new FlowControlMapMsDocument();
                     fcmm._id = ttt.Key;
                     fcmm.BeginFrameNum = ttt.Key;
                     //ttt.Key.bssgp_tlli,

@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace OfflineInspect.FollowControl
+namespace OfflineInspect.FlowControl
 {
     //mongo_collection , mongo_db, mongo_conn, maxfilenum
     public class CommonAttribute

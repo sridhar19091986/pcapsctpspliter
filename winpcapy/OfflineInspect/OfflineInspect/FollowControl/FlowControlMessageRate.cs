@@ -8,9 +8,9 @@ using EntitySqlTable.SqlServer.ip209.GuangZhou.GbFlowControl;
 using EntitySqlTable.SqlServer.ip209.GuangZhou.GbFlowControlms;
 using System.Data.Objects;
 
-namespace OfflineInspect.FollowControl
+namespace OfflineInspect.FlowControl
 {
-    public class FlowControlMessageRate : CommonToolx, IDisposable
+    public class FlowControlMessageRateDocument
     {
         public object _id;
         public string message_type;
@@ -20,16 +20,18 @@ namespace OfflineInspect.FollowControl
         public int? size;
         public int? size_total;
         public double? size_percent;
-
+    }
+    public class FlowControlMessageRate : CommonToolx, IDisposable
+    {
         private string mongo_collection = CommonAttribute.FlowControlMessageRate[0];
         private string mongo_db = CommonAttribute.FlowControlMessageRate[1];
         private string mongo_conn = CommonAttribute.FlowControlMessageRate[2];
 
-        public MongoCrud<FlowControlMessageRate> mongo_fcmr;
+        public MongoCrud<FlowControlMessageRateDocument> mongo_fcmr;
 
         public FlowControlMessageRate()
         {
-            mongo_fcmr = new MongoCrud<FlowControlMessageRate>(mongo_conn, mongo_db, mongo_collection);
+            mongo_fcmr = new MongoCrud<FlowControlMessageRateDocument>(mongo_conn, mongo_db, mongo_collection);
         }
         #region Implementing IDisposable and the Dispose Pattern Properly
         private bool disposed = false; // to detect redundant calls
@@ -75,7 +77,7 @@ namespace OfflineInspect.FollowControl
             var size_t = fcommongo.Sum(e => e.ip_len);
             var query = from p in fcommongo
                         group p by p.Flow_Control_MsgType into ttt
-                        select new FlowControlMessageRate
+                        select new FlowControlMessageRateDocument
                         {
                             _id = GenerateId(),
                             message_type = ttt.Key,
