@@ -25,9 +25,9 @@ using System.Data.Objects;
 using OfflineInspect.CommonTools;
 using System.Threading.Tasks;
 
-namespace OfflineInspect.FollowControl
+namespace OfflineInspect.FlowControl
 {
-    public class FlowControlOneMs : IDisposable
+    public class FlowControlOneMsDocument
     {
         public object _id;
         public int? BeginFrameNum;
@@ -39,18 +39,19 @@ namespace OfflineInspect.FollowControl
         public double bucket_size;
         public double leak_rate;
         public double bucket_ratio;//???
-
+    }
+    public class FlowControlOneMs : IDisposable
+    {
         private string mongo_collection = CommonAttribute.FlowControlOneMs[0];
         private string mongo_db = CommonAttribute.FlowControlOneMs[1];
         private string mongo_conn = CommonAttribute.FlowControlOneMs[2];
         private int maxfilenum = Int32.Parse(CommonAttribute.FlowControlOneMs[3]);
 
-        public MongoCrud<FlowControlOneMs> mongo_fcom;
-
+        public MongoCrud<FlowControlOneMsDocument> mongo_fcom;
 
         public FlowControlOneMs()
         {
-            mongo_fcom = new MongoCrud<FlowControlOneMs>(mongo_conn, mongo_db, mongo_collection);
+            mongo_fcom = new MongoCrud<FlowControlOneMsDocument>(mongo_conn, mongo_db, mongo_collection);
         }
         #region Implementing IDisposable and the Dispose Pattern Properly
         private bool disposed = false; // to detect redundant calls
@@ -129,7 +130,7 @@ namespace OfflineInspect.FollowControl
 
             Parallel.ForEach(fcms, p =>
                 {
-                    FlowControlOneMs fcom = new FlowControlOneMs();
+                    FlowControlOneMsDocument fcom = new FlowControlOneMsDocument();
                     fcom._id = (int)p.PacketNum;
                     fcom.BeginFrameNum = p.BeginFrameNum;
                     fcom.Flow_Control_time = DateTime.Parse(p.Flow_Control_time);

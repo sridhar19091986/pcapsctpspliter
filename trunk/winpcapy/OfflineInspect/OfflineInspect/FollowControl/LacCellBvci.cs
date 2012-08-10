@@ -22,9 +22,9 @@ using EntitySqlTable.SqlServer.ip209.GuangZhou.GbFlowControl;
 using OfflineInspect.CommonTools;
 
 
-namespace OfflineInspect.FollowControl
+namespace OfflineInspect.FlowControl
 {
-    public class LacCellBvci : CommonToolx, IDisposable
+    public class LacCellBvciDocument
     {
         public object _id;
         public string src;
@@ -32,16 +32,18 @@ namespace OfflineInspect.FollowControl
         public string bvci;
         public string lac_cell;
         public int cnt;
-
+    }
+    public class LacCellBvci : CommonToolx, IDisposable
+    {
         private string mongo_collection = CommonAttribute.LacCellBvci[0];
         private string mongo_db = CommonAttribute.LacCellBvci[1];
         private string mongo_conn = CommonAttribute.LacCellBvci[2];
 
-        public  MongoCrud<LacCellBvci> mongo_lac_cell_bvci;
+        public MongoCrud<LacCellBvciDocument> mongo_lac_cell_bvci;
 
         public LacCellBvci()
         {
-            mongo_lac_cell_bvci = new MongoCrud<LacCellBvci>(mongo_conn, mongo_db, mongo_collection);
+            mongo_lac_cell_bvci = new MongoCrud<LacCellBvciDocument>(mongo_conn, mongo_db, mongo_collection);
         }
         #region Implementing IDisposable and the Dispose Pattern Properly
         private bool disposed = false; // to detect redundant calls
@@ -99,7 +101,7 @@ namespace OfflineInspect.FollowControl
                      where p.bssgp_lac != null
                      where p.ip_src_host != null
                      where p.ip_dst_host != null
-                     select new LacCellBvci
+                     select new LacCellBvciDocument
                      {
                          _id = GenerateId(),
                          lac_cell = p.bssgp_lac.ToString() + "-" + p.bssgp_ci.ToString(),

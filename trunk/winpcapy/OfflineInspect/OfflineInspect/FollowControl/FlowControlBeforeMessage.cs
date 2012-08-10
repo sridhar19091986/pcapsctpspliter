@@ -7,11 +7,11 @@ using OfflineInspect.CommonTools;
 using EntitySqlTable.SqlServer.ip209.GuangZhou.GbFlowControl;
 using System.Data.Objects;
 using MongoDB.Driver;
-using OfflineInspect.FollowControl;
+using OfflineInspect.FlowControl;
 
-namespace OfflineInspect.FollowControl
+namespace OfflineInspect.FlowControl
 {
-    public class FlowControlBeforeMessage : CommonToolx, IDisposable
+    public class FlowControlBeforeMessageDocument
     {
         public object _id;
         public double bssgp_ms_bucket_size;
@@ -24,17 +24,19 @@ namespace OfflineInspect.FollowControl
         public int fc_packetnum;
         public DateTime? fc_packettime;
         public string fc_msg;
-
+    }
+    public class FlowControlBeforeMessage : CommonToolx, IDisposable
+    {
         private string mongo_collection = CommonAttribute.FlowControlBeforeMessage[0];
         private string mongo_db = CommonAttribute.FlowControlBeforeMessage[1];
         private string mongo_conn = CommonAttribute.FlowControlBeforeMessage[2];
         private string msfc_msg = CommonAttribute.FlowControlBeforeMessage[3];
 
-        public MongoCrud<FlowControlBeforeMessage> mongo_fcbm;
+        public MongoCrud<FlowControlBeforeMessageDocument> mongo_fcbm;
 
         public FlowControlBeforeMessage()
         {
-            mongo_fcbm = new MongoCrud<FlowControlBeforeMessage>(mongo_conn, mongo_db, mongo_collection);
+            mongo_fcbm = new MongoCrud<FlowControlBeforeMessageDocument>(mongo_conn, mongo_db, mongo_collection);
         }
         #region Implementing IDisposable and the Dispose Pattern Properly
         private bool disposed = false; // to detect redundant calls
@@ -101,7 +103,7 @@ namespace OfflineInspect.FollowControl
                         .OrderByDescending(e => e.PacketNum).FirstOrDefault();
                     if (fcb != null)
                     {
-                        FlowControlBeforeMessage fcbm = new FlowControlBeforeMessage();
+                        FlowControlBeforeMessageDocument fcbm = new FlowControlBeforeMessageDocument();
 
                         fcbm._id = m.Key;
 
