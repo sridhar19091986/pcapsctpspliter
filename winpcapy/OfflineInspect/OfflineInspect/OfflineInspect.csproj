@@ -93,6 +93,7 @@
     <Compile Include="N201UXID\N201UXIDRate.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="ReTransmission\TlliTcpSession.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

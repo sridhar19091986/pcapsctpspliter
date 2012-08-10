@@ -19,7 +19,6 @@ namespace ViewInspect
             InitializeComponent();
         }
 
-
         #region FlowControlView
         //FlowControlOneBvc
         private void navBarItem1_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
@@ -272,12 +271,10 @@ namespace ViewInspect
 
         #endregion
 
-
-
         #region  MultiInerfaceView
 
 
-        #endregion
+      
 
         private void navBarItem10_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
         {
@@ -309,6 +306,9 @@ namespace ViewInspect
             gridView2.OptionsView.ColumnAutoWidth = true;
         }
 
+        #endregion
+
+        #region tcp、llc重传和丢包
         private void navBarItem14_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
         {
             TlliTcpSession tts = new TlliTcpSession();
@@ -317,77 +317,41 @@ namespace ViewInspect
                         {
                             p._id,
                             p.session_id,
+                            p.imsi,
                             p.bsc_bvci,
                             p.lac_ci,
-                            p.bsc_ip,
-                            p.ci,
+                            p.mscbsc_ip_count,
                             p.direction,
-                            p.seq_tcp_min,
-                            p.seq_nxt_max,
                             p.ip_total_aggre,
                             p.seq_total_count,
+                            p.seq_distinct_count,
                             p.seq_total_aggre,
                             p.seq_total_reduce,
                             p.seq_total_lost,
+                            p.seq_repeat_rate,
                             p.duration,
                             p.seq_total_aggre_rate,
-                     
-
-                            p.ip_addr_aggre,
-                            p.ip2_addr_aggre,
                             p.ip_ttl_aggre,
                             p.ip2_ttl_aggre,
                             p.ip_flags_mf,
                             p.ip2_flags_mf,
                             p.tcp_flags_cwr,
                             p.tcp_win_size,
-                         
                             p.tcp_port_aggre,
                             p.sndcp_m,
                             p.tcp_need_segment,
                             p.msg_aggre,
-
+                            p.ip_addr_aggre,
+                            p.ip2_addr_aggre,
+                            p.seq_tcp_min,
+                            p.seq_nxt_max,
+                            p.mscbsc_ip_aggre,
                             p.tcp_seq_aggre,
                             p.tcp_nxt_aggre,
-                            //p.ip_aggre,
-                            //p.ip2_aggre,
-                            //p.llc_aggre,
-                            //p.msg_aggre,
-                            //p.tcp_aggre,
-                            //p.seq_total_lost,
-                            //p.seq_total_aggre,
-                            //p.seq_total_reduce,
-                            //p.down_rate,
-                            //p.duration,
-                            //p.headersize,
-                            //p.imsi,
-                            //p.ip_rate,
-                            //p.ip_total,
-                            //p.ip2_min_len,
-                            //p.ip2_rate,
-                            //p.ip2_total,
-                            //p.lac,
-                            //p.llc_cnt,
-                            //p.llc_max,
-                            //p.llc_min,
-                            //p.packet_count,
-                            //p.packet_count_repeat,
-                            //p.packet_discard_total,
-                            //p.packet_sack_total,
-                            //p.seq_ip2,
-                            //p.seq_max,
-                            //p.seq_min,
-                            ////p.seq_nxt,
-                            //p.seq_rate,
-                            ////p.seq_total,
-                            //p.seq_totals,
-                            //p.session_id
                         };
             clearColumns3();
-            var dborder = query.OrderByDescending(e => e._id).Take(100);
+            var dborder = query.OrderBy(e => e.session_id).Take(1000);
             gridControl3.DataSource = dborder.AsParallel().ToList();
-            //gridView3.OptionsView.ColumnAutoWidth = false;
-            //gridView3.OptionsView.ShowViewCaption= true;
             gridView3.OptionsView.ColumnAutoWidth = false;
             gridView3.BestFitColumns();
         }
@@ -411,6 +375,35 @@ namespace ViewInspect
             gridView3.OptionsView.ColumnAutoWidth = false;
             gridView3.BestFitColumns();
         }
+
+        private void navBarItem16_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
+        {
+            TlliLLCSession tls = new TlliLLCSession();
+            var query = from p in tls.mongo_tls.QueryMongo()
+                        select new
+                        {
+                            p._id,
+                            p.session_id,
+                            p.imsi,
+                            p.bsc_bvci,
+                            p.lac_ci,
+                            p.mscbsc_ip_count,
+                            p.direction,
+                            p.duration,
+                            p.llc_nu_continue,
+                            p.llc_nu_count,
+                            p.msg_aggre,
+                            p.llc_nu_aggre,
+
+
+                        };
+            clearColumns3();
+            var dborder = query.OrderBy(e => e.session_id).Take(1000);
+            gridControl3.DataSource = dborder.AsParallel().ToList();
+            gridView3.OptionsView.ColumnAutoWidth = false;
+            gridView3.BestFitColumns();
+        } 
+        #endregion
     }
 }
 
