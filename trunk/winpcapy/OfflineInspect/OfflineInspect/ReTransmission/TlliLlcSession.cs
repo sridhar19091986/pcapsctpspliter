@@ -34,7 +34,7 @@ namespace OfflineInspect.ReTransmission
     public class TlliLLCSessionDocument
     {
         public object _id;
-        public int? session_id;
+        public string session_id;
         public string bsc_bvci;
         public string lac_ci;
         public string mscbsc_ip_aggre;
@@ -98,11 +98,11 @@ namespace OfflineInspect.ReTransmission
         public void CreateCollection(int filenum)
         {
             var llcsession = gb.Gb_LLC_ReTransmission.Where(e => e.BeginFileNum == filenum);
-            CreateTable("Up", llcsession);
-            CreateTable("Down", llcsession);
+            CreateTable("Up", llcsession, filenum);
+            CreateTable("Down", llcsession, filenum);
         }
 
-        public void CreateTable(string direction, IEnumerable<Gb_LLC_ReTransmission> gb_llc_retrans)
+        public void CreateTable(string direction, IEnumerable<Gb_LLC_ReTransmission> gb_llc_retrans, int filenum)
         {
             int packet_cnt = gb_llc_retrans.Select(e => e.BeginFrameNum).Distinct().Count();
 
@@ -127,7 +127,7 @@ namespace OfflineInspect.ReTransmission
 
                     #region tcp会话的基础信息，callid/imsi/lac/cell/bvci/duration/
                     llcs._id = GenerateId();
-                    llcs.session_id = (int)m.Key;
+                    llcs.session_id = filenum.ToString() + "-" + m.Key.Value.ToString();
                     llcs.direction = direction;
                     llcs.imsi = m.Where(e => e.bssgp_imsi != null).Select(e => e.bssgp_imsi).FirstOrDefault();
                     var src = m.Select(e => e.ip_src_host);

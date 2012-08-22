@@ -274,7 +274,7 @@ namespace ViewInspect
         #region  MultiInerfaceView
 
 
-      
+
 
         private void navBarItem10_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
         {
@@ -341,8 +341,10 @@ namespace ViewInspect
                             p.sndcp_m,
                             p.tcp_need_segment,
                             p.msg_aggre,
-                            p.ip_addr_aggre,
-                            p.ip2_addr_aggre,
+                            p.ip_src_aggre,
+                            p.ip_dst_aggre,
+                            p.ip2_src_aggre,
+                            p.ip2_dst_aggre,
                             p.seq_tcp_min,
                             p.seq_nxt_max,
                             p.mscbsc_ip_aggre,
@@ -394,15 +396,13 @@ namespace ViewInspect
                             p.llc_nu_count,
                             p.msg_aggre,
                             p.llc_nu_aggre,
-
-
                         };
             clearColumns3();
             var dborder = query.OrderBy(e => e.session_id).Take(1000);
             gridControl3.DataSource = dborder.AsParallel().ToList();
             gridView3.OptionsView.ColumnAutoWidth = false;
             gridView3.BestFitColumns();
-        } 
+        }
         #endregion
     }
 }
