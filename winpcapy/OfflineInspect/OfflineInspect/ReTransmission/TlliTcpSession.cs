@@ -55,15 +55,17 @@ namespace OfflineInspect.ReTransmission
          * 
          * */
         public decimal? seq_total_lost;
-        public int? session_id;
+        public string session_id;
         public decimal seq_tcp_min;
         public double seq_total_aggre_rate;
         public double seq_total_count;
         public int? ip_total_aggre;
         public double? seq_repeat_rate;
         public int? seq_distinct_count;
-        public string ip_addr_aggre;
-        public string ip2_addr_aggre;
+        public string ip_src_aggre;
+        public string ip2_src_aggre;
+        public string ip_dst_aggre;
+        public string ip2_dst_aggre;
         public string ip_ttl_aggre;
         public string ip2_ttl_aggre;
         public string ip_flags_mf;
@@ -117,6 +119,7 @@ namespace OfflineInspect.ReTransmission
         }
         #endregion
 
+        //按照文件号进行分页
         public void CreateCollection()
         {
             for (int j = 0; j < maxfilenum; j++)
@@ -126,23 +129,25 @@ namespace OfflineInspect.ReTransmission
         public void CreateCollection(int filenum)
         {
             var tcpsession = gb.Gb_TCP_ReTransmission.Where(e => e.BeginFileNum == filenum);
-            CreateTable("Up", tcpsession);
-            CreateTable("Down", tcpsession);
+            CreateTable("Up", tcpsession, filenum);
+            CreateTable("Down", tcpsession, filenum);
         }
 
-        public void CreateTable(string direction, IEnumerable<Gb_TCP_ReTransmission> gb_tcp_retrans)
+        //对每个文件号中的开始帧号进行分页
+        public void CreateTable(string direction, IEnumerable<Gb_TCP_ReTransmission> gb_tcp_retrans, int filenum)
         {
             int packet_cnt = gb_tcp_retrans.Select(e => e.BeginFrameNum).Distinct().Count();
 
             int step = packet_cnt / size + 1;
 
+            //执行帧号分页
             for (int i = 0; i < step; i++)
             {
                 var tcp_session = gb_tcp_retrans.Where(e => e.BeginFrameNum >= i * size && e.BeginFrameNum < (i + 1) * size);
 
                 var tcp_sessions = tcp_session.ToLookup(e => e.BeginFrameNum);
 
-                //tcp的会话过程
+                //帧号分页中的每个tcp的会话过程
                 foreach (var m in tcp_sessions)
                 {
                     #region 会话过滤，filter
@@ -155,7 +160,7 @@ namespace OfflineInspect.ReTransmission
 
                     #region tcp会话的基础信息，callid/imsi/lac/cell/bvci/duration/
                     tcps._id = GenerateId();
-                    tcps.session_id = (int)m.Key;
+                    tcps.session_id = filenum.ToString() + "-" + m.Key.Value.ToString();
                     tcps.direction = direction;
                     tcps.imsi = m.Where(e => e.bssgp_imsi != null).Select(e => e.bssgp_imsi).FirstOrDefault();
                     var src = m.Select(e => e.ip_src_host);
@@ -187,8 +192,10 @@ namespace OfflineInspect.ReTransmission
                     tcps.seq_repeat_rate = 1.0 * (tcps.seq_total_count - tcps.seq_distinct_count) / tcps.seq_total_count;
                     tcps.tcp_seq_aggre = pd_no_3tcp.Select(e => e.tcp_seq).Aggregate((a, b) => a + "," + b);
                     //第1层ip地址，第2层ip地址
-                    tcps.ip_addr_aggre = pd_no_3tcp.Select(e => e.ip_src_host + "-" + e.ip_dst_host).Distinct().Aggregate((a, b) => a + "," + b);
-                    tcps.ip2_addr_aggre = pd_no_3tcp.Select(e => e.ip2_src_host + "-" + e.ip2_dst_host).Distinct().Aggregate((a, b) => a + "," + b);
+                    tcps.ip_src_aggre = pd_no_3tcp.Select(e => e.ip_src_host).Distinct().Aggregate((a, b) => a + "," + b);
+                    tcps.ip2_src_aggre = pd_no_3tcp.Select(e => e.ip2_src_host).Distinct().Aggregate((a, b) => a + "," + b);
+                    tcps.ip_dst_aggre = pd_no_3tcp.Select(e => e.ip_dst_host).Distinct().Aggregate((a, b) => a + "," + b);
+                    tcps.ip2_dst_aggre = pd_no_3tcp.Select(e => e.ip2_dst_host).Distinct().Aggregate((a, b) => a + "," + b);
                     //ttl
                     tcps.ip_ttl_aggre = pd_no_3tcp.Select(e => e.ip_ttl).Distinct().Aggregate((a, b) => a + "," + b);
                     tcps.ip2_ttl_aggre = pd_no_3tcp.Select(e => e.ip2_ttl).Distinct().Aggregate((a, b) => a + "," + b);
