@@ -20,6 +20,7 @@ using System.Data.Objects;
 using OfflineInspect.Mongo;
 using EntitySqlTable.SqlServer.Local.Gb_TCP_ReTransmission;
 using OfflineInspect.CommonTools;
+using System.Data.Objects.SqlClient;
 
 
 
@@ -33,6 +34,8 @@ namespace OfflineInspect.ReTransmission
         public string bvci;
         public string lac_cell;
         public int cnt;
+        public string msg;
+        public string callid;
     }
 
     public class LacCellBvci : CommonToolx, IDisposable
@@ -95,6 +98,10 @@ namespace OfflineInspect.ReTransmission
                          ttt.Key.ip_src_host,
                          ttt.Key.ip_dst_host,
                          cnt = ttt.Count(),
+                         msg = ttt.Select(e => e.TCP_MsgType).Distinct(),
+                         //http://stackoverflow.com/questions/1066760/problem-with-converting-int-to-string-in-linq-to-entities
+                         callid = ttt.Select(e => SqlFunctions.StringConvert((double)e.BeginFileNum.Value).Trim()
+                             + "-" + SqlFunctions.StringConvert((double)e.BeginFrameNum.Value).Trim()).Distinct()
                      };
 
             var bv = from p in fc.ToList()
@@ -111,6 +118,8 @@ namespace OfflineInspect.ReTransmission
                          dst = p.ip_dst_host,
                          bvci = p.nsip_bvci.ToString(),
                          cnt = p.cnt,
+                         msg = p.msg.Aggregate((a, b) => a + "," + b),
+                         callid = p.callid.Aggregate((a, b) => a + "," + b),
                      };
             mongo_lac_cell_bvci.BulkMongo(bv.ToList(), true);
             //BulkMongo(bv.ToList());

@@ -33,19 +33,26 @@ namespace OfflineInspect.ReTransmission
 {
     public class TlliLLCSessionDocument
     {
+        #region 维度
         public object _id;
         public string session_id;
-        public string bsc_bvci;
-        public string lac_ci;
-        public string mscbsc_ip_aggre;
-        public int mscbsc_ip_count;
-        public string direction;
-        public double duration;
         public string imsi;
-        public int llc_nu_count;
+        public string lac_ci;
+        public string direction;
+        #endregion
+
+        public string bsc_bvci;
+        public string mscbsc_ip_aggre;
         public string llc_nu_aggre;
         public string msg_aggre;
-        public Int16 llc_nu_continue;
+
+        #region 度量
+        public double duration;
+        public int llc_nu_count;
+        public int mscbsc_ip_count;
+        public Int16 llc_nu_discard; //llc丢包用户比例
+        #endregion
+
     }
 
     public class TlliLLCSession : CommonToolx, IDisposable
@@ -147,16 +154,16 @@ namespace OfflineInspect.ReTransmission
                     var nu = pd_llc.OrderBy(e => e.FileNum).ThenBy(e => e.PacketNum).Select(e => e.llcgprs_nu);
                     llcs.llc_nu_count = nu.Count();
                     llcs.llc_nu_aggre = nu.Select(e => Convert.ToString(e)).Aggregate((a, b) => a + "," + b);
-                    Int16 continu = 1;
+                    Int16 continu = 0;
                     for (int j = 0; j < nu.Count() - 2; j++)
                     {
                         if (nu.ElementAt(j + 1) - nu.ElementAt(j) != 1)
                             if (nu.ElementAt(j + 1) - nu.ElementAt(j) != 0 - 511)
                             {
-                                continu = 0; break;
+                                continu = 1; break;
                             }
                     }
-                    llcs.llc_nu_continue = continu;
+                    llcs.llc_nu_discard = continu;
                     llcs.msg_aggre = pd_llc.Select(e => e.LLC_MsgType).Distinct().Aggregate((a, b) => a + "," + b);
                     #endregion
 
