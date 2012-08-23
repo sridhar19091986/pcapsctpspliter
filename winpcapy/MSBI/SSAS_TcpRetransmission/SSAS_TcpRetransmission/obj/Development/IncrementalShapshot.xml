@@ -1,0 +1,82 @@
+﻿<DeploymentSnapshot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0">
+  <Target>
+    <Database>SSAS_TcpRetransmission</Database>
+    <Server>localhost</Server>
+    <ConnectionString>DataSource=localhost;Timeout=0</ConnectionString>
+  </Target>
+  <Options>
+    <TransactionalDeployment>false</TransactionalDeployment>
+    <PartitionDeployment>DeployPartitions</PartitionDeployment>
+    <RoleDeployment>DeployRolesRetainMembers</RoleDeployment>
+    <ProcessingOption>DoNotProcess</ProcessingOption>
+    <OutputScript></OutputScript>
+    <ImpactAnalysisFile></ImpactAnalysisFile>
+    <ConfigurationSettingsDeployment>Deploy</ConfigurationSettingsDeployment>
+    <OptimizationSettingsDeployment>Deploy</OptimizationSettingsDeployment>
+    <WriteBackTableCreation>UseExisting</WriteBackTableCreation>
+  </Options>
+  <Snapshot>
+    <ObjectSnapshots>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.RelationalDataSource</Type>
+        <TimeStamp>N8wtf2VueDL6XQh0vpC8mXclzPo=2012-08-23 12:11:462012-08-23 12:11:44</TimeStamp>
+        <ID>
+          <String>Ssis Gb</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.DataSourceView</Type>
+        <TimeStamp>aIZORHcwIk/ro5VFUnJ2Zz6r+oo=2012-08-23 17:10:062012-08-23 12:16:12</TimeStamp>
+        <ID>
+          <String>Ssis Gb</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>g89WUXbNjP4Jfb6QPKp8H17AiDI=2012-08-23 14:29:522012-08-23 14:29:51</TimeStamp>
+        <ID>
+          <String>Tcp Retransmission</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>omgVIoEaOsy457gWWcc1kwqVjmc=2012-08-23 17:14:062012-08-23 17:14:03</TimeStamp>
+        <ID>
+          <String>Llc Session Discard</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Cube</Type>
+        <TimeStamp>9HetdyjHFX87ndaxhSirmCTk/lE=2012-08-23 15:39:222012-08-23 12:17:46Kh60X0PTrDbxVDuZyfKhBS1kMCY=2012-08-23 12:21:282012-08-23 12:17:47</TimeStamp>
+        <ID>
+          <String>Ssis Gb</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Cube</Type>
+        <TimeStamp>i1Npe+jS5RQ7Jarj2TiCybqy2w0=2012-08-23 17:38:002012-08-23 17:10:28/DXOEuzmk+yXHX4QqPRFajx57uY=2012-08-23 17:13:062012-08-23 17:10:28</TimeStamp>
+        <ID>
+          <String>Ssis Gb 1</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Role</Type>
+        <TimeStamp>R7HCD/UtgFN78L80mGWugEpHPog=2012-08-23 12:32:502012-08-23 12:32:12</TimeStamp>
+        <ID>
+          <String>Role</String>
+        </ID>
+      </ObjectSnapshot>
+    </ObjectSnapshots>
+    <DatabaseSnapshot>
+      <Type>Microsoft.AnalysisServices.Database</Type>
+      <TimeStamp>f/ZPheohptJrwkuasHQOrJb7onM=2012-08-23 12:32:502012-08-23 12:11:23</TimeStamp>
+      <ID>
+        <String>SSAS_TcpRetransmission</String>
+      </ID>
+    </DatabaseSnapshot>
+    <Granularity>Coarse</Granularity>
+  </Snapshot>
+  <AssemblyLocations />
+  <ProcessingComplete>true</ProcessingComplete>
+  <LastDeployed>2012-08-23T09:38:05Z</LastDeployed>
+</DeploymentSnapshot>

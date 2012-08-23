@@ -1,0 +1,205 @@
+﻿<DataSourceView xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="dc65e412-19e6-4169-bf1a-8c6e7255da42" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Ssis Gb</ID>
+  <Name>Ssis Gb</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:CurrentLayout</Name>
+      <Value>_ALL_TABLES_</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:NameMatchingCriteria</Name>
+      <Value>1</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:SchemaRestriction</Name>
+      <Value></Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:RetrieveRelationships</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:Layouts</Name>
+      <Value>
+        <Layouts xmlns="">
+          <Diagram>
+            <Name>_ALL_TABLES_</Name>
+            <DiagramLayout>
+              <dds>
+                <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="5" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-6868" scrolltop="-7269" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="22543" y="14737" backcolor="15334399" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+                  <font>
+                    <ddsxmlobjectstreamwrapper binary="018600009001905f010004cbcecce5" />
+                  </font>
+                  <mouseicon>
+                    <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+                  </mouseicon>
+                </diagram>
+                <layoutmanager>
+                  <ddsxmlobj />
+                </layoutmanager>
+                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="TcpRetransmission" left="0" top="0" logicalid="2" controlid="1" masterid="0" hint1="0" hint2="0" width="3572" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                  <control>
+                    <ddsxmlobjectstreaminitwrapper binary="00080000f40d000088130000" />
+                  </control>
+                  <layoutobject>
+                    <ddsxmlobj>
+                      <property name="LogicalObject" value="dbo_TcpRetransmission" vartype="8" />
+                    </ddsxmlobj>
+                  </layoutobject>
+                  <shape groupshapeid="0" groupnode="0" />
+                </ddscontrol>
+                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="LlcSessionDiscard" left="5261" top="-4802" logicalid="4" controlid="3" masterid="0" hint1="0" hint2="0" width="3545" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                  <control>
+                    <ddsxmlobjectstreaminitwrapper binary="00080000d90d000088130000" />
+                  </control>
+                  <layoutobject>
+                    <ddsxmlobj>
+                      <property name="LogicalObject" value="dbo_LlcSessionDiscard" vartype="8" />
+                    </ddsxmlobj>
+                  </layoutobject>
+                  <shape groupshapeid="0" groupnode="0" />
+                </ddscontrol>
+              </dds>
+</DiagramLayout>
+            <ShowRelationshipNames>False</ShowRelationshipNames>
+            <UseDiagramDefaultLayout>True</UseDiagramDefaultLayout>
+            <DiagramViewPortLeft>-6868</DiagramViewPortLeft>
+            <DiagramViewPortTop>-7269</DiagramViewPortTop>
+            <DiagramBoundingLeft>0</DiagramBoundingLeft>
+            <DiagramBoundingTop>0</DiagramBoundingTop>
+            <DiagramZoom>100</DiagramZoom>
+          </Diagram>
+        </Layouts>
+      </Value>
+    </Annotation>
+  </Annotations>
+  <DataSourceID>Ssis Gb</DataSourceID>
+  <Schema>
+    <xs:schema id="Ssis_x0020_Gb" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop">
+      <xs:element name="Ssis_x0020_Gb" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:design-time-name="37e5c43d-a4e2-420d-9d39-b5172ee5f05b">
+        <xs:complexType>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="dbo_TcpRetransmission" msprop:FriendlyName="TcpRetransmission" msprop:DbSchemaName="dbo" msprop:DbTableName="TcpRetransmission" msprop:design-time-name="d2818471-6341-44f6-b4c4-2d066e029361" msprop:TableType="Table">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="_id" msprop:FriendlyName="_id" msprop:DbColumnName="_id" msprop:design-time-name="416ecc14-dbe7-426e-ab7b-65ae02d13ffd" type="xs:double" minOccurs="0" />
+                  <xs:element name="session_id" msprop:FriendlyName="session_id" msprop:DbColumnName="session_id" msprop:design-time-name="a7451eaa-c327-4c48-b665-ab51c7d5ef59" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="imsi" msprop:FriendlyName="imsi" msprop:DbColumnName="imsi" msprop:design-time-name="3f77c83b-f7fe-458e-98ab-372a329bf0c6" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="lac_ci" msprop:FriendlyName="lac_ci" msprop:DbColumnName="lac_ci" msprop:design-time-name="9a5e50f0-5773-4bbf-999b-4595b4e58c10" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="ip2_ttl_aggre" msprop:FriendlyName="ip2_ttl_aggre" msprop:DbColumnName="ip2_ttl_aggre" msprop:design-time-name="07d438f4-9a65-4325-a3d6-007ec5c324da" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="direction" msprop:FriendlyName="direction" msprop:DbColumnName="direction" msprop:design-time-name="ced91b97-a0ce-4960-a5d6-4cb630aef275" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="ip_total_aggre" msprop:FriendlyName="ip_total_aggre" msprop:DbColumnName="ip_total_aggre" msprop:design-time-name="db6f0e2c-7b4b-4927-8bd3-72bdd575103f" type="xs:double" minOccurs="0" />
+                  <xs:element name="seq_total_aggre" msprop:FriendlyName="seq_total_aggre" msprop:DbColumnName="seq_total_aggre" msprop:design-time-name="9bebb328-aea8-43db-ac18-87f2a677115c" type="xs:double" minOccurs="0" />
+                  <xs:element name="seq_total_reduce" msprop:FriendlyName="seq_total_reduce" msprop:DbColumnName="seq_total_reduce" msprop:design-time-name="ffd7e95f-b9c0-4d01-9efb-3aae93a5d430" type="xs:double" minOccurs="0" />
+                  <xs:element name="seq_total_count" msprop:FriendlyName="seq_total_count" msprop:DbColumnName="seq_total_count" msprop:design-time-name="1de96af2-4ff2-41df-b287-dc02df99eebc" type="xs:double" minOccurs="0" />
+                  <xs:element name="seq_distinct_count" msprop:FriendlyName="seq_distinct_count" msprop:DbColumnName="seq_distinct_count" msprop:design-time-name="3a56777c-5beb-4981-8c80-00568099f01b" type="xs:double" minOccurs="0" />
+                  <xs:element name="seq_repeat_cnt" msprop:FriendlyName="seq_repeat_cnt" msprop:DbColumnName="seq_repeat_cnt" msprop:design-time-name="27429001-c0a0-4e55-bfe7-f8592b4e0510" type="xs:double" minOccurs="0" />
+                  <xs:element name="seq_total_lost" msprop:FriendlyName="seq_total_lost" msprop:DbColumnName="seq_total_lost" msprop:design-time-name="96eafce0-f196-4bd6-948f-35fa4d0edca9" type="xs:double" minOccurs="0" />
+                  <xs:element name="seq_total_repeat" msprop:FriendlyName="seq_total_repeat" msprop:DbColumnName="seq_total_repeat" msprop:design-time-name="e7a28fdb-e3dc-40e0-a163-53c392d97f78" type="xs:double" minOccurs="0" />
+                  <xs:element name="duration" msprop:FriendlyName="duration" msprop:DbColumnName="duration" msprop:design-time-name="6dea30e6-5c34-488c-9f56-003c8c230627" type="xs:double" minOccurs="0" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dbo_LlcSessionDiscard" msprop:FriendlyName="LlcSessionDiscard" msprop:DbSchemaName="dbo" msprop:DbTableName="LlcSessionDiscard" msprop:design-time-name="20e851d0-925d-4c74-8876-c96d1c1faaef" msprop:TableType="Table">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="_id" msprop:FriendlyName="_id" msprop:DbColumnName="_id" msprop:design-time-name="48715b31-030c-4090-b6cc-a038e6825554" type="xs:double" minOccurs="0" />
+                  <xs:element name="session_id" msprop:FriendlyName="session_id" msprop:DbColumnName="session_id" msprop:design-time-name="28fec072-3269-4bbe-95b5-d84b574b3b95" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="imsi" msprop:FriendlyName="imsi" msprop:DbColumnName="imsi" msprop:design-time-name="1bcaa15c-44cb-4bc9-9af9-0c0d83148d7d" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="bsc_bvci" msprop:FriendlyName="bsc_bvci" msprop:DbColumnName="bsc_bvci" msprop:design-time-name="96a1086c-09aa-461a-b75f-e839b90520e0" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="lac_ci" msprop:FriendlyName="lac_ci" msprop:DbColumnName="lac_ci" msprop:design-time-name="8fbc4d00-95cd-4128-98e1-80143f9370d4" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="mscbsc_ip_count" msprop:FriendlyName="mscbsc_ip_count" msprop:DbColumnName="mscbsc_ip_count" msprop:design-time-name="1de7ae62-1a26-4104-9f6e-6480492bb7d8" type="xs:double" minOccurs="0" />
+                  <xs:element name="direction" msprop:FriendlyName="direction" msprop:DbColumnName="direction" msprop:design-time-name="38d4a4cd-f91c-4ed1-90d0-8e61fbbbc59f" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="duration" msprop:FriendlyName="duration" msprop:DbColumnName="duration" msprop:design-time-name="db44bacc-e4e4-43ba-a1e4-1c18abe7a63c" type="xs:double" minOccurs="0" />
+                  <xs:element name="llc_nu_discard" msprop:FriendlyName="llc_nu_discard" msprop:DbColumnName="llc_nu_discard" msprop:design-time-name="58d31e28-8abe-4d82-b4ba-c1f7bd2f67bb" type="xs:double" minOccurs="0" />
+                  <xs:element name="llc_nu_count" msprop:FriendlyName="llc_nu_count" msprop:DbColumnName="llc_nu_count" msprop:design-time-name="4fa50841-a6df-4fa4-8c8c-d2923268f994" type="xs:double" minOccurs="0" />
+                  <xs:element name="msg_aggre" msprop:FriendlyName="msg_aggre" msprop:DbColumnName="msg_aggre" msprop:design-time-name="f2385848-1191-4548-aa0d-7888f378909c" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="4000" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="llc_nu_aggre" msprop:FriendlyName="llc_nu_aggre" msprop:DbColumnName="llc_nu_aggre" msprop:design-time-name="6a5f6134-ba2a-4e22-a65e-4e237cf5d89d" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="4000" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <diffgr:diffgram xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:diffgr="urn:schemas-microsoft-com:xml-diffgram-v1" />
+  </Schema>
+</DataSourceView>

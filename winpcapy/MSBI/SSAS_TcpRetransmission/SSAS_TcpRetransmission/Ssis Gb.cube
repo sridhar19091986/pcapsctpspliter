@@ -1,0 +1,360 @@
+﻿<Cube xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="2741e16f-59b7-43ec-96ff-da8efa76a917" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Ssis Gb</ID>
+  <Name>Ssis Gb</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+      <Value>
+        <dds xmlns="">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="5" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-5272" scrolltop="-1112" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="21908" y="13361" backcolor="15334399" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+            <font>
+              <ddsxmlobjectstreamwrapper binary="018600009001905f010004cbcecce5" />
+            </font>
+            <mouseicon>
+              <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+            </mouseicon>
+          </diagram>
+          <layoutmanager>
+            <ddsxmlobj />
+          </layoutmanager>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="TcpRetransmission" left="3188" top="2249" logicalid="3" controlid="1" masterid="0" hint1="0" hint2="0" width="3572" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="00080000f40d000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj />
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="TcpRetransmission" left="-4822" top="820" logicalid="4" controlid="2" masterid="0" hint1="0" hint2="0" width="3572" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="00080000f40d000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_TcpRetransmission" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+        </dds>
+      </Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>-5272</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>-1112</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>-4822</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>820</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Dimensions>
+    <Dimension dwd:design-time-name="1729b75f-22c7-486d-adda-4cdb301d45b8">
+      <ID>Tcp Retransmission</ID>
+      <Name>Tcp Retransmission</Name>
+      <DimensionID>Tcp Retransmission</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="2b0f23f8-4282-492f-b706-c07adf801423">
+          <AttributeID>Id</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="96ec1aa0-6dc5-4c6d-9420-e775bf2af904">
+          <AttributeID>Session Id</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="87487dc3-f71b-48eb-bda6-89e6f4da25f7">
+          <AttributeID>Imsi</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="a4afa4fc-9eeb-4f40-95d7-6b752a23c311">
+          <AttributeID>Lac Ci</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="29e53d71-ab22-4354-9739-af4b75afa997">
+          <AttributeID>Ip2 Ttl Aggre</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="07c570d1-1e62-49ca-912b-ac351b5a47a9">
+          <AttributeID>Direction</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
+  </Dimensions>
+  <MeasureGroups>
+    <MeasureGroup dwd:design-time-name="d201af85-7c12-426b-84ce-6d517a7ebb89">
+      <ID>Tcp Retransmission</ID>
+      <Name>Tcp Retransmission</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+      <State>Unprocessed</State>
+      <Measures>
+        <Measure dwd:design-time-name="8295c505-e136-4f31-808d-9398fb550f95">
+          <ID>Ip Total Aggre</ID>
+          <Name>Ip Total Aggre</Name>
+          <Source dwd:design-time-name="a806e822-d770-4ad6-ae3d-8f8aab1024ae">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="7f4509ed-52bb-4069-b6eb-4359e61b3e21">
+              <TableID>dbo_TcpRetransmission</TableID>
+              <ColumnID>ip_total_aggre</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="63f7b9cc-1ff8-427d-b21c-0b432859663b">
+          <ID>Seq Total Aggre</ID>
+          <Name>Seq Total Aggre</Name>
+          <Source dwd:design-time-name="2412ed47-cbbe-4154-9203-da0d364c6197">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="be1041e0-6d5a-41b5-b265-da22eb4dace7">
+              <TableID>dbo_TcpRetransmission</TableID>
+              <ColumnID>seq_total_aggre</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="5455465f-e566-4845-8d32-f2779ad8c648">
+          <ID>Seq Total Reduce</ID>
+          <Name>Seq Total Reduce</Name>
+          <Source dwd:design-time-name="9ea73ba7-dab6-42bc-b944-779535719a6e">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="79bfaded-11d0-4098-8d9c-a447928c7ecc">
+              <TableID>dbo_TcpRetransmission</TableID>
+              <ColumnID>seq_total_reduce</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="1c802907-53aa-4ebd-9f17-aab88d7ba095">
+          <ID>Seq Total Count</ID>
+          <Name>Seq Total Count</Name>
+          <Source dwd:design-time-name="e677608f-e2d4-4ef2-a567-82bd72a587b8">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="8cb607a3-d1b0-4141-8cc0-e57232528d52">
+              <TableID>dbo_TcpRetransmission</TableID>
+              <ColumnID>seq_total_count</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="c0724e80-87b6-4308-975b-f4a34e3ad36e">
+          <ID>Seq Distinct Count</ID>
+          <Name>Seq Distinct Count</Name>
+          <Source dwd:design-time-name="5c44aa84-b625-4f59-b16f-0964aea9f7b8">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="93fa75c5-8825-4f7c-a58e-cd8c00e6d93a">
+              <TableID>dbo_TcpRetransmission</TableID>
+              <ColumnID>seq_distinct_count</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="d463da80-0708-4ec2-bb8f-81d981a371c7">
+          <ID>Seq Repeat Cnt</ID>
+          <Name>Seq Repeat Cnt</Name>
+          <Source dwd:design-time-name="6603e482-a738-4ac0-bdd2-b6d1f73385dc">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="ea293778-74d0-4689-a9dc-c4e9561bee69">
+              <TableID>dbo_TcpRetransmission</TableID>
+              <ColumnID>seq_repeat_cnt</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="0ea4dc71-c6fa-4d92-b879-26c998010766">
+          <ID>Seq Total Lost</ID>
+          <Name>Seq Total Lost</Name>
+          <Source dwd:design-time-name="1eaf2f0c-9047-4569-933e-370c7d657df2">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="a4be3f46-159c-455f-abf9-0e8fcdcafbf2">
+              <TableID>dbo_TcpRetransmission</TableID>
+              <ColumnID>seq_total_lost</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="3d875f74-9409-47d5-aaed-088f32a3fa63">
+          <ID>Seq Total Repeat</ID>
+          <Name>Seq Total Repeat</Name>
+          <Source dwd:design-time-name="4289ffb3-1295-4ef5-9de1-46727c506998">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="c19a1e33-11a5-42d8-b5b6-c21f62cd94cf">
+              <TableID>dbo_TcpRetransmission</TableID>
+              <ColumnID>seq_total_repeat</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="b8a66235-84f6-487d-a45f-aadc579c810d">
+          <ID>Duration</ID>
+          <Name>Duration</Name>
+          <Source dwd:design-time-name="75ef1237-b821-40fb-abc1-05686f9dd5f1">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="3decb48b-917a-4cd3-92a9-c87b80746453">
+              <TableID>dbo_TcpRetransmission</TableID>
+              <ColumnID>duration</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="d7deac06-507e-4709-9ce0-787c139a3c05">
+          <ID>Tcp Retransmission 计数</ID>
+          <Name>Tcp Retransmission 计数</Name>
+          <AggregateFunction>Count</AggregateFunction>
+          <Source dwd:design-time-name="37add8cb-f286-43ff-a8ea-6c1d9902e796">
+            <DataType>Integer</DataType>
+            <DataSize>4</DataSize>
+            <Source xsi:type="RowBinding" dwd:design-time-name="78d7e127-e97c-4c9b-bc1b-97b17c83a09c">
+              <TableID>dbo_TcpRetransmission</TableID>
+            </Source>
+          </Source>
+        </Measure>
+      </Measures>
+      <StorageMode>Molap</StorageMode>
+      <ProcessingMode>Regular</ProcessingMode>
+      <Dimensions>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="2fd335ed-27ab-4b5f-8c81-5e2f0ebf5ec2">
+          <CubeDimensionID>Tcp Retransmission</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="63b0b468-f89f-4d05-85e9-ecb0e519d6d0">
+              <AttributeID>Id</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="825a847c-7273-4b9b-b295-1a08b12e4a70">
+                  <DataType>Double</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="f4ea6cd9-d388-41b2-b062-fccb70408204">
+                    <TableID>dbo_TcpRetransmission</TableID>
+                    <ColumnID>_id</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+      </Dimensions>
+      <Partitions />
+    </MeasureGroup>
+  </MeasureGroups>
+  <Source dwd:design-time-name="254f2566-13f2-4971-beca-8598cee516ce">
+    <DataSourceViewID>Ssis Gb</DataSourceViewID>
+  </Source>
+  <MdxScripts>
+    <MdxScript dwd:design-time-name="da5e8dd0-a726-4f1e-a408-60c4d805aa02">
+      <ID>MdxScript</ID>
+      <Name>MdxScript</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <Commands>
+        <Command>
+          <Text>/*
+CALCULATE 命令控制该多维数据集中叶单元的聚合。
+如果删除或修改该 CALCULATE 命令，会影响该多维数据集内的数据。
+只有手动指定如何聚合该多维数据集时才编辑该命令。
+*/
+CALCULATE;  
+CREATE MEMBER CURRENTCUBE.[Measures].[TCP传输速率]
+ AS [Measures].[Seq Total Aggre]/[Measures].[Duration], 
+VISIBLE = 1;   
+CREATE MEMBER CURRENTCUBE.[Measures].[TCP重传率]
+ AS [Measures].[Seq Total Repeat]/[Measures].[Seq Total Aggre], 
+VISIBLE = 1;   
+CREATE MEMBER CURRENTCUBE.[Measures].[TCP丢包率]
+ AS [Measures].[Seq Total Lost]/[Measures].[Seq Total Reduce], 
+VISIBLE = 1  ; </Text>
+        </Command>
+      </Commands>
+    </MdxScript>
+  </MdxScripts>
+  <Actions>
+    <Action xsi:type="DrillThroughAction" dwd:design-time-name="458efdc8-8427-401c-b501-1cd4b6a0a855">
+      <ID>钻取操作</ID>
+      <Name>钻取操作</Name>
+      <TargetType>Cells</TargetType>
+      <Target>MeasureGroupMeasures("Tcp Retransmission")</Target>
+      <Type>DrillThrough</Type>
+      <Columns>
+        <Column xsi:type="CubeAttributeBinding" dwd:design-time-name="df7a1b6c-31ee-4069-bad8-25369f96733a">
+          <CubeID>Ssis Gb</CubeID>
+          <CubeDimensionID>Tcp Retransmission</CubeDimensionID>
+          <AttributeID>Id</AttributeID>
+          <Type>All</Type>
+        </Column>
+        <Column xsi:type="CubeAttributeBinding" dwd:design-time-name="92fc46c5-24db-401d-a33c-fe89e9803f9b">
+          <CubeID>Ssis Gb</CubeID>
+          <CubeDimensionID>Tcp Retransmission</CubeDimensionID>
+          <AttributeID>Session Id</AttributeID>
+          <Type>All</Type>
+        </Column>
+        <Column xsi:type="CubeAttributeBinding" dwd:design-time-name="0521870e-7326-48d5-aca6-af331bb05350">
+          <CubeID>Ssis Gb</CubeID>
+          <CubeDimensionID>Tcp Retransmission</CubeDimensionID>
+          <AttributeID>Imsi</AttributeID>
+          <Type>All</Type>
+        </Column>
+        <Column xsi:type="CubeAttributeBinding" dwd:design-time-name="0e870f5e-6532-4bfa-981e-b3abd0ce3854">
+          <CubeID>Ssis Gb</CubeID>
+          <CubeDimensionID>Tcp Retransmission</CubeDimensionID>
+          <AttributeID>Lac Ci</AttributeID>
+          <Type>All</Type>
+        </Column>
+        <Column xsi:type="CubeAttributeBinding" dwd:design-time-name="5b62723d-863e-4228-b5e5-d22284ef6432">
+          <CubeID>Ssis Gb</CubeID>
+          <CubeDimensionID>Tcp Retransmission</CubeDimensionID>
+          <AttributeID>Ip2 Ttl Aggre</AttributeID>
+          <Type>All</Type>
+        </Column>
+        <Column xsi:type="CubeAttributeBinding" dwd:design-time-name="35351a24-59bc-4535-8fdb-0501d7295f6b">
+          <CubeID>Ssis Gb</CubeID>
+          <CubeDimensionID>Tcp Retransmission</CubeDimensionID>
+          <AttributeID>Direction</AttributeID>
+          <Type>All</Type>
+        </Column>
+        <Column xsi:type="MeasureBinding" dwd:design-time-name="ee664045-1e1b-4091-a870-6b9be9254da5">
+          <MeasureID>Ip Total Aggre</MeasureID>
+        </Column>
+        <Column xsi:type="MeasureBinding" dwd:design-time-name="d7eeb2fc-51af-462a-8a53-cc455d5c847d">
+          <MeasureID>Seq Total Aggre</MeasureID>
+        </Column>
+        <Column xsi:type="MeasureBinding" dwd:design-time-name="59b7aed7-ea44-4022-8f21-57164cffa772">
+          <MeasureID>Seq Total Reduce</MeasureID>
+        </Column>
+        <Column xsi:type="MeasureBinding" dwd:design-time-name="aaf7545f-954c-4f92-a6bf-a70037513854">
+          <MeasureID>Seq Total Count</MeasureID>
+        </Column>
+        <Column xsi:type="MeasureBinding" dwd:design-time-name="d62e4b69-610d-4fb9-9c29-7ce37dd2e8a5">
+          <MeasureID>Seq Distinct Count</MeasureID>
+        </Column>
+        <Column xsi:type="MeasureBinding" dwd:design-time-name="9fe2d93d-d2aa-4ecf-834c-f1dfe8fc32aa">
+          <MeasureID>Seq Repeat Cnt</MeasureID>
+        </Column>
+        <Column xsi:type="MeasureBinding" dwd:design-time-name="3bfa0d92-747c-4a71-9673-c193e27b01b5">
+          <MeasureID>Seq Total Lost</MeasureID>
+        </Column>
+        <Column xsi:type="MeasureBinding" dwd:design-time-name="a6d32e16-94ec-4680-95d7-caca06447551">
+          <MeasureID>Seq Total Repeat</MeasureID>
+        </Column>
+        <Column xsi:type="MeasureBinding" dwd:design-time-name="13096e15-2183-4de3-b341-ef2234a1e3da">
+          <MeasureID>Duration</MeasureID>
+        </Column>
+        <Column xsi:type="MeasureBinding" dwd:design-time-name="02fae837-bb16-4b2f-9900-6d9ed3843025">
+          <MeasureID>Tcp Retransmission 计数</MeasureID>
+        </Column>
+      </Columns>
+    </Action>
+  </Actions>
+</Cube>

@@ -1,0 +1,37 @@
+USE [ssis_gb]
+GO
+
+/****** Object:  Table [dbo].[TcpRetransmission]    Script Date: 08/23/2012 14:22:49 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TcpRetransmission]') AND type in (N'U'))
+DROP TABLE [dbo].[TcpRetransmission]
+GO
+
+USE [ssis_gb]
+GO
+
+/****** Object:  Table [dbo].[TcpRetransmission]    Script Date: 08/23/2012 14:22:49 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[TcpRetransmission](
+	[_id] [float] NULL,
+	[session_id] [nvarchar](255) NULL,
+	[imsi] [nvarchar](255) NULL,
+	[lac_ci] [nvarchar](255) NULL,
+	[ip2_ttl_aggre] [nvarchar](255) NULL,
+	[direction] [nvarchar](255) NULL,
+	[ip_total_aggre] [float] NULL,
+	[seq_total_aggre] [float] NULL,
+	[seq_total_reduce] [float] NULL,
+	[seq_total_count] [float] NULL,
+	[seq_distinct_count] [float] NULL,
+	[seq_repeat_cnt] [float] NULL,
+	[seq_total_lost] [float] NULL,
+	[seq_total_repeat] [float] NULL,
+	[duration] [float] NULL
+) ON [PRIMARY]
+
+GO

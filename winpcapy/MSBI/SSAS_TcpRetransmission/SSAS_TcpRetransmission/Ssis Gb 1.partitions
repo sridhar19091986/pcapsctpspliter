@@ -1,0 +1,25 @@
+﻿<Cube xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="48758ad0-fae9-4f64-827f-979cd77bc617" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Ssis Gb 1</ID>
+  <MeasureGroups>
+    <MeasureGroup>
+      <ID>Llc Session Discard</ID>
+      <Partitions>
+        <Partition dwd:design-time-name="9cac526f-e286-42ab-aa61-ef7078a9527e">
+          <ID>Llc Session Discard</ID>
+          <Name>Llc Session Discard</Name>
+          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+          <State>Unprocessed</State>
+          <Source xsi:type="DsvTableBinding" dwd:design-time-name="f266e4a6-7d4e-4ce1-bb3d-7d9b8ae57abc">
+            <DataSourceViewID>Ssis Gb</DataSourceViewID>
+            <TableID>dbo_LlcSessionDiscard</TableID>
+          </Source>
+          <StorageMode>Molap</StorageMode>
+          <CurrentStorageMode>Molap</CurrentStorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+        </Partition>
+      </Partitions>
+    </MeasureGroup>
+  </MeasureGroups>
+</Cube>
