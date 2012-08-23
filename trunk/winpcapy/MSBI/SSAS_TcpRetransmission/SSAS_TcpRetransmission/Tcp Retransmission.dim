@@ -1,0 +1,174 @@
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="c5cdbc61-bc56-4218-8b1d-b9e19e59978b" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Tcp Retransmission</ID>
+  <Name>Tcp Retransmission</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="ceb96941-0805-44a5-afc6-96edfd0932d6">
+    <DataSourceViewID>Ssis Gb</DataSourceViewID>
+  </Source>
+  <ErrorConfiguration dwd:design-time-name="38ca7659-5c93-4d22-bb07-f8084d0e633f">
+    <KeyNotFound>ReportAndStop</KeyNotFound>
+    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+  </ErrorConfiguration>
+  <CurrentStorageMode>Molap</CurrentStorageMode>
+  <Attributes>
+    <Attribute dwd:design-time-name="f0f4a96d-dd49-45bc-ad29-47f7206c75c6">
+      <ID>Id</ID>
+      <Name>Id</Name>
+      <Usage>Key</Usage>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="41af08b6-1fa8-48b0-aeac-4950b0a82261">
+          <DataType>Double</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="dacdab73-6d20-4bd7-beb2-6c088039b7ac">
+            <TableID>dbo_TcpRetransmission</TableID>
+            <ColumnID>_id</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="ee1b5d37-776a-499f-a9d9-5a8415b37ecc">
+          <AttributeID>Session Id</AttributeID>
+          <Name>Session Id</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="cfb5097e-11eb-4c72-a784-7940eac57abc">
+          <AttributeID>Imsi</AttributeID>
+          <Name>Imsi</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="8be6ece3-32b5-49bf-a2c2-a09c9444e11b">
+          <AttributeID>Lac Ci</AttributeID>
+          <Name>Lac Ci</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="76fd3c34-fe0c-46c8-8306-c4d126821c69">
+          <AttributeID>Ip2 Ttl Aggre</AttributeID>
+          <Name>Ip2 Ttl Aggre</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="7902b618-e466-451f-b824-cd0081d60f9b">
+          <AttributeID>Direction</AttributeID>
+          <Name>Direction</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <ProcessingState xmlns="http://schemas.microsoft.com/analysisservices/2010/engine/200">Unprocessed</ProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="03a4a98b-29a8-4e1e-abc8-36b7482cc6e0">
+      <ID>Session Id</ID>
+      <Name>Session Id</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="73311520-0d41-47a8-8876-fd2e27ea39dc">
+          <DataType>WChar</DataType>
+          <DataSize>255</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="706e57f0-c160-4e1c-b1eb-6e99d6cf703e">
+            <TableID>dbo_TcpRetransmission</TableID>
+            <ColumnID>session_id</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ProcessingState xmlns="http://schemas.microsoft.com/analysisservices/2010/engine/200">Unprocessed</ProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="c2601730-63e8-442c-a780-6b548c1c52ed">
+      <ID>Imsi</ID>
+      <Name>Imsi</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="01727dfd-1562-412e-a3bb-8e4a7329f451">
+          <DataType>WChar</DataType>
+          <DataSize>255</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="4bc4de31-b8ab-44e6-b9e9-bf7969e53c47">
+            <TableID>dbo_TcpRetransmission</TableID>
+            <ColumnID>imsi</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ProcessingState xmlns="http://schemas.microsoft.com/analysisservices/2010/engine/200">Unprocessed</ProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="0cfe556a-8ef1-4b9b-9079-5145849d2926">
+      <ID>Lac Ci</ID>
+      <Name>Lac Ci</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="601b1bcd-911d-44d0-aee6-dbf3410864b1">
+          <DataType>WChar</DataType>
+          <DataSize>255</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="5eae2b2b-09f3-44f0-a3df-5d0f765a7e48">
+            <TableID>dbo_TcpRetransmission</TableID>
+            <ColumnID>lac_ci</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ProcessingState xmlns="http://schemas.microsoft.com/analysisservices/2010/engine/200">Unprocessed</ProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="2512e959-d6b4-4458-8b4f-b5742582c0fa">
+      <ID>Ip2 Ttl Aggre</ID>
+      <Name>Ip2 Ttl Aggre</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="0b16b7f1-467e-4389-af6f-362dfafb6efa">
+          <DataType>WChar</DataType>
+          <DataSize>255</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="cbdcdbd6-c6bf-40ad-9dbd-d1aff5372309">
+            <TableID>dbo_TcpRetransmission</TableID>
+            <ColumnID>ip2_ttl_aggre</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ProcessingState xmlns="http://schemas.microsoft.com/analysisservices/2010/engine/200">Unprocessed</ProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="a559371b-2f96-44d4-9c17-82f11b89a05d">
+      <ID>Direction</ID>
+      <Name>Direction</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="bcfe68d1-fed2-429a-8d10-5e23d05176e2">
+          <DataType>WChar</DataType>
+          <DataSize>255</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="5b539de0-0660-461b-9d20-ad20c5027820">
+            <TableID>dbo_TcpRetransmission</TableID>
+            <ColumnID>direction</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ProcessingState xmlns="http://schemas.microsoft.com/analysisservices/2010/engine/200">Unprocessed</ProcessingState>
+    </Attribute>
+  </Attributes>
+</Dimension>

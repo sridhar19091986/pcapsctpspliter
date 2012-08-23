@@ -1,0 +1,34 @@
+USE [ssis_gb]
+GO
+
+/****** Object:  Table [dbo].[LlcSessionDiscard]    Script Date: 08/23/2012 16:50:59 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[LlcSessionDiscard]') AND type in (N'U'))
+DROP TABLE [dbo].[LlcSessionDiscard]
+GO
+
+USE [ssis_gb]
+GO
+
+/****** Object:  Table [dbo].[LlcSessionDiscard]    Script Date: 08/23/2012 16:50:59 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[LlcSessionDiscard](
+	[_id] [float] NULL,
+	[session_id] [nvarchar](255) NULL,
+	[imsi] [nvarchar](255) NULL,
+	[bsc_bvci] [nvarchar](255) NULL,
+	[lac_ci] [nvarchar](255) NULL,
+	[mscbsc_ip_count] [float] NULL,
+	[direction] [nvarchar](255) NULL,
+	[duration] [float] NULL,
+	[llc_nu_discard] [float] NULL,
+	[llc_nu_count] [float] NULL,
+	[msg_aggre] [nvarchar](4000) NULL,
+	[llc_nu_aggre] [nvarchar](4000) NULL
+) ON [PRIMARY]
+
+GO
