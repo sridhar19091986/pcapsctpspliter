@@ -1,0 +1,10 @@
+﻿
+
+TCP重传和丢包及LLC丢包搞定？
+
+
+LLC重传的问题？现网暂时未开通，有LLC的NU相同的包。
+
+
+
+挖掘的方式，m,sqlserver,mongo,gridvew,xls,ssis,ssas,excel

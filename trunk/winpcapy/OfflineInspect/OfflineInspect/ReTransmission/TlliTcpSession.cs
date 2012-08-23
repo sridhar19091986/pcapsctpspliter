@@ -8,6 +8,18 @@ go
 alter table [Gb_TCP_ReTransmission] add  PRIMARY KEY (PacketNum,FileNum);
  * */
 
+/*
+ * 输出目标是中间数据，也可以作为专业人士手动分析使用。
+ * 
+ * 
+ * 
+ * 2012.8.23
+ * 
+ * 
+ * 
+ * 
+ * 
+ * */
 
 /*
  * 
@@ -47,6 +59,7 @@ namespace OfflineInspect.ReTransmission
         public string tcp_seq_aggre;//tcp聚合
         public string msg_aggre;//消息聚合
         public decimal? seq_nxt_max;
+        //包总长度
         public decimal? seq_total_aggre;  //每次的nxt-seq之和，计算的值是ip2包之和，未计算sndcp包。
         public decimal? seq_total_reduce;//真实的总长度。最大nxt减去seq。未包含重传。
         /*
@@ -54,14 +67,14 @@ namespace OfflineInspect.ReTransmission
          * seq_total_lost<0，则出现重传等。
          * 
          * */
-        public decimal? seq_total_lost;
+        public decimal? seq_total_lost;//大于0，丢包流量占比，小于0，重传流量占比
         public string session_id;
         public decimal seq_tcp_min;
-        public double seq_total_aggre_rate;
-        public double seq_total_count;
+        //public double seq_total_aggre_rate;//速率计算
+        public int seq_total_count;
         public int? ip_total_aggre;
-        public double? seq_repeat_rate;
-        public int? seq_distinct_count;
+        public int seq_repeat_cnt;//重传数量占比
+        public int seq_distinct_count;
         public string ip_src_aggre;
         public string ip2_src_aggre;
         public string ip_dst_aggre;
@@ -186,10 +199,10 @@ namespace OfflineInspect.ReTransmission
                     tcps.seq_total_reduce = tcps.seq_nxt_max - tcps.seq_tcp_min;
                     tcps.seq_total_lost = tcps.seq_total_reduce - tcps.seq_total_aggre;
                     //计算速率，取reduce吧
-                    tcps.seq_total_aggre_rate = (double)tcps.seq_total_reduce / tcps.duration;
+                    //tcps.seq_total_aggre_rate = (double)tcps.seq_total_reduce / tcps.duration;
                     tcps.seq_total_count = pd_no_3tcp.Count();
                     tcps.seq_distinct_count = pd_no_3tcp.Select(e => e.tcp_seq).Distinct().Count();
-                    tcps.seq_repeat_rate = 1.0 * (tcps.seq_total_count - tcps.seq_distinct_count) / tcps.seq_total_count;
+                    tcps.seq_repeat_cnt = tcps.seq_total_count - tcps.seq_distinct_count;
                     tcps.tcp_seq_aggre = pd_no_3tcp.Select(e => e.tcp_seq).Aggregate((a, b) => a + "," + b);
                     //第1层ip地址，第2层ip地址
                     tcps.ip_src_aggre = pd_no_3tcp.Select(e => e.ip_src_host).Distinct().Aggregate((a, b) => a + "," + b);
