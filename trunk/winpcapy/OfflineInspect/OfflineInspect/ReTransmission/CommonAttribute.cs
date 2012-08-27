@@ -16,12 +16,12 @@ namespace OfflineInspect.ReTransmission
 
         public static void ExecReTransmission()
         {
-            //using (LacCellBvci lcb = new LacCellBvci())
-            //{
-            //    lcb.CreatCollection();
-            //    Console.WriteLine(" LacCellBvci lcb = new LacCellBvci();ok");
-            //}
-            //GC.Collect();
+            using (LacCellBvci lcb = new LacCellBvci())
+            {
+                lcb.CreatCollection();
+                Console.WriteLine(" LacCellBvci lcb = new LacCellBvci();ok");
+            }
+            GC.Collect();
             //using (TlliTcpSession tts = new TlliTcpSession())
             //{
             //    tts.CreateCollection();
@@ -39,7 +39,7 @@ namespace OfflineInspect.ReTransmission
             //    trs.CreatCollection();
             //    Console.WriteLine("TcpRetransStatics trs = new TcpRetransStatics();ok");
             //}
-            GC.Collect();
+            //GC.Collect();
         }
     }
 }

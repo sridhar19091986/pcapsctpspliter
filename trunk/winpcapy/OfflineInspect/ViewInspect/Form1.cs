@@ -328,9 +328,9 @@ namespace ViewInspect
                             p.seq_total_aggre,
                             p.seq_total_reduce,
                             p.seq_total_lost,
-                            p.seq_repeat_rate,
+                            p.seq_repeat_cnt,
                             p.duration,
-                            p.seq_total_aggre_rate,
+                            //p.seq_total_aggre_rate,
                             p.ip_ttl_aggre,
                             p.ip2_ttl_aggre,
                             p.ip_flags_mf,
@@ -370,6 +370,8 @@ namespace ViewInspect
                             p.dst,
                             p.bvci,
                             p.cnt,
+                            p.msg,
+                            p.callid,
                         };
             clearColumns3();
             var dborder = query.OrderByDescending(e => e._id).Take(100);
@@ -392,16 +394,58 @@ namespace ViewInspect
                             p.mscbsc_ip_count,
                             p.direction,
                             p.duration,
-                            p.llc_nu_continue,
+                            p.llc_nu_discard,
                             p.llc_nu_count,
                             p.msg_aggre,
                             p.llc_nu_aggre,
                         };
             clearColumns3();
-            var dborder = query.OrderBy(e => e.session_id).Take(1000);
+            var dborder = query.OrderBy(e => e.session_id);
             gridControl3.DataSource = dborder.AsParallel().ToList();
             gridView3.OptionsView.ColumnAutoWidth = false;
             gridView3.BestFitColumns();
+        }
+      
+
+        private void navBarItem17_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            gridView3.ExportToXlsx(@"c:\3.xlsx");
+        }
+
+        private void navBarItem18_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
+        {
+            TcpRetransStatics trs = new TcpRetransStatics();
+            var query = from p in trs.mongo_TcpRetransStatics.QueryMongo()
+                        select new
+                        {
+                            p._id,
+
+                            p.session_id,
+                            p.imsi,
+                            p.lac_ci,
+                            p.ip2_ttl_aggre,
+                            p.direction,
+
+                            p.ip_total_aggre,
+                            p.seq_total_aggre,
+                            p.seq_total_reduce,
+
+                            p.seq_total_count,
+                            p.seq_distinct_count,
+                            p.seq_repeat_cnt,
+
+                            p.seq_total_lost,
+                            p.seq_total_repeat,
+
+                            p.duration,
+
+                        };
+            clearColumns3();
+            var dborder = query;
+            gridControl3.DataSource = dborder.AsParallel().ToList();
+            gridView3.OptionsView.ColumnAutoWidth = false;
+            gridView3.BestFitColumns();
+
         }
         #endregion
     }
