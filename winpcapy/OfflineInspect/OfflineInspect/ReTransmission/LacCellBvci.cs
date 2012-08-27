@@ -21,6 +21,7 @@ using OfflineInspect.Mongo;
 using EntitySqlTable.SqlServer.Local.Gb_TCP_ReTransmission;
 using OfflineInspect.CommonTools;
 using System.Data.Objects.SqlClient;
+using EntitySqlTable.SqlServer.Local.Gb_LLC_ReTransmission;
 
 
 
@@ -77,11 +78,12 @@ namespace OfflineInspect.ReTransmission
         #endregion
         public void CreatCollection()
         {
-            GuangZhou_Gb_TCP_ReTransmission gb = new GuangZhou_Gb_TCP_ReTransmission();
+            GuangZhou_Gb_LLC_ReTransmission gb=new GuangZhou_Gb_LLC_ReTransmission ();
+            //GuangZhou_Gb_TCP_ReTransmission gb = new GuangZhou_Gb_TCP_ReTransmission();
             gb.CommandTimeout = 0;
             gb.ContextOptions.LazyLoadingEnabled = true;
-            gb.Gb_TCP_ReTransmission.MergeOption = MergeOption.NoTracking;
-            var fc = from p in gb.Gb_TCP_ReTransmission
+            gb.Gb_LLC_ReTransmission.MergeOption = MergeOption.NoTracking;
+            var fc = from p in gb.Gb_LLC_ReTransmission
                      group p by new
                      {
                          p.bssgp_lac,
@@ -98,7 +100,7 @@ namespace OfflineInspect.ReTransmission
                          ttt.Key.ip_src_host,
                          ttt.Key.ip_dst_host,
                          cnt = ttt.Count(),
-                         msg = ttt.Select(e => e.TCP_MsgType).Distinct(),
+                         msg = ttt.Select(e => e.LLC_MsgType).Distinct(),
                          //http://stackoverflow.com/questions/1066760/problem-with-converting-int-to-string-in-linq-to-entities
                          callid = ttt.Select(e => SqlFunctions.StringConvert((double)e.BeginFileNum.Value).Trim()
                              + "-" + SqlFunctions.StringConvert((double)e.BeginFrameNum.Value).Trim()).Distinct()
