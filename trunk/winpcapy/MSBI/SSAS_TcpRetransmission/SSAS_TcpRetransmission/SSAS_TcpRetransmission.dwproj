@@ -50,6 +50,12 @@
       <FullPath>Ssis Gb.dsv</FullPath>
     </ProjectItem>
   </DataSourceViews>
+  <MiningModels>
+    <ProjectItem>
+      <Name>Tcp Retransmission.dmm</Name>
+      <FullPath>Tcp Retransmission.dmm</FullPath>
+    </ProjectItem>
+  </MiningModels>
   <Roles>
     <ProjectItem>
       <Name>Role.role</Name>
