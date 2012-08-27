@@ -1,0 +1,127 @@
+USE [ssis_gb]
+GO
+
+/****** Object:  Table [dbo].[mpos_platform]    Script Date: 08/27/2012 13:47:03 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[mpos_platform]') AND type in (N'U'))
+DROP TABLE [dbo].[mpos_platform]
+GO
+
+USE [ssis_gb]
+GO
+
+/****** Object:  Table [dbo].[mpos_platform]    Script Date: 08/27/2012 13:47:03 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[mpos_platform](
+	[_key_in] [int] NULL,
+	[_key_out] [int] NULL,
+	[_score] [real] NULL,
+	[Online_ID] [numeric](20, 0) NULL,
+	[Session_ID] [numeric](20, 0) NULL,
+	[Start_Date_Time] [datetime] NULL,
+	[End_Date_Time] [datetime] NULL,
+	[SGSN_IP] [bigint] NULL,
+	[SGSN] [nvarchar](45) NULL,
+	[GGSN_IP] [bigint] NULL,
+	[GGSN] [nvarchar](45) NULL,
+	[LAC] [bigint] NULL,
+	[CI] [bigint] NULL,
+	[SAC] [bigint] NULL,
+	[IMSI] [nvarchar](25) NULL,
+	[IMEI] [nvarchar](25) NULL,
+	[Prefix_IMEI] [nvarchar](12) NULL,
+	[MSISDN] [numeric](20, 0) NULL,
+	[APN] [nvarchar](45) NULL,
+	[RAT_TYPE] [tinyint] NULL,
+	[PROTOCOL] [smallint] NULL,
+	[Event_Type] [smallint] NULL,
+	[IP_LEN_UL] [bigint] NULL,
+	[IP_LEN_DL] [bigint] NULL,
+	[Count_Packet_UL] [bigint] NULL,
+	[Count_Packet_DL] [bigint] NULL,
+	[Duration] [numeric](20, 0) NULL,
+	[SOURCE_IP] [bigint] NULL,
+	[DEST_IP] [bigint] NULL,
+	[SOURCE_PORT] [int] NULL,
+	[DEST_PORT] [int] NULL,
+	[URI] [nvarchar](1536) NULL,
+	[URI_Main] [nvarchar](192) NULL,
+	[Content_Type] [nvarchar](45) NULL,
+	[User_Agent_Main] [nvarchar](45) NULL,
+	[Service_TYPE] [int] NULL,
+	[Sub_Service_Type] [int] NULL,
+	[IsReassemble] [smallint] NULL,
+	[Delete_PDP] [smallint] NULL,
+	[Delete_PDP_Direction] [smallint] NULL,
+	[Abnormal_reason] [int] NULL,
+	[Repeat_Count] [int] NULL,
+	[Resp] [smallint] NULL,
+	[Resp_DelayFirst] [bigint] NULL,
+	[Resp_cause] [int] NULL,
+	[abort] [smallint] NULL,
+	[Disconnect] [smallint] NULL,
+	[Result] [smallint] NULL,
+	[Result_DelayFirst] [int] NULL,
+	[MMS_request] [smallint] NULL,
+	[MMS_resp_status] [tinyint] NULL,
+	[From] [nvarchar](45) NULL,
+	[To] [nvarchar](45) NULL,
+	[Subject] [nvarchar](60) NULL,
+	[Delivery_Report] [smallint] NULL,
+	[Query_Name] [nvarchar](192) NULL,
+	[Query_Type] [nvarchar](192) NULL,
+	[DNS_TTL] [bigint] NULL,
+	[SP_Address] [bigint] NULL,
+	[Identifier] [bigint] NULL,
+	[Is_UserAbnormal] [bigint] NULL,
+	[ErrorPacketLost] [bigint] NULL,
+	[ErrorPacketWired] [bigint] NULL,
+	[ErrorPacketWireless] [bigint] NULL,
+	[Ack] [bigint] NULL,
+	[IpLenDlAck] [bigint] NULL,
+	[IpLenUpAck] [bigint] NULL,
+	[SynDirection] [bigint] NULL,
+	[ICMP_Type] [bigint] NULL,
+	[ICMP_Code] [bigint] NULL,
+	[IP3_Src] [bigint] NULL,
+	[IP3_Dest] [bigint] NULL,
+	[IP3_Len] [bigint] NULL,
+	[UDP3_Src] [bigint] NULL,
+	[UDP3_Dest] [bigint] NULL,
+	[UDP3_Len] [bigint] NULL,
+	[URI_clean] [nvarchar](1536) NULL,
+	[_Similarity_URI] [real] NULL,
+	[URI_Main_clean] [nvarchar](192) NULL,
+	[Content_Type_clean] [nvarchar](45) NULL,
+	[User_Agent_Main_clean] [nvarchar](45) NULL,
+	[_Similarity_URI_Main] [real] NULL,
+	[_Similarity_Content_Type] [real] NULL,
+	[_Similarity_User_Agent_Main] [real] NULL,
+	[APN_clean] [nvarchar](45) NULL,
+	[_Similarity_APN] [real] NULL,
+	[my_Content_Type] [nvarchar](50) NULL,
+	[my_Protocol] [nvarchar](50) NULL,
+	[my_Event_Type] [nvarchar](50) NULL,
+	[my_RAT_TYPE] [nvarchar](50) NULL,
+	[my_Service_TYPE] [nvarchar](50) NULL,
+	[my_URI_Main_header] [nvarchar](50) NULL,
+	[my_URI_Main] [nvarchar](50) NULL,
+	[my_URI_UA_OS] [nvarchar](50) NULL,
+	[my_URI_UA_Weibo_Ver] [nvarchar](50) NULL,
+	[my_URI_UA_MS_Type] [nvarchar](50) NULL,
+	[my_URI_UA ] [nvarchar](50) NULL,
+	[my_URI_IMEI] [nvarchar](50) NULL,
+	[my_URI_Len] [int] NULL,
+	[my_Sub_Service_Type] [nvarchar](50) NULL,
+	[my_SOURCE_IP] [nvarchar](50) NULL,
+	[my_DEST_IP] [nvarchar](50) NULL,
+	[my_Abnormal_reason] [nvarchar](50) NULL
+) ON [PRIMARY]
+
+GO
+
+
