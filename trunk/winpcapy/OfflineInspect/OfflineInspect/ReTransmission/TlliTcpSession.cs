@@ -89,6 +89,13 @@ namespace OfflineInspect.ReTransmission
         public string tcp_port_aggre;
         public string sndcp_m;
         public string tcp_need_segment;
+        /*
+         * 还需要增加一些维度，
+         * 
+         * 比如，uri,agent,response
+         * 
+         * */
+        
     }
 
     public class TlliTcpSession : CommonToolx, IDisposable
