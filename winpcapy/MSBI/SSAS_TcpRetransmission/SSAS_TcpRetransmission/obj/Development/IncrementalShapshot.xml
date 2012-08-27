@@ -47,14 +47,14 @@
       </ObjectSnapshot>
       <ObjectSnapshot>
         <Type>Microsoft.AnalysisServices.Cube</Type>
-        <TimeStamp>9HetdyjHFX87ndaxhSirmCTk/lE=2012-08-23 15:39:222012-08-23 12:17:46Kh60X0PTrDbxVDuZyfKhBS1kMCY=2012-08-23 12:21:282012-08-23 12:17:47</TimeStamp>
+        <TimeStamp>5aHlnv83EhAwCvXALeZ4UsqfZjU=2012-08-24 14:58:002012-08-23 12:17:46Kh60X0PTrDbxVDuZyfKhBS1kMCY=2012-08-23 12:21:282012-08-23 12:17:47</TimeStamp>
         <ID>
           <String>Ssis Gb</String>
         </ID>
       </ObjectSnapshot>
       <ObjectSnapshot>
         <Type>Microsoft.AnalysisServices.Cube</Type>
-        <TimeStamp>i1Npe+jS5RQ7Jarj2TiCybqy2w0=2012-08-23 17:38:002012-08-23 17:10:28/DXOEuzmk+yXHX4QqPRFajx57uY=2012-08-23 17:13:062012-08-23 17:10:28</TimeStamp>
+        <TimeStamp>b+QROC+UspbABxp7rpScAF7vZGQ=2012-08-24 14:52:562012-08-23 17:10:28/DXOEuzmk+yXHX4QqPRFajx57uY=2012-08-24 14:52:562012-08-23 17:10:28</TimeStamp>
         <ID>
           <String>Ssis Gb 1</String>
         </ID>
@@ -64,6 +64,13 @@
         <TimeStamp>R7HCD/UtgFN78L80mGWugEpHPog=2012-08-23 12:32:502012-08-23 12:32:12</TimeStamp>
         <ID>
           <String>Role</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.MiningStructure</Type>
+        <TimeStamp>R4nwThoh4Oe5LZpzkbdW/YIRVcU=2012-08-24 15:11:182012-08-24 15:08:09</TimeStamp>
+        <ID>
+          <String>Tcp Retransmission</String>
         </ID>
       </ObjectSnapshot>
     </ObjectSnapshots>
@@ -78,5 +85,5 @@
   </Snapshot>
   <AssemblyLocations />
   <ProcessingComplete>true</ProcessingComplete>
-  <LastDeployed>2012-08-23T09:38:05Z</LastDeployed>
+  <LastDeployed>2012-08-24T07:11:28Z</LastDeployed>
 </DeploymentSnapshot>

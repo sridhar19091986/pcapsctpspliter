@@ -32,9 +32,19 @@
       <FullPath>TcpRetransmission.dtsx</FullPath>
       <References />
     </DtsPackage>
-    <DtsPackage FormatVersion="0">
+    <DtsPackage FormatVersion="3">
       <Name>LlcDiscard.dtsx</Name>
       <FullPath>LlcDiscard.dtsx</FullPath>
+      <References />
+    </DtsPackage>
+    <DtsPackage FormatVersion="3">
+      <Name>MySql-SqlServer.dtsx</Name>
+      <FullPath>MySql-SqlServer.dtsx</FullPath>
+      <References />
+    </DtsPackage>
+    <DtsPackage FormatVersion="3">
+      <Name>Tcp-Data.dtsx</Name>
+      <FullPath>Tcp-Data.dtsx</FullPath>
       <References />
     </DtsPackage>
   </DTSPackages>

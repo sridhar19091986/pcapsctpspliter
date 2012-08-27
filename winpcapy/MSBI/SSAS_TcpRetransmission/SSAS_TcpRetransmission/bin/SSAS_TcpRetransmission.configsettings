@@ -18,6 +18,11 @@
         <ID>Llc Session Discard</ID>
       </Dimension>
     </Dimensions>
+    <MiningStructures>
+      <MiningStructure>
+        <ID>Tcp Retransmission</ID>
+      </MiningStructure>
+    </MiningStructures>
     <Cubes>
       <Cube>
         <ID>Ssis Gb</ID>
