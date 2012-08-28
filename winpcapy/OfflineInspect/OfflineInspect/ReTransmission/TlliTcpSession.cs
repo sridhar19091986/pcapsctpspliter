@@ -48,7 +48,7 @@ namespace OfflineInspect.ReTransmission
 {
     public class TlliTcpSessionDocument
     {
-        public object _id;
+        public long _id;
         public string bsc_bvci;
         public string lac_ci;
         public string mscbsc_ip_aggre;

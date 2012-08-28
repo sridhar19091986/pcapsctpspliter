@@ -6,15 +6,22 @@
  * 合理增加维度进行计算
  * 
  * 
- * mongo->gridview->exportexcel->etl(SSIS)->ssas
+ * 1.mongo->gridview->exportexcel->etl(SSIS)->ssas
  * 
  * 
  * 2012.8.23
  * 
  * 
- * 其的的方法，可以考虑直接使用ssis，mongo->sqlserver.
+ * 2.可以考虑直接使用ssis script compoment,制作data flow的自定义组件，mongo->sqlserver.
  * 
  * 
+ * 2012.8.27
+ * 
+ * 
+ * 3.EF code first也比较容易操作，mongo-sqlserver
+ * 
+ * 
+ * 2012.8.28
  * 
  * 
  * */
@@ -25,13 +32,42 @@ using System.Linq;
 using System.Text;
 using OfflineInspect.CommonTools;
 using OfflineInspect.Mongo;
+using System.ComponentModel.DataAnnotations;
 
 namespace OfflineInspect.ReTransmission
 {
+    public class TcpRetransStaticsTable
+    {
+        #region 维度
+        [Key]
+        public Int64 abcId { get; set; }
+        public string session_id { get; set; }
+        public string imsi { get; set; }
+        public string lac_ci { get; set; }
+        public string ip2_ttl_aggre { get; set; }
+        public string direction { get; set; }
+        #endregion
+        #region 度量
+        //流量计算
+        public decimal? ip_total_aggre { get; set; }
+        public decimal? seq_total_aggre { get; set; }
+        public decimal? seq_total_reduce { get; set; }
+        //数量计算
+        public int seq_total_count { get; set; }
+        public int seq_distinct_count { get; set; }
+        public int seq_repeat_cnt { get; set; }
+        //丢包和重传计算
+        public decimal? seq_total_lost { get; set; }
+        public decimal? seq_total_repeat { get; set; }
+        //时间计算
+        public double duration { get; set; }
+        #endregion
+    }
+
     public class TcpRetransStaticsDocument
     {
         #region 维度
-        public object _id;
+        public long _id;
         public string session_id;
         public string imsi;
         public string lac_ci;
@@ -54,6 +90,7 @@ namespace OfflineInspect.ReTransmission
         public double duration;
         #endregion
     }
+
     public class TcpRetransStatics : CommonToolx, IDisposable
     {
         private string mongo_collection = CommonAttribute.TcpRetransStatics[0];
@@ -94,7 +131,7 @@ namespace OfflineInspect.ReTransmission
                         {
                             _id = p._id,
 
-                            session_id=p.session_id,
+                            session_id = p.session_id,
                             imsi = p.imsi,
                             lac_ci = p.lac_ci,
                             ip2_ttl_aggre = p.ip2_ttl_aggre,

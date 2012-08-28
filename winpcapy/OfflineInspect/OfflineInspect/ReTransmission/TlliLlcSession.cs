@@ -28,13 +28,39 @@ using EntitySqlTable.SqlServer.Local.Gb_LLC_ReTransmission;
 using System.Data.Objects;
 using OfflineInspect.Mongo;
 using OfflineInspect.CommonTools;
+using System.ComponentModel.DataAnnotations;
 
 namespace OfflineInspect.ReTransmission
 {
+    public class TlliLLCSessionTable
+    {
+        #region 维度
+        [Key]
+        public Int64 abcId { get; set; }
+        public string session_id { get; set; }
+        public string imsi { get; set; }
+        public string lac_ci { get; set; }
+        public string direction { get; set; }
+        #endregion
+
+        public string bsc_bvci { get; set; }
+        public string mscbsc_ip_aggre { get; set; }
+        public string llc_nu_aggre { get; set; }
+        public string msg_aggre { get; set; }
+
+        #region 度量
+        public double duration { get; set; }
+        public int llc_nu_count { get; set; }
+        public int mscbsc_ip_count { get; set; }
+        public int msg_distinct_count { get; set; }
+        public Int16 llc_nu_discard { get; set; } //llc丢包用户比例
+        #endregion
+
+    }
     public class TlliLLCSessionDocument
     {
         #region 维度
-        public object _id;
+        public long _id;
         public string session_id;
         public string imsi;
         public string lac_ci;
@@ -50,6 +76,7 @@ namespace OfflineInspect.ReTransmission
         public double duration;
         public int llc_nu_count;
         public int mscbsc_ip_count;
+        public int msg_distinct_count;
         public Int16 llc_nu_discard; //llc丢包用户比例
         #endregion
 
@@ -164,9 +191,8 @@ namespace OfflineInspect.ReTransmission
                             }
                     }
                     llcs.llc_nu_discard = continu;
-                    llcs.msg_aggre = pd_llc.Select(e => e.LLC_MsgType).Distinct().Aggregate((a, b) => a + "," + b);
-                    #endregion
-
+                    llcs.msg_aggre = pd_llc.Select(e => e.LLC_MsgType).Distinct().Aggregate((a, b) => a + "," + b);                    #endregion
+                    llcs.msg_distinct_count= pd_llc.Select(e => e.LLC_MsgType).Distinct().Count();
                     mongo_tls.MongoCol.Insert(llcs);
                 }
             }
