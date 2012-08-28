@@ -418,7 +418,7 @@ namespace ViewInspect
             var query = from p in trs.mongo_TcpRetransStatics.QueryMongo()
                         select new
                         {
-                            p._id,
+                            //p._id,
 
                             p.session_id,
                             p.imsi,

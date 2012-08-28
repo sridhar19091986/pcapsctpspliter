@@ -30,7 +30,9 @@ namespace OfflineInspect
 
             //OfflineInspect.FlowControl.CommonAttribute.ExecFlowControl();
 
-            OfflineInspect.ReTransmission.CommonAttribute.ExecReTransmission();
+            //OfflineInspect.ReTransmission.CommonAttribute.ExecReTransmission();
+
+            OfflineInspect.ReTransmission.CommonAttribute.ExecMongoExportSql();
 
             Console.WriteLine("complete.");
 
