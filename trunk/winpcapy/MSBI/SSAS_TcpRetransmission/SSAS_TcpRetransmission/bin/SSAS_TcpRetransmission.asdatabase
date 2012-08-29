@@ -339,6 +339,421 @@
         </Attribute>
       </Attributes>
     </Dimension>
+    <Dimension>
+      <ID>Tcp Retrans Statics Documents</ID>
+      <Name>Tcp Retrans Statics Documents</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <Annotations>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+          <Value>
+            <dds xmlns="">
+              <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="2" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-4638" scrolltop="-4180" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="11695" y="13361" backcolor="15334399" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+                <font>
+                  <ddsxmlobjectstreamwrapper binary="018600009001905f010004cbcecce5" />
+                </font>
+                <mouseicon>
+                  <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+                </mouseicon>
+              </diagram>
+              <layoutmanager>
+                <ddsxmlobj />
+              </layoutmanager>
+              <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="TcpRetransStaticsDocuments" left="-2176" top="-2593" logicalid="1" controlid="1" masterid="0" hint1="0" hint2="0" width="5821" height="7593" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <control>
+                  <ddsxmlobjectstreaminitwrapper binary="00080000bd160000a91d0000" />
+                </control>
+                <layoutobject>
+                  <ddsxmlobj>
+                    <property name="LogicalObject" value="dbo_TcpRetransStaticsDocuments" vartype="8" />
+                  </ddsxmlobj>
+                </layoutobject>
+                <shape groupshapeid="0" groupnode="0" />
+              </ddscontrol>
+            </dds>
+          </Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+          <Value>true</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+          <Value>false</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+          <Value>true</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+          <Value>-4638</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+          <Value>-4180</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+          <Value>-2176</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+          <Value>-2593</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+          <Value>100</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ARDiagramLayout</Name>
+          <Value>
+            <DiagramLayout ZoomPercent="100" ViewPortX="0" ViewPortY="0" xmlns="">
+              <Shapes NodeWidth="161">
+                <Shape Id="Trsd ID" Expanded="true">
+                  <Attributes>
+                    <Attribute Id="Trsd ID" />
+                    <Attribute Id="Absolute Uri" />
+                    <Attribute Id="Direction" />
+                    <Attribute Id="Http Method" />
+                    <Attribute Id="Imsi" />
+                    <Attribute Id="Ip Bsc Aggre" />
+                    <Attribute Id="Ip Flags Mf" />
+                    <Attribute Id="Ip2 Flags Mf" />
+                    <Attribute Id="Ip2 Sp Aggre" />
+                    <Attribute Id="Ip2ttl Sp Aggre" />
+                    <Attribute Id="Lac Ci" />
+                    <Attribute Id="Msg Distinct Aggre" />
+                    <Attribute Id="Session Id" />
+                    <Attribute Id="Sndcp M" />
+                    <Attribute Id="Tcp Need Segment" />
+                    <Attribute Id="User Agent" />
+                  </Attributes>
+                  <Position x="20" y="20" />
+                </Shape>
+              </Shapes>
+            </DiagramLayout>
+          </Value>
+        </Annotation>
+      </Annotations>
+      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+      <State>Unprocessed</State>
+      <Source xsi:type="DataSourceViewBinding">
+        <DataSourceViewID>Tcp Db Context</DataSourceViewID>
+      </Source>
+      <ErrorConfiguration>
+        <KeyNotFound>ReportAndStop</KeyNotFound>
+        <KeyDuplicate>ReportAndStop</KeyDuplicate>
+        <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+      </ErrorConfiguration>
+      <CurrentStorageMode>Molap</CurrentStorageMode>
+      <Attributes>
+        <Attribute>
+          <ID>Trsd ID</ID>
+          <Name>Trsd ID</Name>
+          <Usage>Key</Usage>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>BigInt</DataType>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_TcpRetransStaticsDocuments</TableID>
+                <ColumnID>trsdID</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <AttributeRelationships>
+            <AttributeRelationship>
+              <AttributeID>Session Id</AttributeID>
+              <Name>Session Id</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Imsi</AttributeID>
+              <Name>Imsi</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Lac Ci</AttributeID>
+              <Name>Lac Ci</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Direction</AttributeID>
+              <Name>Direction</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Absolute Uri</AttributeID>
+              <Name>Absolute Uri</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>User Agent</AttributeID>
+              <Name>User Agent</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Sndcp M</AttributeID>
+              <Name>Sndcp M</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Ip2 Flags Mf</AttributeID>
+              <Name>Ip2 Flags Mf</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Tcp Need Segment</AttributeID>
+              <Name>Tcp Need Segment</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Msg Distinct Aggre</AttributeID>
+              <Name>Msg Distinct Aggre</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Http Method</AttributeID>
+              <Name>Http Method</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Ip Bsc Aggre</AttributeID>
+              <Name>Ip Bsc Aggre</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Ip2 Sp Aggre</AttributeID>
+              <Name>Ip2 Sp Aggre</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Ip2ttl Sp Aggre</AttributeID>
+              <Name>Ip2ttl Sp Aggre</Name>
+            </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Ip Flags Mf</AttributeID>
+              <Name>Ip Flags Mf</Name>
+            </AttributeRelationship>
+          </AttributeRelationships>
+          <OrderBy>Key</OrderBy>
+          <ProcessingState xmlns="http://schemas.microsoft.com/analysisservices/2010/engine/200">Unprocessed</ProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Session Id</ID>
+          <Name>Session Id</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>WChar</DataType>
+              <DataSize>1024</DataSize>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_TcpRetransStaticsDocuments</TableID>
+                <ColumnID>session_id</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <ProcessingState xmlns="http://schemas.microsoft.com/analysisservices/2010/engine/200">Unprocessed</ProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Imsi</ID>
+          <Name>Imsi</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>WChar</DataType>
+              <DataSize>1024</DataSize>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_TcpRetransStaticsDocuments</TableID>
+                <ColumnID>imsi</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <ProcessingState xmlns="http://schemas.microsoft.com/analysisservices/2010/engine/200">Unprocessed</ProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Lac Ci</ID>
+          <Name>Lac Ci</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>WChar</DataType>
+              <DataSize>1024</DataSize>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_TcpRetransStaticsDocuments</TableID>
+                <ColumnID>lac_ci</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <ProcessingState xmlns="http://schemas.microsoft.com/analysisservices/2010/engine/200">Unprocessed</ProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Direction</ID>
+          <Name>Direction</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>WChar</DataType>
+              <DataSize>1024</DataSize>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_TcpRetransStaticsDocuments</TableID>
+                <ColumnID>direction</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <ProcessingState xmlns="http://schemas.microsoft.com/analysisservices/2010/engine/200">Unprocessed</ProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Absolute Uri</ID>
+          <Name>Absolute Uri</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>WChar</DataType>
+              <DataSize>1024</DataSize>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_TcpRetransStaticsDocuments</TableID>
+                <ColumnID>absolute_uri</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <ProcessingState xmlns="http://schemas.microsoft.com/analysisservices/2010/engine/200">Unprocessed</ProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>User Agent</ID>
+          <Name>User Agent</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>WChar</DataType>
+              <DataSize>1024</DataSize>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_TcpRetransStaticsDocuments</TableID>
+                <ColumnID>user_agent</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <ProcessingState xmlns="http://schemas.microsoft.com/analysisservices/2010/engine/200">Unprocessed</ProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Sndcp M</ID>
+          <Name>Sndcp M</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>WChar</DataType>
+              <DataSize>1024</DataSize>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_TcpRetransStaticsDocuments</TableID>
+                <ColumnID>sndcp_m</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <ProcessingState xmlns="http://schemas.microsoft.com/analysisservices/2010/engine/200">Unprocessed</ProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Ip2 Flags Mf</ID>
+          <Name>Ip2 Flags Mf</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>WChar</DataType>
+              <DataSize>1024</DataSize>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_TcpRetransStaticsDocuments</TableID>
+                <ColumnID>ip2_flags_mf</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <ProcessingState xmlns="http://schemas.microsoft.com/analysisservices/2010/engine/200">Unprocessed</ProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Tcp Need Segment</ID>
+          <Name>Tcp Need Segment</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>WChar</DataType>
+              <DataSize>1024</DataSize>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_TcpRetransStaticsDocuments</TableID>
+                <ColumnID>tcp_need_segment</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <ProcessingState xmlns="http://schemas.microsoft.com/analysisservices/2010/engine/200">Unprocessed</ProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Msg Distinct Aggre</ID>
+          <Name>Msg Distinct Aggre</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>WChar</DataType>
+              <DataSize>1024</DataSize>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_TcpRetransStaticsDocuments</TableID>
+                <ColumnID>msg_distinct_aggre</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <ProcessingState xmlns="http://schemas.microsoft.com/analysisservices/2010/engine/200">Unprocessed</ProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Http Method</ID>
+          <Name>Http Method</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>WChar</DataType>
+              <DataSize>1024</DataSize>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_TcpRetransStaticsDocuments</TableID>
+                <ColumnID>http_method</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <ProcessingState xmlns="http://schemas.microsoft.com/analysisservices/2010/engine/200">Unprocessed</ProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Ip Bsc Aggre</ID>
+          <Name>Ip Bsc Aggre</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>WChar</DataType>
+              <DataSize>1024</DataSize>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_TcpRetransStaticsDocuments</TableID>
+                <ColumnID>ip_bsc_aggre</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <ProcessingState xmlns="http://schemas.microsoft.com/analysisservices/2010/engine/200">Unprocessed</ProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Ip2 Sp Aggre</ID>
+          <Name>Ip2 Sp Aggre</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>WChar</DataType>
+              <DataSize>1024</DataSize>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_TcpRetransStaticsDocuments</TableID>
+                <ColumnID>ip2_sp_aggre</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <ProcessingState xmlns="http://schemas.microsoft.com/analysisservices/2010/engine/200">Unprocessed</ProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Ip2ttl Sp Aggre</ID>
+          <Name>Ip2ttl Sp Aggre</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>WChar</DataType>
+              <DataSize>1024</DataSize>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_TcpRetransStaticsDocuments</TableID>
+                <ColumnID>ip2ttl_sp_aggre</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <ProcessingState xmlns="http://schemas.microsoft.com/analysisservices/2010/engine/200">Unprocessed</ProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Ip Flags Mf</ID>
+          <Name>Ip Flags Mf</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>WChar</DataType>
+              <DataSize>1024</DataSize>
+              <Source xsi:type="ColumnBinding">
+                <TableID>dbo_TcpRetransStaticsDocuments</TableID>
+                <ColumnID>ip_flags_mf</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <ProcessingState xmlns="http://schemas.microsoft.com/analysisservices/2010/engine/200">Unprocessed</ProcessingState>
+        </Attribute>
+      </Attributes>
+    </Dimension>
   </Dimensions>
   <Cubes>
     <Cube>
@@ -351,7 +766,7 @@
           <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
           <Value>
             <dds xmlns="">
-              <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="5" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-5272" scrolltop="-1112" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="19156" y="13361" backcolor="15334399" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+              <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="5" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-5272" scrolltop="-1112" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="19738" y="13361" backcolor="15334399" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
                 <font>
                   <ddsxmlobjectstreamwrapper binary="018600009001905f010004cbcecce5" />
                 </font>
@@ -737,7 +1152,7 @@ VISIBLE = 1  ; </Text>
           <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
           <Value>
             <dds xmlns="">
-              <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-5854" scrolltop="-4180" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="19156" y="13361" backcolor="15334399" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+              <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-5854" scrolltop="-4180" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="19738" y="13361" backcolor="15334399" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
                 <font>
                   <ddsxmlobjectstreamwrapper binary="018600009001905f010004cbcecce5" />
                 </font>
@@ -974,6 +1389,485 @@ VISIBLE = 1  ; </Text>
         </Action>
       </Actions>
     </Cube>
+    <Cube>
+      <ID>Tcp Db Context</ID>
+      <Name>Tcp Db Context</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <Annotations>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+          <Value>
+            <dds xmlns="">
+              <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-5814" scrolltop="-4180" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="19738" y="13361" backcolor="15334399" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+                <font>
+                  <ddsxmlobjectstreamwrapper binary="018600009001905f010004cbcecce5" />
+                </font>
+                <mouseicon>
+                  <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+                </mouseicon>
+              </diagram>
+              <layoutmanager>
+                <ddsxmlobj />
+              </layoutmanager>
+              <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="TcpRetransStaticsDocuments" left="20" top="-3466" logicalid="2" controlid="1" masterid="0" hint1="0" hint2="0" width="3625" height="11006" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                <control>
+                  <ddsxmlobjectstreaminitwrapper binary="00080000290e0000fe2a0000" />
+                </control>
+                <layoutobject>
+                  <ddsxmlobj>
+                    <property name="LogicalObject" value="dbo_TcpRetransStaticsDocuments" vartype="8" />
+                  </ddsxmlobj>
+                </layoutobject>
+                <shape groupshapeid="0" groupnode="0" />
+              </ddscontrol>
+            </dds>
+          </Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+          <Value>true</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+          <Value>false</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+          <Value>true</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+          <Value>-5814</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+          <Value>-4180</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+          <Value>20</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+          <Value>-3466</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+          <Value>100</Value>
+        </Annotation>
+      </Annotations>
+      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+      <State>Unprocessed</State>
+      <Dimensions>
+        <Dimension>
+          <ID>Tcp Retrans Statics Documents</ID>
+          <Name>Tcp Retrans Statics Documents</Name>
+          <DimensionID>Tcp Retrans Statics Documents</DimensionID>
+          <Attributes>
+            <Attribute>
+              <AttributeID>Trsd ID</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Session Id</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Imsi</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Lac Ci</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Direction</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Absolute Uri</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>User Agent</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Sndcp M</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Ip2 Flags Mf</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Tcp Need Segment</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Msg Distinct Aggre</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Http Method</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Ip Bsc Aggre</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Ip2 Sp Aggre</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Ip2ttl Sp Aggre</AttributeID>
+            </Attribute>
+            <Attribute>
+              <AttributeID>Ip Flags Mf</AttributeID>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+      </Dimensions>
+      <MeasureGroups>
+        <MeasureGroup>
+          <ID>Tcp Retrans Statics Documents</ID>
+          <Name>Tcp Retrans Statics Documents</Name>
+          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+          <State>Unprocessed</State>
+          <Measures>
+            <Measure>
+              <ID>Ip Total Aggre</ID>
+              <Name>Ip Total Aggre</Name>
+              <Source>
+                <DataType>Double</DataType>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dbo_TcpRetransStaticsDocuments</TableID>
+                  <ColumnID>ip_total_aggre</ColumnID>
+                </Source>
+              </Source>
+            </Measure>
+            <Measure>
+              <ID>Seq Total Aggre</ID>
+              <Name>Seq Total Aggre</Name>
+              <Source>
+                <DataType>Double</DataType>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dbo_TcpRetransStaticsDocuments</TableID>
+                  <ColumnID>seq_total_aggre</ColumnID>
+                </Source>
+              </Source>
+            </Measure>
+            <Measure>
+              <ID>Seq Total Reduce</ID>
+              <Name>Seq Total Reduce</Name>
+              <Source>
+                <DataType>Double</DataType>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dbo_TcpRetransStaticsDocuments</TableID>
+                  <ColumnID>seq_total_reduce</ColumnID>
+                </Source>
+              </Source>
+            </Measure>
+            <Measure>
+              <ID>Seq Total Count</ID>
+              <Name>Seq Total Count</Name>
+              <Source>
+                <DataType>Integer</DataType>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dbo_TcpRetransStaticsDocuments</TableID>
+                  <ColumnID>seq_total_count</ColumnID>
+                </Source>
+              </Source>
+            </Measure>
+            <Measure>
+              <ID>Seq Distinct Count</ID>
+              <Name>Seq Distinct Count</Name>
+              <Source>
+                <DataType>Integer</DataType>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dbo_TcpRetransStaticsDocuments</TableID>
+                  <ColumnID>seq_distinct_count</ColumnID>
+                </Source>
+              </Source>
+            </Measure>
+            <Measure>
+              <ID>Seq Repeat Cnt</ID>
+              <Name>Seq Repeat Cnt</Name>
+              <Source>
+                <DataType>Integer</DataType>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dbo_TcpRetransStaticsDocuments</TableID>
+                  <ColumnID>seq_repeat_cnt</ColumnID>
+                </Source>
+              </Source>
+            </Measure>
+            <Measure>
+              <ID>Seq Total Lost</ID>
+              <Name>Seq Total Lost</Name>
+              <Source>
+                <DataType>Double</DataType>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dbo_TcpRetransStaticsDocuments</TableID>
+                  <ColumnID>seq_total_lost</ColumnID>
+                </Source>
+              </Source>
+            </Measure>
+            <Measure>
+              <ID>Seq Total Repeat</ID>
+              <Name>Seq Total Repeat</Name>
+              <Source>
+                <DataType>Double</DataType>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dbo_TcpRetransStaticsDocuments</TableID>
+                  <ColumnID>seq_total_repeat</ColumnID>
+                </Source>
+              </Source>
+            </Measure>
+            <Measure>
+              <ID>Duration</ID>
+              <Name>Duration</Name>
+              <Source>
+                <DataType>Double</DataType>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dbo_TcpRetransStaticsDocuments</TableID>
+                  <ColumnID>duration</ColumnID>
+                </Source>
+              </Source>
+            </Measure>
+            <Measure>
+              <ID>Tcp Retrans Statics Documents 计数</ID>
+              <Name>Tcp Retrans Statics Documents 计数</Name>
+              <AggregateFunction>Count</AggregateFunction>
+              <Source>
+                <DataType>Integer</DataType>
+                <DataSize>4</DataSize>
+                <Source xsi:type="RowBinding">
+                  <TableID>dbo_TcpRetransStaticsDocuments</TableID>
+                </Source>
+              </Source>
+            </Measure>
+          </Measures>
+          <StorageMode>Rolap</StorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+          <Dimensions>
+            <Dimension xsi:type="RegularMeasureGroupDimension">
+              <CubeDimensionID>Tcp Retrans Statics Documents</CubeDimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Trsd ID</AttributeID>
+                  <KeyColumns>
+                    <KeyColumn>
+                      <DataType>BigInt</DataType>
+                      <Source xsi:type="ColumnBinding">
+                        <TableID>dbo_TcpRetransStaticsDocuments</TableID>
+                        <ColumnID>trsdID</ColumnID>
+                      </Source>
+                    </KeyColumn>
+                  </KeyColumns>
+                  <Type>Granularity</Type>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+          </Dimensions>
+          <Partitions>
+            <Partition>
+              <ID>Tcp Retrans Statics Documents</ID>
+              <Name>Tcp Retrans Statics Documents</Name>
+              <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+              <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+              <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+              <State>Unprocessed</State>
+              <Source xsi:type="DsvTableBinding">
+                <DataSourceViewID>Tcp Db Context</DataSourceViewID>
+                <TableID>dbo_TcpRetransStaticsDocuments</TableID>
+              </Source>
+              <StorageMode>Rolap</StorageMode>
+              <CurrentStorageMode>Molap</CurrentStorageMode>
+              <ProcessingMode>Regular</ProcessingMode>
+              <ProactiveCaching>
+                <SilenceInterval>-PT1S</SilenceInterval>
+                <Latency>PT0S</Latency>
+                <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                <Enabled>true</Enabled>
+                <AggregationStorage>MolapOnly</AggregationStorage>
+                <Source xsi:type="ProactiveCachingInheritedBinding">
+                  <NotificationTechnique>Server</NotificationTechnique>
+                </Source>
+              </ProactiveCaching>
+            </Partition>
+          </Partitions>
+          <ProactiveCaching>
+            <SilenceInterval>-PT1S</SilenceInterval>
+            <Latency>PT0S</Latency>
+            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <Enabled>true</Enabled>
+            <AggregationStorage>MolapOnly</AggregationStorage>
+            <Source xsi:type="ProactiveCachingInheritedBinding">
+              <NotificationTechnique>Server</NotificationTechnique>
+            </Source>
+          </ProactiveCaching>
+        </MeasureGroup>
+      </MeasureGroups>
+      <Source>
+        <DataSourceViewID>Tcp Db Context</DataSourceViewID>
+      </Source>
+      <MdxScripts>
+        <MdxScript>
+          <ID>MdxScript</ID>
+          <Name>MdxScript</Name>
+          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+          <Commands>
+            <Command>
+              <Text>/*
+CALCULATE 命令控制该多维数据集中叶单元的聚合。
+如果删除或修改该 CALCULATE 命令，会影响该多维数据集内的数据。
+只有手动指定如何聚合该多维数据集时才编辑该命令。
+*/
+CALCULATE;   
+CREATE MEMBER CURRENTCUBE.[Measures].[TCP传输速率]
+ AS [Measures].[Seq Total Aggre]/[Measures].[Duration], 
+VISIBLE = 1;    
+CREATE MEMBER CURRENTCUBE.[Measures].[TCP重传率]
+ AS [Measures].[Seq Total Repeat]/[Measures].[Seq Total Aggre], 
+VISIBLE = 1;    
+CREATE MEMBER CURRENTCUBE.[Measures].[TCP丢包率]
+ AS [Measures].[Seq Total Lost]/[Measures].[Seq Total Reduce], 
+VISIBLE = 1; </Text>
+            </Command>
+          </Commands>
+        </MdxScript>
+      </MdxScripts>
+      <Actions>
+        <Action xsi:type="DrillThroughAction">
+          <ID>钻取操作</ID>
+          <Name>钻取操作</Name>
+          <TargetType>Cells</TargetType>
+          <Target>MeasureGroupMeasures("Tcp Retrans Statics Documents")</Target>
+          <Type>DrillThrough</Type>
+          <Columns>
+            <Column xsi:type="MeasureBinding">
+              <MeasureID>Ip Total Aggre</MeasureID>
+            </Column>
+            <Column xsi:type="MeasureBinding">
+              <MeasureID>Seq Total Aggre</MeasureID>
+            </Column>
+            <Column xsi:type="MeasureBinding">
+              <MeasureID>Seq Total Reduce</MeasureID>
+            </Column>
+            <Column xsi:type="MeasureBinding">
+              <MeasureID>Seq Total Count</MeasureID>
+            </Column>
+            <Column xsi:type="MeasureBinding">
+              <MeasureID>Seq Distinct Count</MeasureID>
+            </Column>
+            <Column xsi:type="MeasureBinding">
+              <MeasureID>Seq Repeat Cnt</MeasureID>
+            </Column>
+            <Column xsi:type="MeasureBinding">
+              <MeasureID>Seq Total Lost</MeasureID>
+            </Column>
+            <Column xsi:type="MeasureBinding">
+              <MeasureID>Seq Total Repeat</MeasureID>
+            </Column>
+            <Column xsi:type="MeasureBinding">
+              <MeasureID>Duration</MeasureID>
+            </Column>
+            <Column xsi:type="MeasureBinding">
+              <MeasureID>Tcp Retrans Statics Documents 计数</MeasureID>
+            </Column>
+            <Column xsi:type="CubeAttributeBinding">
+              <CubeID>Tcp Db Context</CubeID>
+              <CubeDimensionID>Tcp Retrans Statics Documents</CubeDimensionID>
+              <AttributeID>Trsd ID</AttributeID>
+              <Type>All</Type>
+            </Column>
+            <Column xsi:type="CubeAttributeBinding">
+              <CubeID>Tcp Db Context</CubeID>
+              <CubeDimensionID>Tcp Retrans Statics Documents</CubeDimensionID>
+              <AttributeID>Session Id</AttributeID>
+              <Type>All</Type>
+            </Column>
+            <Column xsi:type="CubeAttributeBinding">
+              <CubeID>Tcp Db Context</CubeID>
+              <CubeDimensionID>Tcp Retrans Statics Documents</CubeDimensionID>
+              <AttributeID>Imsi</AttributeID>
+              <Type>All</Type>
+            </Column>
+            <Column xsi:type="CubeAttributeBinding">
+              <CubeID>Tcp Db Context</CubeID>
+              <CubeDimensionID>Tcp Retrans Statics Documents</CubeDimensionID>
+              <AttributeID>Lac Ci</AttributeID>
+              <Type>All</Type>
+            </Column>
+            <Column xsi:type="CubeAttributeBinding">
+              <CubeID>Tcp Db Context</CubeID>
+              <CubeDimensionID>Tcp Retrans Statics Documents</CubeDimensionID>
+              <AttributeID>Direction</AttributeID>
+              <Type>All</Type>
+            </Column>
+            <Column xsi:type="CubeAttributeBinding">
+              <CubeID>Tcp Db Context</CubeID>
+              <CubeDimensionID>Tcp Retrans Statics Documents</CubeDimensionID>
+              <AttributeID>Absolute Uri</AttributeID>
+              <Type>All</Type>
+            </Column>
+            <Column xsi:type="CubeAttributeBinding">
+              <CubeID>Tcp Db Context</CubeID>
+              <CubeDimensionID>Tcp Retrans Statics Documents</CubeDimensionID>
+              <AttributeID>User Agent</AttributeID>
+              <Type>All</Type>
+            </Column>
+            <Column xsi:type="CubeAttributeBinding">
+              <CubeID>Tcp Db Context</CubeID>
+              <CubeDimensionID>Tcp Retrans Statics Documents</CubeDimensionID>
+              <AttributeID>Sndcp M</AttributeID>
+              <Type>All</Type>
+            </Column>
+            <Column xsi:type="CubeAttributeBinding">
+              <CubeID>Tcp Db Context</CubeID>
+              <CubeDimensionID>Tcp Retrans Statics Documents</CubeDimensionID>
+              <AttributeID>Ip2 Flags Mf</AttributeID>
+              <Type>All</Type>
+            </Column>
+            <Column xsi:type="CubeAttributeBinding">
+              <CubeID>Tcp Db Context</CubeID>
+              <CubeDimensionID>Tcp Retrans Statics Documents</CubeDimensionID>
+              <AttributeID>Tcp Need Segment</AttributeID>
+              <Type>All</Type>
+            </Column>
+            <Column xsi:type="CubeAttributeBinding">
+              <CubeID>Tcp Db Context</CubeID>
+              <CubeDimensionID>Tcp Retrans Statics Documents</CubeDimensionID>
+              <AttributeID>Msg Distinct Aggre</AttributeID>
+              <Type>All</Type>
+            </Column>
+            <Column xsi:type="CubeAttributeBinding">
+              <CubeID>Tcp Db Context</CubeID>
+              <CubeDimensionID>Tcp Retrans Statics Documents</CubeDimensionID>
+              <AttributeID>Http Method</AttributeID>
+              <Type>All</Type>
+            </Column>
+            <Column xsi:type="CubeAttributeBinding">
+              <CubeID>Tcp Db Context</CubeID>
+              <CubeDimensionID>Tcp Retrans Statics Documents</CubeDimensionID>
+              <AttributeID>Ip Bsc Aggre</AttributeID>
+              <Type>All</Type>
+            </Column>
+            <Column xsi:type="CubeAttributeBinding">
+              <CubeID>Tcp Db Context</CubeID>
+              <CubeDimensionID>Tcp Retrans Statics Documents</CubeDimensionID>
+              <AttributeID>Ip2 Sp Aggre</AttributeID>
+              <Type>All</Type>
+            </Column>
+            <Column xsi:type="CubeAttributeBinding">
+              <CubeID>Tcp Db Context</CubeID>
+              <CubeDimensionID>Tcp Retrans Statics Documents</CubeDimensionID>
+              <AttributeID>Ip2ttl Sp Aggre</AttributeID>
+              <Type>All</Type>
+            </Column>
+            <Column xsi:type="CubeAttributeBinding">
+              <CubeID>Tcp Db Context</CubeID>
+              <CubeDimensionID>Tcp Retrans Statics Documents</CubeDimensionID>
+              <AttributeID>Ip Flags Mf</AttributeID>
+              <Type>All</Type>
+            </Column>
+          </Columns>
+        </Action>
+      </Actions>
+    </Cube>
   </Cubes>
   <MiningStructures>
     <MiningStructure>
@@ -1173,6 +2067,19 @@ VISIBLE = 1  ; </Text>
       <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
       <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
       <ConnectionString>Provider=SQLNCLI10.1;Data Source=localhost;Integrated Security=SSPI;Initial Catalog=ssis_gb</ConnectionString>
+      <ConnectionStringSecurity>Unchanged</ConnectionStringSecurity>
+      <ImpersonationInfo>
+        <ImpersonationMode>ImpersonateServiceAccount</ImpersonationMode>
+        <ImpersonationInfoSecurity>Unchanged</ImpersonationInfoSecurity>
+      </ImpersonationInfo>
+      <Timeout>PT0S</Timeout>
+    </DataSource>
+    <DataSource xsi:type="RelationalDataSource">
+      <ID>Tcp Db Context</ID>
+      <Name>Tcp Db Context</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <ConnectionString>Provider=SQLNCLI10.1;Data Source=localhost;Integrated Security=SSPI;Initial Catalog=TcpDbContext</ConnectionString>
       <ConnectionStringSecurity>Unchanged</ConnectionStringSecurity>
       <ImpersonationInfo>
         <ImpersonationMode>ImpersonateServiceAccount</ImpersonationMode>
@@ -1381,6 +2288,213 @@ VISIBLE = 1  ; </Text>
                 </xs:element>
               </xs:choice>
             </xs:complexType>
+          </xs:element>
+        </xs:schema>
+        <diffgr:diffgram xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:diffgr="urn:schemas-microsoft-com:xml-diffgram-v1" />
+      </Schema>
+    </DataSourceView>
+    <DataSourceView>
+      <ID>Tcp Db Context</ID>
+      <Name>Tcp Db Context</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <Annotations>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+          <Value>true</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:CurrentLayout</Name>
+          <Value>_ALL_TABLES_</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:NameMatchingCriteria</Name>
+          <Value>1</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:SchemaRestriction</Name>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:RetrieveRelationships</Name>
+          <Value>true</Value>
+        </Annotation>
+        <Annotation>
+          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:Layouts</Name>
+          <Value>
+            <Layouts xmlns="">
+              <Diagram>
+                <Name>_ALL_TABLES_</Name>
+                <DiagramLayout>
+                  <dds>
+                    <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="80" scrolltop="132" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="29951" y="10134" backcolor="15334399" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+                      <font>
+                        <ddsxmlobjectstreamwrapper binary="018600009001905f010004cbcecce5" />
+                      </font>
+                      <mouseicon>
+                        <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+                      </mouseicon>
+                    </diagram>
+                    <layoutmanager>
+                      <ddsxmlobj />
+                    </layoutmanager>
+                    <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="TcpRetransStaticsDocuments" left="0" top="0" logicalid="2" controlid="1" masterid="0" hint1="0" hint2="0" width="4022" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                      <control>
+                        <ddsxmlobjectstreaminitwrapper binary="00080000b60f000088130000" />
+                      </control>
+                      <layoutobject>
+                        <ddsxmlobj>
+                          <property name="LogicalObject" value="dbo_TcpRetransStaticsDocuments" vartype="8" />
+                        </ddsxmlobj>
+                      </layoutobject>
+                      <shape groupshapeid="0" groupnode="0" />
+                    </ddscontrol>
+                  </dds>
+</DiagramLayout>
+                <ShowRelationshipNames>False</ShowRelationshipNames>
+                <UseDiagramDefaultLayout>True</UseDiagramDefaultLayout>
+                <DiagramViewPortLeft>80</DiagramViewPortLeft>
+                <DiagramViewPortTop>132</DiagramViewPortTop>
+                <DiagramBoundingLeft>0</DiagramBoundingLeft>
+                <DiagramBoundingTop>0</DiagramBoundingTop>
+                <DiagramZoom>100</DiagramZoom>
+              </Diagram>
+            </Layouts>
+          </Value>
+        </Annotation>
+      </Annotations>
+      <DataSourceID>Tcp Db Context</DataSourceID>
+      <Schema>
+        <xs:schema id="Tcp_x0020_Db_x0020_Context" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop">
+          <xs:element name="Tcp_x0020_Db_x0020_Context" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:design-time-name="6aea8b5c-4edf-41a7-922a-c911d9e2555a">
+            <xs:complexType>
+              <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="dbo_TcpRetransStaticsDocuments" msprop:FriendlyName="TcpRetransStaticsDocuments" msprop:DbSchemaName="dbo" msprop:DbTableName="TcpRetransStaticsDocuments" msprop:design-time-name="3776f4fb-af5b-4831-838b-5e05f96fc094" msprop:TableType="Table">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="trsdID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:FriendlyName="trsdID" msprop:DbColumnName="trsdID" msprop:design-time-name="76324c54-ecaa-4d6f-bf4a-71bcd0360ef8" type="xs:long" />
+                      <xs:element name="session_id" msprop:FriendlyName="session_id" msprop:DbColumnName="session_id" msprop:design-time-name="697c1a6a-160e-4a70-8e7e-cbf45ec8a638" minOccurs="0">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="4000" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="imsi" msprop:FriendlyName="imsi" msprop:DbColumnName="imsi" msprop:design-time-name="391a4def-81c1-450a-a5ad-54ed46fc59b8" minOccurs="0">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="4000" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="lac_ci" msprop:FriendlyName="lac_ci" msprop:DbColumnName="lac_ci" msprop:design-time-name="68843c17-ebf7-48d7-9034-d442e579973f" minOccurs="0">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="4000" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="direction" msprop:FriendlyName="direction" msprop:DbColumnName="direction" msprop:design-time-name="7529afba-c969-4bc4-a4fc-4a8c8dadb0a3" minOccurs="0">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="4000" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="msg_distinct_aggre" msprop:FriendlyName="msg_distinct_aggre" msprop:DbColumnName="msg_distinct_aggre" msprop:design-time-name="ae205dbe-2a3a-4072-861c-863fb7d5cd45" minOccurs="0">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="4000" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="http_method" msprop:FriendlyName="http_method" msprop:DbColumnName="http_method" msprop:design-time-name="cd5880cd-7cdb-46fe-8d04-6305e6023332" minOccurs="0">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="4000" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="absolute_uri" msprop:FriendlyName="absolute_uri" msprop:DbColumnName="absolute_uri" msprop:design-time-name="43015815-ca6c-4863-af32-eed8da445269" minOccurs="0">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="4000" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="user_agent" msprop:FriendlyName="user_agent" msprop:DbColumnName="user_agent" msprop:design-time-name="dc00cc92-be5c-4efe-b59b-ab988646e6d5" minOccurs="0">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="4000" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="ip_bsc_aggre" msprop:FriendlyName="ip_bsc_aggre" msprop:DbColumnName="ip_bsc_aggre" msprop:design-time-name="5884db3b-4db2-4099-8000-7ca292a2c5a5" minOccurs="0">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="4000" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="ip2_sp_aggre" msprop:FriendlyName="ip2_sp_aggre" msprop:DbColumnName="ip2_sp_aggre" msprop:design-time-name="ca98671c-e495-4ef0-b445-1faadc229613" minOccurs="0">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="4000" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="ip2ttl_sp_aggre" msprop:FriendlyName="ip2ttl_sp_aggre" msprop:DbColumnName="ip2ttl_sp_aggre" msprop:design-time-name="95560100-7d1a-437d-889f-8f287348614b" minOccurs="0">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="4000" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="ip_flags_mf" msprop:FriendlyName="ip_flags_mf" msprop:DbColumnName="ip_flags_mf" msprop:design-time-name="83ceb7a2-c442-4842-8c4a-91787d88a7f0" minOccurs="0">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="4000" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="sndcp_m" msprop:FriendlyName="sndcp_m" msprop:DbColumnName="sndcp_m" msprop:design-time-name="75d5d7d0-e323-4a0f-b9dd-34a566f7f223" minOccurs="0">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="4000" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="ip2_flags_mf" msprop:FriendlyName="ip2_flags_mf" msprop:DbColumnName="ip2_flags_mf" msprop:design-time-name="cce45858-04c8-483b-84d9-7b102bf8523a" minOccurs="0">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="4000" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="tcp_need_segment" msprop:FriendlyName="tcp_need_segment" msprop:DbColumnName="tcp_need_segment" msprop:design-time-name="169b40dd-787c-4aa4-a3e7-96a4018c3d85" minOccurs="0">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="4000" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                      <xs:element name="ip_total_aggre" msprop:FriendlyName="ip_total_aggre" msprop:DbColumnName="ip_total_aggre" msprop:design-time-name="bafce19b-18b1-4608-858b-eb365f38e6f4" type="xs:decimal" minOccurs="0" />
+                      <xs:element name="seq_total_aggre" msprop:FriendlyName="seq_total_aggre" msprop:DbColumnName="seq_total_aggre" msprop:design-time-name="be863f88-870a-458e-9e8d-fdfa8d6d675b" type="xs:decimal" minOccurs="0" />
+                      <xs:element name="seq_total_reduce" msprop:FriendlyName="seq_total_reduce" msprop:DbColumnName="seq_total_reduce" msprop:design-time-name="a101aeba-dae4-4780-9044-2c28fb9de0c3" type="xs:decimal" minOccurs="0" />
+                      <xs:element name="seq_total_count" msprop:FriendlyName="seq_total_count" msprop:DbColumnName="seq_total_count" msprop:design-time-name="41e5410c-3d53-48f4-8a5c-891c219e8867" type="xs:int" />
+                      <xs:element name="seq_distinct_count" msprop:FriendlyName="seq_distinct_count" msprop:DbColumnName="seq_distinct_count" msprop:design-time-name="5699a7e6-76a9-4c57-9048-9f116015954b" type="xs:int" />
+                      <xs:element name="seq_repeat_cnt" msprop:FriendlyName="seq_repeat_cnt" msprop:DbColumnName="seq_repeat_cnt" msprop:design-time-name="c9d439ab-6a2a-4452-bca4-02db45da4194" type="xs:int" />
+                      <xs:element name="seq_total_lost" msprop:FriendlyName="seq_total_lost" msprop:DbColumnName="seq_total_lost" msprop:design-time-name="a9a7f29f-a522-4c6c-912c-3895b4ef29a7" type="xs:decimal" minOccurs="0" />
+                      <xs:element name="seq_total_repeat" msprop:FriendlyName="seq_total_repeat" msprop:DbColumnName="seq_total_repeat" msprop:design-time-name="395e9bf8-02ff-4f79-a9b0-05f86fda69cd" type="xs:decimal" minOccurs="0" />
+                      <xs:element name="duration" msprop:FriendlyName="duration" msprop:DbColumnName="duration" msprop:design-time-name="0290d12a-f01f-4def-8214-840776996b37" type="xs:double" />
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+              </xs:choice>
+            </xs:complexType>
+            <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+              <xs:selector xpath=".//dbo_TcpRetransStaticsDocuments" />
+              <xs:field xpath="trsdID" />
+            </xs:unique>
           </xs:element>
         </xs:schema>
         <diffgr:diffgram xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:diffgr="urn:schemas-microsoft-com:xml-diffgram-v1" />
