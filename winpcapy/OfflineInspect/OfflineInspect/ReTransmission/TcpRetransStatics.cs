@@ -48,11 +48,23 @@ namespace OfflineInspect.ReTransmission
         public string session_id { get; set; }
         public string imsi { get; set; }
         public string lac_ci { get; set; }
-        public string ip2_ttl_aggre { get; set; }
         public string direction { get; set; }
+        public string msg_distinct_aggre { get; set; }
+
         public string http_method { get; set; }
         public string absolute_uri { get; set; }//生成uri的绝对路径
         public string user_agent { get; set; }//提取用户的代理
+
+        public string ip_bsc_aggre { get; set; }
+        public string ip2_sp_aggre { get; set; }
+        public string ip2ttl_sp_aggre { get; set; }
+
+        public string ip_flags_mf { get; set; }
+        public string sndcp_m { get; set; }
+        public string ip2_flags_mf { get; set; }
+        public string tcp_need_segment { get; set; }
+
+        //注入apn、imei维度等
         #endregion
 
         #region 度量
@@ -77,6 +89,7 @@ namespace OfflineInspect.ReTransmission
         private string mongo_collection = CommonAttribute.TcpRetransStatics[0];
         private string mongo_db = CommonAttribute.TcpRetransStatics[1];
         private string mongo_conn = CommonAttribute.TcpRetransStatics[2];
+        private string directiondown = "Down";
 
         public MongoCrud<TcpRetransStaticsDocument> mongo_TcpRetransStatics;
 
@@ -115,11 +128,21 @@ namespace OfflineInspect.ReTransmission
                             session_id = p.session_id,
                             imsi = p.imsi,
                             lac_ci = p.lac_ci,
-                            ip2_ttl_aggre = p.ip2_ttl_aggre,
+                            msg_distinct_aggre = p.msg_distinct_aggre,
                             direction = p.direction,
                             http_method = p.http_method,
                             user_agent = p.user_agent,
                             absolute_uri = p.absolute_uri,
+
+                            ip_bsc_aggre = p.direction == directiondown ? p.ip_dst_aggre : p.ip_src_aggre,
+                            ip2_sp_aggre = p.direction == directiondown ? p.ip2_src_aggre : p.ip2_dst_aggre,
+                            ip2ttl_sp_aggre = p.direction == directiondown ? p.ip2_ttl_aggre : "",
+
+                            ip_flags_mf = p.ip_flags_mf,
+                            sndcp_m = p.sndcp_m,
+                            ip2_flags_mf = p.ip2_flags_mf,
+                            tcp_need_segment = p.tcp_need_segment,
+
 
                             ip_total_aggre = p.ip_total_aggre,
                             seq_total_aggre = p.seq_total_aggre,

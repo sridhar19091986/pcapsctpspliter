@@ -340,7 +340,7 @@ namespace ViewInspect
                             p.tcp_port_aggre,
                             p.sndcp_m,
                             p.tcp_need_segment,
-                            p.msg_aggre,
+                            msg_aggre = p.msg_distinct_aggre,
                             p.ip_src_aggre,
                             p.ip_dst_aggre,
                             p.ip2_src_aggre,
@@ -423,7 +423,7 @@ namespace ViewInspect
                             p.session_id,
                             p.imsi,
                             p.lac_ci,
-                            p.ip2_ttl_aggre,
+                            //p.ip2_ttl_aggre,
                             p.direction,
 
                             p.ip_total_aggre,

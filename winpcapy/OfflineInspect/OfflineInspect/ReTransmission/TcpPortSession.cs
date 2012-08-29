@@ -63,7 +63,7 @@ namespace OfflineInspect.ReTransmission
         public double duration { get; set; }
         public string imsi { get; set; }
         public string tcp_seq_aggre { get; set; }//tcp聚合
-        public string msg_aggre { get; set; }//消息聚合
+        public string msg_distinct_aggre { get; set; }//消息聚合
         public decimal? seq_nxt_max { get; set; }
         //包总长度
         public decimal? seq_total_aggre { get; set; } //每次的nxt-seq之和，计算的值是ip2包之和，未计算sndcp包。
@@ -211,11 +211,11 @@ namespace OfflineInspect.ReTransmission
                     var src = m.Select(e => e.ip_src_host);
                     var dst = m.Select(e => e.ip_dst_host);
                     var bscip = src.Union(dst);
-                    tcps.mscbsc_ip_aggre = string.Join(",", bscip.Distinct());
+                    tcps.mscbsc_ip_aggre = string.Join(",", bscip.Distinct().OrderBy(e => e));
                     tcps.mscbsc_ip_count = bscip.Distinct().Count();
                     //还需要1个？留意ip的问题?
-                    tcps.bsc_bvci = m.Where(e => e.nsip_bvci != null).Select(e => Convert.ToString(e.nsip_bvci)).Distinct().Aggregate((a, b) => a + "," + b);
-                    tcps.lac_ci = m.Where(e => e.bssgp_lac != null).Count() == 0 ? "" : m.Where(e => e.bssgp_lac != null).Select(e => Convert.ToString(e.bssgp_lac) + "-" + Convert.ToString(e.bssgp_ci)).Distinct().Aggregate((a, b) => a + "," + b);
+                    tcps.bsc_bvci = m.Where(e => e.nsip_bvci != null).Select(e => Convert.ToString(e.nsip_bvci)).IEnumDistinctStrComma();
+                    tcps.lac_ci = m.Where(e => e.bssgp_lac != null).Count() == 0 ? "" : m.Where(e => e.bssgp_lac != null).Select(e => Convert.ToString(e.bssgp_lac) + "-" + Convert.ToString(e.bssgp_ci)).IEnumDistinctStrComma();
                     //下行时延，包含3次握手，取这次会话的总长度吧。
                     TimeSpan? ts = m.Max(e => DateTime.Parse(e.GbOverLLC_time)) - pd_no_3tcp.Min(e => DateTime.Parse(e.GbOverLLC_time));
                     tcps.duration = ts.Value.TotalMilliseconds;
@@ -235,28 +235,28 @@ namespace OfflineInspect.ReTransmission
                     tcps.seq_total_count = pd_no_3tcp.Count();
                     tcps.seq_distinct_count = pd_no_3tcp.Select(e => e.tcp_seq).Distinct().Count();
                     tcps.seq_repeat_cnt = tcps.seq_total_count - tcps.seq_distinct_count;
-                    tcps.tcp_seq_aggre = pd_no_3tcp.Select(e => e.tcp_seq).Aggregate((a, b) => a + "," + b);
+                    tcps.tcp_seq_aggre = pd_no_3tcp.Select(e => e.tcp_seq).IEnumDistinctStrComma();
                     //第1层ip地址，第2层ip地址
-                    tcps.ip_src_aggre = pd_no_3tcp.Select(e => e.ip_src_host).Distinct().Aggregate((a, b) => a + "," + b);
-                    tcps.ip2_src_aggre = pd_no_3tcp.Select(e => e.ip2_src_host).Distinct().Aggregate((a, b) => a + "," + b);
-                    tcps.ip_dst_aggre = pd_no_3tcp.Select(e => e.ip_dst_host).Distinct().Aggregate((a, b) => a + "," + b);
-                    tcps.ip2_dst_aggre = pd_no_3tcp.Select(e => e.ip2_dst_host).Distinct().Aggregate((a, b) => a + "," + b);
+                    tcps.ip_src_aggre = pd_no_3tcp.Select(e => e.ip_src_host).IEnumDistinctStrComma();
+                    tcps.ip2_src_aggre = pd_no_3tcp.Select(e => e.ip2_src_host).IEnumDistinctStrComma();
+                    tcps.ip_dst_aggre = pd_no_3tcp.Select(e => e.ip_dst_host).IEnumDistinctStrComma();
+                    tcps.ip2_dst_aggre = pd_no_3tcp.Select(e => e.ip2_dst_host).IEnumDistinctStrComma();
                     //ttl
-                    tcps.ip_ttl_aggre = pd_no_3tcp.Select(e => e.ip_ttl).Distinct().Aggregate((a, b) => a + "," + b);
-                    tcps.ip2_ttl_aggre = pd_no_3tcp.Select(e => e.ip2_ttl).Distinct().Aggregate((a, b) => a + "," + b);
+                    tcps.ip_ttl_aggre = pd_no_3tcp.Select(e => e.ip_ttl).IEnumDistinctStrComma();
+                    tcps.ip2_ttl_aggre = pd_no_3tcp.Select(e => e.ip2_ttl).IEnumDistinctStrComma();
                     //分片
-                    tcps.ip_flags_mf = pd_no_3tcp.Select(e => e.ip_flags_mf).Distinct().Aggregate((a, b) => a + "," + b);
-                    tcps.ip2_flags_mf = pd_no_3tcp.Select(e => e.ip2_flags_mf).Distinct().Aggregate((a, b) => a + "," + b);
-                    tcps.sndcp_m = pd_no_3tcp.Select(e => e.sndcp_m).Distinct().Aggregate((a, b) => a + "," + b);
-                    tcps.tcp_need_segment = pd_no_3tcp.Select(e => e.tcp_need_segment).Distinct().Aggregate((a, b) => a + "," + b);
+                    tcps.ip_flags_mf = pd_no_3tcp.Select(e => e.ip_flags_mf).IEnumDistinctStrComma();
+                    tcps.ip2_flags_mf = pd_no_3tcp.Select(e => e.ip2_flags_mf).IEnumDistinctStrComma();
+                    tcps.sndcp_m = pd_no_3tcp.Select(e => e.sndcp_m).IEnumDistinctStrComma();
+                    tcps.tcp_need_segment = pd_no_3tcp.Select(e => e.tcp_need_segment).IEnumDistinctStrComma();
                     //windows_size,CWR
-                    tcps.tcp_flags_cwr = pd_no_3tcp.Select(e => e.tcp_flags_cwr).Distinct().Aggregate((a, b) => a + "," + b);
-                    tcps.tcp_win_size = pd_no_3tcp.Select(e => e.tcp_window_size).Distinct().Aggregate((a, b) => a + "," + b);
+                    tcps.tcp_flags_cwr = pd_no_3tcp.Select(e => e.tcp_flags_cwr).IEnumDistinctStrComma();
+                    tcps.tcp_win_size = pd_no_3tcp.Select(e => e.tcp_window_size).IEnumDistinctStrComma();
                     //端口
-                    tcps.tcp_nxt_aggre = pd_no_3tcp.Select(e => e.tcp_nxtseq).Aggregate((a, b) => a + "," + b);
-                    tcps.tcp_port_aggre = pd_no_3tcp.Select(e => Convert.ToString(e.tcp_srcport) + "-" + Convert.ToString(e.tcp_dstport)).Distinct().Aggregate((a, b) => a + "," + b);
+                    tcps.tcp_nxt_aggre = pd_no_3tcp.Select(e => e.tcp_nxtseq).OrderBy(e => e).Aggregate((a, b) => a + "," + b);
+                    tcps.tcp_port_aggre = pd_no_3tcp.Select(e => Convert.ToString(e.tcp_srcport) + "-" + Convert.ToString(e.tcp_dstport)).IEnumDistinctStrComma();
                     //消息类型
-                    tcps.msg_aggre = pd_no_3tcp.Select(e => e.GbOverLLC_MsgType).Distinct().Aggregate((a, b) => a + "," + b);
+                    tcps.msg_distinct_aggre = pd_no_3tcp.Select(e => e.GbOverLLC_MsgType).IEnumDistinctStrComma();
                     #endregion
 
                     mongo_tts.MongoCol.Insert(tcps);
