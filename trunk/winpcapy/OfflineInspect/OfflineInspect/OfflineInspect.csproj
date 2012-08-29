@@ -37,9 +37,9 @@
     <Reference Include="DreamSongs.MongoRepository">
       <HintPath>..\packages\MongoRepository.1.3.2\lib\DreamSongs.MongoRepository.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Data.Entity.CTP, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+    <Reference Include="EntityFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.Data.Entity.CTP.dll</HintPath>
+      <HintPath>..\packages\Binaries\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="MongoDB">
       <HintPath>..\..\examples\pcap\sendpack\GnPlatForm\MutliInterfaceGnGi\Mongodb\MongoDB.dll</HintPath>
@@ -89,10 +89,12 @@
     <Compile Include="ReTransmission\CommonAttribute.cs" />
     <Compile Include="ReTransmission\LacCellBvci.cs" />
     <Content Include="ReTransmission\RetransStatics.txt" />
-    <Compile Include="ReTransmission\MyDbContext.cs" />
+    <Compile Include="ReTransmission\LlcDbContext.cs" />
+    <Compile Include="ReTransmission\TcpDbContext.cs" />
+    <Compile Include="ReTransmission\TcpDataFactory.cs" />
     <Compile Include="ReTransmission\TcpRetransStatics.cs" />
     <Compile Include="ReTransmission\TlliLlcSession.cs" />
-    <Compile Include="ReTransmission\TlliTcpSession.cs" />
+    <Compile Include="ReTransmission\TcpPortSession.cs" />
     <Content Include="Mongo\Template2.txt" />
     <Content Include="Mongo\Template.txt" />
     <Compile Include="MultiInterface\GiGETRateMap.cs" />

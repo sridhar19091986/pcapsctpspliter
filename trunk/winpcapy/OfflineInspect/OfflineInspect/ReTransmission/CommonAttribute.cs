@@ -19,6 +19,7 @@ namespace OfflineInspect.ReTransmission
         public static string[] TlliTcpSession = new String[] { "TlliTcpSession", db, remote, "3", "5000" };
         public static string[] TlliLLCSession = new String[] { "TlliLLCSession", db, remote, "3", "5000" };
         public static string[] TcpRetransStatics = new String[] { "TcpRetransStatics", db, remote };
+        private static string sqlconn = "Data Source=localhost;Initial Catalog=MyDbContext;Integrated Security=True;";
 
         public static void ExecReTransmission()
         {
@@ -47,30 +48,34 @@ namespace OfflineInspect.ReTransmission
             //}
             //GC.Collect();
         }
-        private static string sqlconn = "Data Source=localhost;Initial Catalog=MyDbContext;Integrated Security=True;";
+
         public static void ExecMongoExportSql()
         {
-            SqlConnection con = new SqlConnection(sqlconn);
-            using (MyDbContext db = new MyDbContext(con))
+            using (TcpDbContext db = new TcpDbContext(sqlconn))
             {
-                db.Database.DeleteIfExists();
+                if (db.Database.Exists())
+                    db.Database.Delete();
+
                 db.Database.Create();
                 Console.WriteLine(db.Database.Connection.ConnectionString);
 
-                foreach (var tcp in db.getTcpRetransStaticsTableRow())
+                foreach (var tcp in db.getTcpRetransStaticsDocumentSet())
                 {
-                    db.Set<TcpRetransStaticsTable>().Add(tcp);
+                    db.Set<TcpRetransStaticsDocument>().Add(tcp);
                     db.SaveChanges();
                 }
 
-                foreach (var llc in db.getTlliLLCSessionTableRow())
-                {
-                    db.Set<TlliLLCSessionTable>().Add(llc);
-                    db.SaveChanges();
-                }
+
             }
             Console.WriteLine("Finish");
             Console.ReadKey();
+
+            using (LlcDbContext db = new LlcDbContext())
+                foreach (var llc in db.getTlliLLCSessionDocumentSet())
+                {
+                    db.Set<TlliLLCSessionDocument>().Add(llc);
+                    db.SaveChanges();
+                }
         }
     }
 }

@@ -43,62 +43,75 @@ using EntitySqlTable.SqlServer.Local.Gb_TCP_ReTransmission;
 using System.Data.Objects;
 using OfflineInspect.Mongo;
 using OfflineInspect.CommonTools;
+using System.ComponentModel.DataAnnotations;
 
 namespace OfflineInspect.ReTransmission
 {
-    public class TlliTcpSessionDocument
+    public class TcpPortSessionDocument
     {
+        #region 给sqlserver虚构一个主键，good,ef5 code first,/2012.8.29
+        [Key]
+        public long tpsdID { get; set; }
+        #endregion
+
         public long _id;
-        public string bsc_bvci;
-        public string lac_ci;
-        public string mscbsc_ip_aggre;
-        public int mscbsc_ip_count;
-        public string direction;
-        public double duration;
-        public string imsi;
-        public string tcp_seq_aggre;//tcp聚合
-        public string msg_aggre;//消息聚合
-        public decimal? seq_nxt_max;
+        public string bsc_bvci { get; set; }
+        public string lac_ci { get; set; }
+        public string mscbsc_ip_aggre { get; set; }
+        public int mscbsc_ip_count { get; set; }
+        public string direction { get; set; }
+        public double duration { get; set; }
+        public string imsi { get; set; }
+        public string tcp_seq_aggre { get; set; }//tcp聚合
+        public string msg_aggre { get; set; }//消息聚合
+        public decimal? seq_nxt_max { get; set; }
         //包总长度
-        public decimal? seq_total_aggre;  //每次的nxt-seq之和，计算的值是ip2包之和，未计算sndcp包。
-        public decimal? seq_total_reduce;//真实的总长度。最大nxt减去seq。未包含重传。
+        public decimal? seq_total_aggre { get; set; } //每次的nxt-seq之和，计算的值是ip2包之和，未计算sndcp包。
+        public decimal? seq_total_reduce { get; set; }//真实的总长度。最大nxt减去seq。未包含重传。
         /*
          * seq_total_lost>0，则出现丢包，sndcp、ip分片等。
          * seq_total_lost<0，则出现重传等。
          * 
          * */
-        public decimal? seq_total_lost;//大于0，丢包流量占比，小于0，重传流量占比
-        public string session_id;
-        public decimal seq_tcp_min;
+        public decimal? seq_total_lost { get; set; }//大于0，丢包流量占比，小于0，重传流量占比
+        public string session_id { get; set; }
+        public decimal seq_tcp_min { get; set; }
         //public double seq_total_aggre_rate;//速率计算
-        public int seq_total_count;
-        public int? ip_total_aggre;
-        public int seq_repeat_cnt;//重传数量占比
-        public int seq_distinct_count;
-        public string ip_src_aggre;
-        public string ip2_src_aggre;
-        public string ip_dst_aggre;
-        public string ip2_dst_aggre;
-        public string ip_ttl_aggre;
-        public string ip2_ttl_aggre;
-        public string ip_flags_mf;
-        public string ip2_flags_mf;
-        public string tcp_flags_cwr;
-        public string tcp_win_size;
-        public string tcp_nxt_aggre;
-        public string tcp_port_aggre;
-        public string sndcp_m;
-        public string tcp_need_segment;
+        public int seq_total_count { get; set; }
+        public int? ip_total_aggre { get; set; }
+        public int seq_repeat_cnt { get; set; }//重传数量占比
+        public int seq_distinct_count { get; set; }
+        public string ip_src_aggre { get; set; }
+        public string ip2_src_aggre { get; set; }
+        public string ip_dst_aggre { get; set; }
+        public string ip2_dst_aggre { get; set; }
+        public string ip_ttl_aggre { get; set; }
+        public string ip2_ttl_aggre { get; set; }
+        public string ip_flags_mf { get; set; }
+        public string ip2_flags_mf { get; set; }
+        public string tcp_flags_cwr { get; set; }
+        public string tcp_win_size { get; set; }
+        public string tcp_nxt_aggre { get; set; }
+        public string tcp_port_aggre { get; set; }
+        public string sndcp_m { get; set; }
+        public string tcp_need_segment { get; set; }
         /*
          * 还需要增加一些维度，
          * 
          * 比如，uri,agent,response
          * 
+         *   public string apn;//apn维度可以在之后生成
+        public string qos;//qos维度可以在数据挖掘之后生生
+         * 
          * */
-        
+        public string http_method { get; set; }
+        public string absolute_uri { get; set; }//生成uri的绝对路径
+        public string user_agent { get; set; }//提取用户的代理
+
+
     }
 
-    public class TlliTcpSession : CommonToolx, IDisposable
+    public class TcpPortSession : CommonToolx, IDisposable
     {
         private string mongo_collection = CommonAttribute.TlliTcpSession[0];
         private string mongo_db = CommonAttribute.TlliTcpSession[1];
@@ -106,12 +119,12 @@ namespace OfflineInspect.ReTransmission
         private int maxfilenum = Int32.Parse(CommonAttribute.TlliTcpSession[3]);
         private int size = Int32.Parse(CommonAttribute.TlliTcpSession[4]);
 
-        public MongoCrud<TlliTcpSessionDocument> mongo_tts;
+        public MongoCrud<TcpPortSessionDocument> mongo_tts;
         private GuangZhou_Gb_TCP_ReTransmission gb;
 
-        public TlliTcpSession()
+        public TcpPortSession()
         {
-            mongo_tts = new MongoCrud<TlliTcpSessionDocument>(mongo_conn, mongo_db, mongo_collection);
+            mongo_tts = new MongoCrud<TcpPortSessionDocument>(mongo_conn, mongo_db, mongo_collection);
             gb = new GuangZhou_Gb_TCP_ReTransmission();
             gb.CommandTimeout = 0;
             gb.ContextOptions.LazyLoadingEnabled = true;
@@ -125,7 +138,7 @@ namespace OfflineInspect.ReTransmission
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-        ~TlliTcpSession()
+        ~TcpPortSession()
         {
             Dispose(false);
         }
@@ -156,6 +169,9 @@ namespace OfflineInspect.ReTransmission
         //对每个文件号中的开始帧号进行分页
         public void CreateTable(string direction, IEnumerable<Gb_TCP_ReTransmission> gb_tcp_retrans, int filenum)
         {
+            string host = null;
+            string uri = null;
+
             int packet_cnt = gb_tcp_retrans.Select(e => e.BeginFrameNum).Distinct().Count();
 
             int step = packet_cnt / size + 1;
@@ -176,13 +192,22 @@ namespace OfflineInspect.ReTransmission
                     if (pd_no_3tcp.Count() == 0) continue;
                     #endregion
 
-                    TlliTcpSessionDocument tcps = new TlliTcpSessionDocument();
+                    TcpPortSessionDocument tcps = new TcpPortSessionDocument();
 
                     #region tcp会话的基础信息，callid/imsi/lac/cell/bvci/duration/
                     tcps._id = GenerateId();
                     tcps.session_id = filenum.ToString() + "-" + m.Key.Value.ToString();
                     tcps.direction = direction;
                     tcps.imsi = m.Where(e => e.bssgp_imsi != null).Select(e => e.bssgp_imsi).FirstOrDefault();
+                    host = m.Where(e => e.http_host != null).Select(e => e.http_host).FirstOrDefault();
+                    uri = m.Where(e => e.http_request_uri != null).Select(e => e.http_request_uri).FirstOrDefault();
+                    //合并uri算法
+                    tcps.absolute_uri = uri;
+                    if (host != null)
+                        if (!uri.Contains(host))
+                            tcps.absolute_uri = host + uri;
+                    tcps.user_agent = m.Where(e => e.http_user_agent != null).Select(e => e.http_user_agent).FirstOrDefault();
+                    tcps.http_method = m.Where(e => e.http_request_method != null).Select(e => e.http_request_method).FirstOrDefault();
                     var src = m.Select(e => e.ip_src_host);
                     var dst = m.Select(e => e.ip_dst_host);
                     var bscip = src.Union(dst);
@@ -192,7 +217,7 @@ namespace OfflineInspect.ReTransmission
                     tcps.bsc_bvci = m.Where(e => e.nsip_bvci != null).Select(e => Convert.ToString(e.nsip_bvci)).Distinct().Aggregate((a, b) => a + "," + b);
                     tcps.lac_ci = m.Where(e => e.bssgp_lac != null).Count() == 0 ? "" : m.Where(e => e.bssgp_lac != null).Select(e => Convert.ToString(e.bssgp_lac) + "-" + Convert.ToString(e.bssgp_ci)).Distinct().Aggregate((a, b) => a + "," + b);
                     //下行时延，包含3次握手，取这次会话的总长度吧。
-                    TimeSpan? ts = m.Max(e => DateTime.Parse(e.TCP_time)) - pd_no_3tcp.Min(e => DateTime.Parse(e.TCP_time));
+                    TimeSpan? ts = m.Max(e => DateTime.Parse(e.GbOverLLC_time)) - pd_no_3tcp.Min(e => DateTime.Parse(e.GbOverLLC_time));
                     tcps.duration = ts.Value.TotalMilliseconds;
                     #endregion
 
@@ -231,7 +256,7 @@ namespace OfflineInspect.ReTransmission
                     tcps.tcp_nxt_aggre = pd_no_3tcp.Select(e => e.tcp_nxtseq).Aggregate((a, b) => a + "," + b);
                     tcps.tcp_port_aggre = pd_no_3tcp.Select(e => Convert.ToString(e.tcp_srcport) + "-" + Convert.ToString(e.tcp_dstport)).Distinct().Aggregate((a, b) => a + "," + b);
                     //消息类型
-                    tcps.msg_aggre = pd_no_3tcp.Select(e => e.TCP_MsgType).Distinct().Aggregate((a, b) => a + "," + b);
+                    tcps.msg_aggre = pd_no_3tcp.Select(e => e.GbOverLLC_MsgType).Distinct().Aggregate((a, b) => a + "," + b);
                     #endregion
 
                     mongo_tts.MongoCol.Insert(tcps);
