@@ -25,10 +25,24 @@
         </ID>
       </ObjectSnapshot>
       <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.RelationalDataSource</Type>
+        <TimeStamp>i9epZeIKd6ajCpj7Ff/Tb7reG5g=2012-08-29 14:43:042012-08-29 14:43:01</TimeStamp>
+        <ID>
+          <String>Tcp Db Context</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
         <Type>Microsoft.AnalysisServices.DataSourceView</Type>
         <TimeStamp>aIZORHcwIk/ro5VFUnJ2Zz6r+oo=2012-08-23 17:10:062012-08-23 12:16:12</TimeStamp>
         <ID>
           <String>Ssis Gb</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.DataSourceView</Type>
+        <TimeStamp>VE/BBVpDVbSPdHRLKP1eInkKtFE=2012-08-29 14:44:222012-08-29 14:43:39</TimeStamp>
+        <ID>
+          <String>Tcp Db Context</String>
         </ID>
       </ObjectSnapshot>
       <ObjectSnapshot>
@@ -46,8 +60,15 @@
         </ID>
       </ObjectSnapshot>
       <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>mp0ZNFM3l82mj/Dneoz7VM5v8e8=2012-08-29 15:00:082012-08-29 14:44:45</TimeStamp>
+        <ID>
+          <String>Tcp Retrans Statics Documents</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
         <Type>Microsoft.AnalysisServices.Cube</Type>
-        <TimeStamp>5aHlnv83EhAwCvXALeZ4UsqfZjU=2012-08-24 14:58:002012-08-23 12:17:46Kh60X0PTrDbxVDuZyfKhBS1kMCY=2012-08-23 12:21:282012-08-23 12:17:47</TimeStamp>
+        <TimeStamp>6gdKCu7yvRaHPlXiEJ4sOZIBR1w=2012-08-29 15:28:182012-08-23 12:17:46Kh60X0PTrDbxVDuZyfKhBS1kMCY=2012-08-23 12:21:282012-08-23 12:17:47</TimeStamp>
         <ID>
           <String>Ssis Gb</String>
         </ID>
@@ -57,6 +78,13 @@
         <TimeStamp>b+QROC+UspbABxp7rpScAF7vZGQ=2012-08-24 14:52:562012-08-23 17:10:28/DXOEuzmk+yXHX4QqPRFajx57uY=2012-08-24 14:52:562012-08-23 17:10:28</TimeStamp>
         <ID>
           <String>Ssis Gb 1</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Cube</Type>
+        <TimeStamp>5JKMcudf/MHTtB6Y5+wtR/k+5Mw=2012-08-29 15:28:182012-08-29 14:44:44Ua/MwA74znNjrxe5n4UqPzThfmQ=2012-08-29 15:01:582012-08-29 14:44:45</TimeStamp>
+        <ID>
+          <String>Tcp Db Context</String>
         </ID>
       </ObjectSnapshot>
       <ObjectSnapshot>
@@ -85,5 +113,5 @@
   </Snapshot>
   <AssemblyLocations />
   <ProcessingComplete>true</ProcessingComplete>
-  <LastDeployed>2012-08-24T07:11:28Z</LastDeployed>
+  <LastDeployed>2012-08-29T07:28:25Z</LastDeployed>
 </DeploymentSnapshot>

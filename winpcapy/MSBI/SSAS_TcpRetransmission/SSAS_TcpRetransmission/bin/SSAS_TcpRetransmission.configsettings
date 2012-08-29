@@ -9,6 +9,14 @@
           <ImpersonationInfoSecurity>Unchanged</ImpersonationInfoSecurity>
         </ImpersonationInfo>
       </DataSource>
+      <DataSource>
+        <ID>Tcp Db Context</ID>
+        <ConnectionString>Provider=SQLNCLI10.1;Data Source=localhost;Integrated Security=SSPI;Initial Catalog=TcpDbContext</ConnectionString>
+        <ImpersonationInfo>
+          <ImpersonationMode>ImpersonateServiceAccount</ImpersonationMode>
+          <ImpersonationInfoSecurity>Unchanged</ImpersonationInfoSecurity>
+        </ImpersonationInfo>
+      </DataSource>
     </DataSources>
     <Dimensions>
       <Dimension>
@@ -16,6 +24,9 @@
       </Dimension>
       <Dimension>
         <ID>Llc Session Discard</ID>
+      </Dimension>
+      <Dimension>
+        <ID>Tcp Retrans Statics Documents</ID>
       </Dimension>
     </Dimensions>
     <MiningStructures>
@@ -45,6 +56,19 @@
             <Partitions>
               <Partition>
                 <ID>Llc Session Discard</ID>
+              </Partition>
+            </Partitions>
+          </MeasureGroup>
+        </MeasureGroups>
+      </Cube>
+      <Cube>
+        <ID>Tcp Db Context</ID>
+        <MeasureGroups>
+          <MeasureGroup>
+            <ID>Tcp Retrans Statics Documents</ID>
+            <Partitions>
+              <Partition>
+                <ID>Tcp Retrans Statics Documents</ID>
               </Partition>
             </Partitions>
           </MeasureGroup>
