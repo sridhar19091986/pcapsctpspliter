@@ -311,7 +311,7 @@ namespace ViewInspect
         #region tcp、llc重传和丢包
         private void navBarItem14_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs ee)
         {
-            TlliTcpSession tts = new TlliTcpSession();
+            TcpPortSession tts = new TcpPortSession();
             var query = from p in tts.mongo_tts.QueryMongo()
                         select new
                         {

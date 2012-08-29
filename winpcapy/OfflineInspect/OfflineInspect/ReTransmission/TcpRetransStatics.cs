@@ -36,17 +36,25 @@ using System.ComponentModel.DataAnnotations;
 
 namespace OfflineInspect.ReTransmission
 {
-    public class TcpRetransStaticsTable
+    public class TcpRetransStaticsDocument
     {
-        #region 维度
+        #region 给sqlserver虚构一个主键，good,ef5 code first,/2012.8.29
         [Key]
-        public Int64 abcId { get; set; }
+        public long trsdID { get; set; }
+        #endregion
+
+        #region 维度
+        public long _id;
         public string session_id { get; set; }
         public string imsi { get; set; }
         public string lac_ci { get; set; }
         public string ip2_ttl_aggre { get; set; }
         public string direction { get; set; }
+        public string http_method { get; set; }
+        public string absolute_uri { get; set; }//生成uri的绝对路径
+        public string user_agent { get; set; }//提取用户的代理
         #endregion
+
         #region 度量
         //流量计算
         public decimal? ip_total_aggre { get; set; }
@@ -61,33 +69,6 @@ namespace OfflineInspect.ReTransmission
         public decimal? seq_total_repeat { get; set; }
         //时间计算
         public double duration { get; set; }
-        #endregion
-    }
-
-    public class TcpRetransStaticsDocument
-    {
-        #region 维度
-        public long _id;
-        public string session_id;
-        public string imsi;
-        public string lac_ci;
-        public string ip2_ttl_aggre;
-        public string direction;
-        #endregion
-        #region 度量
-        //流量计算
-        public decimal? ip_total_aggre;
-        public decimal? seq_total_aggre;
-        public decimal? seq_total_reduce;
-        //数量计算
-        public int seq_total_count;
-        public int seq_distinct_count;
-        public int seq_repeat_cnt;
-        //丢包和重传计算
-        public decimal? seq_total_lost;
-        public decimal? seq_total_repeat;
-        //时间计算
-        public double duration;
         #endregion
     }
 
@@ -125,7 +106,7 @@ namespace OfflineInspect.ReTransmission
         #endregion
         public void CreatCollection()
         {
-            TlliTcpSession tts = new TlliTcpSession();
+            TcpPortSession tts = new TcpPortSession();
             var query = from p in tts.mongo_tts.QueryMongo()
                         select new TcpRetransStaticsDocument
                         {
@@ -136,6 +117,9 @@ namespace OfflineInspect.ReTransmission
                             lac_ci = p.lac_ci,
                             ip2_ttl_aggre = p.ip2_ttl_aggre,
                             direction = p.direction,
+                            http_method = p.http_method,
+                            user_agent = p.user_agent,
+                            absolute_uri = p.absolute_uri,
 
                             ip_total_aggre = p.ip_total_aggre,
                             seq_total_aggre = p.seq_total_aggre,

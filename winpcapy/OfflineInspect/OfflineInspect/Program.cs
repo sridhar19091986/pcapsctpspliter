@@ -17,6 +17,7 @@ using System.Linq;
 using System.Text;
 using OfflineInspect.FlowControl;
 using OfflineInspect.MultiInterface;
+using OfflineInspect.ReTransmission;
 
 namespace OfflineInspect
 {
@@ -32,7 +33,9 @@ namespace OfflineInspect
 
             //OfflineInspect.ReTransmission.CommonAttribute.ExecReTransmission();
 
-            OfflineInspect.ReTransmission.CommonAttribute.ExecMongoExportSql();
+            //OfflineInspect.ReTransmission.CommonAttribute.ExecMongoExportSql();
+
+            TcpDataFactory.BathMakeTcpData();
 
             Console.WriteLine("complete.");
 
