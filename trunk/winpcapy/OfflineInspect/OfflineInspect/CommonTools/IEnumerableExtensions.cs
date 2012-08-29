@@ -13,6 +13,20 @@ namespace OfflineInspect.CommonTools
             return source.Substring(0, pos);
         }
 
+        public static string IEnumDistinctStrComma<T>(this IEnumerable<T> source)
+        {
+            //source没有记录则返回空值
+            if (!source.Any()) return null;
+            if (!source.Where(e => e != null).Any()) return null;
+            //先去重复的再排序最后用逗号分割
+            string douhao = source
+                .Where(e => e != null)
+                .Select(e => e.ToString().Trim())
+                .Distinct().OrderBy(e => e)
+                .Aggregate((a, b) => a + "," + b);
+            return douhao;
+        }
+
         public static int CountMessage(this string source, string msg)
         {
             var msgs = source.Split(',');
