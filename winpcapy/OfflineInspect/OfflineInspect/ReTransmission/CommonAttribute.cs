@@ -11,15 +11,14 @@ using System.Data.EntityClient;
 
 namespace OfflineInspect.ReTransmission
 {
-    public class CommonAttribute
+    public class CommonAttribute:CommonDataLocation
     {
-        private static string remote = "mongodb://localhost/?safe=true";
+
         private static string db = "ReTransmission";
         public static string[] LacCellBvci = new String[] { "LacCellBvci", db, remote };
-        public static string[] TlliTcpSession = new String[] { "TlliTcpSession", db, remote, "3", "5000" };
+        public static string[] TlliTcpSession = new String[] { "TlliTcpSession", db, remote, "10", "5000" };
         public static string[] TlliLLCSession = new String[] { "TlliLLCSession", db, remote, "3", "5000" };
         public static string[] TcpRetransStatics = new String[] { "TcpRetransStatics", db, remote };
-        private static string sqlconn = "Data Source=localhost;Initial Catalog=MyDbContext;Integrated Security=True;";
 
         public static void ExecReTransmission()
         {
