@@ -9,7 +9,7 @@ namespace OfflineInspect.ReTransmission
     {
         public static void BathMakeTcpData()
         {
-            BatchMakeTcpDataForMongo();
+            //BatchMakeTcpDataForMongo();
             BatchMakeTcpDataForSqlServer();
         }
 
@@ -42,12 +42,14 @@ namespace OfflineInspect.ReTransmission
                 //加快入库，2012.8.30，30->0.5s级别。
                 db.Configuration.AutoDetectChangesEnabled = false;
 
+                /*
                 foreach (var tcp in db.getTcpPortSessionDocumentSet())
                 {
                     db.Set<TcpPortSessionDocument>().Add(tcp);
                     db.SaveChanges();
                 }
                 Console.WriteLine("TcpPortSession->TcpDbContext->ok");
+                **/
 
                 foreach (var tcp in db.getTcpRetransStaticsDocumentSet())
                 {
