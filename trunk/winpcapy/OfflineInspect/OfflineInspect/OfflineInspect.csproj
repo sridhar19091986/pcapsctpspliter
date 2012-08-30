@@ -90,6 +90,7 @@
     <Compile Include="ReTransmission\LacCellBvci.cs" />
     <Content Include="ReTransmission\RetransStatics.txt" />
     <Compile Include="ReTransmission\LlcDbContext.cs" />
+    <Compile Include="ReTransmission\CommonDataLocation.cs" />
     <Compile Include="ReTransmission\TcpDbContext.cs" />
     <Compile Include="ReTransmission\TcpDataFactory.cs" />
     <Compile Include="ReTransmission\TcpRetransStatics.cs" />

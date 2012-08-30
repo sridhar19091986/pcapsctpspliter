@@ -5,10 +5,8 @@ using System.Text;
 
 namespace OfflineInspect.ReTransmission
 {
-    public class TcpDataFactory
+    public class TcpDataFactory : CommonDataLocation
     {
-        private static string sqlconn = "Data Source=localhost;Initial Catalog=TcpDbContext;Integrated Security=True;";
-
         public static void BathMakeTcpData()
         {
             BatchMakeTcpDataForMongo();
@@ -40,6 +38,9 @@ namespace OfflineInspect.ReTransmission
                 db.Database.Create();
 
                 Console.WriteLine(db.Database.Connection.ConnectionString);
+
+                //加快入库，2012.8.30，30->0.5s级别。
+                db.Configuration.AutoDetectChangesEnabled = false;
 
                 foreach (var tcp in db.getTcpPortSessionDocumentSet())
                 {
