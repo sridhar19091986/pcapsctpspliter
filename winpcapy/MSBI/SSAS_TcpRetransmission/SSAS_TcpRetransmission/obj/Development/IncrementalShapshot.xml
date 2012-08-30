@@ -26,7 +26,7 @@
       </ObjectSnapshot>
       <ObjectSnapshot>
         <Type>Microsoft.AnalysisServices.RelationalDataSource</Type>
-        <TimeStamp>i9epZeIKd6ajCpj7Ff/Tb7reG5g=2012-08-29 14:43:042012-08-29 14:43:01</TimeStamp>
+        <TimeStamp>S/21eKTlE8cIjeC6X08y5KqPGt0=2012-08-29 15:41:182012-08-29 14:43:01</TimeStamp>
         <ID>
           <String>Tcp Db Context</String>
         </ID>
@@ -82,7 +82,7 @@
       </ObjectSnapshot>
       <ObjectSnapshot>
         <Type>Microsoft.AnalysisServices.Cube</Type>
-        <TimeStamp>5JKMcudf/MHTtB6Y5+wtR/k+5Mw=2012-08-29 15:28:182012-08-29 14:44:44Ua/MwA74znNjrxe5n4UqPzThfmQ=2012-08-29 15:01:582012-08-29 14:44:45</TimeStamp>
+        <TimeStamp>d+Nx3iRf+zXZM9iWXyizYX0rStc=2012-08-30 10:26:482012-08-29 14:44:44Ua/MwA74znNjrxe5n4UqPzThfmQ=2012-08-29 15:01:582012-08-29 14:44:45</TimeStamp>
         <ID>
           <String>Tcp Db Context</String>
         </ID>
@@ -113,5 +113,5 @@
   </Snapshot>
   <AssemblyLocations />
   <ProcessingComplete>true</ProcessingComplete>
-  <LastDeployed>2012-08-29T07:28:25Z</LastDeployed>
+  <LastDeployed>2012-08-30T06:44:25Z</LastDeployed>
 </DeploymentSnapshot>
