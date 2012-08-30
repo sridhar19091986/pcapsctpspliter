@@ -13,7 +13,7 @@
         <ID>Tcp Db Context</ID>
         <ConnectionString>Provider=SQLNCLI10.1;Data Source=localhost;Integrated Security=SSPI;Initial Catalog=TcpDbContext</ConnectionString>
         <ImpersonationInfo>
-          <ImpersonationMode>ImpersonateServiceAccount</ImpersonationMode>
+          <ImpersonationMode>Default</ImpersonationMode>
           <ImpersonationInfoSecurity>Unchanged</ImpersonationInfoSecurity>
         </ImpersonationInfo>
       </DataSource>
