@@ -24,6 +24,17 @@
  * 2012.8.28
  * 
  * 
+ *纯ip的业务分析
+ *FROM [TcpDbContext].[dbo].[TcpRetransStaticsDocuments] 
+ *where [absolute_uri] like '%218.27.135.175%' or [ip2_sp_aggre] like '%218.27.135.175%' 
+ * 
+SELECT * FROM gn_common_201204181300 WHERE
+gn_common_201204181300.SP_Address  like '%218.27.135.175%' OR
+gn_common_201204181300.URI =  '%218.27.135.175%' OR
+gn_common_201204181300.URI_Main =  '%218.27.135.175%'
+limit 100
+ * 
+ * 需要针对用户和业务进行分析？
  * */
 
 using System;

@@ -39,7 +39,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using EntitySqlTable.SqlServer.Local.Gb_TCP_ReTransmission;
+//using EntitySqlTable.SqlServer.Local.Gb_TCP_ReTransmission;
+using EntitySqlTable.SqlServer.ip33.tcp_data;
 using System.Data.Objects;
 using OfflineInspect.Mongo;
 using OfflineInspect.CommonTools;
@@ -78,7 +79,7 @@ namespace OfflineInspect.ReTransmission
         public decimal seq_tcp_min { get; set; }
         //public double seq_total_aggre_rate;//速率计算
         public int seq_total_count { get; set; }
-        public int? ip_total_aggre { get; set; }
+        public long? ip_total_aggre { get; set; }
         public int seq_repeat_cnt { get; set; }//重传数量占比
         public int seq_distinct_count { get; set; }
         public string ip_src_aggre { get; set; }
@@ -120,12 +121,14 @@ namespace OfflineInspect.ReTransmission
         private int size = Int32.Parse(CommonAttribute.TlliTcpSession[4]);
 
         public MongoCrud<TcpPortSessionDocument> mongo_tts;
-        private GuangZhou_Gb_TCP_ReTransmission gb;
+        //private GuangZhou_Gb_TCP_ReTransmission gb;
+        private tcp_dataEntities gb;
 
         public TcpPortSession()
         {
             mongo_tts = new MongoCrud<TcpPortSessionDocument>(mongo_conn, mongo_db, mongo_collection);
-            gb = new GuangZhou_Gb_TCP_ReTransmission();
+            //gb = new GuangZhou_Gb_TCP_ReTransmission();
+            gb = new tcp_dataEntities();
             gb.CommandTimeout = 0;
             gb.ContextOptions.LazyLoadingEnabled = true;
             gb.Gb_TCP_ReTransmission.MergeOption = MergeOption.NoTracking;
@@ -156,18 +159,25 @@ namespace OfflineInspect.ReTransmission
         public void CreateCollection()
         {
             for (int j = 0; j < maxfilenum; j++)
+            {
+                Console.WriteLine(j);
                 CreateCollection(j);
+            }
         }
 
         public void CreateCollection(int filenum)
         {
-            var tcpsession = gb.Gb_TCP_ReTransmission.Where(e => e.BeginFileNum == filenum);
+            IQueryable<Gb_TCP_ReTransmission> tcpsession = gb.Gb_TCP_ReTransmission.Where(e => e.BeginFileNum == filenum);
             CreateTable("Up", tcpsession, filenum);
             CreateTable("Down", tcpsession, filenum);
         }
-
+        /*
+         * 
+         * 这里做了了优化，ienumber是立即执行，iquery则是延时执行,2012.8.30
+         * 
+         * */
         //对每个文件号中的开始帧号进行分页
-        public void CreateTable(string direction, IEnumerable<Gb_TCP_ReTransmission> gb_tcp_retrans, int filenum)
+        public void CreateTable(string direction, IQueryable<Gb_TCP_ReTransmission> gb_tcp_retrans, int filenum)
         {
             string host = null;
             string uri = null;
@@ -179,7 +189,8 @@ namespace OfflineInspect.ReTransmission
             //执行帧号分页
             for (int i = 0; i < step; i++)
             {
-                var tcp_session = gb_tcp_retrans.Where(e => e.BeginFrameNum >= i * size && e.BeginFrameNum < (i + 1) * size);
+                IQueryable<Gb_TCP_ReTransmission> tcp_session = gb_tcp_retrans
+                    .Where(e => e.BeginFrameNum >= i * size && e.BeginFrameNum < (i + 1) * size);
 
                 var tcp_sessions = tcp_session.ToLookup(e => e.BeginFrameNum);
 
@@ -204,8 +215,17 @@ namespace OfflineInspect.ReTransmission
                     //合并uri算法
                     tcps.absolute_uri = uri;
                     if (host != null)
-                        if (!uri.Contains(host))
-                            tcps.absolute_uri = host + uri;
+                    {
+                        if (uri != null)
+                        {
+                            if (!uri.Contains(host))
+                                tcps.absolute_uri = host + uri;
+                        }
+                        else
+                        {
+                            tcps.absolute_uri = host;
+                        }
+                    }
                     tcps.user_agent = m.Where(e => e.http_user_agent != null).Select(e => e.http_user_agent).FirstOrDefault();
                     tcps.http_method = m.Where(e => e.http_request_method != null).Select(e => e.http_request_method).FirstOrDefault();
                     var src = m.Select(e => e.ip_src_host);

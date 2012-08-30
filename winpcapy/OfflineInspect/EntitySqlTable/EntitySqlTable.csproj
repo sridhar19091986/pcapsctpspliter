@@ -70,6 +70,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="SqlServer\ip33\tcp_data\TcpRetransmission.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TcpRetransmission.edmx</DependentUpon>
+    </Compile>
     <Compile Include="SqlServer\Local\Gb_LLC_ReTransmission\Model1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -83,7 +88,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MySql\" />
-    <Folder Include="SqlServer\ip33\tcp_data\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
@@ -114,6 +118,10 @@
     <EntityDeploy Include="SqlServer\Local\Gb_LLC_ReTransmission\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="SqlServer\ip33\tcp_data\TcpRetransmission.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TcpRetransmission.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
