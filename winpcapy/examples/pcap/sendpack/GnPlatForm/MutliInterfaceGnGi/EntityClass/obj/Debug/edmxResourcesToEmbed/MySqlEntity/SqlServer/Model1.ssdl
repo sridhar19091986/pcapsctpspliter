@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GuangZhou_GnModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="GuangZhou_GnModelStoreContainer">
+    <EntitySet Name="mpos_gn_common" EntityType="GuangZhou_GnModel.Store.mpos_gn_common" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="mpos_gn_common">
+    <Key>
+      <PropertyRef Name="gn_id" />
+    </Key>
+    <Property Name="gn_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Online_ID" Type="bigint" />
+    <Property Name="Session_ID" Type="bigint" />
+    <Property Name="Start_Date_Time" Type="datetime" />
+    <Property Name="End_Date_Time" Type="datetime" />
+    <Property Name="SGSN_IP" Type="bigint" />
+    <Property Name="SGSN" Type="nvarchar" MaxLength="50" />
+    <Property Name="GGSN_IP" Type="bigint" />
+    <Property Name="GGSN" Type="nvarchar" MaxLength="50" />
+    <Property Name="LAC" Type="int" />
+    <Property Name="CI" Type="int" />
+    <Property Name="SAC" Type="int" />
+    <Property Name="IMSI" Type="nvarchar" MaxLength="27" />
+    <Property Name="IMEI" Type="nvarchar" MaxLength="27" />
+    <Property Name="Prefix_IMEI" Type="nvarchar" MaxLength="18" />
+    <Property Name="MSISDN" Type="bigint" />
+    <Property Name="APN" Type="nvarchar" MaxLength="50" />
+    <Property Name="RAT_TYPE" Type="int" />
+    <Property Name="my_RAT_TYPE" Type="nvarchar" MaxLength="1280" />
+    <Property Name="PROTOCOL" Type="int" />
+    <Property Name="my_Protocol" Type="nvarchar" MaxLength="1280" />
+    <Property Name="Event_Type" Type="int" />
+    <Property Name="my_Event_Type" Type="nvarchar" MaxLength="1280" />
+    <Property Name="IP_LEN_UL" Type="int" />
+    <Property Name="IP_LEN_DL" Type="int" />
+    <Property Name="Count_Packet_UL" Type="int" />
+    <Property Name="Count_Packet_DL" Type="int" />
+    <Property Name="Duration" Type="decimal" Precision="20" />
+    <Property Name="SOURCE_IP" Type="bigint" />
+    <Property Name="my_SOURCE_IP" Type="nvarchar" MaxLength="1280" />
+    <Property Name="DEST_IP" Type="bigint" />
+    <Property Name="my_DEST_IP" Type="nvarchar" MaxLength="1280" />
+    <Property Name="SOURCE_PORT" Type="int" />
+    <Property Name="DEST_PORT" Type="int" />
+    <Property Name="URI" Type="nvarchar" />
+    <Property Name="my_URI_Len" Type="int" />
+    <Property Name="my_URI_IMEI" Type="nvarchar" MaxLength="128" />
+    <Property Name="my_URI_UA" Type="nvarchar" MaxLength="1280" />
+    <Property Name="my_URI_UA_MS_Type" Type="nvarchar" MaxLength="1280" />
+    <Property Name="my_URI_UA_Weibo_Ver" Type="nvarchar" MaxLength="1280" />
+    <Property Name="my_URI_UA_OS" Type="nvarchar" MaxLength="1280" />
+    <Property Name="URI_Main" Type="nvarchar" MaxLength="1280" />
+    <Property Name="my_URI_Main" Type="nvarchar" MaxLength="1280" />
+    <Property Name="my_URI_Main_header" Type="nvarchar" MaxLength="1280" />
+    <Property Name="Content_Type" Type="nvarchar" MaxLength="300" />
+    <Property Name="my_Content_Type" Type="nvarchar" MaxLength="300" />
+    <Property Name="User_Agent_Main" Type="nvarchar" MaxLength="300" />
+    <Property Name="Service_TYPE" Type="int" />
+    <Property Name="my_Service_TYPE" Type="nvarchar" MaxLength="1280" />
+    <Property Name="Sub_Service_Type" Type="int" />
+    <Property Name="my_Sub_Service_Type" Type="nvarchar" MaxLength="1280" />
+    <Property Name="IsReassemble" Type="bit" />
+    <Property Name="Delete_PDP" Type="bit" />
+    <Property Name="Delete_PDP_Direction" Type="bit" />
+    <Property Name="Abnormal_reason" Type="int" />
+    <Property Name="my_Abnormal_reason" Type="nvarchar" MaxLength="1280" />
+    <Property Name="Repeat_Count" Type="int" />
+    <Property Name="Resp" Type="bit" />
+    <Property Name="Resp_DelayFirst" Type="int" />
+    <Property Name="Resp_cause" Type="int" />
+    <Property Name="abort" Type="int" />
+    <Property Name="Disconnect" Type="bit" />
+    <Property Name="Result" Type="bit" />
+    <Property Name="Result_DelayFirst" Type="int" />
+    <Property Name="MMS_request" Type="bit" />
+    <Property Name="MMS_resp_status" Type="int" />
+    <Property Name="From" Type="nvarchar" MaxLength="300" />
+    <Property Name="To" Type="nvarchar" MaxLength="300" />
+    <Property Name="Subject" Type="nvarchar" MaxLength="400" />
+    <Property Name="Delivery_Report" Type="bit" />
+    <Property Name="Query_Name" Type="nvarchar" MaxLength="1280" />
+    <Property Name="Query_Type" Type="nvarchar" MaxLength="1280" />
+    <Property Name="DNS_TTL" Type="int" />
+    <Property Name="SP_Address" Type="bigint" />
+    <Property Name="Identifier" Type="int" />
+    <Property Name="Is_UserAbnormal" Type="int" />
+    <Property Name="ErrorPacketLost" Type="int" />
+    <Property Name="ErrorPacketWired" Type="int" />
+    <Property Name="ErrorPacketWireless" Type="int" />
+    <Property Name="Ack" Type="int" />
+    <Property Name="IpLenDlAck" Type="int" />
+    <Property Name="IpLenUpAck" Type="int" />
+    <Property Name="SynDirection" Type="int" />
+  </EntityType>
+</Schema>

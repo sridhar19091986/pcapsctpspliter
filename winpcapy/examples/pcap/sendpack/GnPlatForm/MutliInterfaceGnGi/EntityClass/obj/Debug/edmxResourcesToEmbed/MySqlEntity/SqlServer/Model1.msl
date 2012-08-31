@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GuangZhou_GnModelStoreContainer" CdmEntityContainer="GuangZhou_GnEntities">
+    <EntitySetMapping Name="mpos_gn_common">
+      <EntityTypeMapping TypeName="GuangZhou_GnModel.mpos_gn_common">
+        <MappingFragment StoreEntitySet="mpos_gn_common">
+          <ScalarProperty Name="gn_id" ColumnName="gn_id" />
+          <ScalarProperty Name="Online_ID" ColumnName="Online_ID" />
+          <ScalarProperty Name="Session_ID" ColumnName="Session_ID" />
+          <ScalarProperty Name="Start_Date_Time" ColumnName="Start_Date_Time" />
+          <ScalarProperty Name="End_Date_Time" ColumnName="End_Date_Time" />
+          <ScalarProperty Name="SGSN_IP" ColumnName="SGSN_IP" />
+          <ScalarProperty Name="SGSN" ColumnName="SGSN" />
+          <ScalarProperty Name="GGSN_IP" ColumnName="GGSN_IP" />
+          <ScalarProperty Name="GGSN" ColumnName="GGSN" />
+          <ScalarProperty Name="LAC" ColumnName="LAC" />
+          <ScalarProperty Name="CI" ColumnName="CI" />
+          <ScalarProperty Name="SAC" ColumnName="SAC" />
+          <ScalarProperty Name="IMSI" ColumnName="IMSI" />
+          <ScalarProperty Name="IMEI" ColumnName="IMEI" />
+          <ScalarProperty Name="Prefix_IMEI" ColumnName="Prefix_IMEI" />
+          <ScalarProperty Name="MSISDN" ColumnName="MSISDN" />
+          <ScalarProperty Name="APN" ColumnName="APN" />
+          <ScalarProperty Name="RAT_TYPE" ColumnName="RAT_TYPE" />
+          <ScalarProperty Name="my_RAT_TYPE" ColumnName="my_RAT_TYPE" />
+          <ScalarProperty Name="PROTOCOL" ColumnName="PROTOCOL" />
+          <ScalarProperty Name="my_Protocol" ColumnName="my_Protocol" />
+          <ScalarProperty Name="Event_Type" ColumnName="Event_Type" />
+          <ScalarProperty Name="my_Event_Type" ColumnName="my_Event_Type" />
+          <ScalarProperty Name="IP_LEN_UL" ColumnName="IP_LEN_UL" />
+          <ScalarProperty Name="IP_LEN_DL" ColumnName="IP_LEN_DL" />
+          <ScalarProperty Name="Count_Packet_UL" ColumnName="Count_Packet_UL" />
+          <ScalarProperty Name="Count_Packet_DL" ColumnName="Count_Packet_DL" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="SOURCE_IP" ColumnName="SOURCE_IP" />
+          <ScalarProperty Name="my_SOURCE_IP" ColumnName="my_SOURCE_IP" />
+          <ScalarProperty Name="DEST_IP" ColumnName="DEST_IP" />
+          <ScalarProperty Name="my_DEST_IP" ColumnName="my_DEST_IP" />
+          <ScalarProperty Name="SOURCE_PORT" ColumnName="SOURCE_PORT" />
+          <ScalarProperty Name="DEST_PORT" ColumnName="DEST_PORT" />
+          <ScalarProperty Name="URI" ColumnName="URI" />
+          <ScalarProperty Name="my_URI_Len" ColumnName="my_URI_Len" />
+          <ScalarProperty Name="my_URI_IMEI" ColumnName="my_URI_IMEI" />
+          <ScalarProperty Name="my_URI_UA" ColumnName="my_URI_UA" />
+          <ScalarProperty Name="my_URI_UA_MS_Type" ColumnName="my_URI_UA_MS_Type" />
+          <ScalarProperty Name="my_URI_UA_Weibo_Ver" ColumnName="my_URI_UA_Weibo_Ver" />
+          <ScalarProperty Name="my_URI_UA_OS" ColumnName="my_URI_UA_OS" />
+          <ScalarProperty Name="URI_Main" ColumnName="URI_Main" />
+          <ScalarProperty Name="my_URI_Main" ColumnName="my_URI_Main" />
+          <ScalarProperty Name="my_URI_Main_header" ColumnName="my_URI_Main_header" />
+          <ScalarProperty Name="Content_Type" ColumnName="Content_Type" />
+          <ScalarProperty Name="my_Content_Type" ColumnName="my_Content_Type" />
+          <ScalarProperty Name="User_Agent_Main" ColumnName="User_Agent_Main" />
+          <ScalarProperty Name="Service_TYPE" ColumnName="Service_TYPE" />
+          <ScalarProperty Name="my_Service_TYPE" ColumnName="my_Service_TYPE" />
+          <ScalarProperty Name="Sub_Service_Type" ColumnName="Sub_Service_Type" />
+          <ScalarProperty Name="my_Sub_Service_Type" ColumnName="my_Sub_Service_Type" />
+          <ScalarProperty Name="IsReassemble" ColumnName="IsReassemble" />
+          <ScalarProperty Name="Delete_PDP" ColumnName="Delete_PDP" />
+          <ScalarProperty Name="Delete_PDP_Direction" ColumnName="Delete_PDP_Direction" />
+          <ScalarProperty Name="Abnormal_reason" ColumnName="Abnormal_reason" />
+          <ScalarProperty Name="my_Abnormal_reason" ColumnName="my_Abnormal_reason" />
+          <ScalarProperty Name="Repeat_Count" ColumnName="Repeat_Count" />
+          <ScalarProperty Name="Resp" ColumnName="Resp" />
+          <ScalarProperty Name="Resp_DelayFirst" ColumnName="Resp_DelayFirst" />
+          <ScalarProperty Name="Resp_cause" ColumnName="Resp_cause" />
+          <ScalarProperty Name="abort" ColumnName="abort" />
+          <ScalarProperty Name="Disconnect" ColumnName="Disconnect" />
+          <ScalarProperty Name="Result" ColumnName="Result" />
+          <ScalarProperty Name="Result_DelayFirst" ColumnName="Result_DelayFirst" />
+          <ScalarProperty Name="MMS_request" ColumnName="MMS_request" />
+          <ScalarProperty Name="MMS_resp_status" ColumnName="MMS_resp_status" />
+          <ScalarProperty Name="From" ColumnName="From" />
+          <ScalarProperty Name="To" ColumnName="To" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="Delivery_Report" ColumnName="Delivery_Report" />
+          <ScalarProperty Name="Query_Name" ColumnName="Query_Name" />
+          <ScalarProperty Name="Query_Type" ColumnName="Query_Type" />
+          <ScalarProperty Name="DNS_TTL" ColumnName="DNS_TTL" />
+          <ScalarProperty Name="SP_Address" ColumnName="SP_Address" />
+          <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+          <ScalarProperty Name="Is_UserAbnormal" ColumnName="Is_UserAbnormal" />
+          <ScalarProperty Name="ErrorPacketLost" ColumnName="ErrorPacketLost" />
+          <ScalarProperty Name="ErrorPacketWired" ColumnName="ErrorPacketWired" />
+          <ScalarProperty Name="ErrorPacketWireless" ColumnName="ErrorPacketWireless" />
+          <ScalarProperty Name="Ack" ColumnName="Ack" />
+          <ScalarProperty Name="IpLenDlAck" ColumnName="IpLenDlAck" />
+          <ScalarProperty Name="IpLenUpAck" ColumnName="IpLenUpAck" />
+          <ScalarProperty Name="SynDirection" ColumnName="SynDirection" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

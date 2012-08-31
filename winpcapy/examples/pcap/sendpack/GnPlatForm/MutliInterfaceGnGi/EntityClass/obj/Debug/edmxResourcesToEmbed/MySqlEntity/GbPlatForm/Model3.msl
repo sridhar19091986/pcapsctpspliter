@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Guangzhou_GbModelStoreContainer" CdmEntityContainer="Guangzhou_GbEntities">
+    <EntitySetMapping Name="Gb_DNS_Syn">
+      <EntityTypeMapping TypeName="Guangzhou_GbModel.Gb_DNS_Syn">
+        <MappingFragment StoreEntitySet="Gb_DNS_Syn">
+          <ScalarProperty Name="dns_resp_type" ColumnName="dns_resp_type" />
+          <ScalarProperty Name="udp2_length" ColumnName="udp2_length" />
+          <ScalarProperty Name="dns_count_queries" ColumnName="dns_count_queries" />
+          <ScalarProperty Name="dns_count_add_rr" ColumnName="dns_count_add_rr" />
+          <ScalarProperty Name="dns_count_auth_rr" ColumnName="dns_count_auth_rr" />
+          <ScalarProperty Name="dns_count_answers" ColumnName="dns_count_answers" />
+          <ScalarProperty Name="SP_Address" ColumnName="SP_Address" />
+          <ScalarProperty Name="Data_Length" ColumnName="Data_Length" />
+          <ScalarProperty Name="Time_To_Live" ColumnName="Time_To_Live" />
+          <ScalarProperty Name="DNS_Reply_Code" ColumnName="DNS_Reply_Code" />
+          <ScalarProperty Name="DNS_Authenticated" ColumnName="DNS_Authenticated" />
+          <ScalarProperty Name="Recursion_Available" ColumnName="Recursion_Available" />
+          <ScalarProperty Name="Recursion_Desired" ColumnName="Recursion_Desired" />
+          <ScalarProperty Name="DNS_Truncated" ColumnName="DNS_Truncated" />
+          <ScalarProperty Name="DNS_Authoritative" ColumnName="DNS_Authoritative" />
+          <ScalarProperty Name="DNS_Opcode" ColumnName="DNS_Opcode" />
+          <ScalarProperty Name="DNS_Reponse" ColumnName="DNS_Reponse" />
+          <ScalarProperty Name="IMSI" ColumnName="IMSI" />
+          <ScalarProperty Name="Response_timeFirst" ColumnName="Response_timeFirst" />
+          <ScalarProperty Name="Response_delayFirst" ColumnName="Response_delayFirst" />
+          <ScalarProperty Name="Response" ColumnName="Response" />
+          <ScalarProperty Name="Query_Repeated_delayFirst" ColumnName="Query_Repeated_delayFirst" />
+          <ScalarProperty Name="Query_Repeated" ColumnName="Query_Repeated" />
+          <ScalarProperty Name="Query_Class" ColumnName="Query_Class" />
+          <ScalarProperty Name="Query_Type" ColumnName="Query_Type" />
+          <ScalarProperty Name="SP_Name" ColumnName="SP_Name" />
+          <ScalarProperty Name="Dest_Port2" ColumnName="Dest_Port2" />
+          <ScalarProperty Name="Source_Port2" ColumnName="Source_Port2" />
+          <ScalarProperty Name="Dest_IP2" ColumnName="Dest_IP2" />
+          <ScalarProperty Name="Source_IP2" ColumnName="Source_IP2" />
+          <ScalarProperty Name="Dest_Port" ColumnName="Dest_Port" />
+          <ScalarProperty Name="Source_Port" ColumnName="Source_Port" />
+          <ScalarProperty Name="Dest_IP" ColumnName="Dest_IP" />
+          <ScalarProperty Name="Source_IP" ColumnName="Source_IP" />
+          <ScalarProperty Name="CI" ColumnName="CI" />
+          <ScalarProperty Name="RAC" ColumnName="RAC" />
+          <ScalarProperty Name="LAC" ColumnName="LAC" />
+          <ScalarProperty Name="MNC" ColumnName="MNC" />
+          <ScalarProperty Name="MCC" ColumnName="MCC" />
+          <ScalarProperty Name="TLLI" ColumnName="TLLI" />
+          <ScalarProperty Name="NS_BVCI" ColumnName="NS_BVCI" />
+          <ScalarProperty Name="Query_time" ColumnName="Query_time" />
+          <ScalarProperty Name="Query" ColumnName="Query" />
+          <ScalarProperty Name="DumpFor" ColumnName="DumpFor" />
+          <ScalarProperty Name="PacketTime_ms_" ColumnName="PacketTime(ms)" />
+          <ScalarProperty Name="PacketTime" ColumnName="PacketTime" />
+          <ScalarProperty Name="BeginFrameNum" ColumnName="BeginFrameNum" />
+          <ScalarProperty Name="BeginFileNum" ColumnName="BeginFileNum" />
+          <ScalarProperty Name="PacketNum" ColumnName="PacketNum" />
+          <ScalarProperty Name="FileNum" ColumnName="FileNum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="myTcpSession">
+      <EntityTypeMapping TypeName="Guangzhou_GbModel.myTcpSession">
+        <MappingFragment StoreEntitySet="myTcpSession">
+          <ScalarProperty Name="packet_sack_total" ColumnName="packet_sack_total" />
+          <ScalarProperty Name="packet_discard_total" ColumnName="packet_discard_total" />
+          <ScalarProperty Name="packet_count_repeat" ColumnName="packet_count_repeat" />
+          <ScalarProperty Name="packet_count" ColumnName="packet_count" />
+          <ScalarProperty Name="seq_ip2" ColumnName="seq_ip2" />
+          <ScalarProperty Name="headersize" ColumnName="headersize" />
+          <ScalarProperty Name="seq_rate" ColumnName="seq_rate" />
+          <ScalarProperty Name="seq_min" ColumnName="seq_min" />
+          <ScalarProperty Name="seq_nxt" ColumnName="seq_nxt" />
+          <ScalarProperty Name="seq_max" ColumnName="seq_max" />
+          <ScalarProperty Name="llc_cnt" ColumnName="llc_cnt" />
+          <ScalarProperty Name="llc_min" ColumnName="llc_min" />
+          <ScalarProperty Name="llc_max" ColumnName="llc_max" />
+          <ScalarProperty Name="ip2_min_len" ColumnName="ip2_min_len" />
+          <ScalarProperty Name="seq_total" ColumnName="seq_total" />
+          <ScalarProperty Name="ip2_rate" ColumnName="ip2_rate" />
+          <ScalarProperty Name="ip2_total" ColumnName="ip2_total" />
+          <ScalarProperty Name="ip_rate" ColumnName="ip_rate" />
+          <ScalarProperty Name="ip_total" ColumnName="ip_total" />
+          <ScalarProperty Name="duration" ColumnName="duration" />
+          <ScalarProperty Name="bsc_bvci" ColumnName="bsc_bvci" />
+          <ScalarProperty Name="bsc_ip" ColumnName="bsc_ip" />
+          <ScalarProperty Name="ci" ColumnName="ci" />
+          <ScalarProperty Name="lac" ColumnName="lac" />
+          <ScalarProperty Name="imsi" ColumnName="imsi" />
+          <ScalarProperty Name="direction" ColumnName="direction" />
+          <ScalarProperty Name="session_id" ColumnName="session_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
