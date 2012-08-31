@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Guangzhou_GbModelStoreContainer" CdmEntityContainer="Guangzhou_GbEntities">
+    <EntitySetMapping Name="Gb_GMMSM_XID">
+      <EntityTypeMapping TypeName="Guangzhou_GbModel.Gb_GMMSM_XID">
+        <MappingFragment StoreEntitySet="Gb_GMMSM_XID">
+          <ScalarProperty Name="FileNum" ColumnName="FileNum" />
+          <ScalarProperty Name="PacketNum" ColumnName="PacketNum" />
+          <ScalarProperty Name="BeginFileNum" ColumnName="BeginFileNum" />
+          <ScalarProperty Name="BeginFrameNum" ColumnName="BeginFrameNum" />
+          <ScalarProperty Name="PacketTime" ColumnName="PacketTime" />
+          <ScalarProperty Name="PacketTime_ms_" ColumnName="PacketTime(ms)" />
+          <ScalarProperty Name="DumpFor" ColumnName="DumpFor" />
+          <ScalarProperty Name="mGMMSM" ColumnName="mGMMSM" />
+          <ScalarProperty Name="mGMMSM_time" ColumnName="mGMMSM_time" />
+          <ScalarProperty Name="mGMMSM_MsgType" ColumnName="mGMMSM_MsgType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Gb_XID">
+      <EntityTypeMapping TypeName="Guangzhou_GbModel.Gb_XID">
+        <MappingFragment StoreEntitySet="Gb_XID">
+          <ScalarProperty Name="FileNum" ColumnName="FileNum" />
+          <ScalarProperty Name="PacketNum" ColumnName="PacketNum" />
+          <ScalarProperty Name="BeginFileNum" ColumnName="BeginFileNum" />
+          <ScalarProperty Name="BeginFrameNum" ColumnName="BeginFrameNum" />
+          <ScalarProperty Name="PacketTime" ColumnName="PacketTime" />
+          <ScalarProperty Name="PacketTime_ms_" ColumnName="PacketTime(ms)" />
+          <ScalarProperty Name="DumpFor" ColumnName="DumpFor" />
+          <ScalarProperty Name="U_Exchange_identification" ColumnName="U_Exchange_identification" />
+          <ScalarProperty Name="bssgp_direction" ColumnName="bssgp_direction" />
+          <ScalarProperty Name="llcgprs_xid1type" ColumnName="llcgprs_xid1type" />
+          <ScalarProperty Name="llcgprs_xid1byte1" ColumnName="llcgprs_xid1byte1" />
+          <ScalarProperty Name="llcgprs_xid1byte2" ColumnName="llcgprs_xid1byte2" />
+          <ScalarProperty Name="U_Exchange_identification1" ColumnName="U_Exchange_identification1" />
+          <ScalarProperty Name="U_Exchange_identification1_delayFirst" ColumnName="U_Exchange_identification1_delayFirst" />
+          <ScalarProperty Name="C1bssgp_direction" ColumnName="1bssgp_direction" />
+          <ScalarProperty Name="C1llcgprs_xid1type" ColumnName="1llcgprs_xid1type" />
+          <ScalarProperty Name="C1llcgprs_xid1byte1" ColumnName="1llcgprs_xid1byte1" />
+          <ScalarProperty Name="C1llcgprs_xid1byte2" ColumnName="1llcgprs_xid1byte2" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

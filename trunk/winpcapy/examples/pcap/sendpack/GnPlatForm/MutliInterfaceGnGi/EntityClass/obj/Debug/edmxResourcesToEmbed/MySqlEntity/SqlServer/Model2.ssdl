@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GuangZhou_GnModel1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="GuangZhou_GnModel1StoreContainer">
+    <EntitySet Name="Gn_IP_Fragment" EntityType="GuangZhou_GnModel1.Store.Gn_IP_Fragment" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="Gn_IP_Fragment">
+    <Key>
+      <PropertyRef Name="PacketNum" />
+    </Key>
+    <Property Name="FileNum" Type="int" />
+    <Property Name="PacketNum" Type="int" Nullable="false" />
+    <Property Name="BeginFileNum" Type="int" />
+    <Property Name="BeginFrameNum" Type="int" />
+    <Property Name="PacketTime" Type="datetime" />
+    <Property Name="PacketTime(ms)" Type="int" />
+    <Property Name="DumpFor" Type="nvarchar" MaxLength="30" />
+    <Property Name="IP_Fragment" Type="int" />
+    <Property Name="IP_Fragment_time" Type="nvarchar" MaxLength="200" />
+    <Property Name="IP_Fragment_MsgType" Type="nvarchar" MaxLength="200" />
+    <Property Name="tcp_window_size" Type="int" />
+    <Property Name="tcp_srcport" Type="int" />
+    <Property Name="tcp_seq" Type="int" />
+    <Property Name="tcp_nxtseq" Type="int" />
+    <Property Name="tcp_need_segment" Type="int" />
+    <Property Name="tcp_dstport" Type="int" />
+    <Property Name="tcp_ack" Type="int" />
+    <Property Name="ip2_ttl" Type="int" />
+    <Property Name="ip2_src_host" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip2_len" Type="int" />
+    <Property Name="ip2_frag_offset" Type="int" />
+    <Property Name="ip2_flags_rb" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip2_flags_mf" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip2_flags_df" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip2_flags" Type="int" />
+    <Property Name="ip2_dst_host" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip_ttl" Type="int" />
+    <Property Name="ip_src_host" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip_len" Type="int" />
+    <Property Name="ip_frag_offset" Type="int" />
+    <Property Name="ip_flags_rb" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip_flags_mf" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip_flags_df" Type="nvarchar" MaxLength="200" />
+    <Property Name="ip_flags" Type="int" />
+    <Property Name="ip_dst_host" Type="nvarchar" MaxLength="200" />
+    <Property Name="gtp_seq_number" Type="int" />
+    <Property Name="gtp_length" Type="int" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GuangZhou_GbModelStoreContainer" CdmEntityContainer="GuangZhou_GbEntities_209">
+    <EntitySetMapping Name="Gb_FlowControly">
+      <EntityTypeMapping TypeName="GuangZhou_GbModel.Gb_FlowControly">
+        <MappingFragment StoreEntitySet="Gb_FlowControly">
+          <ScalarProperty Name="udp_length" ColumnName="udp_length" />
+          <ScalarProperty Name="tcp_window_size" ColumnName="tcp_window_size" />
+          <ScalarProperty Name="tcp_srcport" ColumnName="tcp_srcport" />
+          <ScalarProperty Name="tcp_seq" ColumnName="tcp_seq" />
+          <ScalarProperty Name="tcp_options_wscale_val" ColumnName="tcp_options_wscale_val" />
+          <ScalarProperty Name="tcp_options_mss_val" ColumnName="tcp_options_mss_val" />
+          <ScalarProperty Name="tcp_nxtseq" ColumnName="tcp_nxtseq" />
+          <ScalarProperty Name="tcp_need_segment" ColumnName="tcp_need_segment" />
+          <ScalarProperty Name="tcp_flags_cwr" ColumnName="tcp_flags_cwr" />
+          <ScalarProperty Name="tcp_dstport" ColumnName="tcp_dstport" />
+          <ScalarProperty Name="tcp_ack" ColumnName="tcp_ack" />
+          <ScalarProperty Name="sndcp_segment" ColumnName="sndcp_segment" />
+          <ScalarProperty Name="sndcp_m" ColumnName="sndcp_m" />
+          <ScalarProperty Name="nsip_bvci" ColumnName="nsip_bvci" />
+          <ScalarProperty Name="ip2_ttl" ColumnName="ip2_ttl" />
+          <ScalarProperty Name="ip2_src_host" ColumnName="ip2_src_host" />
+          <ScalarProperty Name="ip2_len" ColumnName="ip2_len" />
+          <ScalarProperty Name="ip2_frag_offset" ColumnName="ip2_frag_offset" />
+          <ScalarProperty Name="ip2_flags_rb" ColumnName="ip2_flags_rb" />
+          <ScalarProperty Name="ip2_flags_mf" ColumnName="ip2_flags_mf" />
+          <ScalarProperty Name="ip2_flags_df" ColumnName="ip2_flags_df" />
+          <ScalarProperty Name="ip2_flags" ColumnName="ip2_flags" />
+          <ScalarProperty Name="ip2_dst_host" ColumnName="ip2_dst_host" />
+          <ScalarProperty Name="ip_ttl" ColumnName="ip_ttl" />
+          <ScalarProperty Name="ip_src_host" ColumnName="ip_src_host" />
+          <ScalarProperty Name="ip_len" ColumnName="ip_len" />
+          <ScalarProperty Name="ip_frag_offset" ColumnName="ip_frag_offset" />
+          <ScalarProperty Name="ip_flags_rb" ColumnName="ip_flags_rb" />
+          <ScalarProperty Name="ip_flags_mf" ColumnName="ip_flags_mf" />
+          <ScalarProperty Name="ip_flags_df" ColumnName="ip_flags_df" />
+          <ScalarProperty Name="ip_flags" ColumnName="ip_flags" />
+          <ScalarProperty Name="ip_dst_host" ColumnName="ip_dst_host" />
+          <ScalarProperty Name="gsm_a_imeisv" ColumnName="gsm_a_imeisv" />
+          <ScalarProperty Name="bssgp_tlli" ColumnName="bssgp_tlli" />
+          <ScalarProperty Name="bssgp_ms_bucket_size" ColumnName="bssgp_ms_bucket_size" />
+          <ScalarProperty Name="bssgp_lac" ColumnName="bssgp_lac" />
+          <ScalarProperty Name="bssgp_imsi" ColumnName="bssgp_imsi" />
+          <ScalarProperty Name="bssgp_drx_timer" ColumnName="bssgp_drx_timer" />
+          <ScalarProperty Name="bssgp_drx_cycle" ColumnName="bssgp_drx_cycle" />
+          <ScalarProperty Name="bssgp_direction" ColumnName="bssgp_direction" />
+          <ScalarProperty Name="bssgp_ci" ColumnName="bssgp_ci" />
+          <ScalarProperty Name="bssgp_bvc_bucket_size" ColumnName="bssgp_bvc_bucket_size" />
+          <ScalarProperty Name="bssgp_bucket_leak_rate" ColumnName="bssgp_bucket_leak_rate" />
+          <ScalarProperty Name="bssgp_bucket_full_ratio" ColumnName="bssgp_bucket_full_ratio" />
+          <ScalarProperty Name="bssgp_bmax_default_ms" ColumnName="bssgp_bmax_default_ms" />
+          <ScalarProperty Name="bssgp_R_default_ms" ColumnName="bssgp_R_default_ms" />
+          <ScalarProperty Name="Flow_Control_MsgType" ColumnName="Flow_Control_MsgType" />
+          <ScalarProperty Name="Flow_Control_time" ColumnName="Flow_Control_time" />
+          <ScalarProperty Name="Flow_Control" ColumnName="Flow_Control" />
+          <ScalarProperty Name="DumpFor" ColumnName="DumpFor" />
+          <ScalarProperty Name="PacketTime_ms_" ColumnName="PacketTime(ms)" />
+          <ScalarProperty Name="PacketTime" ColumnName="PacketTime" />
+          <ScalarProperty Name="BeginFrameNum" ColumnName="BeginFrameNum" />
+          <ScalarProperty Name="BeginFileNum" ColumnName="BeginFileNum" />
+          <ScalarProperty Name="PacketNum" ColumnName="PacketNum" />
+          <ScalarProperty Name="FileNum" ColumnName="FileNum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

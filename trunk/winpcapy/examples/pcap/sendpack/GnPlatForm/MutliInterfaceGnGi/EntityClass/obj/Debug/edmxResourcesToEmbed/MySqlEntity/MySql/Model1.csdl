@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="guangzhou_0410Model" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="guangzhou_0410Entities" annotation:LazyLoadingEnabled="true" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+    <EntitySet Name="gn_common_201204181300" EntityType="guangzhou_0410Model.gn_common_201204181300" />
+  </EntityContainer>
+  <EntityType Name="gn_common_201204181300">
+    <Key>
+      <PropertyRef Name="Session_ID" />
+    </Key>
+    <Property Type="Int32" Name="Abnormal_reason" Nullable="false" />
+    <Property Type="Boolean" Name="abort" Nullable="false" />
+    <Property Type="Int64" Name="Ack" />
+    <Property Type="String" Name="APN" Nullable="false" />
+    <Property Type="Int64" Name="CI" Nullable="false" />
+    <Property Type="String" Name="Content_Type" Nullable="false" />
+    <Property Type="Int64" Name="Count_Packet_DL" />
+    <Property Type="Int64" Name="Count_Packet_UL" />
+    <Property Type="Boolean" Name="Delete_PDP" Nullable="false" />
+    <Property Type="Boolean" Name="Delete_PDP_Direction" Nullable="false" />
+    <Property Type="Boolean" Name="Delivery_Report" />
+    <Property Type="Int64" Name="DEST_IP" Nullable="false" />
+    <Property Type="Int32" Name="DEST_PORT" />
+    <Property Type="Boolean" Name="Disconnect" Nullable="false" />
+    <Property Type="Int64" Name="DNS_TTL" />
+    <Property Type="Decimal" Name="Duration" Nullable="false" />
+    <Property Type="DateTimeOffset" Name="End_Date_Time" Nullable="false" />
+    <Property Type="Int64" Name="ErrorPacketLost" />
+    <Property Type="Int64" Name="ErrorPacketWired" />
+    <Property Type="Int64" Name="ErrorPacketWireless" />
+    <Property Type="SByte" Name="Event_Type" Nullable="false" />
+    <Property Type="String" Name="From" />
+    <Property Type="String" Name="GGSN" Nullable="false" />
+    <Property Type="Int64" Name="GGSN_IP" Nullable="false" />
+    <Property Type="Int64" Name="ICMP_Code" />
+    <Property Type="Int64" Name="ICMP_Type" />
+    <Property Type="Int64" Name="Identifier" />
+    <Property Type="String" Name="IMEI" Nullable="false" />
+    <Property Type="String" Name="IMSI" Nullable="false" />
+    <Property Type="Int64" Name="IP3_Dest" />
+    <Property Type="Int64" Name="IP3_Len" />
+    <Property Type="Int64" Name="IP3_Src" />
+    <Property Type="Int64" Name="IpLenDlAck" />
+    <Property Type="Int64" Name="IpLenUpAck" />
+    <Property Type="Int64" Name="IP_LEN_DL" Nullable="false" />
+    <Property Type="Int64" Name="IP_LEN_UL" Nullable="false" />
+    <Property Type="Boolean" Name="IsReassemble" Nullable="false" />
+    <Property Type="Int64" Name="Is_UserAbnormal" Nullable="false" />
+    <Property Type="Int64" Name="LAC" Nullable="false" />
+    <Property Type="Boolean" Name="MMS_request" Nullable="false" />
+    <Property Type="Byte" Name="MMS_resp_status" />
+    <Property Type="Decimal" Name="MSISDN" Nullable="false" />
+    <Property Type="Decimal" Name="Online_ID" Nullable="false" />
+    <Property Type="String" Name="Prefix_IMEI" Nullable="false" />
+    <Property Type="SByte" Name="PROTOCOL" Nullable="false" />
+    <Property Type="String" Name="Query_Name" />
+    <Property Type="String" Name="Query_Type" />
+    <Property Type="Byte" Name="RAT_TYPE" Nullable="false" />
+    <Property Type="Int32" Name="Repeat_Count" Nullable="false" />
+    <Property Type="Boolean" Name="Resp" />
+    <Property Type="Int32" Name="Resp_cause" />
+    <Property Type="Int64" Name="Resp_DelayFirst" />
+    <Property Type="Boolean" Name="Result" Nullable="false" />
+    <Property Type="Int32" Name="Result_DelayFirst" />
+    <Property Type="Int64" Name="SAC" Nullable="false" />
+    <Property Type="Int32" Name="Service_TYPE" Nullable="false" />
+    <Property Type="Decimal" Name="Session_ID" Nullable="false" />
+    <Property Type="String" Name="SGSN" Nullable="false" />
+    <Property Type="Int64" Name="SGSN_IP" Nullable="false" />
+    <Property Type="Int64" Name="SOURCE_IP" Nullable="false" />
+    <Property Type="Int32" Name="SOURCE_PORT" />
+    <Property Type="Int64" Name="SP_Address" />
+    <Property Type="DateTimeOffset" Name="Start_Date_Time" Nullable="false" />
+    <Property Type="String" Name="Subject" />
+    <Property Type="Int32" Name="Sub_Service_Type" Nullable="false" />
+    <Property Type="Int64" Name="SynDirection" />
+    <Property Type="String" Name="To" />
+    <Property Type="Int64" Name="UDP3_Dest" />
+    <Property Type="Int64" Name="UDP3_Len" />
+    <Property Type="Int64" Name="UDP3_Src" />
+    <Property Type="String" Name="URI" Nullable="false" />
+    <Property Type="String" Name="URI_Main" Nullable="false" />
+    <Property Type="String" Name="User_Agent_Main" Nullable="false" />
+  </EntityType>
+</Schema>
