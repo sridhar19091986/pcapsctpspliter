@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             DevExpress.XtraCharts.XYDiagram xyDiagram1 = new DevExpress.XtraCharts.XYDiagram();
             DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
             DevExpress.XtraCharts.PointSeriesLabel pointSeriesLabel1 = new DevExpress.XtraCharts.PointSeriesLabel();
@@ -101,7 +100,7 @@
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
             this.chartControl1 = new DevExpress.XtraCharts.ChartControl();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager(this.components);
+            this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager();
             this.hideContainerBottom = new DevExpress.XtraBars.Docking.AutoHideContainer();
             this.dockPanel1 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
@@ -286,6 +285,7 @@
             // navBarGroup2
             // 
             this.navBarGroup2.Caption = "多接口串联";
+            this.navBarGroup2.Expanded = true;
             this.navBarGroup2.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem4),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem5),
@@ -327,6 +327,7 @@
             // navBarGroup3
             // 
             this.navBarGroup3.Caption = "通用工具";
+            this.navBarGroup3.Expanded = true;
             this.navBarGroup3.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem7),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem8),
@@ -374,6 +375,7 @@
             // navBarGroup4
             // 
             this.navBarGroup4.Caption = "WCF";
+            this.navBarGroup4.Expanded = true;
             this.navBarGroup4.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem15),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem16),
@@ -414,6 +416,7 @@
             // navBarGroup5
             // 
             this.navBarGroup5.Caption = "FCM";
+            this.navBarGroup5.Expanded = true;
             this.navBarGroup5.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem20),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem21),
