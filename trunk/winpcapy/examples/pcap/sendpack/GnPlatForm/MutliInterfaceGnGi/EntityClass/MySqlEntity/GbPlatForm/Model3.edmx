@@ -1,0 +1,319 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Guangzhou_GbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="Guangzhou_GbModelStoreContainer">
+          <EntitySet Name="Gb_DNS_Syn" EntityType="Guangzhou_GbModel.Store.Gb_DNS_Syn" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="myTcpSession" EntityType="Guangzhou_GbModel.Store.myTcpSession" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="Gb_DNS_Syn">
+          <Key>
+            <PropertyRef Name="FileNum" />
+            <PropertyRef Name="PacketNum" />
+          </Key>
+          <Property Name="FileNum" Type="int" Nullable="false" />
+          <Property Name="PacketNum" Type="int" Nullable="false" />
+          <Property Name="BeginFileNum" Type="int" />
+          <Property Name="BeginFrameNum" Type="int" />
+          <Property Name="PacketTime" Type="datetime" />
+          <Property Name="PacketTime(ms)" Type="int" />
+          <Property Name="DumpFor" Type="nvarchar" MaxLength="30" />
+          <Property Name="Query" Type="int" />
+          <Property Name="Query_time" Type="nvarchar" MaxLength="200" />
+          <Property Name="NS_BVCI" Type="nvarchar" MaxLength="200" />
+          <Property Name="TLLI" Type="nvarchar" MaxLength="200" />
+          <Property Name="MCC" Type="nvarchar" MaxLength="200" />
+          <Property Name="MNC" Type="nvarchar" MaxLength="200" />
+          <Property Name="LAC" Type="nvarchar" MaxLength="200" />
+          <Property Name="RAC" Type="nvarchar" MaxLength="200" />
+          <Property Name="CI" Type="nvarchar" MaxLength="200" />
+          <Property Name="Source_IP" Type="nvarchar" MaxLength="200" />
+          <Property Name="Dest_IP" Type="nvarchar" MaxLength="200" />
+          <Property Name="Source_Port" Type="nvarchar" MaxLength="200" />
+          <Property Name="Dest_Port" Type="nvarchar" MaxLength="200" />
+          <Property Name="Source_IP2" Type="nvarchar" MaxLength="200" />
+          <Property Name="Dest_IP2" Type="nvarchar" MaxLength="200" />
+          <Property Name="Source_Port2" Type="nvarchar" MaxLength="200" />
+          <Property Name="Dest_Port2" Type="nvarchar" MaxLength="200" />
+          <Property Name="SP_Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Query_Type" Type="nvarchar" MaxLength="200" />
+          <Property Name="Query_Class" Type="nvarchar" MaxLength="200" />
+          <Property Name="Query_Repeated" Type="int" />
+          <Property Name="Query_Repeated_delayFirst" Type="int" />
+          <Property Name="Response" Type="int" />
+          <Property Name="Response_delayFirst" Type="int" />
+          <Property Name="Response_timeFirst" Type="nvarchar" MaxLength="200" />
+          <Property Name="IMSI" Type="nvarchar" MaxLength="200" />
+          <Property Name="DNS_Reponse" Type="nvarchar" MaxLength="200" />
+          <Property Name="DNS_Opcode" Type="nvarchar" MaxLength="200" />
+          <Property Name="DNS_Authoritative" Type="nvarchar" MaxLength="200" />
+          <Property Name="DNS_Truncated" Type="nvarchar" MaxLength="200" />
+          <Property Name="Recursion_Desired" Type="nvarchar" MaxLength="200" />
+          <Property Name="Recursion_Available" Type="nvarchar" MaxLength="200" />
+          <Property Name="DNS_Authenticated" Type="nvarchar" MaxLength="200" />
+          <Property Name="DNS_Reply_Code" Type="nvarchar" MaxLength="200" />
+          <Property Name="Time_To_Live" Type="nvarchar" MaxLength="200" />
+          <Property Name="Data_Length" Type="int" />
+          <Property Name="SP_Address" Type="nvarchar" MaxLength="200" />
+          <Property Name="dns_count_answers" Type="int" />
+          <Property Name="dns_count_auth_rr" Type="int" />
+          <Property Name="dns_count_add_rr" Type="int" />
+          <Property Name="dns_count_queries" Type="int" />
+          <Property Name="udp2_length" Type="int" />
+          <Property Name="dns_resp_type" Type="int" />
+        </EntityType>
+        <EntityType Name="myTcpSession">
+          <Key>
+            <PropertyRef Name="session_id" />
+            <PropertyRef Name="direction" />
+          </Key>
+          <Property Name="session_id" Type="int" Nullable="false" />
+          <Property Name="direction" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="imsi" Type="nvarchar" MaxLength="200" />
+          <Property Name="lac" Type="int" />
+          <Property Name="ci" Type="int" />
+          <Property Name="bsc_ip" Type="nvarchar" MaxLength="200" />
+          <Property Name="bsc_bvci" Type="int" />
+          <Property Name="duration" Type="float" />
+          <Property Name="ip_total" Type="decimal" />
+          <Property Name="ip_rate" Type="float" />
+          <Property Name="ip2_total" Type="decimal" />
+          <Property Name="ip2_rate" Type="float" />
+          <Property Name="seq_total" Type="decimal" />
+          <Property Name="ip2_min_len" Type="int" />
+          <Property Name="llc_max" Type="int" />
+          <Property Name="llc_min" Type="int" />
+          <Property Name="llc_cnt" Type="int" />
+          <Property Name="seq_max" Type="decimal" />
+          <Property Name="seq_nxt" Type="decimal" />
+          <Property Name="seq_min" Type="decimal" />
+          <Property Name="seq_rate" Type="float" />
+          <Property Name="headersize" Type="decimal" />
+          <Property Name="seq_ip2" Type="decimal" />
+          <Property Name="packet_count" Type="int" />
+          <Property Name="packet_count_repeat" Type="int" />
+          <Property Name="packet_discard_total" Type="int" />
+          <Property Name="packet_sack_total" Type="int" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Guangzhou_GbModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="Guangzhou_GbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Gb_DNS_Syn" EntityType="Guangzhou_GbModel.Gb_DNS_Syn" />
+          <EntitySet Name="myTcpSession" EntityType="Guangzhou_GbModel.myTcpSession" />
+        </EntityContainer>
+        <EntityType Name="Gb_DNS_Syn">
+          <Key>
+            <PropertyRef Name="FileNum" />
+            <PropertyRef Name="PacketNum" />
+          </Key>
+          <Property Type="Int32" Name="FileNum" Nullable="false" />
+          <Property Type="Int32" Name="PacketNum" Nullable="false" />
+          <Property Type="Int32" Name="BeginFileNum" />
+          <Property Type="Int32" Name="BeginFrameNum" />
+          <Property Type="DateTime" Name="PacketTime" />
+          <Property Type="Int32" Name="PacketTime_ms_" />
+          <Property Type="String" Name="DumpFor" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Query" />
+          <Property Type="String" Name="Query_time" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NS_BVCI" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TLLI" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MCC" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MNC" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LAC" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="RAC" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CI" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Source_IP" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Dest_IP" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Source_Port" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Dest_Port" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Source_IP2" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Dest_IP2" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Source_Port2" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Dest_Port2" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SP_Name" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Query_Type" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Query_Class" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Query_Repeated" />
+          <Property Type="Int32" Name="Query_Repeated_delayFirst" />
+          <Property Type="Int32" Name="Response" />
+          <Property Type="Int32" Name="Response_delayFirst" />
+          <Property Type="String" Name="Response_timeFirst" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IMSI" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DNS_Reponse" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DNS_Opcode" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DNS_Authoritative" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DNS_Truncated" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Recursion_Desired" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Recursion_Available" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DNS_Authenticated" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DNS_Reply_Code" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Time_To_Live" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Data_Length" />
+          <Property Type="String" Name="SP_Address" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="dns_count_answers" />
+          <Property Type="Int32" Name="dns_count_auth_rr" />
+          <Property Type="Int32" Name="dns_count_add_rr" />
+          <Property Type="Int32" Name="dns_count_queries" />
+          <Property Type="Int32" Name="udp2_length" />
+          <Property Type="Int32" Name="dns_resp_type" />
+        </EntityType>
+        <EntityType Name="myTcpSession">
+          <Key>
+            <PropertyRef Name="session_id" />
+            <PropertyRef Name="direction" />
+          </Key>
+          <Property Type="Int32" Name="session_id" Nullable="false" />
+          <Property Type="String" Name="direction" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="imsi" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="lac" />
+          <Property Type="Int32" Name="ci" />
+          <Property Type="String" Name="bsc_ip" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="bsc_bvci" />
+          <Property Type="Double" Name="duration" />
+          <Property Type="Decimal" Name="ip_total" Precision="18" Scale="0" />
+          <Property Type="Double" Name="ip_rate" />
+          <Property Type="Decimal" Name="ip2_total" Precision="18" Scale="0" />
+          <Property Type="Double" Name="ip2_rate" />
+          <Property Type="Decimal" Name="seq_total" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="ip2_min_len" />
+          <Property Type="Int32" Name="llc_max" />
+          <Property Type="Int32" Name="llc_min" />
+          <Property Type="Int32" Name="llc_cnt" />
+          <Property Type="Decimal" Name="seq_max" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="seq_nxt" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="seq_min" Precision="18" Scale="0" />
+          <Property Type="Double" Name="seq_rate" />
+          <Property Type="Decimal" Name="headersize" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="seq_ip2" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="packet_count" />
+          <Property Type="Int32" Name="packet_count_repeat" />
+          <Property Type="Int32" Name="packet_discard_total" />
+          <Property Type="Int32" Name="packet_sack_total" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Guangzhou_GbModelStoreContainer" CdmEntityContainer="Guangzhou_GbEntities">
+          <EntitySetMapping Name="Gb_DNS_Syn">
+            <EntityTypeMapping TypeName="Guangzhou_GbModel.Gb_DNS_Syn">
+              <MappingFragment StoreEntitySet="Gb_DNS_Syn">
+                <ScalarProperty Name="dns_resp_type" ColumnName="dns_resp_type" />
+                <ScalarProperty Name="udp2_length" ColumnName="udp2_length" />
+                <ScalarProperty Name="dns_count_queries" ColumnName="dns_count_queries" />
+                <ScalarProperty Name="dns_count_add_rr" ColumnName="dns_count_add_rr" />
+                <ScalarProperty Name="dns_count_auth_rr" ColumnName="dns_count_auth_rr" />
+                <ScalarProperty Name="dns_count_answers" ColumnName="dns_count_answers" />
+                <ScalarProperty Name="SP_Address" ColumnName="SP_Address" />
+                <ScalarProperty Name="Data_Length" ColumnName="Data_Length" />
+                <ScalarProperty Name="Time_To_Live" ColumnName="Time_To_Live" />
+                <ScalarProperty Name="DNS_Reply_Code" ColumnName="DNS_Reply_Code" />
+                <ScalarProperty Name="DNS_Authenticated" ColumnName="DNS_Authenticated" />
+                <ScalarProperty Name="Recursion_Available" ColumnName="Recursion_Available" />
+                <ScalarProperty Name="Recursion_Desired" ColumnName="Recursion_Desired" />
+                <ScalarProperty Name="DNS_Truncated" ColumnName="DNS_Truncated" />
+                <ScalarProperty Name="DNS_Authoritative" ColumnName="DNS_Authoritative" />
+                <ScalarProperty Name="DNS_Opcode" ColumnName="DNS_Opcode" />
+                <ScalarProperty Name="DNS_Reponse" ColumnName="DNS_Reponse" />
+                <ScalarProperty Name="IMSI" ColumnName="IMSI" />
+                <ScalarProperty Name="Response_timeFirst" ColumnName="Response_timeFirst" />
+                <ScalarProperty Name="Response_delayFirst" ColumnName="Response_delayFirst" />
+                <ScalarProperty Name="Response" ColumnName="Response" />
+                <ScalarProperty Name="Query_Repeated_delayFirst" ColumnName="Query_Repeated_delayFirst" />
+                <ScalarProperty Name="Query_Repeated" ColumnName="Query_Repeated" />
+                <ScalarProperty Name="Query_Class" ColumnName="Query_Class" />
+                <ScalarProperty Name="Query_Type" ColumnName="Query_Type" />
+                <ScalarProperty Name="SP_Name" ColumnName="SP_Name" />
+                <ScalarProperty Name="Dest_Port2" ColumnName="Dest_Port2" />
+                <ScalarProperty Name="Source_Port2" ColumnName="Source_Port2" />
+                <ScalarProperty Name="Dest_IP2" ColumnName="Dest_IP2" />
+                <ScalarProperty Name="Source_IP2" ColumnName="Source_IP2" />
+                <ScalarProperty Name="Dest_Port" ColumnName="Dest_Port" />
+                <ScalarProperty Name="Source_Port" ColumnName="Source_Port" />
+                <ScalarProperty Name="Dest_IP" ColumnName="Dest_IP" />
+                <ScalarProperty Name="Source_IP" ColumnName="Source_IP" />
+                <ScalarProperty Name="CI" ColumnName="CI" />
+                <ScalarProperty Name="RAC" ColumnName="RAC" />
+                <ScalarProperty Name="LAC" ColumnName="LAC" />
+                <ScalarProperty Name="MNC" ColumnName="MNC" />
+                <ScalarProperty Name="MCC" ColumnName="MCC" />
+                <ScalarProperty Name="TLLI" ColumnName="TLLI" />
+                <ScalarProperty Name="NS_BVCI" ColumnName="NS_BVCI" />
+                <ScalarProperty Name="Query_time" ColumnName="Query_time" />
+                <ScalarProperty Name="Query" ColumnName="Query" />
+                <ScalarProperty Name="DumpFor" ColumnName="DumpFor" />
+                <ScalarProperty Name="PacketTime_ms_" ColumnName="PacketTime(ms)" />
+                <ScalarProperty Name="PacketTime" ColumnName="PacketTime" />
+                <ScalarProperty Name="BeginFrameNum" ColumnName="BeginFrameNum" />
+                <ScalarProperty Name="BeginFileNum" ColumnName="BeginFileNum" />
+                <ScalarProperty Name="PacketNum" ColumnName="PacketNum" />
+                <ScalarProperty Name="FileNum" ColumnName="FileNum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="myTcpSession">
+            <EntityTypeMapping TypeName="Guangzhou_GbModel.myTcpSession">
+              <MappingFragment StoreEntitySet="myTcpSession">
+                <ScalarProperty Name="packet_sack_total" ColumnName="packet_sack_total" />
+                <ScalarProperty Name="packet_discard_total" ColumnName="packet_discard_total" />
+                <ScalarProperty Name="packet_count_repeat" ColumnName="packet_count_repeat" />
+                <ScalarProperty Name="packet_count" ColumnName="packet_count" />
+                <ScalarProperty Name="seq_ip2" ColumnName="seq_ip2" />
+                <ScalarProperty Name="headersize" ColumnName="headersize" />
+                <ScalarProperty Name="seq_rate" ColumnName="seq_rate" />
+                <ScalarProperty Name="seq_min" ColumnName="seq_min" />
+                <ScalarProperty Name="seq_nxt" ColumnName="seq_nxt" />
+                <ScalarProperty Name="seq_max" ColumnName="seq_max" />
+                <ScalarProperty Name="llc_cnt" ColumnName="llc_cnt" />
+                <ScalarProperty Name="llc_min" ColumnName="llc_min" />
+                <ScalarProperty Name="llc_max" ColumnName="llc_max" />
+                <ScalarProperty Name="ip2_min_len" ColumnName="ip2_min_len" />
+                <ScalarProperty Name="seq_total" ColumnName="seq_total" />
+                <ScalarProperty Name="ip2_rate" ColumnName="ip2_rate" />
+                <ScalarProperty Name="ip2_total" ColumnName="ip2_total" />
+                <ScalarProperty Name="ip_rate" ColumnName="ip_rate" />
+                <ScalarProperty Name="ip_total" ColumnName="ip_total" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+                <ScalarProperty Name="bsc_bvci" ColumnName="bsc_bvci" />
+                <ScalarProperty Name="bsc_ip" ColumnName="bsc_ip" />
+                <ScalarProperty Name="ci" ColumnName="ci" />
+                <ScalarProperty Name="lac" ColumnName="lac" />
+                <ScalarProperty Name="imsi" ColumnName="imsi" />
+                <ScalarProperty Name="direction" ColumnName="direction" />
+                <ScalarProperty Name="session_id" ColumnName="session_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model3" ZoomLevel="68">
+        <EntityTypeShape EntityType="Guangzhou_GbModel.Gb_DNS_Syn" Width="1.5" PointX="3.375" PointY="0.75" Height="9.3787239583333317" />
+        <EntityTypeShape EntityType="Guangzhou_GbModel.myTcpSession" Width="1.5" PointX="0.75" PointY="0.75" Height="5.50046875" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

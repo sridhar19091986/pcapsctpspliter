@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GuangZhou_GnGiModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="GuangZhou_GnGiModelStoreContainer">
+          <EntitySet Name="GnGiGw_Http_Any_Multi" EntityType="GuangZhou_GnGiModel.Store.GnGiGw_Http_Any_Multi" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="GnGiGw_Http_Any_Multi">
+          <Key>
+            <PropertyRef Name="FileNum" />
+            <PropertyRef Name="PacketNum" />
+          </Key>
+          <Property Name="FileNum" Type="int" Nullable="false" />
+          <Property Name="PacketNum" Type="int" Nullable="false" />
+          <Property Name="BeginFileNum" Type="int" />
+          <Property Name="BeginFrameNum" Type="int" />
+          <Property Name="PacketTime" Type="datetime" />
+          <Property Name="PacketTime(ms)" Type="int" />
+          <Property Name="DumpFor" Type="nvarchar" MaxLength="30" />
+          <Property Name="Http_Any" Type="int" />
+          <Property Name="Http_Any_time" Type="nvarchar" MaxLength="200" />
+          <Property Name="Http_Any_MsgType" Type="nvarchar" MaxLength="200" />
+          <Property Name="Http_Any_RepeatCounter" Type="int" />
+          <Property Name="ip_src_host" Type="nvarchar" MaxLength="200" />
+          <Property Name="ip_dst_host" Type="nvarchar" MaxLength="200" />
+          <Property Name="udp_srcport" Type="int" />
+          <Property Name="udp_dstport" Type="int" />
+          <Property Name="ip2_src_host" Type="nvarchar" MaxLength="200" />
+          <Property Name="ip2_dst_host" Type="nvarchar" MaxLength="200" />
+          <Property Name="http_request_uri" Type="nvarchar" MaxLength="200" />
+          <Property Name="http_user_agent" Type="nvarchar" MaxLength="200" />
+          <Property Name="ip_proto" Type="nvarchar" MaxLength="200" />
+          <Property Name="ip2_proto" Type="nvarchar" MaxLength="200" />
+          <Property Name="tcp_srcport" Type="int" />
+          <Property Name="tcp_dstport" Type="int" />
+          <Property Name="tcp_seq" Type="nvarchar" MaxLength="200" />
+          <Property Name="tcp_nxtseq" Type="nvarchar" MaxLength="200" />
+          <Property Name="tcp_need_segment" Type="nvarchar" MaxLength="200" />
+          <Property Name="tcp_ack" Type="nvarchar" MaxLength="200" />
+          <Property Name="ip_ttl" Type="int" />
+          <Property Name="ip2_ttl" Type="int" />
+          <Property Name="ip_len" Type="int" />
+          <Property Name="ip2_len" Type="int" />
+          <Property Name="ip_id" Type="int" />
+          <Property Name="ip2_id" Type="int" />
+          <Property Name="ip_flags_mf" Type="nvarchar" MaxLength="200" />
+          <Property Name="ip2_flags_mf" Type="nvarchar" MaxLength="200" />
+          <Property Name="gtp_flags_payload" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GuangZhou_GnGiModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="GuangZhou_GnGiEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="GnGiGw_Http_Any_Multi" EntityType="GuangZhou_GnGiModel.GnGiGw_Http_Any_Multi" />
+        </EntityContainer>
+        <EntityType Name="GnGiGw_Http_Any_Multi">
+          <Key>
+            <PropertyRef Name="FileNum" />
+            <PropertyRef Name="PacketNum" />
+          </Key>
+          <Property Name="FileNum" Type="Int32" Nullable="false" />
+          <Property Name="PacketNum" Type="Int32" Nullable="false" />
+          <Property Name="BeginFileNum" Type="Int32" />
+          <Property Name="BeginFrameNum" Type="Int32" />
+          <Property Name="PacketTime" Type="DateTime" />
+          <Property Name="PacketTime_ms_" Type="Int32" />
+          <Property Name="DumpFor" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="Http_Any" Type="Int32" />
+          <Property Name="Http_Any_time" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Http_Any_MsgType" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Http_Any_RepeatCounter" Type="Int32" />
+          <Property Name="ip_src_host" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="ip_dst_host" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="udp_srcport" Type="Int32" />
+          <Property Name="udp_dstport" Type="Int32" />
+          <Property Name="ip2_src_host" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="ip2_dst_host" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="http_request_uri" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="http_user_agent" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="ip_proto" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="ip2_proto" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="tcp_srcport" Type="Int32" />
+          <Property Name="tcp_dstport" Type="Int32" />
+          <Property Name="tcp_seq" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="tcp_nxtseq" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="tcp_need_segment" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="tcp_ack" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="ip_ttl" Type="Int32" />
+          <Property Name="ip2_ttl" Type="Int32" />
+          <Property Name="ip_len" Type="Int32" />
+          <Property Name="ip2_len" Type="Int32" />
+          <Property Name="ip_id" Type="Int32" />
+          <Property Name="ip2_id" Type="Int32" />
+          <Property Name="ip_flags_mf" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="ip2_flags_mf" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="gtp_flags_payload" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GuangZhou_GnGiModelStoreContainer" CdmEntityContainer="GuangZhou_GnGiEntities">
+          <EntitySetMapping Name="GnGiGw_Http_Any_Multi"><EntityTypeMapping TypeName="GuangZhou_GnGiModel.GnGiGw_Http_Any_Multi"><MappingFragment StoreEntitySet="GnGiGw_Http_Any_Multi">
+            <ScalarProperty Name="FileNum" ColumnName="FileNum" />
+            <ScalarProperty Name="PacketNum" ColumnName="PacketNum" />
+            <ScalarProperty Name="BeginFileNum" ColumnName="BeginFileNum" />
+            <ScalarProperty Name="BeginFrameNum" ColumnName="BeginFrameNum" />
+            <ScalarProperty Name="PacketTime" ColumnName="PacketTime" />
+            <ScalarProperty Name="PacketTime_ms_" ColumnName="PacketTime(ms)" />
+            <ScalarProperty Name="DumpFor" ColumnName="DumpFor" />
+            <ScalarProperty Name="Http_Any" ColumnName="Http_Any" />
+            <ScalarProperty Name="Http_Any_time" ColumnName="Http_Any_time" />
+            <ScalarProperty Name="Http_Any_MsgType" ColumnName="Http_Any_MsgType" />
+            <ScalarProperty Name="Http_Any_RepeatCounter" ColumnName="Http_Any_RepeatCounter" />
+            <ScalarProperty Name="ip_src_host" ColumnName="ip_src_host" />
+            <ScalarProperty Name="ip_dst_host" ColumnName="ip_dst_host" />
+            <ScalarProperty Name="udp_srcport" ColumnName="udp_srcport" />
+            <ScalarProperty Name="udp_dstport" ColumnName="udp_dstport" />
+            <ScalarProperty Name="ip2_src_host" ColumnName="ip2_src_host" />
+            <ScalarProperty Name="ip2_dst_host" ColumnName="ip2_dst_host" />
+            <ScalarProperty Name="http_request_uri" ColumnName="http_request_uri" />
+            <ScalarProperty Name="http_user_agent" ColumnName="http_user_agent" />
+            <ScalarProperty Name="ip_proto" ColumnName="ip_proto" />
+            <ScalarProperty Name="ip2_proto" ColumnName="ip2_proto" />
+            <ScalarProperty Name="tcp_srcport" ColumnName="tcp_srcport" />
+            <ScalarProperty Name="tcp_dstport" ColumnName="tcp_dstport" />
+            <ScalarProperty Name="tcp_seq" ColumnName="tcp_seq" />
+            <ScalarProperty Name="tcp_nxtseq" ColumnName="tcp_nxtseq" />
+            <ScalarProperty Name="tcp_need_segment" ColumnName="tcp_need_segment" />
+            <ScalarProperty Name="tcp_ack" ColumnName="tcp_ack" />
+            <ScalarProperty Name="ip_ttl" ColumnName="ip_ttl" />
+            <ScalarProperty Name="ip2_ttl" ColumnName="ip2_ttl" />
+            <ScalarProperty Name="ip_len" ColumnName="ip_len" />
+            <ScalarProperty Name="ip2_len" ColumnName="ip2_len" />
+            <ScalarProperty Name="ip_id" ColumnName="ip_id" />
+            <ScalarProperty Name="ip2_id" ColumnName="ip2_id" />
+            <ScalarProperty Name="ip_flags_mf" ColumnName="ip_flags_mf" />
+            <ScalarProperty Name="ip2_flags_mf" ColumnName="ip2_flags_mf" />
+            <ScalarProperty Name="gtp_flags_payload" ColumnName="gtp_flags_payload" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model1" ZoomLevel="54">
+        <EntityTypeShape EntityType="GuangZhou_GnGiModel.GnGiGw_Http_Any_Multi" Width="1.5" PointX="0.75" PointY="0.75" Height="7.018046875" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
