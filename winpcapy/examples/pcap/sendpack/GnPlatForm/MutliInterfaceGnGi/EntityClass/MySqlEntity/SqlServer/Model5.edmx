@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GuangZhou_GnModel4.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="GuangZhou_GnModel4StoreContainer">
+          <EntitySet Name="Gb_IP_Fragment" EntityType="GuangZhou_GnModel4.Store.Gb_IP_Fragment" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="Gb_IP_Fragment">
+          <Key>
+            <PropertyRef Name="FileNum" />
+            <PropertyRef Name="PacketNum" />
+          </Key>
+          <Property Name="FileNum" Type="int" Nullable="false" />
+          <Property Name="PacketNum" Type="int" Nullable="false" />
+          <Property Name="BeginFileNum" Type="int" />
+          <Property Name="BeginFrameNum" Type="int" />
+          <Property Name="PacketTime" Type="datetime" />
+          <Property Name="PacketTime(ms)" Type="int" />
+          <Property Name="DumpFor" Type="nvarchar" MaxLength="30" />
+          <Property Name="IP_Fragment" Type="int" />
+          <Property Name="IP_Fragment_time" Type="nvarchar" MaxLength="200" />
+          <Property Name="IP_Fragment_MsgType" Type="nvarchar" MaxLength="200" />
+          <Property Name="tcp_window_size" Type="int" />
+          <Property Name="tcp_srcport" Type="int" />
+          <Property Name="tcp_seq" Type="int" />
+          <Property Name="tcp_nxtseq" Type="int" />
+          <Property Name="tcp_need_segment" Type="int" />
+          <Property Name="tcp_dstport" Type="int" />
+          <Property Name="tcp_ack" Type="int" />
+          <Property Name="ip2_ttl" Type="int" />
+          <Property Name="ip2_src_host" Type="nvarchar" MaxLength="200" />
+          <Property Name="ip2_len" Type="int" />
+          <Property Name="ip2_frag_offset" Type="int" />
+          <Property Name="ip2_flags_rb" Type="nvarchar" MaxLength="200" />
+          <Property Name="ip2_flags_mf" Type="nvarchar" MaxLength="200" />
+          <Property Name="ip2_flags_df" Type="nvarchar" MaxLength="200" />
+          <Property Name="ip2_flags" Type="int" />
+          <Property Name="ip2_dst_host" Type="nvarchar" MaxLength="200" />
+          <Property Name="ip_ttl" Type="int" />
+          <Property Name="ip_src_host" Type="nvarchar" MaxLength="200" />
+          <Property Name="ip_len" Type="int" />
+          <Property Name="ip_frag_offset" Type="int" />
+          <Property Name="ip_flags_rb" Type="nvarchar" MaxLength="200" />
+          <Property Name="ip_flags_mf" Type="nvarchar" MaxLength="200" />
+          <Property Name="ip_flags_df" Type="nvarchar" MaxLength="200" />
+          <Property Name="ip_flags" Type="int" />
+          <Property Name="ip_dst_host" Type="nvarchar" MaxLength="200" />
+          <Property Name="gtp_seq_number" Type="int" />
+          <Property Name="gtp_length" Type="int" />
+          <Property Name="tcp_flags_cwr" Type="nvarchar" MaxLength="200" />
+          <Property Name="tcp_options_mss_val" Type="int" />
+          <Property Name="tcp_options_wscale_val" Type="int" />
+          <Property Name="bssgp_lac" Type="int" />
+          <Property Name="bssgp_ci" Type="int" />
+          <Property Name="nsip_bvci" Type="int" />
+          <Property Name="bssgp_drx_cycle" Type="nvarchar" MaxLength="200" />
+          <Property Name="bssgp_direction" Type="nvarchar" MaxLength="200" />
+          <Property Name="bssgp_drx_timer" Type="nvarchar" MaxLength="200" />
+          <Property Name="sndcp_segment" Type="int" />
+          <Property Name="sndcp_m" Type="nvarchar" MaxLength="200" />
+          <Property Name="udp_length" Type="int" />
+          <Property Name="gsm_a_imeisv" Type="nvarchar" MaxLength="200" />
+          <Property Name="llcgprs_xidtype" Type="int" />
+          <Property Name="llcgprs_xidbyte" Type="int" />
+          <Property Name="llcgprs_xid1type" Type="int" />
+          <Property Name="llcgprs_xidbyte1" Type="int" />
+          <Property Name="llcgprs_xid1byte2" Type="int" />
+          <Property Name="llcgprs_xid2type" Type="int" />
+          <Property Name="llcgprs_xid3type" Type="int" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GuangZhou_GnModel4" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="GuangZhou_GnEntities4" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Gb_IP_Fragment" EntityType="GuangZhou_GnModel4.Gb_IP_Fragment" />
+        </EntityContainer>
+        <EntityType Name="Gb_IP_Fragment">
+          <Key>
+            <PropertyRef Name="FileNum" />
+            <PropertyRef Name="PacketNum" />
+          </Key>
+          <Property Type="Int32" Name="FileNum" Nullable="false" />
+          <Property Type="Int32" Name="PacketNum" Nullable="false" />
+          <Property Type="Int32" Name="BeginFileNum" />
+          <Property Type="Int32" Name="BeginFrameNum" />
+          <Property Type="DateTime" Name="PacketTime" />
+          <Property Type="Int32" Name="PacketTime_ms_" />
+          <Property Type="String" Name="DumpFor" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="IP_Fragment" />
+          <Property Type="String" Name="IP_Fragment_time" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IP_Fragment_MsgType" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="tcp_window_size" />
+          <Property Type="Int32" Name="tcp_srcport" />
+          <Property Type="Int32" Name="tcp_seq" />
+          <Property Type="Int32" Name="tcp_nxtseq" />
+          <Property Type="Int32" Name="tcp_need_segment" />
+          <Property Type="Int32" Name="tcp_dstport" />
+          <Property Type="Int32" Name="tcp_ack" />
+          <Property Type="Int32" Name="ip2_ttl" />
+          <Property Type="String" Name="ip2_src_host" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ip2_len" />
+          <Property Type="Int32" Name="ip2_frag_offset" />
+          <Property Type="String" Name="ip2_flags_rb" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ip2_flags_mf" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ip2_flags_df" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ip2_flags" />
+          <Property Type="String" Name="ip2_dst_host" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ip_ttl" />
+          <Property Type="String" Name="ip_src_host" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ip_len" />
+          <Property Type="Int32" Name="ip_frag_offset" />
+          <Property Type="String" Name="ip_flags_rb" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ip_flags_mf" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ip_flags_df" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ip_flags" />
+          <Property Type="String" Name="ip_dst_host" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="gtp_seq_number" />
+          <Property Type="Int32" Name="gtp_length" />
+          <Property Type="String" Name="tcp_flags_cwr" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="tcp_options_mss_val" />
+          <Property Type="Int32" Name="tcp_options_wscale_val" />
+          <Property Type="Int32" Name="bssgp_lac" />
+          <Property Type="Int32" Name="bssgp_ci" />
+          <Property Type="Int32" Name="nsip_bvci" />
+          <Property Type="String" Name="bssgp_drx_cycle" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="bssgp_direction" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="bssgp_drx_timer" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="sndcp_segment" />
+          <Property Type="String" Name="sndcp_m" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="udp_length" />
+          <Property Type="String" Name="gsm_a_imeisv" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="llcgprs_xidtype" />
+          <Property Type="Int32" Name="llcgprs_xidbyte" />
+          <Property Type="Int32" Name="llcgprs_xid1type" />
+          <Property Type="Int32" Name="llcgprs_xidbyte1" />
+          <Property Type="Int32" Name="llcgprs_xid1byte2" />
+          <Property Type="Int32" Name="llcgprs_xid2type" />
+          <Property Type="Int32" Name="llcgprs_xid3type" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GuangZhou_GnModel4StoreContainer" CdmEntityContainer="GuangZhou_GnEntities4">
+          <EntitySetMapping Name="Gb_IP_Fragment">
+            <EntityTypeMapping TypeName="GuangZhou_GnModel4.Gb_IP_Fragment">
+              <MappingFragment StoreEntitySet="Gb_IP_Fragment">
+                <ScalarProperty Name="llcgprs_xid3type" ColumnName="llcgprs_xid3type" />
+                <ScalarProperty Name="llcgprs_xid2type" ColumnName="llcgprs_xid2type" />
+                <ScalarProperty Name="llcgprs_xid1byte2" ColumnName="llcgprs_xid1byte2" />
+                <ScalarProperty Name="llcgprs_xidbyte1" ColumnName="llcgprs_xidbyte1" />
+                <ScalarProperty Name="llcgprs_xid1type" ColumnName="llcgprs_xid1type" />
+                <ScalarProperty Name="llcgprs_xidbyte" ColumnName="llcgprs_xidbyte" />
+                <ScalarProperty Name="llcgprs_xidtype" ColumnName="llcgprs_xidtype" />
+                <ScalarProperty Name="gsm_a_imeisv" ColumnName="gsm_a_imeisv" />
+                <ScalarProperty Name="udp_length" ColumnName="udp_length" />
+                <ScalarProperty Name="sndcp_m" ColumnName="sndcp_m" />
+                <ScalarProperty Name="sndcp_segment" ColumnName="sndcp_segment" />
+                <ScalarProperty Name="bssgp_drx_timer" ColumnName="bssgp_drx_timer" />
+                <ScalarProperty Name="bssgp_direction" ColumnName="bssgp_direction" />
+                <ScalarProperty Name="bssgp_drx_cycle" ColumnName="bssgp_drx_cycle" />
+                <ScalarProperty Name="nsip_bvci" ColumnName="nsip_bvci" />
+                <ScalarProperty Name="bssgp_ci" ColumnName="bssgp_ci" />
+                <ScalarProperty Name="bssgp_lac" ColumnName="bssgp_lac" />
+                <ScalarProperty Name="tcp_options_wscale_val" ColumnName="tcp_options_wscale_val" />
+                <ScalarProperty Name="tcp_options_mss_val" ColumnName="tcp_options_mss_val" />
+                <ScalarProperty Name="tcp_flags_cwr" ColumnName="tcp_flags_cwr" />
+                <ScalarProperty Name="gtp_length" ColumnName="gtp_length" />
+                <ScalarProperty Name="gtp_seq_number" ColumnName="gtp_seq_number" />
+                <ScalarProperty Name="ip_dst_host" ColumnName="ip_dst_host" />
+                <ScalarProperty Name="ip_flags" ColumnName="ip_flags" />
+                <ScalarProperty Name="ip_flags_df" ColumnName="ip_flags_df" />
+                <ScalarProperty Name="ip_flags_mf" ColumnName="ip_flags_mf" />
+                <ScalarProperty Name="ip_flags_rb" ColumnName="ip_flags_rb" />
+                <ScalarProperty Name="ip_frag_offset" ColumnName="ip_frag_offset" />
+                <ScalarProperty Name="ip_len" ColumnName="ip_len" />
+                <ScalarProperty Name="ip_src_host" ColumnName="ip_src_host" />
+                <ScalarProperty Name="ip_ttl" ColumnName="ip_ttl" />
+                <ScalarProperty Name="ip2_dst_host" ColumnName="ip2_dst_host" />
+                <ScalarProperty Name="ip2_flags" ColumnName="ip2_flags" />
+                <ScalarProperty Name="ip2_flags_df" ColumnName="ip2_flags_df" />
+                <ScalarProperty Name="ip2_flags_mf" ColumnName="ip2_flags_mf" />
+                <ScalarProperty Name="ip2_flags_rb" ColumnName="ip2_flags_rb" />
+                <ScalarProperty Name="ip2_frag_offset" ColumnName="ip2_frag_offset" />
+                <ScalarProperty Name="ip2_len" ColumnName="ip2_len" />
+                <ScalarProperty Name="ip2_src_host" ColumnName="ip2_src_host" />
+                <ScalarProperty Name="ip2_ttl" ColumnName="ip2_ttl" />
+                <ScalarProperty Name="tcp_ack" ColumnName="tcp_ack" />
+                <ScalarProperty Name="tcp_dstport" ColumnName="tcp_dstport" />
+                <ScalarProperty Name="tcp_need_segment" ColumnName="tcp_need_segment" />
+                <ScalarProperty Name="tcp_nxtseq" ColumnName="tcp_nxtseq" />
+                <ScalarProperty Name="tcp_seq" ColumnName="tcp_seq" />
+                <ScalarProperty Name="tcp_srcport" ColumnName="tcp_srcport" />
+                <ScalarProperty Name="tcp_window_size" ColumnName="tcp_window_size" />
+                <ScalarProperty Name="IP_Fragment_MsgType" ColumnName="IP_Fragment_MsgType" />
+                <ScalarProperty Name="IP_Fragment_time" ColumnName="IP_Fragment_time" />
+                <ScalarProperty Name="IP_Fragment" ColumnName="IP_Fragment" />
+                <ScalarProperty Name="DumpFor" ColumnName="DumpFor" />
+                <ScalarProperty Name="PacketTime_ms_" ColumnName="PacketTime(ms)" />
+                <ScalarProperty Name="PacketTime" ColumnName="PacketTime" />
+                <ScalarProperty Name="BeginFrameNum" ColumnName="BeginFrameNum" />
+                <ScalarProperty Name="BeginFileNum" ColumnName="BeginFileNum" />
+                <ScalarProperty Name="PacketNum" ColumnName="PacketNum" />
+                <ScalarProperty Name="FileNum" ColumnName="FileNum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model5" ZoomLevel="55">
+        <EntityTypeShape EntityType="GuangZhou_GnModel4.Gb_IP_Fragment" Width="1.5" PointX="0.75" PointY="0.75" Height="10.5590625" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

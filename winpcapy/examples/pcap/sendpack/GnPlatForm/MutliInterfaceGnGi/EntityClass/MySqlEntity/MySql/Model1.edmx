@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="guangzhou_0410Model.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.1" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="guangzhou_0410ModelStoreContainer">
+          <EntitySet Name="gn_common_201204181300" EntityType="guangzhou_0410Model.Store.gn_common_201204181300" store:Type="Tables" Schema="guangzhou_gn" />
+        </EntityContainer>
+        <EntityType Name="gn_common_201204181300">
+          <Key>
+            <PropertyRef Name="Session_ID" />
+          </Key>
+          <Property Name="Abnormal_reason" Type="usmallint" Nullable="false" />
+          <Property Name="abort" Type="bool" Nullable="false" />
+          <Property Name="Ack" Type="uint" />
+          <Property Name="APN" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="CI" Type="uint" Nullable="false" />
+          <Property Name="Content_Type" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="Count_Packet_DL" Type="uint" />
+          <Property Name="Count_Packet_UL" Type="uint" />
+          <Property Name="Delete_PDP" Type="bool" Nullable="false" />
+          <Property Name="Delete_PDP_Direction" Type="bool" Nullable="false" />
+          <Property Name="Delivery_Report" Type="bool" />
+          <Property Name="DEST_IP" Type="uint" Nullable="false" />
+          <Property Name="DEST_PORT" Type="usmallint" />
+          <Property Name="Disconnect" Type="bool" Nullable="false" />
+          <Property Name="DNS_TTL" Type="uint" />
+          <Property Name="Duration" Type="ubigint" Nullable="false" />
+          <Property Name="End_Date_Time" Type="timestamp" Nullable="false" Precision="0" />
+          <Property Name="ErrorPacketLost" Type="uint" />
+          <Property Name="ErrorPacketWired" Type="uint" />
+          <Property Name="ErrorPacketWireless" Type="uint" />
+          <Property Name="Event_Type" Type="tinyint" Nullable="false" />
+          <Property Name="From" Type="varchar" MaxLength="30" />
+          <Property Name="GGSN" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="GGSN_IP" Type="uint" Nullable="false" />
+          <Property Name="ICMP_Code" Type="uint" />
+          <Property Name="ICMP_Type" Type="uint" />
+          <Property Name="Identifier" Type="uint" />
+          <Property Name="IMEI" Type="char" Nullable="false" MaxLength="17" />
+          <Property Name="IMSI" Type="char" Nullable="false" MaxLength="17" />
+          <Property Name="IP3_Dest" Type="uint" />
+          <Property Name="IP3_Len" Type="uint" />
+          <Property Name="IP3_Src" Type="uint" />
+          <Property Name="IpLenDlAck" Type="uint" />
+          <Property Name="IpLenUpAck" Type="uint" />
+          <Property Name="IP_LEN_DL" Type="uint" Nullable="false" />
+          <Property Name="IP_LEN_UL" Type="uint" Nullable="false" />
+          <Property Name="IsReassemble" Type="bool" Nullable="false" />
+          <Property Name="Is_UserAbnormal" Type="uint" Nullable="false" />
+          <Property Name="LAC" Type="uint" Nullable="false" />
+          <Property Name="MMS_request" Type="bool" Nullable="false" />
+          <Property Name="MMS_resp_status" Type="utinyint" />
+          <Property Name="MSISDN" Type="ubigint" Nullable="false" />
+          <Property Name="Online_ID" Type="ubigint" Nullable="false" />
+          <Property Name="Prefix_IMEI" Type="char" Nullable="false" MaxLength="8" />
+          <Property Name="PROTOCOL" Type="tinyint" Nullable="false" />
+          <Property Name="Query_Name" Type="varchar" MaxLength="128" />
+          <Property Name="Query_Type" Type="varchar" MaxLength="128" />
+          <Property Name="RAT_TYPE" Type="utinyint" Nullable="false" />
+          <Property Name="Repeat_Count" Type="usmallint" Nullable="false" />
+          <Property Name="Resp" Type="bool" />
+          <Property Name="Resp_cause" Type="usmallint" />
+          <Property Name="Resp_DelayFirst" Type="uint" />
+          <Property Name="Result" Type="bool" Nullable="false" />
+          <Property Name="Result_DelayFirst" Type="int" />
+          <Property Name="SAC" Type="uint" Nullable="false" />
+          <Property Name="Service_TYPE" Type="usmallint" Nullable="false" />
+          <Property Name="Session_ID" Type="ubigint" Nullable="false" />
+          <Property Name="SGSN" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="SGSN_IP" Type="uint" Nullable="false" />
+          <Property Name="SOURCE_IP" Type="uint" Nullable="false" />
+          <Property Name="SOURCE_PORT" Type="usmallint" />
+          <Property Name="SP_Address" Type="uint" />
+          <Property Name="Start_Date_Time" Type="timestamp" Nullable="false" Precision="0" />
+          <Property Name="Subject" Type="varchar" MaxLength="40" />
+          <Property Name="Sub_Service_Type" Type="usmallint" Nullable="false" />
+          <Property Name="SynDirection" Type="uint" />
+          <Property Name="To" Type="varchar" MaxLength="30" />
+          <Property Name="UDP3_Dest" Type="uint" />
+          <Property Name="UDP3_Len" Type="uint" />
+          <Property Name="UDP3_Src" Type="uint" />
+          <Property Name="URI" Type="varchar" Nullable="false" MaxLength="1024" />
+          <Property Name="URI_Main" Type="varchar" Nullable="false" MaxLength="128" />
+          <Property Name="User_Agent_Main" Type="varchar" Nullable="false" MaxLength="30" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="guangzhou_0410Model" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="guangzhou_0410Entities" annotation:LazyLoadingEnabled="true" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+          <EntitySet Name="gn_common_201204181300" EntityType="guangzhou_0410Model.gn_common_201204181300" />
+        </EntityContainer>
+        <EntityType Name="gn_common_201204181300">
+          <Key>
+            <PropertyRef Name="Session_ID" />
+          </Key>
+          <Property Type="Int32" Name="Abnormal_reason" Nullable="false" />
+          <Property Type="Boolean" Name="abort" Nullable="false" />
+          <Property Type="Int64" Name="Ack" />
+          <Property Type="String" Name="APN" Nullable="false" />
+          <Property Type="Int64" Name="CI" Nullable="false" />
+          <Property Type="String" Name="Content_Type" Nullable="false" />
+          <Property Type="Int64" Name="Count_Packet_DL" />
+          <Property Type="Int64" Name="Count_Packet_UL" />
+          <Property Type="Boolean" Name="Delete_PDP" Nullable="false" />
+          <Property Type="Boolean" Name="Delete_PDP_Direction" Nullable="false" />
+          <Property Type="Boolean" Name="Delivery_Report" />
+          <Property Type="Int64" Name="DEST_IP" Nullable="false" />
+          <Property Type="Int32" Name="DEST_PORT" />
+          <Property Type="Boolean" Name="Disconnect" Nullable="false" />
+          <Property Type="Int64" Name="DNS_TTL" />
+          <Property Type="Decimal" Name="Duration" Nullable="false" />
+          <Property Type="DateTimeOffset" Name="End_Date_Time" Nullable="false" />
+          <Property Type="Int64" Name="ErrorPacketLost" />
+          <Property Type="Int64" Name="ErrorPacketWired" />
+          <Property Type="Int64" Name="ErrorPacketWireless" />
+          <Property Type="SByte" Name="Event_Type" Nullable="false" />
+          <Property Type="String" Name="From" />
+          <Property Type="String" Name="GGSN" Nullable="false" />
+          <Property Type="Int64" Name="GGSN_IP" Nullable="false" />
+          <Property Type="Int64" Name="ICMP_Code" />
+          <Property Type="Int64" Name="ICMP_Type" />
+          <Property Type="Int64" Name="Identifier" />
+          <Property Type="String" Name="IMEI" Nullable="false" />
+          <Property Type="String" Name="IMSI" Nullable="false" />
+          <Property Type="Int64" Name="IP3_Dest" />
+          <Property Type="Int64" Name="IP3_Len" />
+          <Property Type="Int64" Name="IP3_Src" />
+          <Property Type="Int64" Name="IpLenDlAck" />
+          <Property Type="Int64" Name="IpLenUpAck" />
+          <Property Type="Int64" Name="IP_LEN_DL" Nullable="false" />
+          <Property Type="Int64" Name="IP_LEN_UL" Nullable="false" />
+          <Property Type="Boolean" Name="IsReassemble" Nullable="false" />
+          <Property Type="Int64" Name="Is_UserAbnormal" Nullable="false" />
+          <Property Type="Int64" Name="LAC" Nullable="false" />
+          <Property Type="Boolean" Name="MMS_request" Nullable="false" />
+          <Property Type="Byte" Name="MMS_resp_status" />
+          <Property Type="Decimal" Name="MSISDN" Nullable="false" />
+          <Property Type="Decimal" Name="Online_ID" Nullable="false" />
+          <Property Type="String" Name="Prefix_IMEI" Nullable="false" />
+          <Property Type="SByte" Name="PROTOCOL" Nullable="false" />
+          <Property Type="String" Name="Query_Name" />
+          <Property Type="String" Name="Query_Type" />
+          <Property Type="Byte" Name="RAT_TYPE" Nullable="false" />
+          <Property Type="Int32" Name="Repeat_Count" Nullable="false" />
+          <Property Type="Boolean" Name="Resp" />
+          <Property Type="Int32" Name="Resp_cause" />
+          <Property Type="Int64" Name="Resp_DelayFirst" />
+          <Property Type="Boolean" Name="Result" Nullable="false" />
+          <Property Type="Int32" Name="Result_DelayFirst" />
+          <Property Type="Int64" Name="SAC" Nullable="false" />
+          <Property Type="Int32" Name="Service_TYPE" Nullable="false" />
+          <Property Type="Decimal" Name="Session_ID" Nullable="false" />
+          <Property Type="String" Name="SGSN" Nullable="false" />
+          <Property Type="Int64" Name="SGSN_IP" Nullable="false" />
+          <Property Type="Int64" Name="SOURCE_IP" Nullable="false" />
+          <Property Type="Int32" Name="SOURCE_PORT" />
+          <Property Type="Int64" Name="SP_Address" />
+          <Property Type="DateTimeOffset" Name="Start_Date_Time" Nullable="false" />
+          <Property Type="String" Name="Subject" />
+          <Property Type="Int32" Name="Sub_Service_Type" Nullable="false" />
+          <Property Type="Int64" Name="SynDirection" />
+          <Property Type="String" Name="To" />
+          <Property Type="Int64" Name="UDP3_Dest" />
+          <Property Type="Int64" Name="UDP3_Len" />
+          <Property Type="Int64" Name="UDP3_Src" />
+          <Property Type="String" Name="URI" Nullable="false" />
+          <Property Type="String" Name="URI_Main" Nullable="false" />
+          <Property Type="String" Name="User_Agent_Main" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="guangzhou_0410ModelStoreContainer" CdmEntityContainer="guangzhou_0410Entities">
+          <EntitySetMapping Name="gn_common_201204181300">
+            <EntityTypeMapping TypeName="guangzhou_0410Model.gn_common_201204181300">
+              <MappingFragment StoreEntitySet="gn_common_201204181300">
+                <ScalarProperty Name="User_Agent_Main" ColumnName="User_Agent_Main" />
+                <ScalarProperty Name="URI_Main" ColumnName="URI_Main" />
+                <ScalarProperty Name="URI" ColumnName="URI" />
+                <ScalarProperty Name="UDP3_Src" ColumnName="UDP3_Src" />
+                <ScalarProperty Name="UDP3_Len" ColumnName="UDP3_Len" />
+                <ScalarProperty Name="UDP3_Dest" ColumnName="UDP3_Dest" />
+                <ScalarProperty Name="To" ColumnName="To" />
+                <ScalarProperty Name="SynDirection" ColumnName="SynDirection" />
+                <ScalarProperty Name="Sub_Service_Type" ColumnName="Sub_Service_Type" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Start_Date_Time" ColumnName="Start_Date_Time" />
+                <ScalarProperty Name="SP_Address" ColumnName="SP_Address" />
+                <ScalarProperty Name="SOURCE_PORT" ColumnName="SOURCE_PORT" />
+                <ScalarProperty Name="SOURCE_IP" ColumnName="SOURCE_IP" />
+                <ScalarProperty Name="SGSN_IP" ColumnName="SGSN_IP" />
+                <ScalarProperty Name="SGSN" ColumnName="SGSN" />
+                <ScalarProperty Name="Session_ID" ColumnName="Session_ID" />
+                <ScalarProperty Name="Service_TYPE" ColumnName="Service_TYPE" />
+                <ScalarProperty Name="SAC" ColumnName="SAC" />
+                <ScalarProperty Name="Result_DelayFirst" ColumnName="Result_DelayFirst" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="Resp_DelayFirst" ColumnName="Resp_DelayFirst" />
+                <ScalarProperty Name="Resp_cause" ColumnName="Resp_cause" />
+                <ScalarProperty Name="Resp" ColumnName="Resp" />
+                <ScalarProperty Name="Repeat_Count" ColumnName="Repeat_Count" />
+                <ScalarProperty Name="RAT_TYPE" ColumnName="RAT_TYPE" />
+                <ScalarProperty Name="Query_Type" ColumnName="Query_Type" />
+                <ScalarProperty Name="Query_Name" ColumnName="Query_Name" />
+                <ScalarProperty Name="PROTOCOL" ColumnName="PROTOCOL" />
+                <ScalarProperty Name="Prefix_IMEI" ColumnName="Prefix_IMEI" />
+                <ScalarProperty Name="Online_ID" ColumnName="Online_ID" />
+                <ScalarProperty Name="MSISDN" ColumnName="MSISDN" />
+                <ScalarProperty Name="MMS_resp_status" ColumnName="MMS_resp_status" />
+                <ScalarProperty Name="MMS_request" ColumnName="MMS_request" />
+                <ScalarProperty Name="LAC" ColumnName="LAC" />
+                <ScalarProperty Name="Is_UserAbnormal" ColumnName="Is_UserAbnormal" />
+                <ScalarProperty Name="IsReassemble" ColumnName="IsReassemble" />
+                <ScalarProperty Name="IP_LEN_UL" ColumnName="IP_LEN_UL" />
+                <ScalarProperty Name="IP_LEN_DL" ColumnName="IP_LEN_DL" />
+                <ScalarProperty Name="IpLenUpAck" ColumnName="IpLenUpAck" />
+                <ScalarProperty Name="IpLenDlAck" ColumnName="IpLenDlAck" />
+                <ScalarProperty Name="IP3_Src" ColumnName="IP3_Src" />
+                <ScalarProperty Name="IP3_Len" ColumnName="IP3_Len" />
+                <ScalarProperty Name="IP3_Dest" ColumnName="IP3_Dest" />
+                <ScalarProperty Name="IMSI" ColumnName="IMSI" />
+                <ScalarProperty Name="IMEI" ColumnName="IMEI" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="ICMP_Type" ColumnName="ICMP_Type" />
+                <ScalarProperty Name="ICMP_Code" ColumnName="ICMP_Code" />
+                <ScalarProperty Name="GGSN_IP" ColumnName="GGSN_IP" />
+                <ScalarProperty Name="GGSN" ColumnName="GGSN" />
+                <ScalarProperty Name="From" ColumnName="From" />
+                <ScalarProperty Name="Event_Type" ColumnName="Event_Type" />
+                <ScalarProperty Name="ErrorPacketWireless" ColumnName="ErrorPacketWireless" />
+                <ScalarProperty Name="ErrorPacketWired" ColumnName="ErrorPacketWired" />
+                <ScalarProperty Name="ErrorPacketLost" ColumnName="ErrorPacketLost" />
+                <ScalarProperty Name="End_Date_Time" ColumnName="End_Date_Time" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="DNS_TTL" ColumnName="DNS_TTL" />
+                <ScalarProperty Name="Disconnect" ColumnName="Disconnect" />
+                <ScalarProperty Name="DEST_PORT" ColumnName="DEST_PORT" />
+                <ScalarProperty Name="DEST_IP" ColumnName="DEST_IP" />
+                <ScalarProperty Name="Delivery_Report" ColumnName="Delivery_Report" />
+                <ScalarProperty Name="Delete_PDP_Direction" ColumnName="Delete_PDP_Direction" />
+                <ScalarProperty Name="Delete_PDP" ColumnName="Delete_PDP" />
+                <ScalarProperty Name="Count_Packet_UL" ColumnName="Count_Packet_UL" />
+                <ScalarProperty Name="Count_Packet_DL" ColumnName="Count_Packet_DL" />
+                <ScalarProperty Name="Content_Type" ColumnName="Content_Type" />
+                <ScalarProperty Name="CI" ColumnName="CI" />
+                <ScalarProperty Name="APN" ColumnName="APN" />
+                <ScalarProperty Name="Ack" ColumnName="Ack" />
+                <ScalarProperty Name="abort" ColumnName="abort" />
+                <ScalarProperty Name="Abnormal_reason" ColumnName="Abnormal_reason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model1" ZoomLevel="28">
+        <EntityTypeShape EntityType="guangzhou_0410Model.gn_common_201204181300" Width="1.5" PointX="0.75" PointY="0.75" Height="13.256979166666667" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
