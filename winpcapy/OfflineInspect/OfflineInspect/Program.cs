@@ -6,6 +6,15 @@
  * 2012.7.31
  * 
  * 
+net start mssqlserverolapservice
+
+net start msdtsserver100
+
+net start mssqlserver
+
+net start reportserver
+
+net start mssqllfdlauncher
  * 
  * */
 
@@ -34,6 +43,8 @@ namespace OfflineInspect
             //OfflineInspect.ReTransmission.CommonAttribute.ExecReTransmission();
 
             //OfflineInspect.ReTransmission.CommonAttribute.ExecMongoExportSql();
+
+            //N201UXID.N201UDataFactory.BathMakeN201UData();
 
             TcpDataFactory.BathMakeTcpData();
 

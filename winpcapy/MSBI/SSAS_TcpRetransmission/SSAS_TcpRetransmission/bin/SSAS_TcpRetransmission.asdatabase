@@ -349,7 +349,7 @@
           <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
           <Value>
             <dds xmlns="">
-              <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-4638" scrolltop="-4180" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="16007" y="8758" backcolor="15334399" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+              <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-4638" scrolltop="-4180" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="13097" y="13361" backcolor="15334399" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
                 <font>
                   <ddsxmlobjectstreamwrapper binary="018600009001905f010004cbcecce5" />
                 </font>
@@ -766,7 +766,7 @@
           <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
           <Value>
             <dds xmlns="">
-              <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="5" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-5272" scrolltop="-1112" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="29316" y="8758" backcolor="15334399" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+              <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="5" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-5272" scrolltop="-1112" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="19738" y="13361" backcolor="15334399" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
                 <font>
                   <ddsxmlobjectstreamwrapper binary="018600009001905f010004cbcecce5" />
                 </font>
@@ -1667,9 +1667,11 @@ VISIBLE = 1  ; </Text>
               <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
               <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
               <State>Unprocessed</State>
-              <Source xsi:type="DsvTableBinding">
-                <DataSourceViewID>Tcp Db Context</DataSourceViewID>
-                <TableID>dbo_TcpRetransStaticsDocuments</TableID>
+              <Source xsi:type="QueryBinding">
+                <DataSourceID>Tcp Db Context</DataSourceID>
+                <QueryDefinition>SELECT [dbo].[TcpRetransStaticsDocuments].[trsdID],[dbo].[TcpRetransStaticsDocuments].[session_id],[dbo].[TcpRetransStaticsDocuments].[imsi],[dbo].[TcpRetransStaticsDocuments].[lac_ci],[dbo].[TcpRetransStaticsDocuments].[direction],[dbo].[TcpRetransStaticsDocuments].[msg_distinct_aggre],[dbo].[TcpRetransStaticsDocuments].[http_method],[dbo].[TcpRetransStaticsDocuments].[absolute_uri],[dbo].[TcpRetransStaticsDocuments].[user_agent],[dbo].[TcpRetransStaticsDocuments].[ip_bsc_aggre],[dbo].[TcpRetransStaticsDocuments].[ip2_sp_aggre],[dbo].[TcpRetransStaticsDocuments].[ip2ttl_sp_aggre],[dbo].[TcpRetransStaticsDocuments].[ip_flags_mf],[dbo].[TcpRetransStaticsDocuments].[sndcp_m],[dbo].[TcpRetransStaticsDocuments].[ip2_flags_mf],[dbo].[TcpRetransStaticsDocuments].[tcp_need_segment],[dbo].[TcpRetransStaticsDocuments].[ip_total_aggre],[dbo].[TcpRetransStaticsDocuments].[seq_total_aggre],[dbo].[TcpRetransStaticsDocuments].[seq_total_reduce],[dbo].[TcpRetransStaticsDocuments].[seq_total_count],[dbo].[TcpRetransStaticsDocuments].[seq_distinct_count],[dbo].[TcpRetransStaticsDocuments].[seq_repeat_cnt],[dbo].[TcpRetransStaticsDocuments].[seq_total_lost],[dbo].[TcpRetransStaticsDocuments].[seq_total_repeat],[dbo].[TcpRetransStaticsDocuments].[duration]
+		FROM [dbo].[TcpRetransStaticsDocuments]
+		WHERE http_method is null</QueryDefinition>
               </Source>
               <StorageMode>Rolap</StorageMode>
               <CurrentStorageMode>Molap</CurrentStorageMode>
@@ -1679,7 +1681,6 @@ VISIBLE = 1  ; </Text>
                 <Latency>PT0S</Latency>
                 <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
                 <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
-                <Enabled>true</Enabled>
                 <AggregationStorage>MolapOnly</AggregationStorage>
                 <Source xsi:type="ProactiveCachingInheritedBinding">
                   <NotificationTechnique>Server</NotificationTechnique>
@@ -1694,9 +1695,6 @@ VISIBLE = 1  ; </Text>
             <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
             <Enabled>true</Enabled>
             <AggregationStorage>MolapOnly</AggregationStorage>
-            <Source xsi:type="ProactiveCachingInheritedBinding">
-              <NotificationTechnique>Server</NotificationTechnique>
-            </Source>
           </ProactiveCaching>
         </MeasureGroup>
       </MeasureGroups>
@@ -1716,38 +1714,41 @@ CALCULATE 命令控制该多维数据集中叶单元的聚合。
 如果删除或修改该 CALCULATE 命令，会影响该多维数据集内的数据。
 只有手动指定如何聚合该多维数据集时才编辑该命令。
 */
-CALCULATE;  
+CALCULATE;   
 
 CREATE MEMBER CURRENTCUBE.[Measures].[TCP重传次数占比]
  AS [Measures].[Seq Repeat Cnt]/[Measures].[Seq Total Count], 
-VISIBLE = 1  ;   
+FORMAT_STRING = "Percent", 
+VISIBLE = 1  ;    
 CREATE MEMBER CURRENTCUBE.[Measures].[TCP重传字节占比]
  AS [Measures].[Seq Total Repeat]/[Measures].[Seq Total Aggre], 
-VISIBLE = 1;       
+FORMAT_STRING = "Percent", 
+VISIBLE = 1  ;        
 CREATE MEMBER CURRENTCUBE.[Measures].[TCP丢包字节占比]
  AS [Measures].[Seq Total Lost]/[Measures].[Seq Total Reduce], 
-VISIBLE = 1;  
+FORMAT_STRING = "Percent", 
+VISIBLE = 1  ;   
 CREATE MEMBER CURRENTCUBE.[Measures].[TCP实传字节数]
  AS [Measures].[Seq Total Aggre], 
-VISIBLE = 1;      
+VISIBLE = 1;       
 CREATE MEMBER CURRENTCUBE.[Measures].[TCP传输速率]
  AS [Measures].[Seq Total Aggre]/[Measures].[Duration], 
-VISIBLE = 1;       
+VISIBLE = 1;        
 CREATE MEMBER CURRENTCUBE.[Measures].[TCP会话时长]
  AS [Measures].[Duration], 
-VISIBLE = 1;   
+VISIBLE = 1;    
 CREATE MEMBER CURRENTCUBE.[Measures].[TCP传输次数]
  AS [Measures].[Seq Total Count], 
-VISIBLE = 1;   
+VISIBLE = 1;    
 CREATE MEMBER CURRENTCUBE.[Measures].[TCP重发次数]
  AS [Measures].[Seq Repeat Cnt], 
-VISIBLE = 1;   
+VISIBLE = 1;    
 CREATE MEMBER CURRENTCUBE.[Measures].[TCP丢包字节数]
  AS [Measures].[Seq Total Lost], 
-VISIBLE = 1;   
+VISIBLE = 1;    
 CREATE MEMBER CURRENTCUBE.[Measures].[TCP重传字节数]
  AS [Measures].[Seq Total Repeat], 
-VISIBLE = 1;   
+VISIBLE = 1;    
 CREATE MEMBER CURRENTCUBE.[Measures].[TCP完整字节数]
  AS [Measures].[Seq Total Reduce], 
 VISIBLE = 1; </Text>
@@ -2351,7 +2352,7 @@ VISIBLE = 1; </Text>
                 <Name>_ALL_TABLES_</Name>
                 <DiagramLayout>
                   <dds>
-                    <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="80" scrolltop="132" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="29951" y="10134" backcolor="15334399" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+                    <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="80" scrolltop="132" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="23495" y="14737" backcolor="15334399" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
                       <font>
                         <ddsxmlobjectstreamwrapper binary="018600009001905f010004cbcecce5" />
                       </font>

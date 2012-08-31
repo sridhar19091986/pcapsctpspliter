@@ -100,7 +100,9 @@ namespace OfflineInspect.ReTransmission
         private string mongo_collection = CommonAttribute.TcpRetransStatics[0];
         private string mongo_db = CommonAttribute.TcpRetransStatics[1];
         private string mongo_conn = CommonAttribute.TcpRetransStatics[2];
+
         private string directiondown = "Down";
+        private string tcp_data = "TCP_DATA";
 
         public MongoCrud<TcpRetransStaticsDocument> mongo_TcpRetransStatics;
 
@@ -141,7 +143,7 @@ namespace OfflineInspect.ReTransmission
                             lac_ci = p.lac_ci,
                             msg_distinct_aggre = p.msg_distinct_aggre,
                             direction = p.direction,
-                            http_method = p.http_method,
+                            http_method = p.http_method == null ? tcp_data : p.http_method,
                             user_agent = p.user_agent,
                             absolute_uri = p.absolute_uri,
 

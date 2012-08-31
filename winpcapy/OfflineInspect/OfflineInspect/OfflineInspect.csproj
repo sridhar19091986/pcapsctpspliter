@@ -78,6 +78,10 @@
     <Compile Include="IpSegment\Class1.cs" />
     <Compile Include="IpSegment\KeyPerformance.cs" />
     <Compile Include="MultiInterface\CommonAttribute.cs" />
+    <Compile Include="N201UXID\CommonAttribute.cs" />
+    <Compile Include="N201UXID\CommonDataLocation.cs" />
+    <Compile Include="N201UXID\N201UDataFactory.cs" />
+    <Compile Include="N201UXID\N201UDbContext.cs" />
     <Compile Include="N201UXID\N201UXIDBeforeMessage.cs" />
     <Compile Include="FlowControl\FlowControlMessageRate.cs" />
     <Compile Include="FlowControl\FlowControlMapMs.cs" />
@@ -102,7 +106,7 @@
     <Compile Include="MultiInterface\GnGETRateMap.cs" />
     <Compile Include="MultiInterface\GwGETRateMap.cs" />
     <Compile Include="MultiInterface\RelationKeyWords.cs" />
-    <Compile Include="N201UXID\N201UXIDRate.cs" />
+    <Compile Include="N201UXID\N201UXIDStatics.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="ReTransmission\TextFile1.txt" />

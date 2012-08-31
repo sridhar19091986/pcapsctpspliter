@@ -82,7 +82,7 @@
       </ObjectSnapshot>
       <ObjectSnapshot>
         <Type>Microsoft.AnalysisServices.Cube</Type>
-        <TimeStamp>d+Nx3iRf+zXZM9iWXyizYX0rStc=2012-08-30 10:26:482012-08-29 14:44:44Ua/MwA74znNjrxe5n4UqPzThfmQ=2012-08-29 15:01:582012-08-29 14:44:45</TimeStamp>
+        <TimeStamp>wNbhsjLwEiSiD2RgjbqRh6H4bFA=2012-08-31 16:59:142012-08-29 14:44:447DmwLRgrW9woPnnlSiztt0MWKew=2012-08-31 16:59:142012-08-29 14:44:45</TimeStamp>
         <ID>
           <String>Tcp Db Context</String>
         </ID>
@@ -113,5 +113,5 @@
   </Snapshot>
   <AssemblyLocations />
   <ProcessingComplete>true</ProcessingComplete>
-  <LastDeployed>2012-08-30T06:44:25Z</LastDeployed>
+  <LastDeployed>2012-08-31T08:59:15Z</LastDeployed>
 </DeploymentSnapshot>
