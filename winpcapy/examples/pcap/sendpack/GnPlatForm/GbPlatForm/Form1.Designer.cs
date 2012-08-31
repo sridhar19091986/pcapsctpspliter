@@ -68,7 +68,6 @@
             this.navBarItem28 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem29 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem30 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarGroup7 = new DevExpress.XtraNavBar.NavBarGroup();
             this.dockPanel2 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel2_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -133,8 +132,7 @@
             this.navBarGroup3,
             this.navBarGroup4,
             this.navBarGroup5,
-            this.navBarGroup6,
-            this.navBarGroup7});
+            this.navBarGroup6});
             this.navBarControl1.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
             this.navBarItem1,
             this.navBarItem2,
@@ -352,6 +350,7 @@
             // navBarGroup6
             // 
             this.navBarGroup6.Caption = "Gb_Cell_Repeat";
+            this.navBarGroup6.Expanded = true;
             this.navBarGroup6.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem22),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem23),
@@ -420,12 +419,6 @@
             this.navBarItem30.Caption = "navBarItem30";
             this.navBarItem30.Name = "navBarItem30";
             this.navBarItem30.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem30_LinkClicked);
-            // 
-            // navBarGroup7
-            // 
-            this.navBarGroup7.Caption = "navBarGroup7";
-            this.navBarGroup7.Expanded = true;
-            this.navBarGroup7.Name = "navBarGroup7";
             // 
             // dockPanel2
             // 
@@ -584,7 +577,6 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem29;
         private DevExpress.XtraNavBar.NavBarItem navBarItem30;
         private System.Windows.Forms.Button button1;
-        private DevExpress.XtraNavBar.NavBarGroup navBarGroup7;
 
     }
 }
