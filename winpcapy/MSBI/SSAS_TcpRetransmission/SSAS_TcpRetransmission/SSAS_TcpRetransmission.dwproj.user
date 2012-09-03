@@ -3,6 +3,20 @@
     <Configuration>
       <Name>Development</Name>
       <Options>
+        <UserIDs>
+          <ConfigurationSetting>
+            <Id>Tcp Db Context</Id>
+            <Name>Tcp Db Context</Name>
+            <Value xsi:type="xsd:string">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAjA1kujFYSUuRvKwPuYzlRgAAAAAeAAAAVABjAHAAIABEAGIAIABDAG8AbgB0AGUAeAB0AAAAA2YAAKgAAAAQAAAAwTA02bN+hFRCSm8sV1I3LgAAAAAEgAAAoAAAABAAAACMksnqFIaCymX5cp5DxVdKCAAAAJPcofxBfD5lFAAAALZ7k7W70+/HKCeSEZOUUyifSVmp</Value>
+          </ConfigurationSetting>
+        </UserIDs>
+        <UserPasswords>
+          <ConfigurationSetting>
+            <Id>Tcp Db Context</Id>
+            <Name>Tcp Db Context</Name>
+            <Value xsi:type="xsd:string">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAjA1kujFYSUuRvKwPuYzlRgAAAAAeAAAAVABjAHAAIABEAGIAIABDAG8AbgB0AGUAeAB0AAAAA2YAAKgAAAAQAAAApIOYsGWI3GRMXueDGHdT+wAAAAAEgAAAoAAAABAAAAD8ZGUWtdEtg4Wf78YpATAKGAAAADFOvIH7492bcPHRYpM7QsUKUDqu/gIrsRQAAACEh1RdjcnfUVZcPPuMsuiaIo51lg==</Value>
+          </ConfigurationSetting>
+        </UserPasswords>
         <TargetServer>localhost</TargetServer>
         <TargetDatabase>SSAS_TcpRetransmission</TargetDatabase>
         <StartObject>

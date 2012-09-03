@@ -19,23 +19,9 @@
     <ObjectSnapshots>
       <ObjectSnapshot>
         <Type>Microsoft.AnalysisServices.RelationalDataSource</Type>
-        <TimeStamp>N8wtf2VueDL6XQh0vpC8mXclzPo=2012-08-23 12:11:462012-08-23 12:11:44</TimeStamp>
-        <ID>
-          <String>Ssis Gb</String>
-        </ID>
-      </ObjectSnapshot>
-      <ObjectSnapshot>
-        <Type>Microsoft.AnalysisServices.RelationalDataSource</Type>
-        <TimeStamp>S/21eKTlE8cIjeC6X08y5KqPGt0=2012-08-29 15:41:182012-08-29 14:43:01</TimeStamp>
+        <TimeStamp>8uvan4Ng+hQiw2XaIclygODHCEA=2012-09-03 16:02:462012-08-29 14:43:01</TimeStamp>
         <ID>
           <String>Tcp Db Context</String>
-        </ID>
-      </ObjectSnapshot>
-      <ObjectSnapshot>
-        <Type>Microsoft.AnalysisServices.DataSourceView</Type>
-        <TimeStamp>aIZORHcwIk/ro5VFUnJ2Zz6r+oo=2012-08-23 17:10:062012-08-23 12:16:12</TimeStamp>
-        <ID>
-          <String>Ssis Gb</String>
         </ID>
       </ObjectSnapshot>
       <ObjectSnapshot>
@@ -47,37 +33,9 @@
       </ObjectSnapshot>
       <ObjectSnapshot>
         <Type>Microsoft.AnalysisServices.Dimension</Type>
-        <TimeStamp>g89WUXbNjP4Jfb6QPKp8H17AiDI=2012-08-23 14:29:522012-08-23 14:29:51</TimeStamp>
-        <ID>
-          <String>Tcp Retransmission</String>
-        </ID>
-      </ObjectSnapshot>
-      <ObjectSnapshot>
-        <Type>Microsoft.AnalysisServices.Dimension</Type>
-        <TimeStamp>omgVIoEaOsy457gWWcc1kwqVjmc=2012-08-23 17:14:062012-08-23 17:14:03</TimeStamp>
-        <ID>
-          <String>Llc Session Discard</String>
-        </ID>
-      </ObjectSnapshot>
-      <ObjectSnapshot>
-        <Type>Microsoft.AnalysisServices.Dimension</Type>
         <TimeStamp>mp0ZNFM3l82mj/Dneoz7VM5v8e8=2012-08-29 15:00:082012-08-29 14:44:45</TimeStamp>
         <ID>
           <String>Tcp Retrans Statics Documents</String>
-        </ID>
-      </ObjectSnapshot>
-      <ObjectSnapshot>
-        <Type>Microsoft.AnalysisServices.Cube</Type>
-        <TimeStamp>6gdKCu7yvRaHPlXiEJ4sOZIBR1w=2012-08-29 15:28:182012-08-23 12:17:46Kh60X0PTrDbxVDuZyfKhBS1kMCY=2012-08-23 12:21:282012-08-23 12:17:47</TimeStamp>
-        <ID>
-          <String>Ssis Gb</String>
-        </ID>
-      </ObjectSnapshot>
-      <ObjectSnapshot>
-        <Type>Microsoft.AnalysisServices.Cube</Type>
-        <TimeStamp>b+QROC+UspbABxp7rpScAF7vZGQ=2012-08-24 14:52:562012-08-23 17:10:28/DXOEuzmk+yXHX4QqPRFajx57uY=2012-08-24 14:52:562012-08-23 17:10:28</TimeStamp>
-        <ID>
-          <String>Ssis Gb 1</String>
         </ID>
       </ObjectSnapshot>
       <ObjectSnapshot>
@@ -94,13 +52,6 @@
           <String>Role</String>
         </ID>
       </ObjectSnapshot>
-      <ObjectSnapshot>
-        <Type>Microsoft.AnalysisServices.MiningStructure</Type>
-        <TimeStamp>R4nwThoh4Oe5LZpzkbdW/YIRVcU=2012-08-24 15:11:182012-08-24 15:08:09</TimeStamp>
-        <ID>
-          <String>Tcp Retransmission</String>
-        </ID>
-      </ObjectSnapshot>
     </ObjectSnapshots>
     <DatabaseSnapshot>
       <Type>Microsoft.AnalysisServices.Database</Type>
@@ -113,5 +64,5 @@
   </Snapshot>
   <AssemblyLocations />
   <ProcessingComplete>true</ProcessingComplete>
-  <LastDeployed>2012-08-31T08:59:15Z</LastDeployed>
+  <LastDeployed>2012-09-03T08:03:57Z</LastDeployed>
 </DeploymentSnapshot>

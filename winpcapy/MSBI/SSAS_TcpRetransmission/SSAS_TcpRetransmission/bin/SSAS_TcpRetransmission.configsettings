@@ -2,16 +2,8 @@
   <Database>
     <DataSources>
       <DataSource>
-        <ID>Ssis Gb</ID>
-        <ConnectionString>Provider=SQLNCLI10.1;Data Source=localhost;Integrated Security=SSPI;Initial Catalog=ssis_gb</ConnectionString>
-        <ImpersonationInfo>
-          <ImpersonationMode>ImpersonateServiceAccount</ImpersonationMode>
-          <ImpersonationInfoSecurity>Unchanged</ImpersonationInfoSecurity>
-        </ImpersonationInfo>
-      </DataSource>
-      <DataSource>
         <ID>Tcp Db Context</ID>
-        <ConnectionString>Provider=SQLNCLI10.1;Data Source=localhost;Integrated Security=SSPI;Initial Catalog=TcpDbContext</ConnectionString>
+        <ConnectionString>Provider=SQLNCLI10.1;Data Source=192.168.4.249;Persist Security Info=True;Password=;User ID=;Initial Catalog=TcpDbContext</ConnectionString>
         <ImpersonationInfo>
           <ImpersonationMode>Default</ImpersonationMode>
           <ImpersonationInfoSecurity>Unchanged</ImpersonationInfoSecurity>
@@ -20,47 +12,10 @@
     </DataSources>
     <Dimensions>
       <Dimension>
-        <ID>Tcp Retransmission</ID>
-      </Dimension>
-      <Dimension>
-        <ID>Llc Session Discard</ID>
-      </Dimension>
-      <Dimension>
         <ID>Tcp Retrans Statics Documents</ID>
       </Dimension>
     </Dimensions>
-    <MiningStructures>
-      <MiningStructure>
-        <ID>Tcp Retransmission</ID>
-      </MiningStructure>
-    </MiningStructures>
     <Cubes>
-      <Cube>
-        <ID>Ssis Gb</ID>
-        <MeasureGroups>
-          <MeasureGroup>
-            <ID>Tcp Retransmission</ID>
-            <Partitions>
-              <Partition>
-                <ID>Tcp Retransmission</ID>
-              </Partition>
-            </Partitions>
-          </MeasureGroup>
-        </MeasureGroups>
-      </Cube>
-      <Cube>
-        <ID>Ssis Gb 1</ID>
-        <MeasureGroups>
-          <MeasureGroup>
-            <ID>Llc Session Discard</ID>
-            <Partitions>
-              <Partition>
-                <ID>Llc Session Discard</ID>
-              </Partition>
-            </Partitions>
-          </MeasureGroup>
-        </MeasureGroups>
-      </Cube>
       <Cube>
         <ID>Tcp Db Context</ID>
         <MeasureGroups>

@@ -8,73 +8,15 @@ using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.Infrastructure;
 using System.Data.EntityClient;
+using OfflineInspect.ReTransmission.Table;
 
 namespace OfflineInspect.ReTransmission
 {
-    public class CommonAttribute:CommonDataLocation
+    public class CommonAttribute : CommonDataLocation
     {
-
-        private static string db = "ReTransmission";
         public static string[] LacCellBvci = new String[] { "LacCellBvci", db, remote };
-        public static string[] TlliTcpSession = new String[] { "TlliTcpSession", db, remote, "10", "5000" };
-        public static string[] TlliLLCSession = new String[] { "TlliLLCSession", db, remote, "3", "5000" };
+        public static string[] TlliTcpSession = new String[] { "TlliTcpSession", db, remote, "1", "5", "5000" };
+        public static string[] TlliLLCSession = new String[] { "TlliLLCSession", db, remote, "0", "1", "5000" };
         public static string[] TcpRetransStatics = new String[] { "TcpRetransStatics", db, remote };
-
-        public static void ExecReTransmission()
-        {
-            using (LacCellBvci lcb = new LacCellBvci())
-            {
-                lcb.CreatCollection();
-                Console.WriteLine(" LacCellBvci lcb = new LacCellBvci();ok");
-            }
-            GC.Collect();
-            //using (TlliTcpSession tts = new TlliTcpSession())
-            //{
-            //    tts.CreateCollection();
-            //    Console.WriteLine("TlliTcpSession tts = new TlliTcpSession();ok");
-            //}
-            //GC.Collect();
-            using (TlliLLCSession tls = new TlliLLCSession())
-            {
-                tls.CreateCollection();
-                Console.WriteLine("TlliLLCSession tls = new TlliLLCSession();ok");
-            }
-            GC.Collect();
-            //using (TcpRetransStatics trs = new TcpRetransStatics())
-            //{
-            //    trs.CreatCollection();
-            //    Console.WriteLine("TcpRetransStatics trs = new TcpRetransStatics();ok");
-            //}
-            //GC.Collect();
-        }
-
-        public static void ExecMongoExportSql()
-        {
-            using (TcpDbContext db = new TcpDbContext(sqlconn))
-            {
-                if (db.Database.Exists())
-                    db.Database.Delete();
-
-                db.Database.Create();
-                Console.WriteLine(db.Database.Connection.ConnectionString);
-
-                foreach (var tcp in db.getTcpRetransStaticsDocumentSet())
-                {
-                    db.Set<TcpRetransStaticsDocument>().Add(tcp);
-                    db.SaveChanges();
-                }
-
-
-            }
-            Console.WriteLine("Finish");
-            Console.ReadKey();
-
-            using (LlcDbContext db = new LlcDbContext())
-                foreach (var llc in db.getTlliLLCSessionDocumentSet())
-                {
-                    db.Set<TlliLLCSessionDocument>().Add(llc);
-                    db.SaveChanges();
-                }
-        }
     }
 }

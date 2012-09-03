@@ -91,15 +91,14 @@
     <Compile Include="FlowControl\LacCellBvci.cs" />
     <Compile Include="Mongo\MongoCrud.cs" />
     <Compile Include="ReTransmission\CommonAttribute.cs" />
-    <Compile Include="ReTransmission\LacCellBvci.cs" />
-    <Content Include="ReTransmission\RetransStatics.txt" />
-    <Compile Include="ReTransmission\LlcDbContext.cs" />
+    <Compile Include="ReTransmission\Table\LacCellBvci.cs" />
+    <Content Include="ReTransmission\NoteBook\RetransStatics.txt" />
     <Compile Include="ReTransmission\CommonDataLocation.cs" />
     <Compile Include="ReTransmission\TcpDbContext.cs" />
     <Compile Include="ReTransmission\TcpDataFactory.cs" />
-    <Compile Include="ReTransmission\TcpRetransStatics.cs" />
-    <Compile Include="ReTransmission\TlliLlcSession.cs" />
-    <Compile Include="ReTransmission\TcpPortSession.cs" />
+    <Compile Include="ReTransmission\Table\TcpRetransStatics.cs" />
+    <Compile Include="ReTransmission\Table\TlliLlcSession.cs" />
+    <Compile Include="ReTransmission\Table\TcpPortSession.cs" />
     <Content Include="Mongo\Template2.txt" />
     <Content Include="Mongo\Template.txt" />
     <Compile Include="MultiInterface\GiGETRateMap.cs" />
@@ -109,8 +108,8 @@
     <Compile Include="N201UXID\N201UXIDStatics.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="ReTransmission\TextFile1.txt" />
-    <Content Include="ReTransmission\TlliTcpSession.txt" />
+    <Content Include="ReTransmission\NoteBook\TextFile1.txt" />
+    <Content Include="ReTransmission\NoteBook\TlliTcpSession.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
