@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using OfflineInspect.ReTransmission.Table;
 
 namespace OfflineInspect.ReTransmission
 {
@@ -9,27 +10,28 @@ namespace OfflineInspect.ReTransmission
     {
         public static void BathMakeTcpData()
         {
-            //BatchMakeTcpDataForMongo();
+            BatchMakeTcpDataForMongo();
+            CreateTcpDb();
             BatchMakeTcpDataForSqlServer();
         }
 
         private static void BatchMakeTcpDataForMongo()
         {
+            using (LacCellBvci lcb = new LacCellBvci())
+                lcb.CreatCollection();
+            GC.Collect();
             using (TcpPortSession tps = new TcpPortSession())
-            {
                 tps.CreateCollection();
-                Console.WriteLine("TcpPortSession->mongo->ok");
-            }
             GC.Collect();
             using (TcpRetransStatics trs = new TcpRetransStatics())
-            {
                 trs.CreatCollection();
-                Console.WriteLine("TcpRetransStatics->mongo->ok");
-            }
+            GC.Collect();
+            using (TlliLLCSession tls = new TlliLLCSession())
+                tls.CreateCollection();
             GC.Collect();
         }
 
-        private static void BatchMakeTcpDataForSqlServer()
+        private static void CreateTcpDb()
         {
             using (TcpDbContext db = new TcpDbContext(sqlconn))
             {
@@ -38,26 +40,20 @@ namespace OfflineInspect.ReTransmission
                 db.Database.Create();
 
                 Console.WriteLine(db.Database.Connection.ConnectionString);
+            }
+        }
 
+        private static void BatchMakeTcpDataForSqlServer()
+        {
+            using (TcpDbContext db = new TcpDbContext(sqlconn))
+            {
                 //加快入库，2012.8.30，30->0.5s级别。
                 db.Configuration.AutoDetectChangesEnabled = false;
 
-                /*
-                foreach (var tcp in db.getTcpPortSessionDocumentSet())
-                {
-                    db.Set<TcpPortSessionDocument>().Add(tcp);
-                    db.SaveChanges();
-                }
-                Console.WriteLine("TcpPortSession->TcpDbContext->ok");
-                **/
-
-                foreach (var tcp in db.getTcpRetransStaticsDocumentSet())
-                {
-                    db.Set<TcpRetransStaticsDocument>().Add(tcp);
-                    db.SaveChanges();
-                }
-                Console.WriteLine("TcpRetransStatics->TcpDbContext->ok");
-
+                db.saveLacCellBvciDocumentSet(db);
+                db.saveTcpPortSessionDocumentSet(db);
+                db.saveTcpRetransStaticsDocumentSet(db);
+                db.saveTlliLLCSessionDocumentSet(db);
             }
             Console.WriteLine("Finish");
             Console.ReadKey();

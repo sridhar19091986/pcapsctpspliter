@@ -8,26 +8,6 @@
   </Database>
   <Cubes>
     <ProjectItem>
-      <Name>Ssis Gb.cube</Name>
-      <FullPath>Ssis Gb.cube</FullPath>
-      <Dependencies>
-        <ProjectItem>
-          <Name>Ssis Gb.partitions</Name>
-          <FullPath>Ssis Gb.partitions</FullPath>
-        </ProjectItem>
-      </Dependencies>
-    </ProjectItem>
-    <ProjectItem>
-      <Name>Ssis Gb 1.cube</Name>
-      <FullPath>Ssis Gb 1.cube</FullPath>
-      <Dependencies>
-        <ProjectItem>
-          <Name>Ssis Gb 1.partitions</Name>
-          <FullPath>Ssis Gb 1.partitions</FullPath>
-        </ProjectItem>
-      </Dependencies>
-    </ProjectItem>
-    <ProjectItem>
       <Name>Tcp Db Context.cube</Name>
       <FullPath>Tcp Db Context.cube</FullPath>
       <Dependencies>
@@ -40,23 +20,11 @@
   </Cubes>
   <Dimensions>
     <ProjectItem>
-      <Name>Tcp Retransmission.dim</Name>
-      <FullPath>Tcp Retransmission.dim</FullPath>
-    </ProjectItem>
-    <ProjectItem>
-      <Name>Llc Session Discard.dim</Name>
-      <FullPath>Llc Session Discard.dim</FullPath>
-    </ProjectItem>
-    <ProjectItem>
       <Name>Tcp Retrans Statics Documents.dim</Name>
       <FullPath>Tcp Retrans Statics Documents.dim</FullPath>
     </ProjectItem>
   </Dimensions>
   <DataSources>
-    <ProjectItem>
-      <Name>Ssis Gb.ds</Name>
-      <FullPath>Ssis Gb.ds</FullPath>
-    </ProjectItem>
     <ProjectItem>
       <Name>Tcp Db Context.ds</Name>
       <FullPath>Tcp Db Context.ds</FullPath>
@@ -64,20 +32,10 @@
   </DataSources>
   <DataSourceViews>
     <ProjectItem>
-      <Name>Ssis Gb.dsv</Name>
-      <FullPath>Ssis Gb.dsv</FullPath>
-    </ProjectItem>
-    <ProjectItem>
       <Name>Tcp Db Context.dsv</Name>
       <FullPath>Tcp Db Context.dsv</FullPath>
     </ProjectItem>
   </DataSourceViews>
-  <MiningModels>
-    <ProjectItem>
-      <Name>Tcp Retransmission.dmm</Name>
-      <FullPath>Tcp Retransmission.dmm</FullPath>
-    </ProjectItem>
-  </MiningModels>
   <Roles>
     <ProjectItem>
       <Name>Role.role</Name>
@@ -90,26 +48,16 @@
       <Options>
         <ConnectionMappings>
           <ConfigurationSetting>
-            <Id>Ssis Gb</Id>
-            <Name>Ssis Gb</Name>
-            <Value xsi:type="xsd:string">Provider=SQLNCLI10.1;Data Source=localhost;Integrated Security=SSPI;Initial Catalog=ssis_gb</Value>
-          </ConfigurationSetting>
-          <ConfigurationSetting>
             <Id>Tcp Db Context</Id>
             <Name>Tcp Db Context</Name>
-            <Value xsi:type="xsd:string">Provider=SQLNCLI10.1;Data Source=localhost;Integrated Security=SSPI;Initial Catalog=TcpDbContext</Value>
+            <Value xsi:type="xsd:string">Provider=SQLNCLI10.1;Data Source=192.168.4.249;Persist Security Info=True;Password=;User ID=;Initial Catalog=TcpDbContext</Value>
           </ConfigurationSetting>
         </ConnectionMappings>
         <ConnectionSecurityMappings>
           <ConfigurationSetting>
-            <Id>Ssis Gb</Id>
-            <Name>Ssis Gb</Name>
-            <Value xsi:type="xsd:int">0</Value>
-          </ConfigurationSetting>
-          <ConfigurationSetting>
             <Id>Tcp Db Context</Id>
             <Name>Tcp Db Context</Name>
-            <Value xsi:type="xsd:int">0</Value>
+            <Value xsi:type="xsd:int">1</Value>
           </ConfigurationSetting>
         </ConnectionSecurityMappings>
       </Options>

@@ -70,6 +70,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="SqlServer\ip249\llc_data\tcp_data.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>tcp_data.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServer\ip249\tcp_data\tcp_data.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>tcp_data.edmx</DependentUpon>
+    </Compile>
     <Compile Include="SqlServer\ip33\tcp_data\TcpRetransmission.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -122,6 +132,14 @@
     <EntityDeploy Include="SqlServer\ip33\tcp_data\TcpRetransmission.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TcpRetransmission.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="SqlServer\ip249\llc_data\tcp_data.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>tcp_data.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="SqlServer\ip249\tcp_data\tcp_data.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>tcp_data.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
