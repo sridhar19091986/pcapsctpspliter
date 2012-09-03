@@ -35,10 +35,9 @@ namespace OfflineInspect.ReTransmission
         {
             using (TcpDbContext db = new TcpDbContext(sqlconn))
             {
-                if (db.Database.Exists()) db.Database.Delete();
-
+                if (db.Database.Exists())
+                    db.Database.Delete();
                 db.Database.Create();
-
                 Console.WriteLine(db.Database.Connection.ConnectionString);
             }
         }
