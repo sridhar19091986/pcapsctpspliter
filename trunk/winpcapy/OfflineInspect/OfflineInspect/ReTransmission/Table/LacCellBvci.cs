@@ -116,8 +116,8 @@ namespace OfflineInspect.ReTransmission.Table
                          ttt.Key.ip_src_host,
                          ttt.Key.ip_dst_host,
                          cnt = ttt.Count(),
-                         //msg = ttt.Select(e => e.LLC_MsgType).Distinct(),
-                         //callid = ttt.Select(e => e.BeginFrameNum).Distinct(),
+                         msg = ttt.Select(e => e.LLC_MsgType).FirstOrDefault(),//.First(),
+                         callid = ttt.Select(e => e.BeginFrameNum).FirstOrDefault(),//.Distinct().First(),
                          /*
                          //http://stackoverflow.com/questions/1066760/problem-with-converting-int-to-string-in-linq-to-entities
                          callid = ttt.Select(e => SqlFunctions.StringConvert((double)e.BeginFileNum.Value).Trim()
@@ -136,8 +136,8 @@ namespace OfflineInspect.ReTransmission.Table
                          dst = p.ip_dst_host,
                          bvci = p.nsip_bvci.ToString(),
                          cnt = p.cnt,
-                         //msg = p.msg.Aggregate((a, b) => a + "," + b),
-                         //callid = p.callid.Select(e => e.Value.ToString()).Aggregate((a, b) => a + "," + b),
+                         msg = p.msg,//.Aggregate((a, b) => a + "," + b),
+                         callid = p.callid.Value.ToString(),//.Select(e => e.Value.ToString()).Aggregate((a, b) => a + "," + b),
                      };
 
             mongo_lac_cell_bvci.BulkMongo(bv.ToList(), true);

@@ -25,13 +25,16 @@ namespace OfflineInspect.ReTransmission
     public class TcpDbContext : DbContext
     {
         public TcpDbContext(string connection) : base(connection) { }
+        //定义数据库
         public DbSet<TcpPortSessionDocument> TcpPortSessionDocumentSet { get; set; }
+        //定义mongo导入sqlserver
         private IEnumerable<TcpPortSessionDocument> getTcpPortSessionDocumentSet()
         {
             TcpPortSession tps = new TcpPortSession();
             foreach (var tcp in tps.mongo_tts.QueryMongo())
                 yield return tcp;
         }
+        //执行mongo导入sqlserver
         public void saveTcpPortSessionDocumentSet(TcpDbContext db)
         {
             foreach (var tcp in db.getTcpPortSessionDocumentSet())
