@@ -41,6 +41,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Binaries\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
     <Reference Include="MongoDB">
       <HintPath>..\..\examples\pcap\sendpack\GnPlatForm\MutliInterfaceGnGi\Mongodb\MongoDB.dll</HintPath>
     </Reference>
@@ -65,6 +68,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WebActivator">
+      <HintPath>..\packages\WebActivator.1.4.4\lib\net40\WebActivator.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonTools\CommonToolx.cs" />
@@ -94,6 +100,7 @@
     <Compile Include="ReTransmission\Table\LacCellBvci.cs" />
     <Content Include="ReTransmission\NoteBook\RetransStatics.txt" />
     <Compile Include="ReTransmission\CommonDataLocation.cs" />
+    <Compile Include="ReTransmission\Table\LacCellBvciStatics.cs" />
     <Compile Include="ReTransmission\TcpDbContext.cs" />
     <Compile Include="ReTransmission\TcpDataFactory.cs" />
     <Compile Include="ReTransmission\Table\TcpRetransStatics.cs" />

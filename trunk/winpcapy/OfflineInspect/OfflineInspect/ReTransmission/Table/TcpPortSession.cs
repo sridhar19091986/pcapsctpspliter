@@ -46,6 +46,7 @@ using System.Data.Objects;
 using OfflineInspect.Mongo;
 using OfflineInspect.CommonTools;
 using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 
 namespace OfflineInspect.ReTransmission.Table
 {
@@ -70,8 +71,16 @@ namespace OfflineInspect.ReTransmission.Table
         public string msg_distinct_aggre { get; set; }//消息聚合
         public decimal? seq_nxt_max { get; set; }
         //包总长度
+        public long? ip2ip1_header { get; set; }
+        public int sndcp_m_count { get; set; }
+        public int? sndcp_m_total { get; set; }
         public decimal? seq_total_aggre { get; set; } //每次的nxt-seq之和，计算的值是ip2包之和，未计算sndcp包。
+        public decimal? seqtotal_sndcp_aggre { get; set; }
+
+
         public decimal? seq_total_reduce { get; set; }//真实的总长度。最大nxt减去seq。未包含重传。
+        //public long? ip2_total_aggre { get; set; }
+        //public decimal? seqreduce_ip2total_aggre { get; set; }
         /*
          * seq_total_lost>0，则出现丢包，sndcp、ip分片等。
          * seq_total_lost<0，则出现重传等。
@@ -83,6 +92,7 @@ namespace OfflineInspect.ReTransmission.Table
         //public double seq_total_aggre_rate;//速率计算
         public int seq_total_count { get; set; }
         public long? ip_total_aggre { get; set; }
+
         public int seq_repeat_cnt { get; set; }//重传数量占比
         public int seq_distinct_count { get; set; }
         public string ip_src_aggre { get; set; }
@@ -98,8 +108,10 @@ namespace OfflineInspect.ReTransmission.Table
         [Column(TypeName = "ntext")]
         [MaxLength]
         public string tcp_nxt_aggre { get; set; }
-        public string tcp_port_aggre { get; set; }
+        public string dst_port_aggre { get; set; }
+        public string src_port_aggre { get; set; }
         public string sndcp_m { get; set; }
+
         public string tcp_need_segment { get; set; }
         /*
          * 还需要增加一些维度，
@@ -114,6 +126,11 @@ namespace OfflineInspect.ReTransmission.Table
         public string absolute_uri { get; set; }//生成uri的绝对路径
         public string user_agent { get; set; }//提取用户的代理
 
+
+     
+        public string sndcp_nsapi { get; set; }
+        public string llcgprs_sapi { get; set; }
+        public string lac { get; set; }
 
     }
 
@@ -196,6 +213,7 @@ namespace OfflineInspect.ReTransmission.Table
 
             //执行帧号分页
             for (int i = 0; i < step; i++)
+            //Parallel.For(0, step, (i) =>
             {
                 IQueryable<Gb_TCP_ReTransmission> tcp_session = gb_tcp_retrans
                     .Where(e => e.BeginFrameNum >= i * size && e.BeginFrameNum < (i + 1) * size);
@@ -244,6 +262,7 @@ namespace OfflineInspect.ReTransmission.Table
                     //还需要1个？留意ip的问题?
                     tcps.bsc_bvci = m.Where(e => e.nsip_bvci != null).Select(e => Convert.ToString(e.nsip_bvci)).IEnumDistinctStrComma();
                     tcps.lac_ci = m.Where(e => e.bssgp_lac != null).Count() == 0 ? "" : m.Where(e => e.bssgp_lac != null).Select(e => Convert.ToString(e.bssgp_lac) + "-" + Convert.ToString(e.bssgp_ci)).IEnumDistinctStrComma();
+                    tcps.lac = m.Where(e => e.bssgp_lac != null).Select(e => e.bssgp_lac).IEnumDistinctStrComma();
                     //下行时延，包含3次握手，取这次会话的总长度吧。
                     TimeSpan? ts = m.Max(e => DateTime.Parse(e.GbOverLLC_time)) - pd_no_3tcp.Min(e => DateTime.Parse(e.GbOverLLC_time));
                     tcps.duration = ts.Value.TotalMilliseconds;
@@ -251,15 +270,30 @@ namespace OfflineInspect.ReTransmission.Table
 
                     #region seq算法，计算tcp重传和丢包
                     //序列号的计算
-                    tcps.seq_tcp_min = pd_no_3tcp.Min(e => Convert.ToInt64(e.tcp_seq));
-                    tcps.seq_nxt_max = pd_no_3tcp.Max(e => Convert.ToInt64(e.tcp_nxtseq));
+
+
+
                     //正确计算是，每个包进行计算。
+                    //tcps.ip_total_aggre = pd_no_3tcp.Sum(e => e.ip_len);
+                    //sndcp分片的问题会影响丢包率的计算   
+                    //tcps.ip2_total_aggre = pd_no_3tcp.Sum(e => e.ip2_len - 20 - e.tcp_hdr_len);
+                    //tcps.seqreduce_ip2total_aggre = tcps.seq_total_reduce > tcps.ip2_total_aggre ? tcps.seq_total_reduce : tcps.ip2_total_aggre;
+
+                    tcps.ip_total_aggre = gb_packet.Sum(e => e.ip_len);
+                    tcps.sndcp_m_count = gb_packet.Where(e => e.ip2_len == null).Count();
+                    tcps.seq_tcp_min = pd_no_3tcp.Min(e => Convert.ToInt64(e.tcp_seq));
+                    tcps.seq_nxt_max = pd_no_3tcp.Max(e => Convert.ToInt64(e.tcp_nxtseq));       
+                    tcps.ip2ip1_header = pd_no_3tcp.Max(e => e.ip_len - (20 + e.tcp_hdr_len + (Convert.ToInt64(e.tcp_nxtseq) - Convert.ToInt64(e.tcp_seq))));
+                    tcps.sndcp_m_total = gb_packet.Where(e => e.ip2_len == null).Sum(e => e.sndcp_len);
                     tcps.seq_total_aggre = pd_no_3tcp.Sum(e => Convert.ToInt64(e.tcp_nxtseq) - Convert.ToInt64(e.tcp_seq));
-                    tcps.ip_total_aggre = pd_no_3tcp.Sum(e => e.ip_len);
+                    tcps.seqtotal_sndcp_aggre = tcps.seq_total_aggre + tcps.sndcp_m_total;
+
                     tcps.seq_total_reduce = tcps.seq_nxt_max - tcps.seq_tcp_min;
-                    tcps.seq_total_lost = tcps.seq_total_reduce - tcps.seq_total_aggre;
+                    
+                    tcps.seq_total_lost = tcps.seq_total_reduce - tcps.seqtotal_sndcp_aggre;
+
                     //计算速率，取reduce吧
-                    //tcps.seq_total_aggre_rate = (double)tcps.seq_total_reduce / tcps.duration;
+                    //tcps.seq_total_aggre_rate = (double)tcps.seq_total_reduce / tcps.duration
                     tcps.seq_total_count = pd_no_3tcp.Count();
                     tcps.seq_distinct_count = pd_no_3tcp.Select(e => e.tcp_seq).Distinct().Count();
                     tcps.seq_repeat_cnt = tcps.seq_total_count - tcps.seq_distinct_count;
@@ -282,10 +316,15 @@ namespace OfflineInspect.ReTransmission.Table
                     tcps.tcp_win_size = pd_no_3tcp.Select(e => e.tcp_window_size).IEnumDistinctStrComma();
                     //端口
                     tcps.tcp_nxt_aggre = pd_no_3tcp.Select(e => e.tcp_nxtseq).OrderBy(e => e).Aggregate((a, b) => a + "," + b);
-                    tcps.tcp_port_aggre = pd_no_3tcp.Select(e => Convert.ToString(e.tcp_srcport) + "-" + Convert.ToString(e.tcp_dstport)).IEnumDistinctStrComma();
+                    // + "-" + Convert.ToString(e.tcp_dstport),只取源端口吧。
+                    tcps.src_port_aggre = pd_no_3tcp.Select(e => Convert.ToString(e.tcp_srcport)).IEnumDistinctStrComma();
+                    tcps.dst_port_aggre = pd_no_3tcp.Select(e => Convert.ToString(e.tcp_dstport)).IEnumDistinctStrComma();
                     //消息类型
                     tcps.msg_distinct_aggre = pd_no_3tcp.Select(e => e.GbOverLLC_MsgType).IEnumDistinctStrComma();
                     #endregion
+
+                    tcps.sndcp_nsapi = pd_no_3tcp.Select(e => e.sndcp_nsapi).IEnumDistinctStrComma();
+                    tcps.llcgprs_sapi = pd_no_3tcp.Select(e => e.llcgprs_sapi).IEnumDistinctStrComma();
 
                     mongo_tts.MongoCol.Insert(tcps);
                 }

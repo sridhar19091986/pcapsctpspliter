@@ -22,9 +22,18 @@ using OfflineInspect.ReTransmission.Table;
 
 namespace OfflineInspect.ReTransmission
 {
-    public class TcpDbContext : DbContext
+    public class TcpDbContext : DbContext, IDisposable
     {
         public TcpDbContext(string connection) : base(connection) { }
+
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<TcpRetransStaticsDocument>()
+        //                .HasRequired(a => a.lac_ci)
+        //                .WithMany()
+        //                .HasForeignKey(u => u.lac_ci);
+        //}
+
         //定义数据库
         public DbSet<TcpPortSessionDocument> TcpPortSessionDocumentSet { get; set; }
         //定义mongo导入sqlserver
@@ -40,6 +49,7 @@ namespace OfflineInspect.ReTransmission
             foreach (var tcp in db.getTcpPortSessionDocumentSet())
             {
                 db.Set<TcpPortSessionDocument>().Add(tcp);
+                //db.SaveChanges();
             }
             db.SaveChanges();
             Console.WriteLine("TcpPortSession->TcpDbContext->ok");
@@ -55,7 +65,9 @@ namespace OfflineInspect.ReTransmission
         {
             foreach (var tcp in db.getTcpRetransStaticsDocumentSet())
             {
+                tcp.trsdID = tcp._id;
                 db.Set<TcpRetransStaticsDocument>().Add(tcp);
+                //db.SaveChanges();
             }
             db.SaveChanges();
             Console.WriteLine("TcpRetransStatics->TcpDbContext->ok");
@@ -75,6 +87,20 @@ namespace OfflineInspect.ReTransmission
             }
             db.SaveChanges();
             Console.WriteLine("LacCellBvci->TcpDbContext->ok");
+        }
+        public DbSet<LacCellBvciStaticsDocument> LacCellBvciStaticsDocumentSet { get; set; }
+        private IEnumerable<LacCellBvciStaticsDocument> getLacCellBvciStaticsDocumentSet()
+        {
+            LacCellBvciStatics lcbs = new LacCellBvciStatics();
+            foreach (var cell in lcbs.mongo_LacCellBvciStatics.QueryMongo())
+                yield return cell;
+        }
+        public void saveLacCellBvciStaticsDocumentSet(TcpDbContext db)
+        {
+            foreach (var cell in db.getLacCellBvciStaticsDocumentSet())
+                db.Set<LacCellBvciStaticsDocument>().Add(cell);
+            db.SaveChanges();
+            Console.WriteLine("LacCellBvciStatics->TcpDbContext->ok");
         }
         public DbSet<TlliLLCSessionDocument> TlliLLCSessionDocumentSet { get; set; }
         private IEnumerable<TlliLLCSessionDocument> getTlliLLCSessionDocumentSet()

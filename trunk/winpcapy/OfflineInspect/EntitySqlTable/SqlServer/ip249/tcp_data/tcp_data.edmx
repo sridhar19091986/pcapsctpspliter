@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="foshan_tcp_dataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="foshan_tcp_dataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="foshan_tcp_dataModelStoreContainer">
           <EntitySet Name="Gb_TCP_ReTransmission" EntityType="foshan_tcp_dataModel.Store.Gb_TCP_ReTransmission" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
@@ -28,6 +28,10 @@
           <Property Name="bssgp_imsi" Type="nvarchar" MaxLength="200" />
           <Property Name="bssgp_lac" Type="int" />
           <Property Name="bssgp_tlli" Type="nvarchar" MaxLength="200" />
+          <Property Name="http_host" Type="nvarchar" MaxLength="200" />
+          <Property Name="http_request_method" Type="nvarchar" MaxLength="200" />
+          <Property Name="http_request_uri" Type="nvarchar" MaxLength="200" />
+          <Property Name="http_user_agent" Type="nvarchar" MaxLength="200" />
           <Property Name="ip_dst_host" Type="nvarchar" MaxLength="200" />
           <Property Name="ip_flags_mf" Type="nvarchar" MaxLength="200" />
           <Property Name="ip_len" Type="int" />
@@ -39,8 +43,10 @@
           <Property Name="ip2_src_host" Type="nvarchar" MaxLength="200" />
           <Property Name="ip2_ttl" Type="nvarchar" MaxLength="200" />
           <Property Name="llcgprs_nu" Type="int" />
+          <Property Name="llcgprs_sapi" Type="nvarchar" MaxLength="200" />
           <Property Name="nsip_bvci" Type="int" />
           <Property Name="sndcp_m" Type="nvarchar" MaxLength="200" />
+          <Property Name="sndcp_nsapi" Type="nvarchar" MaxLength="200" />
           <Property Name="tcp_ack" Type="nvarchar" MaxLength="200" />
           <Property Name="tcp_dstport" Type="int" />
           <Property Name="tcp_flags_cwr" Type="nvarchar" MaxLength="200" />
@@ -51,13 +57,9 @@
           <Property Name="tcp_seq" Type="nvarchar" MaxLength="200" />
           <Property Name="tcp_srcport" Type="int" />
           <Property Name="tcp_window_size" Type="nvarchar" MaxLength="200" />
-          <Property Name="http_host" Type="nvarchar" MaxLength="200" />
-          <Property Name="http_request_method" Type="nvarchar" MaxLength="200" />
-          <Property Name="http_request_uri" Type="nvarchar" MaxLength="200" />
-          <Property Name="http_user_agent" Type="nvarchar" MaxLength="200" />
+          <Property Name="sndcp_len" Type="int" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="foshan_tcp_dataModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -69,48 +71,51 @@
             <PropertyRef Name="FileNum" />
             <PropertyRef Name="PacketNum" />
           </Key>
-          <Property Name="FileNum" Type="Int32" Nullable="false" />
-          <Property Name="PacketNum" Type="Int32" Nullable="false" />
-          <Property Name="BeginFileNum" Type="Int32" />
-          <Property Name="BeginFrameNum" Type="Int32" />
-          <Property Name="PacketTime" Type="DateTime" />
-          <Property Name="PacketTime_ms_" Type="Int32" />
-          <Property Name="DumpFor" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
-          <Property Name="GbOverLLC" Type="Int32" />
-          <Property Name="GbOverLLC_time" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="GbOverLLC_MsgType" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="bssgp_ci" Type="Int32" />
-          <Property Name="bssgp_direction" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="bssgp_imsi" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="bssgp_lac" Type="Int32" />
-          <Property Name="bssgp_tlli" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="ip_dst_host" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="ip_flags_mf" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="ip_len" Type="Int32" />
-          <Property Name="ip_src_host" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="ip_ttl" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="ip2_dst_host" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="ip2_flags_mf" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="ip2_len" Type="Int32" />
-          <Property Name="ip2_src_host" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="ip2_ttl" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="llcgprs_nu" Type="Int32" />
-          <Property Name="nsip_bvci" Type="Int32" />
-          <Property Name="sndcp_m" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="tcp_ack" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="tcp_dstport" Type="Int32" />
-          <Property Name="tcp_flags_cwr" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="tcp_hdr_len" Type="Int32" />
-          <Property Name="tcp_need_segment" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="tcp_nxtseq" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="tcp_options_sack_se_num" Type="Int32" />
-          <Property Name="tcp_seq" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="tcp_srcport" Type="Int32" />
-          <Property Name="tcp_window_size" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="http_host" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="http_request_method" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="http_request_uri" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="http_user_agent" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Type="Int32" Name="FileNum" Nullable="false" />
+          <Property Type="Int32" Name="PacketNum" Nullable="false" />
+          <Property Type="Int32" Name="BeginFileNum" />
+          <Property Type="Int32" Name="BeginFrameNum" />
+          <Property Type="DateTime" Name="PacketTime" />
+          <Property Type="Int32" Name="PacketTime_ms_" />
+          <Property Type="String" Name="DumpFor" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="GbOverLLC" />
+          <Property Type="String" Name="GbOverLLC_time" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="GbOverLLC_MsgType" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="bssgp_ci" />
+          <Property Type="String" Name="bssgp_direction" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="bssgp_imsi" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="bssgp_lac" />
+          <Property Type="String" Name="bssgp_tlli" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="http_host" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="http_request_method" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="http_request_uri" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="http_user_agent" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ip_dst_host" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ip_flags_mf" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ip_len" />
+          <Property Type="String" Name="ip_src_host" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ip_ttl" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ip2_dst_host" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ip2_flags_mf" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ip2_len" />
+          <Property Type="String" Name="ip2_src_host" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ip2_ttl" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="llcgprs_nu" />
+          <Property Type="String" Name="llcgprs_sapi" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="nsip_bvci" />
+          <Property Type="String" Name="sndcp_m" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="sndcp_nsapi" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="tcp_ack" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="tcp_dstport" />
+          <Property Type="String" Name="tcp_flags_cwr" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="tcp_hdr_len" />
+          <Property Type="String" Name="tcp_need_segment" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="tcp_nxtseq" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="tcp_options_sack_se_num" />
+          <Property Type="String" Name="tcp_seq" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="tcp_srcport" />
+          <Property Type="String" Name="tcp_window_size" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="sndcp_len" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -118,50 +123,57 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="foshan_tcp_dataModelStoreContainer" CdmEntityContainer="foshan_tcp_dataEntities">
-          <EntitySetMapping Name="Gb_TCP_ReTransmission"><EntityTypeMapping TypeName="foshan_tcp_dataModel.Gb_TCP_ReTransmission"><MappingFragment StoreEntitySet="Gb_TCP_ReTransmission">
-            <ScalarProperty Name="FileNum" ColumnName="FileNum" />
-            <ScalarProperty Name="PacketNum" ColumnName="PacketNum" />
-            <ScalarProperty Name="BeginFileNum" ColumnName="BeginFileNum" />
-            <ScalarProperty Name="BeginFrameNum" ColumnName="BeginFrameNum" />
-            <ScalarProperty Name="PacketTime" ColumnName="PacketTime" />
-            <ScalarProperty Name="PacketTime_ms_" ColumnName="PacketTime(ms)" />
-            <ScalarProperty Name="DumpFor" ColumnName="DumpFor" />
-            <ScalarProperty Name="GbOverLLC" ColumnName="GbOverLLC" />
-            <ScalarProperty Name="GbOverLLC_time" ColumnName="GbOverLLC_time" />
-            <ScalarProperty Name="GbOverLLC_MsgType" ColumnName="GbOverLLC_MsgType" />
-            <ScalarProperty Name="bssgp_ci" ColumnName="bssgp_ci" />
-            <ScalarProperty Name="bssgp_direction" ColumnName="bssgp_direction" />
-            <ScalarProperty Name="bssgp_imsi" ColumnName="bssgp_imsi" />
-            <ScalarProperty Name="bssgp_lac" ColumnName="bssgp_lac" />
-            <ScalarProperty Name="bssgp_tlli" ColumnName="bssgp_tlli" />
-            <ScalarProperty Name="ip_dst_host" ColumnName="ip_dst_host" />
-            <ScalarProperty Name="ip_flags_mf" ColumnName="ip_flags_mf" />
-            <ScalarProperty Name="ip_len" ColumnName="ip_len" />
-            <ScalarProperty Name="ip_src_host" ColumnName="ip_src_host" />
-            <ScalarProperty Name="ip_ttl" ColumnName="ip_ttl" />
-            <ScalarProperty Name="ip2_dst_host" ColumnName="ip2_dst_host" />
-            <ScalarProperty Name="ip2_flags_mf" ColumnName="ip2_flags_mf" />
-            <ScalarProperty Name="ip2_len" ColumnName="ip2_len" />
-            <ScalarProperty Name="ip2_src_host" ColumnName="ip2_src_host" />
-            <ScalarProperty Name="ip2_ttl" ColumnName="ip2_ttl" />
-            <ScalarProperty Name="llcgprs_nu" ColumnName="llcgprs_nu" />
-            <ScalarProperty Name="nsip_bvci" ColumnName="nsip_bvci" />
-            <ScalarProperty Name="sndcp_m" ColumnName="sndcp_m" />
-            <ScalarProperty Name="tcp_ack" ColumnName="tcp_ack" />
-            <ScalarProperty Name="tcp_dstport" ColumnName="tcp_dstport" />
-            <ScalarProperty Name="tcp_flags_cwr" ColumnName="tcp_flags_cwr" />
-            <ScalarProperty Name="tcp_hdr_len" ColumnName="tcp_hdr_len" />
-            <ScalarProperty Name="tcp_need_segment" ColumnName="tcp_need_segment" />
-            <ScalarProperty Name="tcp_nxtseq" ColumnName="tcp_nxtseq" />
-            <ScalarProperty Name="tcp_options_sack_se_num" ColumnName="tcp_options_sack_se_num" />
-            <ScalarProperty Name="tcp_seq" ColumnName="tcp_seq" />
-            <ScalarProperty Name="tcp_srcport" ColumnName="tcp_srcport" />
-            <ScalarProperty Name="tcp_window_size" ColumnName="tcp_window_size" />
-            <ScalarProperty Name="http_host" ColumnName="http_host" />
-            <ScalarProperty Name="http_request_method" ColumnName="http_request_method" />
-            <ScalarProperty Name="http_request_uri" ColumnName="http_request_uri" />
-            <ScalarProperty Name="http_user_agent" ColumnName="http_user_agent" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Gb_TCP_ReTransmission">
+            <EntityTypeMapping TypeName="foshan_tcp_dataModel.Gb_TCP_ReTransmission">
+              <MappingFragment StoreEntitySet="Gb_TCP_ReTransmission">
+                <ScalarProperty Name="sndcp_len" ColumnName="sndcp_len" />
+                <ScalarProperty Name="tcp_window_size" ColumnName="tcp_window_size" />
+                <ScalarProperty Name="tcp_srcport" ColumnName="tcp_srcport" />
+                <ScalarProperty Name="tcp_seq" ColumnName="tcp_seq" />
+                <ScalarProperty Name="tcp_options_sack_se_num" ColumnName="tcp_options_sack_se_num" />
+                <ScalarProperty Name="tcp_nxtseq" ColumnName="tcp_nxtseq" />
+                <ScalarProperty Name="tcp_need_segment" ColumnName="tcp_need_segment" />
+                <ScalarProperty Name="tcp_hdr_len" ColumnName="tcp_hdr_len" />
+                <ScalarProperty Name="tcp_flags_cwr" ColumnName="tcp_flags_cwr" />
+                <ScalarProperty Name="tcp_dstport" ColumnName="tcp_dstport" />
+                <ScalarProperty Name="tcp_ack" ColumnName="tcp_ack" />
+                <ScalarProperty Name="sndcp_nsapi" ColumnName="sndcp_nsapi" />
+                <ScalarProperty Name="sndcp_m" ColumnName="sndcp_m" />
+                <ScalarProperty Name="nsip_bvci" ColumnName="nsip_bvci" />
+                <ScalarProperty Name="llcgprs_sapi" ColumnName="llcgprs_sapi" />
+                <ScalarProperty Name="llcgprs_nu" ColumnName="llcgprs_nu" />
+                <ScalarProperty Name="ip2_ttl" ColumnName="ip2_ttl" />
+                <ScalarProperty Name="ip2_src_host" ColumnName="ip2_src_host" />
+                <ScalarProperty Name="ip2_len" ColumnName="ip2_len" />
+                <ScalarProperty Name="ip2_flags_mf" ColumnName="ip2_flags_mf" />
+                <ScalarProperty Name="ip2_dst_host" ColumnName="ip2_dst_host" />
+                <ScalarProperty Name="ip_ttl" ColumnName="ip_ttl" />
+                <ScalarProperty Name="ip_src_host" ColumnName="ip_src_host" />
+                <ScalarProperty Name="ip_len" ColumnName="ip_len" />
+                <ScalarProperty Name="ip_flags_mf" ColumnName="ip_flags_mf" />
+                <ScalarProperty Name="ip_dst_host" ColumnName="ip_dst_host" />
+                <ScalarProperty Name="http_user_agent" ColumnName="http_user_agent" />
+                <ScalarProperty Name="http_request_uri" ColumnName="http_request_uri" />
+                <ScalarProperty Name="http_request_method" ColumnName="http_request_method" />
+                <ScalarProperty Name="http_host" ColumnName="http_host" />
+                <ScalarProperty Name="bssgp_tlli" ColumnName="bssgp_tlli" />
+                <ScalarProperty Name="bssgp_lac" ColumnName="bssgp_lac" />
+                <ScalarProperty Name="bssgp_imsi" ColumnName="bssgp_imsi" />
+                <ScalarProperty Name="bssgp_direction" ColumnName="bssgp_direction" />
+                <ScalarProperty Name="bssgp_ci" ColumnName="bssgp_ci" />
+                <ScalarProperty Name="GbOverLLC_MsgType" ColumnName="GbOverLLC_MsgType" />
+                <ScalarProperty Name="GbOverLLC_time" ColumnName="GbOverLLC_time" />
+                <ScalarProperty Name="GbOverLLC" ColumnName="GbOverLLC" />
+                <ScalarProperty Name="DumpFor" ColumnName="DumpFor" />
+                <ScalarProperty Name="PacketTime_ms_" ColumnName="PacketTime(ms)" />
+                <ScalarProperty Name="PacketTime" ColumnName="PacketTime" />
+                <ScalarProperty Name="BeginFrameNum" ColumnName="BeginFrameNum" />
+                <ScalarProperty Name="BeginFileNum" ColumnName="BeginFileNum" />
+                <ScalarProperty Name="PacketNum" ColumnName="PacketNum" />
+                <ScalarProperty Name="FileNum" ColumnName="FileNum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -183,7 +195,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="tcp_data" ZoomLevel="69">
-        <EntityTypeShape EntityType="foshan_tcp_dataModel.Gb_TCP_ReTransmission" Width="1.5" PointX="0.75" PointY="0.75" Height="8.029765625" IsExpanded="true" />
+        <EntityTypeShape EntityType="foshan_tcp_dataModel.Gb_TCP_ReTransmission" Width="1.5" PointX="0.75" PointY="0.75" Height="8.535625" />
       </Diagram>
     </Diagrams>
   </Designer>

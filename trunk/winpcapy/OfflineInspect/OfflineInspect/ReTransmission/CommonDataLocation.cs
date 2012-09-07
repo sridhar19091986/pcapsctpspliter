@@ -14,7 +14,7 @@ namespace OfflineInspect.ReTransmission
         protected static string remote = "mongodb://192.168.4.249/?safe=true";
 
 
-        protected static string sqlconn = "Data Source=192.168.4.249;Initial Catalog=TcpDbContext;User ID=sa;Password=hantele123;MultipleActiveResultSets=True";
+        protected static string sqlconn = "Data Source=192.168.4.249;Initial Catalog=TcpDbContexta;User ID=sa;Password=hantele123;MultipleActiveResultSets=True";
 
     }
 }

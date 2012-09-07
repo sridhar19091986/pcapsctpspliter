@@ -24,6 +24,7 @@ using System.Data.Objects.SqlClient;
 //using EntitySqlTable.SqlServer.Local.Gb_LLC_ReTransmission;
 using EntitySqlTable.SqlServer.ip249.llc_data;
 using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 
 namespace OfflineInspect.ReTransmission.Table
 {
@@ -34,17 +35,18 @@ namespace OfflineInspect.ReTransmission.Table
         public long trsdID { get; set; }
         #endregion
 
-        public object _id;
+        public long _id;
         public string src { get; set; }
         public string dst { get; set; }
         public string bvci { get; set; }
+        public string lac { get; set; }
         public string lac_cell { get; set; }
         public int cnt { get; set; }
         public string msg { get; set; }
 
-        //http://stackoverflow.com/questions/8111125/how-do-i-map-text-field-type-of-sql-server-in-ef-code-first
-        [Column(TypeName = "ntext")]
-        [MaxLength]
+        ////http://stackoverflow.com/questions/8111125/how-do-i-map-text-field-type-of-sql-server-in-ef-code-first
+        //[Column(TypeName = "ntext")]
+        //[MaxLength]
         public string callid { get; set; }
     }
 
@@ -95,11 +97,6 @@ namespace OfflineInspect.ReTransmission.Table
             gb.Gb_LLC_ReTransmission.MergeOption = MergeOption.NoTracking;
 
             var fc = from p in gb.Gb_LLC_ReTransmission
-                     where p.nsip_bvci != null
-                     where p.bssgp_ci != null
-                     where p.bssgp_lac != null
-                     where p.ip_src_host != null
-                     where p.ip_dst_host != null
                      group p by new
                      {
                          p.bssgp_lac,
@@ -126,21 +123,27 @@ namespace OfflineInspect.ReTransmission.Table
 
                      };
 
+            foreach (var p in fc)
+            {
+                LacCellBvciDocument lcbd = new LacCellBvciDocument();
+                lcbd._id = GenerateId();
+                if (p.bssgp_lac != null)
+                    lcbd.lac = p.bssgp_lac.ToString();
+                if (p.bssgp_lac != null && p.bssgp_ci != null)
+                    lcbd.lac_cell = p.bssgp_lac.ToString() + "-" + p.bssgp_ci.ToString();
+                lcbd.src = p.ip_src_host;
+                lcbd.dst = p.ip_dst_host;
+                if (p.nsip_bvci != null)
+                    lcbd.bvci = p.nsip_bvci.ToString();
+                lcbd.cnt = p.cnt;
+                lcbd.msg = p.msg;
+                if (p.callid != null)
+                    lcbd.callid = p.callid.Value.ToString();
 
-            var bv = from p in fc.AsEnumerable().AsParallel()
-                     select new LacCellBvciDocument
-                     {
-                         _id = GenerateId(),
-                         lac_cell = p.bssgp_lac.ToString() + "-" + p.bssgp_ci.ToString(),
-                         src = p.ip_src_host,
-                         dst = p.ip_dst_host,
-                         bvci = p.nsip_bvci.ToString(),
-                         cnt = p.cnt,
-                         msg = p.msg,//.Aggregate((a, b) => a + "," + b),
-                         callid = p.callid.Value.ToString(),//.Select(e => e.Value.ToString()).Aggregate((a, b) => a + "," + b),
-                     };
+                mongo_lac_cell_bvci.MongoCol.Insert(lcbd);
+            }
 
-            mongo_lac_cell_bvci.BulkMongo(bv.ToList(), true);
+            //mongo_lac_cell_bvci.BulkMongo(bv.ToList(), true);
 
             Console.WriteLine(" LacCellBvci->mongo->ok");
 
@@ -182,7 +185,7 @@ namespace OfflineInspect.ReTransmission.Table
                         where (p.src == src && p.dst == dst && p.bvci == bvci)
                         || (p.dst == src && p.src == dst && p.bvci == bvci)
                         select p;
-            return query.Select(e => e.lac_cell).FirstOrDefault();
+            return query.Select(e => e.lac_cell).IEnumDistinctStrComma();
         }
     }
 }
