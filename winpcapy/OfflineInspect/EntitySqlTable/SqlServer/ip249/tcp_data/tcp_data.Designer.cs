@@ -497,6 +497,102 @@ namespace EntitySqlTable.SqlServer.ip249.tcp_data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        public global::System.String http_host
+        {
+            get
+            {
+                return _http_host;
+            }
+            set
+            {
+                Onhttp_hostChanging(value);
+                ReportPropertyChanging("http_host");
+                _http_host = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("http_host");
+                Onhttp_hostChanged();
+            }
+        }
+        private global::System.String _http_host;
+        partial void Onhttp_hostChanging(global::System.String value);
+        partial void Onhttp_hostChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String http_request_method
+        {
+            get
+            {
+                return _http_request_method;
+            }
+            set
+            {
+                Onhttp_request_methodChanging(value);
+                ReportPropertyChanging("http_request_method");
+                _http_request_method = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("http_request_method");
+                Onhttp_request_methodChanged();
+            }
+        }
+        private global::System.String _http_request_method;
+        partial void Onhttp_request_methodChanging(global::System.String value);
+        partial void Onhttp_request_methodChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String http_request_uri
+        {
+            get
+            {
+                return _http_request_uri;
+            }
+            set
+            {
+                Onhttp_request_uriChanging(value);
+                ReportPropertyChanging("http_request_uri");
+                _http_request_uri = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("http_request_uri");
+                Onhttp_request_uriChanged();
+            }
+        }
+        private global::System.String _http_request_uri;
+        partial void Onhttp_request_uriChanging(global::System.String value);
+        partial void Onhttp_request_uriChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String http_user_agent
+        {
+            get
+            {
+                return _http_user_agent;
+            }
+            set
+            {
+                Onhttp_user_agentChanging(value);
+                ReportPropertyChanging("http_user_agent");
+                _http_user_agent = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("http_user_agent");
+                Onhttp_user_agentChanged();
+            }
+        }
+        private global::System.String _http_user_agent;
+        partial void Onhttp_user_agentChanging(global::System.String value);
+        partial void Onhttp_user_agentChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
         public global::System.String ip_dst_host
         {
             get
@@ -761,6 +857,30 @@ namespace EntitySqlTable.SqlServer.ip249.tcp_data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        public global::System.String llcgprs_sapi
+        {
+            get
+            {
+                return _llcgprs_sapi;
+            }
+            set
+            {
+                Onllcgprs_sapiChanging(value);
+                ReportPropertyChanging("llcgprs_sapi");
+                _llcgprs_sapi = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("llcgprs_sapi");
+                Onllcgprs_sapiChanged();
+            }
+        }
+        private global::System.String _llcgprs_sapi;
+        partial void Onllcgprs_sapiChanging(global::System.String value);
+        partial void Onllcgprs_sapiChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
         public Nullable<global::System.Int32> nsip_bvci
         {
             get
@@ -803,6 +923,30 @@ namespace EntitySqlTable.SqlServer.ip249.tcp_data
         private global::System.String _sndcp_m;
         partial void Onsndcp_mChanging(global::System.String value);
         partial void Onsndcp_mChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String sndcp_nsapi
+        {
+            get
+            {
+                return _sndcp_nsapi;
+            }
+            set
+            {
+                Onsndcp_nsapiChanging(value);
+                ReportPropertyChanging("sndcp_nsapi");
+                _sndcp_nsapi = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("sndcp_nsapi");
+                Onsndcp_nsapiChanged();
+            }
+        }
+        private global::System.String _sndcp_nsapi;
+        partial void Onsndcp_nsapiChanging(global::System.String value);
+        partial void Onsndcp_nsapiChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1049,96 +1193,24 @@ namespace EntitySqlTable.SqlServer.ip249.tcp_data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String http_host
+        public Nullable<global::System.Int32> sndcp_len
         {
             get
             {
-                return _http_host;
+                return _sndcp_len;
             }
             set
             {
-                Onhttp_hostChanging(value);
-                ReportPropertyChanging("http_host");
-                _http_host = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("http_host");
-                Onhttp_hostChanged();
+                Onsndcp_lenChanging(value);
+                ReportPropertyChanging("sndcp_len");
+                _sndcp_len = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("sndcp_len");
+                Onsndcp_lenChanged();
             }
         }
-        private global::System.String _http_host;
-        partial void Onhttp_hostChanging(global::System.String value);
-        partial void Onhttp_hostChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String http_request_method
-        {
-            get
-            {
-                return _http_request_method;
-            }
-            set
-            {
-                Onhttp_request_methodChanging(value);
-                ReportPropertyChanging("http_request_method");
-                _http_request_method = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("http_request_method");
-                Onhttp_request_methodChanged();
-            }
-        }
-        private global::System.String _http_request_method;
-        partial void Onhttp_request_methodChanging(global::System.String value);
-        partial void Onhttp_request_methodChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String http_request_uri
-        {
-            get
-            {
-                return _http_request_uri;
-            }
-            set
-            {
-                Onhttp_request_uriChanging(value);
-                ReportPropertyChanging("http_request_uri");
-                _http_request_uri = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("http_request_uri");
-                Onhttp_request_uriChanged();
-            }
-        }
-        private global::System.String _http_request_uri;
-        partial void Onhttp_request_uriChanging(global::System.String value);
-        partial void Onhttp_request_uriChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String http_user_agent
-        {
-            get
-            {
-                return _http_user_agent;
-            }
-            set
-            {
-                Onhttp_user_agentChanging(value);
-                ReportPropertyChanging("http_user_agent");
-                _http_user_agent = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("http_user_agent");
-                Onhttp_user_agentChanged();
-            }
-        }
-        private global::System.String _http_user_agent;
-        partial void Onhttp_user_agentChanging(global::System.String value);
-        partial void Onhttp_user_agentChanged();
+        private Nullable<global::System.Int32> _sndcp_len;
+        partial void Onsndcp_lenChanging(Nullable<global::System.Int32> value);
+        partial void Onsndcp_lenChanged();
 
         #endregion
     
