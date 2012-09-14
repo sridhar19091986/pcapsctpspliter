@@ -100,9 +100,9 @@
     <Content Include="ReTransmission\NoteBook\RetransStatics.txt" />
     <Compile Include="ReTransmission\CommonDataLocation.cs" />
     <Compile Include="ReTransmission\Table\LacCellBvciStatics.cs" />
-    <Compile Include="ReTransmission\TcpDataContextSave.cs" />
-    <Compile Include="ReTransmission\TcpDbContext.cs" />
-    <Compile Include="ReTransmission\TcpDataFactory.cs" />
+    <Compile Include="ReTransmission\Context\TcpDataContextSave.cs" />
+    <Compile Include="ReTransmission\Context\TcpDbContext.cs" />
+    <Compile Include="ReTransmission\Context\TcpDataFactory.cs" />
     <Compile Include="ReTransmission\Table\TcpRetransStatics.cs" />
     <Compile Include="ReTransmission\Table\TlliLlcSession.cs" />
     <Compile Include="ReTransmission\Table\TcpPortSession.cs" />
