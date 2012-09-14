@@ -54,8 +54,8 @@ namespace OfflineInspect.ReTransmission.Table
         public long trsdID { get; set; }
         #endregion
 
-        public string bvci_aggre { get; set; }
-        public int bvci_cnt { get; set; }
+        public string bvci_from_lac_cell { get; set; }
+        public int bvci_from_lac_cell_cnt { get; set; }
 
         #region 维度
         public long _id;
@@ -63,7 +63,7 @@ namespace OfflineInspect.ReTransmission.Table
         public string imsi { get; set; }
         //[Key,ForeignKey("TcpRetransStaticsDocuments"), Column(Order = 0)]
         //[ForeignKey("TcpRetransStaticsDocuments")]
-        public string lac_ci { get; set; }
+        public string lac_cell { get; set; }
         public string direction { get; set; }
         public string msg_distinct_aggre { get; set; }
 
@@ -76,7 +76,6 @@ namespace OfflineInspect.ReTransmission.Table
         public string ip2ttl_sp_aggre { get; set; }
 
         public string tcp_port_aggre { get; set; }
-
 
         public string ip_flags_mf { get; set; }
         public string sndcp_m { get; set; }
@@ -119,14 +118,23 @@ namespace OfflineInspect.ReTransmission.Table
         //public long? ip2ip1_header { get; set; }
         //public int sndcp_m_count { get; set; }
         //public int? sndcp_m_total { get; set; }
-        public string bsc_bvci { get; set; }
+        public string bvci_bsc { get; set; }
         public string sndcp_nsapi { get; set; }
         public string llcgprs_sapi { get; set; }
         public string lac { get; set; }
-        public int ci_cnt { get; set; }
+        public int lac_cell_cnt { get; set; }
+        public int bvci_cell_error_cnt { get; set; }
+        public string lac_cell_from_bvci { get; set; }
+        public int lac_cell_from_bvci_cnt { get; set; }
+        public int bvci_bsc_cnt { get; set; }
+        public int multibvci_cnt { get; set; }
+        public long tpsdID { get; set; }
 
-        public int percell_bvci_cnt { get; set; }
+        public int MultiCellPerBvci { get; set; }
+        public int SgsnLostBscIp { get; set; }
 
+
+        //public TcpPortSessionDocument vTcpPortSessionDocument;
     }
 
     public class TcpRetransStatics : CommonToolx, IDisposable
@@ -166,11 +174,12 @@ namespace OfflineInspect.ReTransmission.Table
         }
         #endregion
 
+    
         private string SplitLacCellStr(string laccell, ILookup<string, LacCellBvciStaticsDocument> lookcell)
         {
             string bvci = string.Empty;
             var cells = laccell.Split(',');
-            foreach (var ce in cells)
+            foreach (var ce in cells.Distinct())
                 bvci = bvci + lookcell[ce].Select(e => e.bvci_aggre).FirstOrDefault() + ",";
             return bvci;
         }
@@ -179,15 +188,17 @@ namespace OfflineInspect.ReTransmission.Table
         {
             int bvci = 0;
             var cells = laccell.Split(',');
-            foreach (var ce in cells)
+            foreach (var ce in cells.Distinct())
                 bvci = bvci + lookcell[ce].Sum(e => e.bvci_cnt);
             return bvci;
         }
+    
 
         private int GetCellCount(string laccell)
         {
+            if (laccell == null) return 0;
             var cells = laccell.Split(',');
-            return cells.Length;
+            return cells.Distinct().Count();
         }
 
         public void CreatCollection()
@@ -200,23 +211,34 @@ namespace OfflineInspect.ReTransmission.Table
             {
                 TcpRetransStaticsDocument trsd = new TcpRetransStaticsDocument();
 
+                trsd.trsdID = p._id;
+                trsd.tpsdID = p._id;
                 trsd._id = p._id;
 
                 trsd.session_id = p.session_id;
 
-                trsd.ci_cnt = GetCellCount(p.lac_ci);
-                trsd.bsc_bvci = p.bsc_bvci;
-                trsd.bvci_aggre = SplitLacCellStr(p.lac_ci, cellslook);
-                trsd.bvci_cnt = SplitLacCellCnt(p.lac_ci, cellslook);
-                trsd.sndcp_nsapi = p.sndcp_nsapi;
-                trsd.llcgprs_sapi = p.llcgprs_sapi;
-                trsd.lac = p.lac;
+                trsd.MultiCellPerBvci = p.MultiCellPerBvci;
+                trsd.SgsnLostBscIp = p.SgsnLostBscIp;
 
                 //mulit-bvci-percell的问题
-                trsd.percell_bvci_cnt = trsd.bvci_cnt - trsd.ci_cnt;
+                trsd.lac_cell = p.lac_ci;
+                trsd.lac_cell_cnt = GetCellCount(p.lac_ci);
+                trsd.bvci_bsc = p.bsc_bvci;
+                trsd.bvci_bsc_cnt = GetCellCount(p.bsc_bvci);//
+                trsd.bvci_cell_error_cnt = trsd.bvci_bsc_cnt - trsd.lac_cell_cnt;
+
+                trsd.bvci_from_lac_cell = SplitLacCellStr(p.lac_ci, cellslook);
+                trsd.bvci_from_lac_cell_cnt = SplitLacCellCnt(p.lac_ci, cellslook);
+                trsd.lac_cell_from_bvci = p.lac_cell_from_bvci;
+                trsd.lac_cell_from_bvci_cnt = GetCellCount(trsd.lac_cell_from_bvci);//
+                trsd.multibvci_cnt = trsd.lac_cell_from_bvci_cnt - trsd.bvci_bsc_cnt;
+             
+                trsd.lac = p.lac;
+                trsd.sndcp_nsapi = p.sndcp_nsapi;
+                trsd.llcgprs_sapi = p.llcgprs_sapi;
+             
 
                 trsd.imsi = p.imsi;
-                trsd.lac_ci = p.lac_ci;
                 trsd.msg_distinct_aggre = p.msg_distinct_aggre;
                 trsd.direction = p.direction;
                 trsd.http_method = p.http_method == null ? tcp_data : p.http_method;

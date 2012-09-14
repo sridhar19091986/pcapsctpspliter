@@ -10,9 +10,11 @@ namespace OfflineInspect.ReTransmission
     {
         public static void BathMakeTcpData()
         {
-            BatchMakeTcpDataForMongo();
-            //DeleteTcpTable();
             CreateTcpDb();
+
+            //BatchMakeTcpDataForMongo();
+            //DeleteTcpTable();
+
             BatchMakeTcpDataForSqlServer();
             Console.WriteLine("BathMakeTcpData,Finish");
             Console.ReadKey();
@@ -26,9 +28,9 @@ namespace OfflineInspect.ReTransmission
             //using (LacCellBvciStatics lcbs = new LacCellBvciStatics())
             //    lcbs.CreatCollection();
             //GC.Collect();
-            using (TcpPortSession tps = new TcpPortSession())
-                tps.CreateCollection();
-            GC.Collect();
+            //using (TcpPortSession tps = new TcpPortSession())
+            //    tps.CreateCollection();
+            //GC.Collect();
             using (TcpRetransStatics trs = new TcpRetransStatics())
                 trs.CreatCollection();
             GC.Collect();
@@ -72,17 +74,20 @@ namespace OfflineInspect.ReTransmission
 
         private static void BatchMakeTcpDataForSqlServer()
         {
-            using (TcpDbContext db = new TcpDbContext(sqlconn))
-            {
-                //加快入库，2012.8.30，30->0.5s级别。
-                db.Configuration.AutoDetectChangesEnabled = false;
+            //TcpDbContext db = new TcpDbContext(sqlconn);
 
-                //db.saveLacCellBvciDocumentSet(db);
-                //db.saveLacCellBvciStaticsDocumentSet(db);
-                //db.saveTcpPortSessionDocumentSet(db);
-                db.saveTcpRetransStaticsDocumentSet(db);
-                //db.saveTlliLLCSessionDocumentSet(db);
-            }
+            //加快入库，2012.8.30，30->0.5s级别。
+            //db.Configuration.AutoDetectChangesEnabled = false;
+
+            //db.saveLacCellBvciDocumentSet(db);
+            //db.saveLacCellBvciStaticsDocumentSet(db);
+            //db.saveTcpPortSessionDocumentSet(db);
+            //db.saveTcpRetransStaticsDocumentSet(db);
+            //db.saveTlliLLCSessionDocumentSet(db);
+
+            TcpDataContextSave tdcs = new TcpDataContextSave();
+            tdcs.saveTcpRetransStaticsDocumentSet(sqlconn);
+
             GC.Collect();
             Console.WriteLine("......");
             Console.WriteLine("BatchMakeTcpDataForSqlServer,Finish");

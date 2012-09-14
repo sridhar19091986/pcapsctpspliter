@@ -6,6 +6,7 @@
 
 
 using System;
+using System.Transactions;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,7 @@ using System.Data.SqlClient;
 using System.Data.Entity.ModelConfiguration.Conventions.Edm.Db;
 using System.Data.Entity.Database;
 using OfflineInspect.ReTransmission.Table;
+using DreamSongs.MongoRepository;
 //using System.Linq;
 
 namespace OfflineInspect.ReTransmission
@@ -29,9 +31,9 @@ namespace OfflineInspect.ReTransmission
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{
         //    modelBuilder.Entity<TcpRetransStaticsDocument>()
-        //                .HasRequired(a => a.lac_ci)
+        //                .HasRequired(a => a.vTcpPortSessionDocument)
         //                .WithMany()
-        //                .HasForeignKey(u => u.lac_ci);
+        //                .HasForeignKey(u => u.tpsdID);
         //}
 
         //定义数据库
@@ -55,23 +57,11 @@ namespace OfflineInspect.ReTransmission
             Console.WriteLine("TcpPortSession->TcpDbContext->ok");
         }
         public DbSet<TcpRetransStaticsDocument> TcpRetransStaticsDocumentSet { get; set; }
-        private IEnumerable<TcpRetransStaticsDocument> getTcpRetransStaticsDocumentSet()
-        {
-            TcpRetransStatics trs = new TcpRetransStatics();
-            foreach (var tcp in trs.mongo_TcpRetransStatics.QueryMongo())
-                yield return tcp;
-        }
-        public void saveTcpRetransStaticsDocumentSet(TcpDbContext db)
-        {
-            foreach (var tcp in db.getTcpRetransStaticsDocumentSet())
-            {
-                tcp.trsdID = tcp._id;
-                db.Set<TcpRetransStaticsDocument>().Add(tcp);
-                //db.SaveChanges();
-            }
-            db.SaveChanges();
-            Console.WriteLine("TcpRetransStatics->TcpDbContext->ok");
-        }
+
+        private int step = 0;
+    
+      
+
         public DbSet<LacCellBvciDocument> LacCellBvciDocumentSet { get; set; }
         private IEnumerable<LacCellBvciDocument> getLacCellBvciDocumentSet()
         {
@@ -81,9 +71,16 @@ namespace OfflineInspect.ReTransmission
         }
         public void saveLacCellBvciDocumentSet(TcpDbContext db)
         {
+            step = 0;
             foreach (var cell in db.getLacCellBvciDocumentSet())
             {
+                step++;
                 db.Set<LacCellBvciDocument>().Add(cell);
+                if (step == 5000)
+                {
+                    db.SaveChanges();
+                    step = 0;
+                }
             }
             db.SaveChanges();
             Console.WriteLine("LacCellBvci->TcpDbContext->ok");
@@ -118,5 +115,8 @@ namespace OfflineInspect.ReTransmission
             db.SaveChanges();
             Console.WriteLine("LacCellBvci->TcpDbContext->ok");
         }
+
+
+      
     }
 }

@@ -38,7 +38,7 @@ namespace OfflineInspect.ReTransmission.Table
         public long _id;
         public string src { get; set; }
         public string dst { get; set; }
-        public string bvci { get; set; }
+        public int? bvci { get; set; }
         public string lac { get; set; }
         public string lac_cell { get; set; }
         public int cnt { get; set; }
@@ -133,8 +133,7 @@ namespace OfflineInspect.ReTransmission.Table
                     lcbd.lac_cell = p.bssgp_lac.ToString() + "-" + p.bssgp_ci.ToString();
                 lcbd.src = p.ip_src_host;
                 lcbd.dst = p.ip_dst_host;
-                if (p.nsip_bvci != null)
-                    lcbd.bvci = p.nsip_bvci.ToString();
+                lcbd.bvci = p.nsip_bvci;
                 lcbd.cnt = p.cnt;
                 lcbd.msg = p.msg;
                 if (p.callid != null)
@@ -178,7 +177,7 @@ namespace OfflineInspect.ReTransmission.Table
             }
         }
         **/
-        public string GetLacCell(string src, string dst, string bvci)
+        public string GetLacCell(string src, string dst, int? bvci)
         {
             //var query = from p in ListLacCellBvci
             var query = from p in mongo_lac_cell_bvci.ListT

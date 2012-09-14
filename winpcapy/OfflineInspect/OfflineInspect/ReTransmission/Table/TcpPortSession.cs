@@ -77,7 +77,6 @@ namespace OfflineInspect.ReTransmission.Table
         public decimal? seq_total_aggre { get; set; } //每次的nxt-seq之和，计算的值是ip2包之和，未计算sndcp包。
         public decimal? seqtotal_sndcp_aggre { get; set; }
 
-
         public decimal? seq_total_reduce { get; set; }//真实的总长度。最大nxt减去seq。未包含重传。
         //public long? ip2_total_aggre { get; set; }
         //public decimal? seqreduce_ip2total_aggre { get; set; }
@@ -126,12 +125,13 @@ namespace OfflineInspect.ReTransmission.Table
         public string absolute_uri { get; set; }//生成uri的绝对路径
         public string user_agent { get; set; }//提取用户的代理
 
-
-     
         public string sndcp_nsapi { get; set; }
         public string llcgprs_sapi { get; set; }
         public string lac { get; set; }
+        public string lac_cell_from_bvci { get; set; }
 
+        public int MultiCellPerBvci { get; set; }
+        public int SgsnLostBscIp { get; set; }
     }
 
     public class TcpPortSession : CommonToolx, IDisposable
@@ -148,6 +148,10 @@ namespace OfflineInspect.ReTransmission.Table
         public MongoCrud<TcpPortSessionDocument> mongo_tts;
         //private GuangZhou_Gb_TCP_ReTransmission gb;
         private foshan_tcp_dataEntities gb = new foshan_tcp_dataEntities();
+
+
+        private int multicellperbvci;
+        private int sgsnlostbscip;
 
         public TcpPortSession()
         {
@@ -180,8 +184,13 @@ namespace OfflineInspect.ReTransmission.Table
         #endregion
 
         //按照文件号进行分页
+        private ILookup<int?, LacCellBvciDocument> LookBvci;
         public void CreateCollection()
         {
+            LacCellBvci lcb = new LacCellBvci();
+            LookBvci = lcb.mongo_lac_cell_bvci.QueryMongo()
+                .Where(e => e.lac_cell != null)
+                .ToLookup(e => e.bvci);
             for (int j = min_file_num; j < max_file_num; j++)
             {
                 Console.WriteLine("file_num:{0}", j);
@@ -196,6 +205,33 @@ namespace OfflineInspect.ReTransmission.Table
             CreateTable("Up", tcpsession, filenum);
             CreateTable("Down", tcpsession, filenum);
         }
+
+        //提取下行方向BVCI对应的小区
+        private string GetLacCellFromBvci(IEnumerable<Gb_TCP_ReTransmission> tcps, out int multiCellPerBvci, out int sgsnLostBscIp)
+        {
+            multiCellPerBvci = 0;
+            sgsnLostBscIp = 0;
+            List<string> cells = new List<string>();
+            //string laccell = string.Empty;
+            foreach (var tcp in tcps)
+            {
+                var laccell = LookBvci[tcp.nsip_bvci]
+                .Where(e => (e.src == tcp.ip_src_host && e.dst == tcp.ip_dst_host) ||
+                    (e.dst == tcp.ip_src_host && e.src == tcp.ip_dst_host))
+                .Select(e => e.lac_cell).Distinct();
+
+                if (laccell.Count() > 1) multiCellPerBvci = 1;
+
+                if (laccell.Count() == 0) sgsnLostBscIp = 1;
+
+                foreach (var ce in laccell)
+                    cells.Add(ce);
+
+            }
+            return cells.IEnumDistinctStrComma();
+        }
+
+
         /*
          * 
          * 这里做了了优化，ienumber是立即执行，iquery则是延时执行,2012.8.30
@@ -207,9 +243,12 @@ namespace OfflineInspect.ReTransmission.Table
             string host = null;
             string uri = null;
 
-            int packet_cnt = gb_tcp_retrans.Select(e => e.BeginFrameNum).Distinct().Count();
+            //int packet_cnt = gb_tcp_retrans.Select(e => e.BeginFrameNum).Distinct().Count();
+            int? packet_cnt = gb_tcp_retrans.Max(e => e.BeginFrameNum);//数据库分页错误的问题？？？？？
 
-            int step = packet_cnt / size + 1;
+            if (packet_cnt == null) return;
+
+            int step = (int)packet_cnt / size + 1;
 
             //执行帧号分页
             for (int i = 0; i < step; i++)
@@ -232,7 +271,10 @@ namespace OfflineInspect.ReTransmission.Table
                     TcpPortSessionDocument tcps = new TcpPortSessionDocument();
 
                     #region tcp会话的基础信息，callid/imsi/lac/cell/bvci/duration/
+
                     tcps._id = GenerateId();
+                    tcps.tpsdID = tcps._id;
+
                     tcps.session_id = filenum.ToString() + "-" + m.Key.Value.ToString();
                     tcps.direction = direction;
                     tcps.imsi = m.Where(e => e.bssgp_imsi != null).Select(e => e.bssgp_imsi).FirstOrDefault();
@@ -260,7 +302,8 @@ namespace OfflineInspect.ReTransmission.Table
                     tcps.mscbsc_ip_aggre = string.Join(",", bscip.Distinct().OrderBy(e => e));
                     tcps.mscbsc_ip_count = bscip.Distinct().Count();
                     //还需要1个？留意ip的问题?
-                    tcps.bsc_bvci = m.Where(e => e.nsip_bvci != null).Select(e => Convert.ToString(e.nsip_bvci)).IEnumDistinctStrComma();
+                    //????
+
                     tcps.lac_ci = m.Where(e => e.bssgp_lac != null).Count() == 0 ? "" : m.Where(e => e.bssgp_lac != null).Select(e => Convert.ToString(e.bssgp_lac) + "-" + Convert.ToString(e.bssgp_ci)).IEnumDistinctStrComma();
                     tcps.lac = m.Where(e => e.bssgp_lac != null).Select(e => e.bssgp_lac).IEnumDistinctStrComma();
                     //下行时延，包含3次握手，取这次会话的总长度吧。
@@ -268,11 +311,15 @@ namespace OfflineInspect.ReTransmission.Table
                     tcps.duration = ts.Value.TotalMilliseconds;
                     #endregion
 
+                    tcps.bsc_bvci = m.Where(e => e.nsip_bvci != null).Select(e => Convert.ToString(e.nsip_bvci)).IEnumDistinctStrComma();
+                    tcps.lac_cell_from_bvci = GetLacCellFromBvci(m, out multicellperbvci, out sgsnlostbscip);//??????pdp????
+
+                    //计算2中问题，per bvci multi cell，
+                    tcps.MultiCellPerBvci = multicellperbvci;
+                    tcps.SgsnLostBscIp = sgsnlostbscip;
+
                     #region seq算法，计算tcp重传和丢包
                     //序列号的计算
-
-
-
                     //正确计算是，每个包进行计算。
                     //tcps.ip_total_aggre = pd_no_3tcp.Sum(e => e.ip_len);
                     //sndcp分片的问题会影响丢包率的计算   
@@ -282,14 +329,14 @@ namespace OfflineInspect.ReTransmission.Table
                     tcps.ip_total_aggre = gb_packet.Sum(e => e.ip_len);
                     tcps.sndcp_m_count = gb_packet.Where(e => e.ip2_len == null).Count();
                     tcps.seq_tcp_min = pd_no_3tcp.Min(e => Convert.ToInt64(e.tcp_seq));
-                    tcps.seq_nxt_max = pd_no_3tcp.Max(e => Convert.ToInt64(e.tcp_nxtseq));       
+                    tcps.seq_nxt_max = pd_no_3tcp.Max(e => Convert.ToInt64(e.tcp_nxtseq));
                     tcps.ip2ip1_header = pd_no_3tcp.Max(e => e.ip_len - (20 + e.tcp_hdr_len + (Convert.ToInt64(e.tcp_nxtseq) - Convert.ToInt64(e.tcp_seq))));
                     tcps.sndcp_m_total = gb_packet.Where(e => e.ip2_len == null).Sum(e => e.sndcp_len);
                     tcps.seq_total_aggre = pd_no_3tcp.Sum(e => Convert.ToInt64(e.tcp_nxtseq) - Convert.ToInt64(e.tcp_seq));
                     tcps.seqtotal_sndcp_aggre = tcps.seq_total_aggre + tcps.sndcp_m_total;
 
                     tcps.seq_total_reduce = tcps.seq_nxt_max - tcps.seq_tcp_min;
-                    
+
                     tcps.seq_total_lost = tcps.seq_total_reduce - tcps.seqtotal_sndcp_aggre;
 
                     //计算速率，取reduce吧
