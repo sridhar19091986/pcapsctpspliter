@@ -60,7 +60,7 @@ namespace OfflineInspect.ReTransmission.Table
                         {
                             _id = GenerateId(),
                             lac_ci = ttt.Key,
-                            bvci_aggre = ttt.Select(e => e.bvci).Distinct().Aggregate((a, b) => a + "," + b),
+                            bvci_aggre = ttt.Select(e => e.bvci.ToString()).Distinct().Aggregate((a, b) => a + "," + b),
                             bvci_cnt = ttt.Select(e => e.bvci).Distinct().Count()
                         };
             mongo_LacCellBvciStatics.BulkMongo(query.ToList(), true);
