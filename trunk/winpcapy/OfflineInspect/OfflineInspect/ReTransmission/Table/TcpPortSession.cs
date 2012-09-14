@@ -54,6 +54,7 @@ namespace OfflineInspect.ReTransmission.Table
     {
         #region 给sqlserver虚构一个主键，good,ef5 code first,/2012.8.29
         [Key]
+        [DatabaseGenerated(DatabaseGenerationOption.None)]
         public long tpsdID { get; set; }
         #endregion
 

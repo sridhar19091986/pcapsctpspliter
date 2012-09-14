@@ -51,6 +51,7 @@ namespace OfflineInspect.ReTransmission.Table
     {
         #region 给sqlserver虚构一个主键，good,ef5 code first,/2012.8.29
         [Key]
+        [DatabaseGenerated(DatabaseGenerationOption.None)]
         public long trsdID { get; set; }
         #endregion
 
@@ -174,7 +175,7 @@ namespace OfflineInspect.ReTransmission.Table
         }
         #endregion
 
-    
+
         private string SplitLacCellStr(string laccell, ILookup<string, LacCellBvciStaticsDocument> lookcell)
         {
             string bvci = string.Empty;
@@ -192,7 +193,7 @@ namespace OfflineInspect.ReTransmission.Table
                 bvci = bvci + lookcell[ce].Sum(e => e.bvci_cnt);
             return bvci;
         }
-    
+
 
         private int GetCellCount(string laccell)
         {
@@ -232,11 +233,11 @@ namespace OfflineInspect.ReTransmission.Table
                 trsd.lac_cell_from_bvci = p.lac_cell_from_bvci;
                 trsd.lac_cell_from_bvci_cnt = GetCellCount(trsd.lac_cell_from_bvci);//
                 trsd.multibvci_cnt = trsd.lac_cell_from_bvci_cnt - trsd.bvci_bsc_cnt;
-             
+
                 trsd.lac = p.lac;
                 trsd.sndcp_nsapi = p.sndcp_nsapi;
                 trsd.llcgprs_sapi = p.llcgprs_sapi;
-             
+
 
                 trsd.imsi = p.imsi;
                 trsd.msg_distinct_aggre = p.msg_distinct_aggre;
