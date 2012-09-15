@@ -13,6 +13,27 @@ namespace OfflineInspect.CommonTools
             return source.Substring(0, pos);
         }
 
+        public static string IEnumSequenceStrComma<T>(this IEnumerable<T> source)
+        {
+            //source没有记录则返回空值
+            if (!source.Any()) return null;
+            if (!source.Where(e => e != null).Any()) return null;
+            //先去重复的再排序最后用逗号分割
+            string douhao = null;
+            string temp = null;
+            List<string> hs = new List<string>();
+            foreach (var m in source)
+            {
+                douhao = m.ToString();
+                if (temp == douhao)
+                {
+                    hs.Add(douhao);
+                    temp = douhao;
+                }
+            }
+            return hs.IEnumDistinctStrComma();
+        }
+
         public static string IEnumDistinctStrComma<T>(this IEnumerable<T> source)
         {
             //source没有记录则返回空值

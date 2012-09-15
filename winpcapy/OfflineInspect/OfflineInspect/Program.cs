@@ -27,6 +27,7 @@ using System.Text;
 using OfflineInspect.FlowControl;
 using OfflineInspect.MultiInterface;
 using OfflineInspect.ReTransmission;
+using OfflineInspect.ReTransmission.Context;
 
 namespace OfflineInspect
 {
