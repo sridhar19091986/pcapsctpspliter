@@ -17,11 +17,12 @@ using System.Data.EntityClient;
 using System.Data.SqlClient;
 using System.Data.Entity.ModelConfiguration.Conventions.Edm.Db;
 using System.Data.Entity.Database;
-using OfflineInspect.ReTransmission.Table;
+//using OfflineInspect.ReTransmission.Table;
 using DreamSongs.MongoRepository;
+using OfflineInspect.ReTransmission.MapReduce;
 //using System.Linq;
 
-namespace OfflineInspect.ReTransmission
+namespace OfflineInspect.ReTransmission.Context
 {
     public class TcpDbContext : DbContext, IDisposable
     {
@@ -29,91 +30,43 @@ namespace OfflineInspect.ReTransmission
 
         //定义数据库
         public DbSet<TcpPortSessionDocument> TcpPortSessionDocumentSet { get; set; }
-        public DbSet<TcpRetransStaticsDocument> TcpRetransStaticsDocumentSet { get; set; }
+        public DbSet<TcpPortSessionETLDocument> TcpRetransStaticsDocumentSet { get; set; }
         public DbSet<LacCellBvciDocument> LacCellBvciDocumentSet { get; set; }
-        public DbSet<LacCellBvciStaticsDocument> LacCellBvciStaticsDocumentSet { get; set; }
-        public DbSet<TlliLLCSessionDocument> TlliLLCSessionDocumentSet { get; set; }
+        public DbSet<LacCellBvciETLDocument> LacCellBvciStaticsDocumentSet { get; set; }
+        public DbSet<LlcTlliSessionDocument> TlliLLCSessionDocumentSet { get; set; }
 
-        public TcpDbContext AddToContext(TcpDbContext context, TcpRetransStaticsDocument entity, int count, int commitCount, bool recreateContext, string sqlconn)
+        public TcpDbContext AddToContext(TcpDbContext context, TcpPortSessionETLDocument entity, int count, int commitCount, bool recreateContext, string sqlconn)
         {
-            context.Set<TcpRetransStaticsDocument>().Add(entity);
-
-            if (count % commitCount == 0)
-            {
-                Console.WriteLine(count);
-                context.SaveChanges();
-                if (recreateContext)
-                {
-                    context.Dispose();
-                    context = new TcpDbContext(sqlconn);
-                    context.Configuration.AutoDetectChangesEnabled = false;
-                }
-            }
-
-            return context;
+            context.Set<TcpPortSessionETLDocument>().Add(entity);
+            return AddToContextCon(context, count, commitCount, recreateContext, sqlconn);
         }
 
-        public TcpDbContext AddToContext(TcpDbContext context, LacCellBvciStaticsDocument entity, int count, int commitCount, bool recreateContext, string sqlconn)
+        public TcpDbContext AddToContext(TcpDbContext context, LacCellBvciETLDocument entity, int count, int commitCount, bool recreateContext, string sqlconn)
         {
-            context.Set<LacCellBvciStaticsDocument>().Add(entity);
-
-            if (count % commitCount == 0)
-            {
-                Console.WriteLine(count);
-                context.SaveChanges();
-                if (recreateContext)
-                {
-                    context.Dispose();
-                    context = new TcpDbContext(sqlconn);
-                    context.Configuration.AutoDetectChangesEnabled = false;
-                }
-            }
-
-            return context;
+            context.Set<LacCellBvciETLDocument>().Add(entity);
+            return AddToContextCon(context, count, commitCount, recreateContext, sqlconn);
         }
 
-        public TcpDbContext AddToContext(TcpDbContext context, TlliLLCSessionDocument entity, int count, int commitCount, bool recreateContext, string sqlconn)
+        public TcpDbContext AddToContext(TcpDbContext context, LlcTlliSessionDocument entity, int count, int commitCount, bool recreateContext, string sqlconn)
         {
-            context.Set<TlliLLCSessionDocument>().Add(entity);
-
-            if (count % commitCount == 0)
-            {
-                Console.WriteLine(count);
-                context.SaveChanges();
-                if (recreateContext)
-                {
-                    context.Dispose();
-                    context = new TcpDbContext(sqlconn);
-                    context.Configuration.AutoDetectChangesEnabled = false;
-                }
-            }
-
-            return context;
+            context.Set<LlcTlliSessionDocument>().Add(entity);
+            return AddToContextCon(context, count, commitCount, recreateContext, sqlconn);
         }
 
         public TcpDbContext AddToContext(TcpDbContext context, TcpPortSessionDocument entity, int count, int commitCount, bool recreateContext, string sqlconn)
         {
             context.Set<TcpPortSessionDocument>().Add(entity);
-
-            if (count % commitCount == 0)
-            {
-                Console.WriteLine(count);
-                context.SaveChanges();
-                if (recreateContext)
-                {
-                    context.Dispose();
-                    context = new TcpDbContext(sqlconn);
-                    context.Configuration.AutoDetectChangesEnabled = false;
-                }
-            }
-
-            return context;
+            return AddToContextCon(context, count, commitCount, recreateContext, sqlconn);
         }
 
         public TcpDbContext AddToContext(TcpDbContext context, LacCellBvciDocument entity, int count, int commitCount, bool recreateContext, string sqlconn)
         {
             context.Set<LacCellBvciDocument>().Add(entity);
+            return AddToContextCon(context, count, commitCount, recreateContext, sqlconn);
+        }
 
+        public TcpDbContext AddToContextCon(TcpDbContext context, int count, int commitCount, bool recreateContext, string sqlconn)
+        {
             if (count % commitCount == 0)
             {
                 Console.WriteLine(count);
@@ -125,7 +78,6 @@ namespace OfflineInspect.ReTransmission
                     context.Configuration.AutoDetectChangesEnabled = false;
                 }
             }
-
             return context;
         }
     }
