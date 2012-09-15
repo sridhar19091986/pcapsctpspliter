@@ -62,17 +62,15 @@ namespace OfflineInspect.ReTransmission.MapReduce
 {
     public class TcpPortSessionETLDocument
     {
-        #region 给sqlserver虚构一个主键，good,ef5 code first,/2012.8.29
+        #region 给sqlserver虚构一个主键，good,ef5 code first,/2012.8.29 ,mongo主键，sql主键，外键，primarykey ,foreignkey,_id
         [Key]
         //[DatabaseGenerated(DatabaseGenerationOption.None)]
         public long trsdID { get; set; }
-        #endregion
-
         public long _id;
         public long tpsdID { get; set; }
+        #endregion
 
         #region 维度
-
         public string bvci_from_lac_cell { get; set; }
         public int bvci_from_lac_cell_cnt { get; set; }
 
