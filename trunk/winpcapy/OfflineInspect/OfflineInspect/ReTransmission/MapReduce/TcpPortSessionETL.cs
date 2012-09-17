@@ -37,6 +37,17 @@ limit 100
  * 需要针对用户和业务进行分析？
  * */
 
+/*
+ * 
+ * ETL，正对staging做进一步的处理
+ * 
+ * 本模块需要按照维度表dimension和事实表fact进行分割，同时需要考虑mongodb的非常方便与数据挖掘的存储特性。
+ * #region 给sqlserver虚构一个主键，good,ef5 code first,/2012.8.29 ,mongo主键，sql主键，外键，primarykey ,foreignkey,_id
+ * 
+ * 2012.9.17
+ * 
+ * */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,97 +71,142 @@ using System.ComponentModel.DataAnnotations;
  * */
 namespace OfflineInspect.ReTransmission.MapReduce
 {
-    public class TcpPortSessionETLDocument
+    //这部分给sql保存
+    public class DimensionIpUdpNs
     {
-        #region 给sqlserver虚构一个主键，good,ef5 code first,/2012.8.29 ,mongo主键，sql主键，外键，primarykey ,foreignkey,_id
         [Key]
-        //[DatabaseGenerated(DatabaseGenerationOption.None)]
-        public long trsdID { get; set; }
-        public long _id;
-        public long tpsdID { get; set; }
-        #endregion
+        [DatabaseGenerated(DatabaseGenerationOption.None)]
+        public long IpUdpNsID { get; set; }
 
-        #region 维度
+        public string ip_flags_mf { get; set; }
+        public string ip_bsc_aggre { get; set; }
+
+        public string bvci_bsc { get; set; }
+        public int bvci_bsc_cnt { get; set; }
+        public string lac_cell_from_bvci { get; set; }
+        public int lac_cell_from_bvci_cnt { get; set; }
+
+        public int bvci_cell_error_cnt { get; set; }
+        public int multibvci_cnt { get; set; }
+
+        public int multi_cell_per_bvci { get; set; }
+        public int sgsn_lost_bsc_ip { get; set; }
+
+        public string cell_seq_aggre { get; set; }
+        public string bvci_seq_aggre { get; set; }
+    }
+
+    public class DimensionBssgp
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGenerationOption.None)]
+        public long BssgpID { get; set; }
+
+        public string imsi { get; set; }
+
+        public string direction { get; set; }
+
+        public string lac { get; set; }
+        public string lac_cell { get; set; }
+        public int lac_cell_cnt { get; set; }
+
         public string bvci_from_lac_cell { get; set; }
         public int bvci_from_lac_cell_cnt { get; set; }
+    }
 
-        public string session_id { get; set; }
-        public string imsi { get; set; }
-        //[Key,ForeignKey("TcpRetransStaticsDocuments"), Column(Order = 0)]
-        //[ForeignKey("TcpRetransStaticsDocuments")]
-        public string lac_cell { get; set; }
-        public string direction { get; set; }
-        public string msg_distinct_aggre { get; set; }
+    public class DimensionLlcSndcp
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGenerationOption.None)]
+        public long LlcSndcpID { get; set; }
 
+        public string llcgprs_sapi { get; set; }
+
+        public string sndcp_m { get; set; }
+        public string sndcp_nsapi { get; set; }
+
+    }
+
+    public class DimensionIp2
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGenerationOption.None)]
+        public long Ip2ID { get; set; }
+        public string ip2_sp_aggre { get; set; }
+        public string ip2ttl_sp_aggre { get; set; }
+        public string ip2_flags_mf { get; set; }
+    }
+    public class DimensionTcp
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGenerationOption.None)]
+        public long TcpID { get; set; }
+        public string tcp_need_segment { get; set; }
+        public string tcp_port_aggre { get; set; }
+    }
+
+    public class DimensionHttp
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGenerationOption.None)]
+        public long HttpID { get; set; }
         public string http_method { get; set; }
         public string absolute_uri { get; set; }//生成uri的绝对路径
         public string user_agent { get; set; }//提取用户的代理
+    }
 
-        public string ip_bsc_aggre { get; set; }
-        public string ip2_sp_aggre { get; set; }
-        public string ip2ttl_sp_aggre { get; set; }
-
-        public string tcp_port_aggre { get; set; }
-
-        public string ip_flags_mf { get; set; }
-        public string sndcp_m { get; set; }
-        public string ip2_flags_mf { get; set; }
-        public string tcp_need_segment { get; set; }
-
-        //注入apn、imei维度等
-        #endregion
-
-        #region 度量
-
+    public class DimensionMessage
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGenerationOption.None)]
+        public long MeasureID { get; set; }
+        public string session_id { get; set; }
         public long? ip2ip1_header { get; set; }
+        public string msg_distinct_aggre { get; set; }
+    }
+
+    //其他的维度和计算
+    public class FactTcpPortSession
+    {
+
+        [Key]
+        public long FactID { get; set; }
+
+        public long IpUdpNsID { get; set; }
+        public long BssgpID { get; set; }
+        public long LlcSndcpID { get; set; }
+        public long Ip2ID { get; set; }
+        public long TcpID { get; set; }
+        public long HttpID { get; set; }
+        public long MeasureID { get; set; }
+
         public int sndcp_m_count { get; set; }
         public int? sndcp_m_total { get; set; }
         public decimal? seq_total_aggre { get; set; } //每次的nxt-seq之和，计算的值是ip2包之和，未计算sndcp包。
         public decimal? seqtotal_sndcp_aggre { get; set; }
-
-
         public decimal? seq_total_reduce { get; set; }//真实的总长度。最大nxt减去seq。未包含重传。
-        //public long? ip2_total_aggre { get; set; }
-        //public decimal? seqreduce_ip2total_aggre { get; set; }
-
-        //流量计算
-        //public decimal? seqtotal_sndcp_aggre { get; set; }
-        public decimal? ip_total_aggre { get; set; }
-        //public decimal? seq_total_aggre { get; set; }
-        //public decimal? seq_total_reduce { get; set; }
-        //public decimal? seqreduce_ip2total_aggre { get; set; }
-        //数量计算
-        public int seq_total_count { get; set; }
+        public decimal? ip_total_aggre { get; set; }//流量计算
+        public int seq_total_count { get; set; }   //数量计算
         public int seq_distinct_count { get; set; }
         public int seq_repeat_cnt { get; set; }
-        //丢包和重传计算
-        public decimal? seq_total_lost { get; set; }
+        public decimal? seq_total_lost { get; set; }   //丢包和重传计算
         public decimal? seq_total_repeat { get; set; }
-        //时间计算
-        public double duration { get; set; }
-        #endregion
+        public double duration { get; set; }  //时间计算
 
-        //public long? ip2ip1_header { get; set; }
-        //public int sndcp_m_count { get; set; }
-        //public int? sndcp_m_total { get; set; }
-        public string bvci_bsc { get; set; }
-        public string sndcp_nsapi { get; set; }
-        public string llcgprs_sapi { get; set; }
-        public string lac { get; set; }
-        public int lac_cell_cnt { get; set; }
-        public int bvci_cell_error_cnt { get; set; }
-        public string lac_cell_from_bvci { get; set; }
-        public int lac_cell_from_bvci_cnt { get; set; }
-        public int bvci_bsc_cnt { get; set; }
-        public int multibvci_cnt { get; set; }
- 
+    }
 
-        public int MultiCellPerBvci { get; set; }
-        public int SgsnLostBscIp { get; set; }
-
-        public string cell_seq_aggre { get; set; }
-        public string bvci_seq_aggre { get; set; }
-        //public TcpPortSessionDocument vTcpPortSessionDocument;
+    //这部分给mongo保存
+    public class TcpPortSessionETLDocument
+    {
+        public long _id;
+        public DimensionIpUdpNs DimIpUdpNs = new DimensionIpUdpNs();
+        public DimensionBssgp DimBssgp = new DimensionBssgp();
+        public DimensionLlcSndcp DimLlcSndcp = new DimensionLlcSndcp();
+        public DimensionIp2 DimIp2 = new DimensionIp2();
+        public DimensionTcp DimTcp = new DimensionTcp();
+        public DimensionHttp DimHttp = new DimensionHttp();
+        public DimensionMessage DimMessage = new DimensionMessage();
+        public FactTcpPortSession FactTcp = new FactTcpPortSession();
     }
 
     public class TcpPortSessionETL : CommonToolx, IDisposable
@@ -222,78 +278,85 @@ namespace OfflineInspect.ReTransmission.MapReduce
             LacCellBvciETL lcbs = new LacCellBvciETL();
             var cellslook = lcbs.mongo_LacCellBvciETL.QueryMongo().ToLookup(e => e.lac_ci);
 
-            TcpPortSession tts = new TcpPortSession();
-            foreach (var p in tts.mongo_TcpPortSession.QueryMongo())
+            TcpPortSessionStaging tts = new TcpPortSessionStaging();
+            foreach (var p in tts.mongo_TcpPortSessionStaging.QueryMongo())
             {
                 TcpPortSessionETLDocument trsd = new TcpPortSessionETLDocument();
 
-                trsd.trsdID = p._id;
-                trsd.tpsdID = p._id;
                 trsd._id = p._id;
 
-                trsd.session_id = p.session_id;
+                trsd.DimIpUdpNs.IpUdpNsID = p._id;
+                trsd.DimBssgp.BssgpID = p._id;
+                trsd.DimLlcSndcp.LlcSndcpID = p._id;
+                trsd.DimIp2.Ip2ID = p._id;
+                trsd.DimTcp.TcpID = p._id;
+                trsd.DimHttp.HttpID = p._id;
+                trsd.DimMessage.MeasureID = p._id;
 
-                trsd.cell_seq_aggre = p.cell_seq_aggre;
-                trsd.bvci_seq_aggre = p.bvci_seq_aggre;
+                trsd.FactTcp.FactID = p._id;
 
-                trsd.MultiCellPerBvci = p.MultiCellPerBvci;
-                trsd.SgsnLostBscIp = p.SgsnLostBscIp;
+                trsd.FactTcp.IpUdpNsID = p._id;
+                trsd.FactTcp.BssgpID = p._id;
+                trsd.FactTcp.LlcSndcpID = p._id;
+                trsd.FactTcp.Ip2ID = p._id;
+                trsd.FactTcp.TcpID = p._id;
+                trsd.FactTcp.HttpID = p._id;
+                trsd.FactTcp.MeasureID = p._id;
+
+                //trsd.session_id = p.session_id;
+                trsd.DimIpUdpNs.ip_bsc_aggre = p.direction == directiondown ? p.ip_dst_aggre : p.ip_src_aggre;
+                trsd.DimIpUdpNs.cell_seq_aggre = p.cell_seq_aggre;
+                trsd.DimIpUdpNs.bvci_seq_aggre = p.bvci_seq_aggre;
+                trsd.DimIpUdpNs.multi_cell_per_bvci = p.multi_cell_per_bvci;
+                trsd.DimIpUdpNs.sgsn_lost_bsc_ip = p.sgsn_lost_bsc_ip;
+                trsd.DimIpUdpNs.ip_flags_mf = p.ip_flags_mf;
+                trsd.DimIpUdpNs.bvci_bsc = p.bsc_bvci;
+                trsd.DimIpUdpNs.bvci_bsc_cnt = GetCellCount(p.bsc_bvci);//
+                trsd.DimIpUdpNs.lac_cell_from_bvci = p.lac_cell_from_bvci;
+                trsd.DimIpUdpNs.lac_cell_from_bvci_cnt = GetCellCount(p.lac_cell_from_bvci);//
+                trsd.DimIpUdpNs.multibvci_cnt = trsd.DimIpUdpNs.lac_cell_from_bvci_cnt - trsd.DimIpUdpNs.bvci_bsc_cnt;
 
                 //mulit-bvci-percell的问题
-                trsd.lac_cell = p.lac_ci;
-                trsd.lac_cell_cnt = GetCellCount(p.lac_ci);
-                trsd.bvci_bsc = p.bsc_bvci;
-                trsd.bvci_bsc_cnt = GetCellCount(p.bsc_bvci);//
-                trsd.bvci_cell_error_cnt = trsd.bvci_bsc_cnt - trsd.lac_cell_cnt;
+                trsd.DimBssgp.lac = p.lac;      
+                trsd.DimBssgp.imsi = p.imsi;
+                trsd.DimBssgp.direction = p.direction;
+                trsd.DimBssgp.lac_cell = p.lac_cell;
+                trsd.DimBssgp.lac_cell_cnt = GetCellCount(p.lac_cell);
+                trsd.DimBssgp.bvci_from_lac_cell = SplitLacCellStr(p.lac_cell, cellslook);
+                trsd.DimBssgp.bvci_from_lac_cell_cnt = SplitLacCellCnt(p.lac_cell, cellslook);
+                trsd.DimIpUdpNs.bvci_cell_error_cnt = trsd.DimIpUdpNs.bvci_bsc_cnt - trsd.DimBssgp.lac_cell_cnt;
 
-                trsd.bvci_from_lac_cell = SplitLacCellStr(p.lac_ci, cellslook);
-                trsd.bvci_from_lac_cell_cnt = SplitLacCellCnt(p.lac_ci, cellslook);
-                trsd.lac_cell_from_bvci = p.lac_cell_from_bvci;
-                trsd.lac_cell_from_bvci_cnt = GetCellCount(trsd.lac_cell_from_bvci);//
-                trsd.multibvci_cnt = trsd.lac_cell_from_bvci_cnt - trsd.bvci_bsc_cnt;
+                trsd.DimLlcSndcp.sndcp_m = p.sndcp_m;
+                trsd.DimLlcSndcp.sndcp_nsapi = p.sndcp_nsapi;
+                trsd.DimLlcSndcp.llcgprs_sapi = p.llcgprs_sapi;
 
-                trsd.lac = p.lac;
-                trsd.sndcp_nsapi = p.sndcp_nsapi;
-                trsd.llcgprs_sapi = p.llcgprs_sapi;
+                trsd.DimIp2.ip2_flags_mf = p.ip2_flags_mf;
+                trsd.DimIp2.ip2_sp_aggre = p.direction == directiondown ? p.ip2_src_aggre : p.ip2_dst_aggre;
+                trsd.DimIp2.ip2ttl_sp_aggre = p.direction == directiondown ? p.ip2_ttl_aggre : fillnull;
 
+                trsd.DimTcp.tcp_port_aggre = p.direction == directiondown ? p.src_port_aggre : p.dst_port_aggre;
+                trsd.DimTcp.tcp_need_segment = p.tcp_need_segment;
 
-                trsd.imsi = p.imsi;
-                trsd.msg_distinct_aggre = p.msg_distinct_aggre;
-                trsd.direction = p.direction;
-                trsd.http_method = p.http_method == null ? tcp_data : p.http_method;
-                trsd.user_agent = p.user_agent == null ? fillnull : p.user_agent;
-                trsd.absolute_uri = p.absolute_uri == null ? fillnull : p.absolute_uri;
+                trsd.DimHttp.http_method = p.http_method == null ? tcp_data : p.http_method;
+                trsd.DimHttp.user_agent = p.user_agent == null ? fillnull : p.user_agent;
+                trsd.DimHttp.absolute_uri = p.absolute_uri == null ? fillnull : p.absolute_uri;
 
-                trsd.ip_bsc_aggre = p.direction == directiondown ? p.ip_dst_aggre : p.ip_src_aggre;
-                trsd.ip2_sp_aggre = p.direction == directiondown ? p.ip2_src_aggre : p.ip2_dst_aggre;
-                trsd.ip2ttl_sp_aggre = p.direction == directiondown ? p.ip2_ttl_aggre : fillnull;
-                trsd.tcp_port_aggre = p.direction == directiondown ? p.src_port_aggre : p.dst_port_aggre;
+                trsd.DimMessage.session_id = p.session_id;
+                trsd.DimMessage.msg_distinct_aggre = p.msg_distinct_aggre;
+                trsd.DimMessage.ip2ip1_header = p.ip2ip1_header;
 
-                trsd.ip_flags_mf = p.ip_flags_mf;
-                trsd.sndcp_m = p.sndcp_m;
-                trsd.ip2_flags_mf = p.ip2_flags_mf;
-                trsd.tcp_need_segment = p.tcp_need_segment;
-
-                trsd.ip_total_aggre = p.ip_total_aggre;
-
-                trsd.ip2ip1_header = p.ip2ip1_header;
-                trsd.sndcp_m_count = p.sndcp_m_count;
-                trsd.sndcp_m_total = p.sndcp_m_total;
-                trsd.seq_total_aggre = p.seq_total_aggre;
-                trsd.seqtotal_sndcp_aggre = p.seqtotal_sndcp_aggre;
-
-                trsd.seq_total_reduce = p.seq_total_reduce;
-                //trsd.ip2_total_aggre = p.ip2_total_aggre;
-                //trsd.seqreduce_ip2total_aggre = p.seqreduce_ip2total_aggre;
-
-                trsd.seq_total_count = p.seq_total_count;
-                trsd.seq_distinct_count = p.seq_distinct_count;
-                trsd.seq_repeat_cnt = p.seq_repeat_cnt;
-
-                trsd.seq_total_lost = p.seq_total_lost > 0 ? p.seq_total_lost : 0;
-                trsd.seq_total_repeat = p.seq_total_lost < 0 ? -1 * p.seq_total_lost : 0;
-
-                trsd.duration = p.duration;
+                trsd.FactTcp.ip_total_aggre = p.ip_total_aggre;
+                trsd.FactTcp.sndcp_m_count = p.sndcp_m_count;
+                trsd.FactTcp.sndcp_m_total = p.sndcp_m_total;
+                trsd.FactTcp.seq_total_aggre = p.seq_total_aggre;
+                trsd.FactTcp.seqtotal_sndcp_aggre = p.seqtotal_sndcp_aggre;
+                trsd.FactTcp.seq_total_reduce = p.seq_total_reduce;
+                trsd.FactTcp.seq_total_count = p.seq_total_count;
+                trsd.FactTcp.seq_distinct_count = p.seq_distinct_count;
+                trsd.FactTcp.seq_repeat_cnt = p.seq_repeat_cnt;
+                trsd.FactTcp.seq_total_lost = p.seq_total_lost > 0 ? p.seq_total_lost : 0;
+                trsd.FactTcp.seq_total_repeat = p.seq_total_lost < 0 ? -1 * p.seq_total_lost : 0;
+                trsd.FactTcp.duration = p.duration;
 
                 mongo_TcpPortSessionETL.MongoCol.Insert(trsd);
             }

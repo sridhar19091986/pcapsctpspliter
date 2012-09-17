@@ -29,11 +29,64 @@ namespace OfflineInspect.ReTransmission.Context
         public TcpDbContext(string connection) : base(connection) { }
 
         //定义数据库
-        public DbSet<TcpPortSessionDocument> TcpPortSessionDocumentSet { get; set; }
-        public DbSet<TcpPortSessionETLDocument> TcpRetransStaticsDocumentSet { get; set; }
-        public DbSet<LacCellBvciDocument> LacCellBvciDocumentSet { get; set; }
-        public DbSet<LacCellBvciETLDocument> LacCellBvciStaticsDocumentSet { get; set; }
-        public DbSet<LlcTlliSessionDocument> TlliLLCSessionDocumentSet { get; set; }
+        public DbSet<TcpPortSessionStagingDocument> TcpPortSessionStagingDocumentSet { get; set; }
+      
+        public DbSet<LacCellBvciStagingDocument> LacCellBvciStagingDocumentSet { get; set; }
+        public DbSet<LacCellBvciETLDocument> LacCellBvciETLDocumentSet { get; set; }
+        public DbSet<LlcTlliSessionStagingDocument> LlcTlliSessionDocumentSet { get; set; }
+ 
+        #region  //public DbSet<TcpPortSessionETLDocument> TcpPortSessionETLDocumentSet { get; set; }
+        public DbSet<DimensionIpUdpNs> DimensionIpUdpNsSet { get; set; }
+        public DbSet<DimensionBssgp> DimensionBssgpSet { get; set; }
+        public DbSet<DimensionLlcSndcp> DimensionLlcSndcpSet { get; set; }
+        public DbSet<DimensionIp2> DimensionIp2Set { set; get; }
+        public DbSet<DimensionTcp> DimensionTcpSet { get; set; }
+        public DbSet<DimensionHttp> DimensionHttpSet { get; set; }
+        public DbSet<DimensionMessage> MeasurementTcpPortSet { get; set; }
+        public DbSet<FactTcpPortSession> FactTcpPortSessionSet { get; set; } 
+        #endregion
+
+        public TcpDbContext AddToContext(TcpDbContext context, DimensionIpUdpNs entity, int count, int commitCount, bool recreateContext, string sqlconn)
+        {
+            context.Set<DimensionIpUdpNs>().Add(entity);
+            return AddToContextCon(context, count, commitCount, recreateContext, sqlconn);
+        }
+        public TcpDbContext AddToContext(TcpDbContext context, DimensionBssgp entity, int count, int commitCount, bool recreateContext, string sqlconn)
+        {
+            context.Set<DimensionBssgp>().Add(entity);
+            return AddToContextCon(context, count, commitCount, recreateContext, sqlconn);
+        }
+        public TcpDbContext AddToContext(TcpDbContext context, DimensionLlcSndcp entity, int count, int commitCount, bool recreateContext, string sqlconn)
+        {
+            context.Set<DimensionLlcSndcp>().Add(entity);
+            return AddToContextCon(context, count, commitCount, recreateContext, sqlconn);
+        }
+        public TcpDbContext AddToContext(TcpDbContext context, DimensionIp2 entity, int count, int commitCount, bool recreateContext, string sqlconn)
+        {
+            context.Set<DimensionIp2>().Add(entity);
+            return AddToContextCon(context, count, commitCount, recreateContext, sqlconn);
+        }
+        public TcpDbContext AddToContext(TcpDbContext context, DimensionTcp entity, int count, int commitCount, bool recreateContext, string sqlconn)
+        {
+            context.Set<DimensionTcp>().Add(entity);
+            return AddToContextCon(context, count, commitCount, recreateContext, sqlconn);
+        }
+        public TcpDbContext AddToContext(TcpDbContext context, DimensionHttp entity, int count, int commitCount, bool recreateContext, string sqlconn)
+        {
+            context.Set<DimensionHttp>().Add(entity);
+            return AddToContextCon(context, count, commitCount, recreateContext, sqlconn);
+        }
+        public TcpDbContext AddToContext(TcpDbContext context, DimensionMessage entity, int count, int commitCount, bool recreateContext, string sqlconn)
+        {
+            context.Set<DimensionMessage>().Add(entity);
+            return AddToContextCon(context, count, commitCount, recreateContext, sqlconn);
+        }
+        public TcpDbContext AddToContext(TcpDbContext context, FactTcpPortSession entity, int count, int commitCount, bool recreateContext, string sqlconn)
+        {
+            context.Set<FactTcpPortSession>().Add(entity);
+            return AddToContextCon(context, count, commitCount, recreateContext, sqlconn);
+        }
+
 
         public TcpDbContext AddToContext(TcpDbContext context, TcpPortSessionETLDocument entity, int count, int commitCount, bool recreateContext, string sqlconn)
         {
@@ -47,21 +100,21 @@ namespace OfflineInspect.ReTransmission.Context
             return AddToContextCon(context, count, commitCount, recreateContext, sqlconn);
         }
 
-        public TcpDbContext AddToContext(TcpDbContext context, LlcTlliSessionDocument entity, int count, int commitCount, bool recreateContext, string sqlconn)
+        public TcpDbContext AddToContext(TcpDbContext context, LlcTlliSessionStagingDocument entity, int count, int commitCount, bool recreateContext, string sqlconn)
         {
-            context.Set<LlcTlliSessionDocument>().Add(entity);
+            context.Set<LlcTlliSessionStagingDocument>().Add(entity);
             return AddToContextCon(context, count, commitCount, recreateContext, sqlconn);
         }
 
-        public TcpDbContext AddToContext(TcpDbContext context, TcpPortSessionDocument entity, int count, int commitCount, bool recreateContext, string sqlconn)
+        public TcpDbContext AddToContext(TcpDbContext context, TcpPortSessionStagingDocument entity, int count, int commitCount, bool recreateContext, string sqlconn)
         {
-            context.Set<TcpPortSessionDocument>().Add(entity);
+            context.Set<TcpPortSessionStagingDocument>().Add(entity);
             return AddToContextCon(context, count, commitCount, recreateContext, sqlconn);
         }
 
-        public TcpDbContext AddToContext(TcpDbContext context, LacCellBvciDocument entity, int count, int commitCount, bool recreateContext, string sqlconn)
+        public TcpDbContext AddToContext(TcpDbContext context, LacCellBvciStagingDocument entity, int count, int commitCount, bool recreateContext, string sqlconn)
         {
-            context.Set<LacCellBvciDocument>().Add(entity);
+            context.Set<LacCellBvciStagingDocument>().Add(entity);
             return AddToContextCon(context, count, commitCount, recreateContext, sqlconn);
         }
 

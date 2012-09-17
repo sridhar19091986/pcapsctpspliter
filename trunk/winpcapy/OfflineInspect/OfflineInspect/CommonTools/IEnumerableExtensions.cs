@@ -25,7 +25,7 @@ namespace OfflineInspect.CommonTools
             foreach (var m in source)
             {
                 douhao = m.ToString();
-                if (temp == douhao)
+                if (temp != douhao)
                 {
                     hs.Add(douhao);
                     temp = douhao;

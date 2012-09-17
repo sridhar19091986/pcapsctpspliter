@@ -54,8 +54,8 @@ namespace OfflineInspect.ReTransmission.MapReduce
         #endregion
         public void CreatCollection()
         {
-            LacCellBvci lcb = new LacCellBvci();
-            var query = from p in lcb.mongo_LacCellBvci.QueryMongo().ToList()
+            LacCellBvciStaging lcb = new LacCellBvciStaging();
+            var query = from p in lcb.mongo_LacCellBvciStaging.QueryMongo().ToList()
                         group p by p.lac_cell into ttt
                         select new LacCellBvciETLDocument
                         {

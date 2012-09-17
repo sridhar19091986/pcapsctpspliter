@@ -13,33 +13,12 @@ namespace OfflineInspect.ReTransmission
         public static void BathMakeTcpData()
         {
             CreateTcpDb();
-
             BatchMakeTcpDataForMongo();
-            //DeleteTcpTable();
-
             BatchMakeTcpDataForSqlServer();
+
+            Console.WriteLine("\r\n......");
             Console.WriteLine("BathMakeTcpData,Finish");
             Console.ReadKey();
-        }
-
-        private static void BatchMakeTcpDataForMongo()
-        {
-            using (LacCellBvci lcb = new LacCellBvci())
-                lcb.CreatCollection();
-            GC.Collect();
-            using (LacCellBvciETL lcbs = new LacCellBvciETL())
-                lcbs.CreatCollection();
-            GC.Collect();
-            using (TcpPortSession tps = new TcpPortSession())
-                tps.CreateCollection();
-            GC.Collect();
-            using (TcpPortSessionETL trs = new TcpPortSessionETL())
-                trs.CreatCollection();
-            GC.Collect();
-            using (LlcTlliSession tls = new LlcTlliSession())
-                tls.CreateCollection();
-            GC.Collect();
-            Console.WriteLine("BatchMakeTcpDataForMongo,Finish");
         }
 
         private static void CreateTcpDb()
@@ -50,11 +29,30 @@ namespace OfflineInspect.ReTransmission
                     db.Database.Delete();
                 db.Database.Create();
                 Console.WriteLine(db.Database.Connection.ConnectionString);
-                Console.WriteLine("CreateTcpDb,Finish");
             }
             GC.Collect();
+            Console.WriteLine("CreateTcpDb,Finish");
         }
 
+        private static void BatchMakeTcpDataForMongo()
+        {
+            //using (LacCellBvciStaging lcb = new LacCellBvciStaging())
+            //    lcb.CreatCollection();
+            //GC.Collect();
+            //using (LacCellBvciETL lcbs = new LacCellBvciETL())
+            //    lcbs.CreatCollection();
+            //GC.Collect();
+            using (TcpPortSessionStaging tps = new TcpPortSessionStaging())
+                tps.CreateCollection();
+            GC.Collect();
+            using (TcpPortSessionETL trs = new TcpPortSessionETL())
+                trs.CreatCollection();
+            GC.Collect();
+            //using (LlcTlliSessionStaging tls = new LlcTlliSessionStaging())
+            //    tls.CreateCollection();
+            //GC.Collect();
+            Console.WriteLine("BatchMakeTcpDataForMongo,Finish");
+        }
 
         private static void BatchMakeTcpDataForSqlServer()
         {
@@ -62,27 +60,7 @@ namespace OfflineInspect.ReTransmission
             tdcs.saveTcpPortSessionETLDocumentSet(sqlconn);
 
             GC.Collect();
-            Console.WriteLine("......");
             Console.WriteLine("BatchMakeTcpDataForSqlServer,Finish");
         }
-
-        private static void DeleteTcpTable()
-        {
-            using (TcpDbContext db = new TcpDbContext(sqlconn))
-            {
-                db.Configuration.AutoDetectChangesEnabled = false;
-                //DontDropDbJustCreateTablesIfModelChanged 
-
-                //db.ChangeTracker.
-
-                db.Database.SqlCommand("delete from TcpPortSessionDocuments");
-                db.Database.SqlCommand("delete from TcpRetransStaticsDocuments");
-
-                Console.WriteLine(db.Database.Connection.ConnectionString);
-                Console.WriteLine("DeleteTcpTable,Finish");
-            }
-            GC.Collect();
-        }
-
     }
 }
