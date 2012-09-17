@@ -35,6 +35,27 @@ alter table [Gb_TCP_ReTransmission] add  PRIMARY KEY (PacketNum,FileNum);
  * 
  * **/
 
+
+/*
+ * staging，阶段性的处理
+ * 
+ * 
+ * 
+ * 充分利用数据挖掘的原因，以事实表和维度表为中心做处理
+ * 
+ * 本模块实现事实表的阶段性处理，对事实表进行浓缩处理，
+ * 
+ * 1.把最原始的消息流按照callid汇总，即tlli,tcp会话汇总。以避免事实表的奇大无比。
+ * 
+ * 2.tcp会话，即callid是否进行小区级别的分割？
+ * 
+ * 3.是否需要分割tcp会话发生cell的维度渐变的处理
+ * 
+ * 2012.9.17
+ * 
+ * 
+ * */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,7 +71,7 @@ using System.Threading.Tasks;
 
 namespace OfflineInspect.ReTransmission.MapReduce
 {
-    public class TcpPortSessionDocument
+    public class TcpPortSessionStagingDocument
     {
         #region 给sqlserver虚构一个主键，good,ef5 code first,/2012.8.29
         [Key]
@@ -60,7 +81,7 @@ namespace OfflineInspect.ReTransmission.MapReduce
 
         public long _id;
         public string bsc_bvci { get; set; }
-        public string lac_ci { get; set; }
+        public string lac_cell { get; set; }
         public string mscbsc_ip_aggre { get; set; }
         public int mscbsc_ip_count { get; set; }
         public string direction { get; set; }
@@ -131,26 +152,26 @@ namespace OfflineInspect.ReTransmission.MapReduce
         public string lac { get; set; }
         public string lac_cell_from_bvci { get; set; }
 
-        public int MultiCellPerBvci { get; set; }
-        public int SgsnLostBscIp { get; set; }
+        public int multi_cell_per_bvci { get; set; }
+        public int sgsn_lost_bsc_ip { get; set; }
 
-        //
+        //切换序列
         public string cell_seq_aggre { get; set; }
         public string bvci_seq_aggre { get; set; }
     }
 
-    public class TcpPortSession : CommonToolx, IDisposable
+    public class TcpPortSessionStaging : CommonToolx, IDisposable
     {
-        private string mongo_collection = CommonAttribute.TcpPortSession[0];
-        private string mongo_db = CommonAttribute.TcpPortSession[1];
-        private string mongo_conn = CommonAttribute.TcpPortSession[2];
+        private string mongo_collection = CommonAttribute.TcpPortSessionStaging[0];
+        private string mongo_db = CommonAttribute.TcpPortSessionStaging[1];
+        private string mongo_conn = CommonAttribute.TcpPortSessionStaging[2];
 
-        private int min_file_num = Int32.Parse(CommonAttribute.TcpPortSession[3]);
-        private int max_file_num = Int32.Parse(CommonAttribute.TcpPortSession[4]);
+        private int min_file_num = Int32.Parse(CommonAttribute.TcpPortSessionStaging[3]);
+        private int max_file_num = Int32.Parse(CommonAttribute.TcpPortSessionStaging[4]);
 
-        private int size = Int32.Parse(CommonAttribute.TcpPortSession[5]);
+        private int size = Int32.Parse(CommonAttribute.TcpPortSessionStaging[5]);
 
-        public MongoCrud<TcpPortSessionDocument> mongo_TcpPortSession;
+        public MongoCrud<TcpPortSessionStagingDocument> mongo_TcpPortSessionStaging;
         //private GuangZhou_Gb_TCP_ReTransmission gb;
         private foshan_tcp_dataEntities gb = new foshan_tcp_dataEntities();
 
@@ -158,9 +179,9 @@ namespace OfflineInspect.ReTransmission.MapReduce
         private int multicellperbvci;
         private int sgsnlostbscip;
 
-        public TcpPortSession()
+        public TcpPortSessionStaging()
         {
-            mongo_TcpPortSession = new MongoCrud<TcpPortSessionDocument>(mongo_conn, mongo_db, mongo_collection);
+            mongo_TcpPortSessionStaging = new MongoCrud<TcpPortSessionStagingDocument>(mongo_conn, mongo_db, mongo_collection);
             //gb = new GuangZhou_Gb_TCP_ReTransmission();
             gb.CommandTimeout = 0;
             gb.ContextOptions.LazyLoadingEnabled = true;
@@ -174,7 +195,7 @@ namespace OfflineInspect.ReTransmission.MapReduce
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-        ~TcpPortSession()
+        ~TcpPortSessionStaging()
         {
             Dispose(false);
         }
@@ -189,11 +210,11 @@ namespace OfflineInspect.ReTransmission.MapReduce
         #endregion
 
         //按照文件号进行分页
-        private ILookup<int?, LacCellBvciDocument> LookBvci;
+        private ILookup<int?, LacCellBvciStagingDocument> LookBvci;
         public void CreateCollection()
         {
-            LacCellBvci lcb = new LacCellBvci();
-            LookBvci = lcb.mongo_LacCellBvci.QueryMongo()
+            LacCellBvciStaging lcb = new LacCellBvciStaging();
+            LookBvci = lcb.mongo_LacCellBvciStaging.QueryMongo()
                 .Where(e => e.lac_cell != null)
                 .ToLookup(e => e.bvci);
             for (int j = min_file_num; j < max_file_num; j++)
@@ -201,7 +222,7 @@ namespace OfflineInspect.ReTransmission.MapReduce
                 Console.WriteLine("file_num:{0}", j);
                 CreateCollection(j);
             }
-            Console.WriteLine("TcpPortSession->mongo->ok");
+            Console.WriteLine("TcpPortSessionStagingDocument->mongo->ok");
         }
 
         public void CreateCollection(int filenum)
@@ -273,7 +294,7 @@ namespace OfflineInspect.ReTransmission.MapReduce
                     if (pd_no_3tcp.Count() == 0) continue;
                     #endregion
 
-                    TcpPortSessionDocument tcps = new TcpPortSessionDocument();
+                    TcpPortSessionStagingDocument tcps = new TcpPortSessionStagingDocument();
 
                     #region tcp会话的基础信息，callid/imsi/lac/cell/bvci/duration/
 
@@ -309,7 +330,7 @@ namespace OfflineInspect.ReTransmission.MapReduce
                     //还需要1个？留意ip的问题?
                     //????
 
-                    tcps.lac_ci = m.Where(e => e.bssgp_lac != null).Count() == 0 ? "" : m.Where(e => e.bssgp_lac != null).Select(e => Convert.ToString(e.bssgp_lac) + "-" + Convert.ToString(e.bssgp_ci)).IEnumDistinctStrComma();
+                    tcps.lac_cell = m.Where(e => e.bssgp_lac != null).Count() == 0 ? "" : m.Where(e => e.bssgp_lac != null).Select(e => Convert.ToString(e.bssgp_lac) + "-" + Convert.ToString(e.bssgp_ci)).IEnumDistinctStrComma();
                     tcps.lac = m.Where(e => e.bssgp_lac != null).Select(e => e.bssgp_lac).IEnumDistinctStrComma();
                     //下行时延，包含3次握手，取这次会话的总长度吧。
                     TimeSpan? ts = m.Max(e => DateTime.Parse(e.GbOverLLC_time)) - pd_no_3tcp.Min(e => DateTime.Parse(e.GbOverLLC_time));
@@ -320,13 +341,13 @@ namespace OfflineInspect.ReTransmission.MapReduce
 
                     tcps.lac_cell_from_bvci = GetLacCellFromBvci(m, out multicellperbvci, out sgsnlostbscip);//??????pdp????
 
-                    //
-                    tcps.cell_seq_aggre = m.OrderBy(e => e.PacketNum).ThenBy(e => e.PacketNum).Select(e => e.bssgp_ci).IEnumSequenceStrComma();
-                    tcps.bvci_seq_aggre = m.OrderBy(e => e.PacketNum).ThenBy(e => e.PacketNum).Select(e => e.nsip_bvci).IEnumSequenceStrComma();
+                    //小区切换序列？
+                    tcps.cell_seq_aggre = m.Where(e => e.bssgp_ci != null).OrderBy(e => e.FileNum).ThenBy(e => e.PacketNum).Select(e => e.bssgp_ci).IEnumSequenceStrComma();
+                    tcps.bvci_seq_aggre = m.Where(e => e.nsip_bvci != null).OrderBy(e => e.FileNum).ThenBy(e => e.PacketNum).Select(e => e.nsip_bvci).IEnumSequenceStrComma();
 
                     //计算2中问题，per bvci multi cell，
-                    tcps.MultiCellPerBvci = multicellperbvci;
-                    tcps.SgsnLostBscIp = sgsnlostbscip;
+                    tcps.multi_cell_per_bvci = multicellperbvci;
+                    tcps.sgsn_lost_bsc_ip = sgsnlostbscip;
 
                     #region seq算法，计算tcp重传和丢包
                     //序列号的计算
@@ -383,7 +404,7 @@ namespace OfflineInspect.ReTransmission.MapReduce
                     tcps.sndcp_nsapi = pd_no_3tcp.Select(e => e.sndcp_nsapi).IEnumDistinctStrComma();
                     tcps.llcgprs_sapi = pd_no_3tcp.Select(e => e.llcgprs_sapi).IEnumDistinctStrComma();
 
-                    mongo_TcpPortSession.MongoCol.Insert(tcps);
+                    mongo_TcpPortSessionStaging.MongoCol.Insert(tcps);
                 }
             }
 

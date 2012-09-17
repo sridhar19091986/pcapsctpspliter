@@ -33,7 +33,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace OfflineInspect.ReTransmission.MapReduce
 {
-    public class LlcTlliSessionDocument
+    public class LlcTlliSessionStagingDocument
     {
         #region 给sqlserver虚构一个主键，good,ef5 code first,/2012.8.29
         [Key]
@@ -65,23 +65,23 @@ namespace OfflineInspect.ReTransmission.MapReduce
 
     }
 
-    public class LlcTlliSession : CommonToolx, IDisposable
+    public class LlcTlliSessionStaging : CommonToolx, IDisposable
     {
-        private string mongo_collection = CommonAttribute.LlcTlliSession[0];
-        private string mongo_db = CommonAttribute.LlcTlliSession[1];
-        private string mongo_conn = CommonAttribute.LlcTlliSession[2];
+        private string mongo_collection = CommonAttribute.LlcTlliSessionStaging[0];
+        private string mongo_db = CommonAttribute.LlcTlliSessionStaging[1];
+        private string mongo_conn = CommonAttribute.LlcTlliSessionStaging[2];
 
-        private int min_file_num = Int32.Parse(CommonAttribute.LlcTlliSession[3]);
-        private int max_file_num = Int32.Parse(CommonAttribute.LlcTlliSession[4]);
+        private int min_file_num = Int32.Parse(CommonAttribute.LlcTlliSessionStaging[3]);
+        private int max_file_num = Int32.Parse(CommonAttribute.LlcTlliSessionStaging[4]);
 
-        private int size = Int32.Parse(CommonAttribute.LlcTlliSession[5]);
+        private int size = Int32.Parse(CommonAttribute.LlcTlliSessionStaging[5]);
 
-        public MongoCrud<LlcTlliSessionDocument> mongo_LlcTlliSession;
+        public MongoCrud<LlcTlliSessionStagingDocument> mongo_LlcTlliSessionStaging;
         private foshan_llc_dataEntities gb = new foshan_llc_dataEntities();
 
-        public LlcTlliSession()
+        public LlcTlliSessionStaging()
         {
-            mongo_LlcTlliSession = new MongoCrud<LlcTlliSessionDocument>(mongo_conn, mongo_db, mongo_collection);
+            mongo_LlcTlliSessionStaging = new MongoCrud<LlcTlliSessionStagingDocument>(mongo_conn, mongo_db, mongo_collection);
             gb.CommandTimeout = 0;
             gb.ContextOptions.LazyLoadingEnabled = true;
             gb.Gb_LLC_ReTransmission.MergeOption = MergeOption.NoTracking;
@@ -94,7 +94,7 @@ namespace OfflineInspect.ReTransmission.MapReduce
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-        ~LlcTlliSession()
+        ~LlcTlliSessionStaging()
         {
             Dispose(false);
         }
@@ -115,7 +115,7 @@ namespace OfflineInspect.ReTransmission.MapReduce
                 Console.WriteLine("file_num:{0}", j);
                 CreateCollection(j);
             }
-            Console.WriteLine("TlliLLCSession tls = new TlliLLCSession();ok");
+            Console.WriteLine("LlcTlliSessionStagingDocument->mongo->ok");
         }
 
         public void CreateCollection(int filenum)
@@ -147,7 +147,7 @@ namespace OfflineInspect.ReTransmission.MapReduce
                     if (pd_llc.Count() == 0) continue;
                     #endregion
 
-                    LlcTlliSessionDocument llcs = new LlcTlliSessionDocument();
+                    LlcTlliSessionStagingDocument llcs = new LlcTlliSessionStagingDocument();
 
                     #region tcp会话的基础信息，callid/imsi/lac/cell/bvci/duration/
                     llcs._id = GenerateId();
@@ -184,7 +184,7 @@ namespace OfflineInspect.ReTransmission.MapReduce
                     #endregion
                     llcs.msg_aggre = pd_llc.Select(e => e.LLC_MsgType).Distinct().Aggregate((a, b) => a + "," + b);
                     llcs.msg_distinct_count = pd_llc.Select(e => e.LLC_MsgType).Distinct().Count();
-                    mongo_LlcTlliSession.MongoCol.Insert(llcs);
+                    mongo_LlcTlliSessionStaging.MongoCol.Insert(llcs);
                 }
             }
 
