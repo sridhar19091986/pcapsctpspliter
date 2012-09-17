@@ -28,7 +28,7 @@ using System.Threading.Tasks;
 
 namespace OfflineInspect.ReTransmission.MapReduce
 {
-    public class LacCellBvciDocument
+    public class LacCellBvciStagingDocument
     {
         #region 给sqlserver虚构一个主键，good,ef5 code first,/2012.8.29
         [Key]
@@ -50,17 +50,17 @@ namespace OfflineInspect.ReTransmission.MapReduce
         public string callid { get; set; }
     }
 
-    public class LacCellBvci : CommonToolx, IDisposable
+    public class LacCellBvciStaging : CommonToolx, IDisposable
     {
-        private string mongo_collection = CommonAttribute.LacCellBvci[0];
-        private string mongo_db = CommonAttribute.LacCellBvci[1];
-        private string mongo_conn = CommonAttribute.LacCellBvci[2];
+        private string mongo_collection = CommonAttribute.LacCellBvciStaging[0];
+        private string mongo_db = CommonAttribute.LacCellBvciStaging[1];
+        private string mongo_conn = CommonAttribute.LacCellBvciStaging[2];
 
-        public MongoCrud<LacCellBvciDocument> mongo_LacCellBvci;
+        public MongoCrud<LacCellBvciStagingDocument> mongo_LacCellBvciStaging;
 
-        public LacCellBvci()
+        public LacCellBvciStaging()
         {
-            mongo_LacCellBvci = new MongoCrud<LacCellBvciDocument>(mongo_conn, mongo_db, mongo_collection);
+            mongo_LacCellBvciStaging = new MongoCrud<LacCellBvciStagingDocument>(mongo_conn, mongo_db, mongo_collection);
         }
         #region Implementing IDisposable and the Dispose Pattern Properly
         private bool disposed = false; // to detect redundant calls
@@ -69,7 +69,7 @@ namespace OfflineInspect.ReTransmission.MapReduce
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-        ~LacCellBvci()
+        ~LacCellBvciStaging()
         {
             Dispose(false);
         }
@@ -125,7 +125,7 @@ namespace OfflineInspect.ReTransmission.MapReduce
 
             foreach (var p in fc)
             {
-                LacCellBvciDocument lcbd = new LacCellBvciDocument();
+                LacCellBvciStagingDocument lcbd = new LacCellBvciStagingDocument();
                 lcbd._id = GenerateId();
                 if (p.bssgp_lac != null)
                     lcbd.lac = p.bssgp_lac.ToString();
@@ -139,12 +139,12 @@ namespace OfflineInspect.ReTransmission.MapReduce
                 if (p.callid != null)
                     lcbd.callid = p.callid.Value.ToString();
 
-                mongo_LacCellBvci.MongoCol.Insert(lcbd);
+                mongo_LacCellBvciStaging.MongoCol.Insert(lcbd);
             }
 
             //mongo_lac_cell_bvci.BulkMongo(bv.ToList(), true);
 
-            Console.WriteLine(" LacCellBvci->mongo->ok");
+            Console.WriteLine("LacCellBvciStagingDocument->mongo->ok");
 
             //BulkMongo(bv.ToList());
         }
@@ -180,7 +180,7 @@ namespace OfflineInspect.ReTransmission.MapReduce
         public string GetLacCell(string src, string dst, int? bvci)
         {
             //var query = from p in ListLacCellBvci
-            var query = from p in mongo_LacCellBvci.ListT
+            var query = from p in mongo_LacCellBvciStaging.ListT
                         where (p.src == src && p.dst == dst && p.bvci == bvci)
                         || (p.dst == src && p.src == dst && p.bvci == bvci)
                         select p;
