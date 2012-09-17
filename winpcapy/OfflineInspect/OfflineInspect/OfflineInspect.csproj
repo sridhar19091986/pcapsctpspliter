@@ -96,7 +96,7 @@
     <Compile Include="FlowControl\LacCellBvci.cs" />
     <Compile Include="Mongo\MongoCrud.cs" />
     <Compile Include="ReTransmission\CommonAttribute.cs" />
-    <Compile Include="ReTransmission\MapReduce\LacCellBvci.cs" />
+    <Compile Include="ReTransmission\MapReduce\LacCellBvciStaging.cs" />
     <Content Include="ReTransmission\NoteBook\RetransStatics.txt" />
     <Compile Include="ReTransmission\CommonDataLocation.cs" />
     <Compile Include="ReTransmission\MapReduce\LacCellBvciETL.cs" />
@@ -104,8 +104,8 @@
     <Compile Include="ReTransmission\Context\TcpDbContext.cs" />
     <Compile Include="ReTransmission\TcpDataFactory.cs" />
     <Compile Include="ReTransmission\MapReduce\TcpPortSessionETL.cs" />
-    <Compile Include="ReTransmission\MapReduce\LlcTlliSession.cs" />
-    <Compile Include="ReTransmission\MapReduce\TcpPortSession.cs" />
+    <Compile Include="ReTransmission\MapReduce\LlcTlliSessionStaging.cs" />
+    <Compile Include="ReTransmission\MapReduce\TcpPortSessionStaging.cs" />
     <Content Include="Mongo\Template2.txt" />
     <Content Include="Mongo\Template.txt" />
     <Compile Include="MultiInterface\GiGETRateMap.cs" />

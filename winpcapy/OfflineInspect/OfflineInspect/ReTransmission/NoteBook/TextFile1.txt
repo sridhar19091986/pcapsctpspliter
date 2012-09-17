@@ -137,3 +137,36 @@ LLC重传的问题？现网暂时未开通，有LLC的NU相同的包。
 
 		            //using (TransactionScope scope = new TransactionScope())
             //{
+
+
+			       #region 维度
+        //注入apn、imei维度等
+        #endregion
+
+
+
+		        private static void DeleteTcpTable()
+        {
+            using (TcpDbContext db = new TcpDbContext(sqlconn))
+            {
+                db.Configuration.AutoDetectChangesEnabled = false;
+                //DontDropDbJustCreateTablesIfModelChanged 
+
+                //db.ChangeTracker.
+
+                db.Database.SqlCommand("delete from TcpPortSessionDocuments");
+                db.Database.SqlCommand("delete from TcpRetransStaticsDocuments");
+
+                Console.WriteLine(db.Database.Connection.ConnectionString);
+                Console.WriteLine("DeleteTcpTable,Finish");
+            }
+            GC.Collect();
+
+
+
+			       //DeleteTcpTable();
+        }
+
+
+		        //[Key,ForeignKey("TcpRetransStaticsDocuments"), Column(Order = 0)]
+        //[ForeignKey("TcpRetransStaticsDocuments")]
