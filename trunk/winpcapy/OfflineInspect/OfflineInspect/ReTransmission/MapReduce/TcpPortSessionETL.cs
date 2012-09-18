@@ -41,6 +41,16 @@ limit 100
  * 
  * ETL，正对staging做进一步的处理
  * 
+ * 
+ * ETL，维度处理和事实表处理，在维度不大的情况下，可以考虑重复使用。
+ * 
+ * ETL的目标是给olap和数据挖掘使用。
+ * 
+ * 
+ * staging的目标是，主要是使用聚合的方法，尽量的压缩数据，但是不能metadata元数据的特性？
+ * 
+ * 
+ * 
  * 本模块需要按照维度表dimension和事实表fact进行分割，同时需要考虑mongodb的非常方便与数据挖掘的存储特性。
  * #region 给sqlserver虚构一个主键，good,ef5 code first,/2012.8.29 ,mongo主键，sql主键，外键，primarykey ,foreignkey,_id
  * 
@@ -81,8 +91,9 @@ namespace OfflineInspect.ReTransmission.MapReduce
         public string ip_flags_mf { get; set; }
         public string ip_bsc_aggre { get; set; }
 
-        public string bvci_bsc { get; set; }
-        public int bvci_bsc_cnt { get; set; }
+        public string bvci_distinct { get; set; }
+        public int bvci_distinct_cnt { get; set; }
+
         public string lac_cell_from_bvci { get; set; }
         public int lac_cell_from_bvci_cnt { get; set; }
 
@@ -94,6 +105,12 @@ namespace OfflineInspect.ReTransmission.MapReduce
 
         public string cell_seq_aggre { get; set; }
         public string bvci_seq_aggre { get; set; }
+
+        public int bvci_seq_cnt { get; set; }
+        public int bvci_pp_cnt { get; set; }
+
+        public string bvci_from_lac_cell { get; set; }
+        public int bvci_from_lac_cell_cnt { get; set; }
     }
 
     public class DimensionBssgp
@@ -101,17 +118,11 @@ namespace OfflineInspect.ReTransmission.MapReduce
         [Key]
         [DatabaseGenerated(DatabaseGenerationOption.None)]
         public long BssgpID { get; set; }
-
         public string imsi { get; set; }
-
-        public string direction { get; set; }
-
+        public string direction { get; set;}
         public string lac { get; set; }
         public string lac_cell { get; set; }
-        public int lac_cell_cnt { get; set; }
-
-        public string bvci_from_lac_cell { get; set; }
-        public int bvci_from_lac_cell_cnt { get; set; }
+        public int lac_cell_cnt { get; set; }    
     }
 
     public class DimensionLlcSndcp
@@ -119,12 +130,9 @@ namespace OfflineInspect.ReTransmission.MapReduce
         [Key]
         [DatabaseGenerated(DatabaseGenerationOption.None)]
         public long LlcSndcpID { get; set; }
-
         public string llcgprs_sapi { get; set; }
-
         public string sndcp_m { get; set; }
         public string sndcp_nsapi { get; set; }
-
     }
 
     public class DimensionIp2
@@ -310,11 +318,18 @@ namespace OfflineInspect.ReTransmission.MapReduce
                 trsd.DimIpUdpNs.multi_cell_per_bvci = p.multi_cell_per_bvci;
                 trsd.DimIpUdpNs.sgsn_lost_bsc_ip = p.sgsn_lost_bsc_ip;
                 trsd.DimIpUdpNs.ip_flags_mf = p.ip_flags_mf;
-                trsd.DimIpUdpNs.bvci_bsc = p.bsc_bvci;
-                trsd.DimIpUdpNs.bvci_bsc_cnt = GetCellCount(p.bsc_bvci);//
+                trsd.DimIpUdpNs.bvci_distinct = p.bsc_bvci;
+                trsd.DimIpUdpNs.bvci_distinct_cnt = GetCellCount(p.bsc_bvci);//
                 trsd.DimIpUdpNs.lac_cell_from_bvci = p.lac_cell_from_bvci;
                 trsd.DimIpUdpNs.lac_cell_from_bvci_cnt = GetCellCount(p.lac_cell_from_bvci);//
-                trsd.DimIpUdpNs.multibvci_cnt = trsd.DimIpUdpNs.lac_cell_from_bvci_cnt - trsd.DimIpUdpNs.bvci_bsc_cnt;
+                trsd.DimIpUdpNs.multibvci_cnt = trsd.DimIpUdpNs.lac_cell_from_bvci_cnt - trsd.DimIpUdpNs.bvci_distinct_cnt;
+                trsd.DimIpUdpNs.bvci_from_lac_cell = SplitLacCellStr(p.lac_cell, cellslook);
+                trsd.DimIpUdpNs.bvci_from_lac_cell_cnt = SplitLacCellCnt(p.lac_cell, cellslook);
+
+                trsd.DimIpUdpNs.bvci_seq_cnt = GetCellCount(p.bvci_seq_aggre);
+                trsd.DimIpUdpNs.bvci_pp_cnt = trsd.DimIpUdpNs.bvci_seq_cnt - trsd.DimIpUdpNs.bvci_distinct_cnt;
+
+
 
                 //mulit-bvci-percell的问题
                 trsd.DimBssgp.lac = p.lac;      
@@ -322,9 +337,8 @@ namespace OfflineInspect.ReTransmission.MapReduce
                 trsd.DimBssgp.direction = p.direction;
                 trsd.DimBssgp.lac_cell = p.lac_cell;
                 trsd.DimBssgp.lac_cell_cnt = GetCellCount(p.lac_cell);
-                trsd.DimBssgp.bvci_from_lac_cell = SplitLacCellStr(p.lac_cell, cellslook);
-                trsd.DimBssgp.bvci_from_lac_cell_cnt = SplitLacCellCnt(p.lac_cell, cellslook);
-                trsd.DimIpUdpNs.bvci_cell_error_cnt = trsd.DimIpUdpNs.bvci_bsc_cnt - trsd.DimBssgp.lac_cell_cnt;
+              
+                trsd.DimIpUdpNs.bvci_cell_error_cnt = trsd.DimIpUdpNs.bvci_distinct_cnt - trsd.DimBssgp.lac_cell_cnt;
 
                 trsd.DimLlcSndcp.sndcp_m = p.sndcp_m;
                 trsd.DimLlcSndcp.sndcp_nsapi = p.sndcp_nsapi;

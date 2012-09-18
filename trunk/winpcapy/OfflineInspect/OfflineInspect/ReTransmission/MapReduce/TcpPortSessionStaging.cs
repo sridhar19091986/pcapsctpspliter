@@ -6,6 +6,16 @@ go
 alter TABLE [Gb_TCP_ReTransmission]  alter  COLUMN [FileNum] int  not null
 go
 alter table [Gb_TCP_ReTransmission] add  PRIMARY KEY (PacketNum,FileNum);
+ * 
+ * 
+ * 
+CREATE UNIQUE CLUSTERED INDEX [tcpport] ON [dbo].[Gb_TCP_ReTransmission] 
+(
+	[FileNum] ASC,
+	[PacketNum] ASC,
+	[BeginFileNum] ASC,
+	[BeginFrameNum] ASC
+)WITH (STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
  * */
 
 /*
@@ -173,7 +183,6 @@ namespace OfflineInspect.ReTransmission.MapReduce
 
         public MongoCrud<TcpPortSessionStagingDocument> mongo_TcpPortSessionStaging;
         //private GuangZhou_Gb_TCP_ReTransmission gb;
-        private foshan_tcp_dataEntities gb = new foshan_tcp_dataEntities();
 
 
         private int multicellperbvci;
@@ -183,9 +192,7 @@ namespace OfflineInspect.ReTransmission.MapReduce
         {
             mongo_TcpPortSessionStaging = new MongoCrud<TcpPortSessionStagingDocument>(mongo_conn, mongo_db, mongo_collection);
             //gb = new GuangZhou_Gb_TCP_ReTransmission();
-            gb.CommandTimeout = 0;
-            gb.ContextOptions.LazyLoadingEnabled = true;
-            gb.Gb_TCP_ReTransmission.MergeOption = MergeOption.NoTracking;
+
         }
 
         #region Implementing IDisposable and the Dispose Pattern Properly
@@ -225,11 +232,36 @@ namespace OfflineInspect.ReTransmission.MapReduce
             Console.WriteLine("TcpPortSessionStagingDocument->mongo->ok");
         }
 
+        private int? packet_cnt = null;
         public void CreateCollection(int filenum)
         {
-            IQueryable<Gb_TCP_ReTransmission> tcpsession = gb.Gb_TCP_ReTransmission.Where(e => e.BeginFileNum == filenum);
-            CreateTable("Up", tcpsession, filenum);
-            CreateTable("Down", tcpsession, filenum);
+            using (foshan_tcp_dataEntities gb = new foshan_tcp_dataEntities())
+            {
+                gb.CommandTimeout = 0;
+                gb.Gb_TCP_ReTransmission.MergeOption = MergeOption.NoTracking;
+                gb.ContextOptions.LazyLoadingEnabled = false;
+                //var cnt = from p in gb.Gb_TCP_ReTransmission
+                //          where p.BeginFileNum==filenum
+                //          select p.BeginFrameNum;
+                //packet_cnt = cnt.Max();
+                packet_cnt = gb.Gb_TCP_ReTransmission.Where(e => e.BeginFileNum == filenum).Max(e => e.BeginFrameNum);//数据库分页错误的问题？？？？？
+            }
+
+            if (packet_cnt == null) return;
+
+            using (foshan_tcp_dataEntities gb = new foshan_tcp_dataEntities())
+            {
+                gb.CommandTimeout = 0;
+                gb.Gb_TCP_ReTransmission.MergeOption = MergeOption.NoTracking;
+                gb.ContextOptions.LazyLoadingEnabled = true;
+
+                int step = (int)packet_cnt / size + 1;
+                Console.WriteLine("packet_cnt...{0}", packet_cnt);
+                string[] directions = new string[] { "Up", "Down" };
+                IQueryable<Gb_TCP_ReTransmission> tcpsession = gb.Gb_TCP_ReTransmission.Where(e => e.BeginFileNum == filenum);
+                //int packet_cnt = gb_tcp_retrans.Select(e => e.BeginFrameNum).Distinct().Count();
+                CreateTable(directions, tcpsession, filenum, step);
+            }
         }
 
         //提取下行方向BVCI对应的小区
@@ -264,17 +296,12 @@ namespace OfflineInspect.ReTransmission.MapReduce
          * 
          * */
         //对每个文件号中的开始帧号进行分页
-        public void CreateTable(string direction, IQueryable<Gb_TCP_ReTransmission> gb_tcp_retrans, int filenum)
+
+        public void CreateTable(string[] directions, IQueryable<Gb_TCP_ReTransmission> gb_tcp_retrans, int filenum, int step)
         {
+
             string host = null;
             string uri = null;
-
-            //int packet_cnt = gb_tcp_retrans.Select(e => e.BeginFrameNum).Distinct().Count();
-            int? packet_cnt = gb_tcp_retrans.Max(e => e.BeginFrameNum);//数据库分页错误的问题？？？？？
-
-            if (packet_cnt == null) return;
-
-            int step = (int)packet_cnt / size + 1;
 
             //执行帧号分页
             for (int i = 0; i < step; i++)
@@ -285,131 +312,133 @@ namespace OfflineInspect.ReTransmission.MapReduce
 
                 var tcp_sessions = iq_tcp_session.ToLookup(e => e.BeginFrameNum);
 
-                //帧号分页中的每个tcp的会话过程
-                foreach (var m in tcp_sessions)
-                {
-                    #region 会话过滤，filter
-                    var gb_packet = m.Where(e => e.bssgp_direction == direction); //本次只计算下行速率
-                    var pd_no_3tcp = gb_packet.Where(e => e.tcp_nxtseq != null);//不是3次握手的包
-                    if (pd_no_3tcp.Count() == 0) continue;
-                    #endregion
+                Console.Write("step...{0},", i);
 
-                    TcpPortSessionStagingDocument tcps = new TcpPortSessionStagingDocument();
-
-                    #region tcp会话的基础信息，callid/imsi/lac/cell/bvci/duration/
-
-                    tcps._id = GenerateId();
-                    tcps.tpsdID = tcps._id;
-
-                    tcps.session_id = filenum.ToString() + "-" + m.Key.Value.ToString();
-                    tcps.direction = direction;
-                    tcps.imsi = m.Where(e => e.bssgp_imsi != null).Select(e => e.bssgp_imsi).FirstOrDefault();
-                    host = m.Where(e => e.http_host != null).Select(e => e.http_host).FirstOrDefault();
-                    uri = m.Where(e => e.http_request_uri != null).Select(e => e.http_request_uri).FirstOrDefault();
-                    //合并uri算法
-                    tcps.absolute_uri = uri;
-                    if (host != null)
+                foreach (var direction in directions)
+                    //帧号分页中的每个tcp的会话过程
+                    foreach (var m in tcp_sessions)
                     {
-                        if (uri != null)
+                        #region 会话过滤，filter
+                        var gb_packet = m.Where(e => e.bssgp_direction == direction); //本次只计算下行速率
+                        var pd_no_3tcp = gb_packet.Where(e => e.tcp_nxtseq != null);//不是3次握手的包
+                        if (pd_no_3tcp.Count() == 0) continue;
+                        #endregion
+
+                        TcpPortSessionStagingDocument tcps = new TcpPortSessionStagingDocument();
+
+                        #region tcp会话的基础信息，callid/imsi/lac/cell/bvci/duration/
+
+                        tcps._id = GenerateId();
+                        tcps.tpsdID = tcps._id;
+
+                        tcps.session_id = filenum.ToString() + "-" + m.Key.Value.ToString();
+                        tcps.direction = direction;
+                        tcps.imsi = m.Where(e => e.bssgp_imsi != null).Select(e => e.bssgp_imsi).FirstOrDefault();
+                        host = m.Where(e => e.http_host != null).Select(e => e.http_host).FirstOrDefault();
+                        uri = m.Where(e => e.http_request_uri != null).Select(e => e.http_request_uri).FirstOrDefault();
+                        //合并uri算法
+                        tcps.absolute_uri = uri;
+                        if (host != null)
                         {
-                            if (!uri.Contains(host))
-                                tcps.absolute_uri = host + uri;
+                            if (uri != null)
+                            {
+                                if (!uri.Contains(host))
+                                    tcps.absolute_uri = host + uri;
+                            }
+                            else
+                            {
+                                tcps.absolute_uri = host;
+                            }
                         }
-                        else
-                        {
-                            tcps.absolute_uri = host;
-                        }
+                        tcps.user_agent = m.Where(e => e.http_user_agent != null).Select(e => e.http_user_agent).FirstOrDefault();
+                        tcps.http_method = m.Where(e => e.http_request_method != null).Select(e => e.http_request_method).FirstOrDefault();
+                        var src = m.Select(e => e.ip_src_host);
+                        var dst = m.Select(e => e.ip_dst_host);
+                        var bscip = src.Union(dst);
+                        tcps.mscbsc_ip_aggre = string.Join(",", bscip.Distinct().OrderBy(e => e));
+                        tcps.mscbsc_ip_count = bscip.Distinct().Count();
+                        //还需要1个？留意ip的问题?
+                        //????
+
+                        tcps.lac_cell = m.Where(e => e.bssgp_lac != null).Count() == 0 ? "" : m.Where(e => e.bssgp_lac != null).Select(e => Convert.ToString(e.bssgp_lac) + "-" + Convert.ToString(e.bssgp_ci)).IEnumDistinctStrComma();
+                        tcps.lac = m.Where(e => e.bssgp_lac != null).Select(e => e.bssgp_lac).IEnumDistinctStrComma();
+                        //下行时延，包含3次握手，取这次会话的总长度吧。
+                        TimeSpan? ts = m.Max(e => DateTime.Parse(e.GbOverLLC_time)) - pd_no_3tcp.Min(e => DateTime.Parse(e.GbOverLLC_time));
+                        tcps.duration = ts.Value.TotalMilliseconds;
+                        #endregion
+
+                        tcps.bsc_bvci = m.Where(e => e.nsip_bvci != null).Select(e => Convert.ToString(e.nsip_bvci)).IEnumDistinctStrComma();
+
+                        tcps.lac_cell_from_bvci = GetLacCellFromBvci(m, out multicellperbvci, out sgsnlostbscip);//??????pdp????
+
+                        //小区切换序列？
+                        tcps.cell_seq_aggre = m.Where(e => e.bssgp_ci != null).OrderBy(e => e.FileNum).ThenBy(e => e.PacketNum).Select(e => e.bssgp_ci).IEnumSequenceStrComma();
+                        tcps.bvci_seq_aggre = m.Where(e => e.nsip_bvci != null).OrderBy(e => e.FileNum).ThenBy(e => e.PacketNum).Select(e => e.nsip_bvci).IEnumSequenceStrComma();
+
+                        //计算2中问题，per bvci multi cell，
+                        tcps.multi_cell_per_bvci = multicellperbvci;
+                        tcps.sgsn_lost_bsc_ip = sgsnlostbscip;
+
+                        #region seq算法，计算tcp重传和丢包
+                        //序列号的计算
+                        //正确计算是，每个包进行计算。
+                        //tcps.ip_total_aggre = pd_no_3tcp.Sum(e => e.ip_len);
+                        //sndcp分片的问题会影响丢包率的计算   
+                        //tcps.ip2_total_aggre = pd_no_3tcp.Sum(e => e.ip2_len - 20 - e.tcp_hdr_len);
+                        //tcps.seqreduce_ip2total_aggre = tcps.seq_total_reduce > tcps.ip2_total_aggre ? tcps.seq_total_reduce : tcps.ip2_total_aggre;
+
+                        tcps.ip_total_aggre = gb_packet.Sum(e => e.ip_len);
+                        tcps.sndcp_m_count = gb_packet.Where(e => e.ip2_len == null).Count();
+                        tcps.seq_tcp_min = pd_no_3tcp.Min(e => Convert.ToInt64(e.tcp_seq));
+                        tcps.seq_nxt_max = pd_no_3tcp.Max(e => Convert.ToInt64(e.tcp_nxtseq));
+                        tcps.ip2ip1_header = pd_no_3tcp.Max(e => e.ip_len - (20 + e.tcp_hdr_len + (Convert.ToInt64(e.tcp_nxtseq) - Convert.ToInt64(e.tcp_seq))));
+                        tcps.sndcp_m_total = gb_packet.Where(e => e.ip2_len == null).Sum(e => e.sndcp_len);
+                        tcps.seq_total_aggre = pd_no_3tcp.Sum(e => Convert.ToInt64(e.tcp_nxtseq) - Convert.ToInt64(e.tcp_seq));
+                        tcps.seqtotal_sndcp_aggre = tcps.seq_total_aggre + tcps.sndcp_m_total;
+
+                        tcps.seq_total_reduce = tcps.seq_nxt_max - tcps.seq_tcp_min;
+
+                        tcps.seq_total_lost = tcps.seq_total_reduce - tcps.seqtotal_sndcp_aggre;
+
+                        //计算速率，取reduce吧
+                        //tcps.seq_total_aggre_rate = (double)tcps.seq_total_reduce / tcps.duration
+                        tcps.seq_total_count = pd_no_3tcp.Count();
+                        tcps.seq_distinct_count = pd_no_3tcp.Select(e => e.tcp_seq).Distinct().Count();
+                        tcps.seq_repeat_cnt = tcps.seq_total_count - tcps.seq_distinct_count;
+                        tcps.tcp_seq_aggre = pd_no_3tcp.Select(e => e.tcp_seq).IEnumDistinctStrComma();
+                        //第1层ip地址，第2层ip地址
+                        tcps.ip_src_aggre = pd_no_3tcp.Select(e => e.ip_src_host).IEnumDistinctStrComma();
+                        tcps.ip2_src_aggre = pd_no_3tcp.Select(e => e.ip2_src_host).IEnumDistinctStrComma();
+                        tcps.ip_dst_aggre = pd_no_3tcp.Select(e => e.ip_dst_host).IEnumDistinctStrComma();
+                        tcps.ip2_dst_aggre = pd_no_3tcp.Select(e => e.ip2_dst_host).IEnumDistinctStrComma();
+                        //ttl
+                        tcps.ip_ttl_aggre = pd_no_3tcp.Select(e => e.ip_ttl).IEnumDistinctStrComma();
+                        tcps.ip2_ttl_aggre = pd_no_3tcp.Select(e => e.ip2_ttl).IEnumDistinctStrComma();
+                        //分片
+                        tcps.ip_flags_mf = pd_no_3tcp.Select(e => e.ip_flags_mf).IEnumDistinctStrComma();
+                        tcps.ip2_flags_mf = pd_no_3tcp.Select(e => e.ip2_flags_mf).IEnumDistinctStrComma();
+                        tcps.sndcp_m = pd_no_3tcp.Select(e => e.sndcp_m).IEnumDistinctStrComma();
+                        tcps.tcp_need_segment = pd_no_3tcp.Select(e => e.tcp_need_segment).IEnumDistinctStrComma();
+                        //windows_size,CWR
+                        tcps.tcp_flags_cwr = pd_no_3tcp.Select(e => e.tcp_flags_cwr).IEnumDistinctStrComma();
+                        tcps.tcp_win_size = pd_no_3tcp.Select(e => e.tcp_window_size).IEnumDistinctStrComma();
+                        //端口
+                        tcps.tcp_nxt_aggre = pd_no_3tcp.Select(e => e.tcp_nxtseq).OrderBy(e => e).Aggregate((a, b) => a + "," + b);
+                        // + "-" + Convert.ToString(e.tcp_dstport),只取源端口吧。
+                        tcps.src_port_aggre = pd_no_3tcp.Select(e => Convert.ToString(e.tcp_srcport)).IEnumDistinctStrComma();
+                        tcps.dst_port_aggre = pd_no_3tcp.Select(e => Convert.ToString(e.tcp_dstport)).IEnumDistinctStrComma();
+                        //消息类型
+                        tcps.msg_distinct_aggre = pd_no_3tcp.Select(e => e.GbOverLLC_MsgType).IEnumDistinctStrComma();
+                        #endregion
+
+                        tcps.sndcp_nsapi = pd_no_3tcp.Select(e => e.sndcp_nsapi).IEnumDistinctStrComma();
+                        tcps.llcgprs_sapi = pd_no_3tcp.Select(e => e.llcgprs_sapi).IEnumDistinctStrComma();
+
+                        mongo_TcpPortSessionStaging.MongoCol.Insert(tcps);
                     }
-                    tcps.user_agent = m.Where(e => e.http_user_agent != null).Select(e => e.http_user_agent).FirstOrDefault();
-                    tcps.http_method = m.Where(e => e.http_request_method != null).Select(e => e.http_request_method).FirstOrDefault();
-                    var src = m.Select(e => e.ip_src_host);
-                    var dst = m.Select(e => e.ip_dst_host);
-                    var bscip = src.Union(dst);
-                    tcps.mscbsc_ip_aggre = string.Join(",", bscip.Distinct().OrderBy(e => e));
-                    tcps.mscbsc_ip_count = bscip.Distinct().Count();
-                    //还需要1个？留意ip的问题?
-                    //????
-
-                    tcps.lac_cell = m.Where(e => e.bssgp_lac != null).Count() == 0 ? "" : m.Where(e => e.bssgp_lac != null).Select(e => Convert.ToString(e.bssgp_lac) + "-" + Convert.ToString(e.bssgp_ci)).IEnumDistinctStrComma();
-                    tcps.lac = m.Where(e => e.bssgp_lac != null).Select(e => e.bssgp_lac).IEnumDistinctStrComma();
-                    //下行时延，包含3次握手，取这次会话的总长度吧。
-                    TimeSpan? ts = m.Max(e => DateTime.Parse(e.GbOverLLC_time)) - pd_no_3tcp.Min(e => DateTime.Parse(e.GbOverLLC_time));
-                    tcps.duration = ts.Value.TotalMilliseconds;
-                    #endregion
-
-                    tcps.bsc_bvci = m.Where(e => e.nsip_bvci != null).Select(e => Convert.ToString(e.nsip_bvci)).IEnumDistinctStrComma();
-
-                    tcps.lac_cell_from_bvci = GetLacCellFromBvci(m, out multicellperbvci, out sgsnlostbscip);//??????pdp????
-
-                    //小区切换序列？
-                    tcps.cell_seq_aggre = m.Where(e => e.bssgp_ci != null).OrderBy(e => e.FileNum).ThenBy(e => e.PacketNum).Select(e => e.bssgp_ci).IEnumSequenceStrComma();
-                    tcps.bvci_seq_aggre = m.Where(e => e.nsip_bvci != null).OrderBy(e => e.FileNum).ThenBy(e => e.PacketNum).Select(e => e.nsip_bvci).IEnumSequenceStrComma();
-
-                    //计算2中问题，per bvci multi cell，
-                    tcps.multi_cell_per_bvci = multicellperbvci;
-                    tcps.sgsn_lost_bsc_ip = sgsnlostbscip;
-
-                    #region seq算法，计算tcp重传和丢包
-                    //序列号的计算
-                    //正确计算是，每个包进行计算。
-                    //tcps.ip_total_aggre = pd_no_3tcp.Sum(e => e.ip_len);
-                    //sndcp分片的问题会影响丢包率的计算   
-                    //tcps.ip2_total_aggre = pd_no_3tcp.Sum(e => e.ip2_len - 20 - e.tcp_hdr_len);
-                    //tcps.seqreduce_ip2total_aggre = tcps.seq_total_reduce > tcps.ip2_total_aggre ? tcps.seq_total_reduce : tcps.ip2_total_aggre;
-
-                    tcps.ip_total_aggre = gb_packet.Sum(e => e.ip_len);
-                    tcps.sndcp_m_count = gb_packet.Where(e => e.ip2_len == null).Count();
-                    tcps.seq_tcp_min = pd_no_3tcp.Min(e => Convert.ToInt64(e.tcp_seq));
-                    tcps.seq_nxt_max = pd_no_3tcp.Max(e => Convert.ToInt64(e.tcp_nxtseq));
-                    tcps.ip2ip1_header = pd_no_3tcp.Max(e => e.ip_len - (20 + e.tcp_hdr_len + (Convert.ToInt64(e.tcp_nxtseq) - Convert.ToInt64(e.tcp_seq))));
-                    tcps.sndcp_m_total = gb_packet.Where(e => e.ip2_len == null).Sum(e => e.sndcp_len);
-                    tcps.seq_total_aggre = pd_no_3tcp.Sum(e => Convert.ToInt64(e.tcp_nxtseq) - Convert.ToInt64(e.tcp_seq));
-                    tcps.seqtotal_sndcp_aggre = tcps.seq_total_aggre + tcps.sndcp_m_total;
-
-                    tcps.seq_total_reduce = tcps.seq_nxt_max - tcps.seq_tcp_min;
-
-                    tcps.seq_total_lost = tcps.seq_total_reduce - tcps.seqtotal_sndcp_aggre;
-
-                    //计算速率，取reduce吧
-                    //tcps.seq_total_aggre_rate = (double)tcps.seq_total_reduce / tcps.duration
-                    tcps.seq_total_count = pd_no_3tcp.Count();
-                    tcps.seq_distinct_count = pd_no_3tcp.Select(e => e.tcp_seq).Distinct().Count();
-                    tcps.seq_repeat_cnt = tcps.seq_total_count - tcps.seq_distinct_count;
-                    tcps.tcp_seq_aggre = pd_no_3tcp.Select(e => e.tcp_seq).IEnumDistinctStrComma();
-                    //第1层ip地址，第2层ip地址
-                    tcps.ip_src_aggre = pd_no_3tcp.Select(e => e.ip_src_host).IEnumDistinctStrComma();
-                    tcps.ip2_src_aggre = pd_no_3tcp.Select(e => e.ip2_src_host).IEnumDistinctStrComma();
-                    tcps.ip_dst_aggre = pd_no_3tcp.Select(e => e.ip_dst_host).IEnumDistinctStrComma();
-                    tcps.ip2_dst_aggre = pd_no_3tcp.Select(e => e.ip2_dst_host).IEnumDistinctStrComma();
-                    //ttl
-                    tcps.ip_ttl_aggre = pd_no_3tcp.Select(e => e.ip_ttl).IEnumDistinctStrComma();
-                    tcps.ip2_ttl_aggre = pd_no_3tcp.Select(e => e.ip2_ttl).IEnumDistinctStrComma();
-                    //分片
-                    tcps.ip_flags_mf = pd_no_3tcp.Select(e => e.ip_flags_mf).IEnumDistinctStrComma();
-                    tcps.ip2_flags_mf = pd_no_3tcp.Select(e => e.ip2_flags_mf).IEnumDistinctStrComma();
-                    tcps.sndcp_m = pd_no_3tcp.Select(e => e.sndcp_m).IEnumDistinctStrComma();
-                    tcps.tcp_need_segment = pd_no_3tcp.Select(e => e.tcp_need_segment).IEnumDistinctStrComma();
-                    //windows_size,CWR
-                    tcps.tcp_flags_cwr = pd_no_3tcp.Select(e => e.tcp_flags_cwr).IEnumDistinctStrComma();
-                    tcps.tcp_win_size = pd_no_3tcp.Select(e => e.tcp_window_size).IEnumDistinctStrComma();
-                    //端口
-                    tcps.tcp_nxt_aggre = pd_no_3tcp.Select(e => e.tcp_nxtseq).OrderBy(e => e).Aggregate((a, b) => a + "," + b);
-                    // + "-" + Convert.ToString(e.tcp_dstport),只取源端口吧。
-                    tcps.src_port_aggre = pd_no_3tcp.Select(e => Convert.ToString(e.tcp_srcport)).IEnumDistinctStrComma();
-                    tcps.dst_port_aggre = pd_no_3tcp.Select(e => Convert.ToString(e.tcp_dstport)).IEnumDistinctStrComma();
-                    //消息类型
-                    tcps.msg_distinct_aggre = pd_no_3tcp.Select(e => e.GbOverLLC_MsgType).IEnumDistinctStrComma();
-                    #endregion
-
-                    tcps.sndcp_nsapi = pd_no_3tcp.Select(e => e.sndcp_nsapi).IEnumDistinctStrComma();
-                    tcps.llcgprs_sapi = pd_no_3tcp.Select(e => e.llcgprs_sapi).IEnumDistinctStrComma();
-
-                    mongo_TcpPortSessionStaging.MongoCol.Insert(tcps);
-                }
             }
 
-            string mess = string.Format("OK...direction...{0}...size:{1}...step:{2}...cnt:{3}",
-                direction, size, step, packet_cnt);
+            string mess = string.Format("OK......size:{0}...step:{1}", size, step);
             Console.WriteLine(mess);
         }
     }

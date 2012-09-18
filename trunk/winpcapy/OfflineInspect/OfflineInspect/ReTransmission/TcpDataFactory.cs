@@ -12,7 +12,7 @@ namespace OfflineInspect.ReTransmission
     {
         public static void BathMakeTcpData()
         {
-            CreateTcpDb();
+            //CreateTcpDb();
             BatchMakeTcpDataForMongo();
             BatchMakeTcpDataForSqlServer();
 
