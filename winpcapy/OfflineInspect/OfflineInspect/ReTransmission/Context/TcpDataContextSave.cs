@@ -61,8 +61,7 @@ namespace OfflineInspect.ReTransmission.Context
                         {
                             context[0] = context[0].AddToContext(context[0], tcp.DimIpUdpNs, count, bulksize, true, sqlconn);
                             context[1] = context[1].AddToContext(context[1], tcp.DimBssgp, count, bulksize, true, sqlconn);
-                            context[2] = context[2].AddToContext(context[2], tcp.DimLlcSndcp, count, bulksize, true, sqlconn);
-                    
+                            context[2] = context[2].AddToContext(context[2], tcp.DimLlcSndcp, count, bulksize, true, sqlconn);                   
                             context[3] = context[3].AddToContext(context[3], tcp.DimIp2, count, bulksize, true, sqlconn);
                             context[4] = context[4].AddToContext(context[4], tcp.DimTcp, count, bulksize, true, sqlconn);
                             context[5] = context[5].AddToContext(context[5], tcp.DimHttp, count, bulksize, true, sqlconn);

@@ -42,12 +42,12 @@ namespace OfflineInspect.ReTransmission.MapReduce
         public string lac { get; set; }
         public string lac_cell { get; set; }
         public int cnt { get; set; }
-        public string msg { get; set; }
+        //public string msg { get; set; }
 
         ////http://stackoverflow.com/questions/8111125/how-do-i-map-text-field-type-of-sql-server-in-ef-code-first
         //[Column(TypeName = "ntext")]
         //[MaxLength]
-        public string callid { get; set; }
+        //public string callid { get; set; }
     }
 
     public class LacCellBvciStaging : CommonToolx, IDisposable
@@ -113,8 +113,8 @@ namespace OfflineInspect.ReTransmission.MapReduce
                          ttt.Key.ip_src_host,
                          ttt.Key.ip_dst_host,
                          cnt = ttt.Count(),
-                         msg = ttt.Select(e => e.LLC_MsgType).FirstOrDefault(),//.First(),
-                         callid = ttt.Select(e => e.BeginFrameNum).FirstOrDefault(),//.Distinct().First(),
+                         //msg = ttt.Select(e => e.LLC_MsgType).FirstOrDefault(),//.First(),
+                         //callid = ttt.Select(e => e.BeginFrameNum).FirstOrDefault(),//.Distinct().First(),
                          /*
                          //http://stackoverflow.com/questions/1066760/problem-with-converting-int-to-string-in-linq-to-entities
                          callid = ttt.Select(e => SqlFunctions.StringConvert((double)e.BeginFileNum.Value).Trim()
@@ -135,9 +135,9 @@ namespace OfflineInspect.ReTransmission.MapReduce
                 lcbd.dst = p.ip_dst_host;
                 lcbd.bvci = p.nsip_bvci;
                 lcbd.cnt = p.cnt;
-                lcbd.msg = p.msg;
-                if (p.callid != null)
-                    lcbd.callid = p.callid.Value.ToString();
+                //lcbd.msg = p.msg;
+                //if (p.callid != null)
+                //    lcbd.callid = p.callid.Value.ToString();
 
                 mongo_LacCellBvciStaging.MongoCol.Insert(lcbd);
             }
