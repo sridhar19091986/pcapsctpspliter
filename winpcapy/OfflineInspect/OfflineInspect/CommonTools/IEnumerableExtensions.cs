@@ -31,7 +31,9 @@ namespace OfflineInspect.CommonTools
                     temp = douhao;
                 }
             }
-            return hs.IEnumDistinctStrComma();
+            douhao = hs.Select(e => e.ToString()).Aggregate((a, b) => a + "," + b);
+            return douhao;
+            //return hs.IEnumDistinctStrComma();
         }
 
         public static string IEnumDistinctStrComma<T>(this IEnumerable<T> source)
