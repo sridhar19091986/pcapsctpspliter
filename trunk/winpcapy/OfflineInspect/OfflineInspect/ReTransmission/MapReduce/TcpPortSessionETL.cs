@@ -79,36 +79,51 @@ using System.ComponentModel.DataAnnotations;
  * 
  * 
  * */
+
+
+/*
+ * 关于维度的命名规则，能够一眼识别其计算方法，2012.9.19
+ * 
+ * */
+
 namespace OfflineInspect.ReTransmission.MapReduce
 {
     //这部分给sql保存
-    public class DimensionIpUdpNs
+    public class DimensionIp
     {
         [Key]
         [DatabaseGenerated(DatabaseGenerationOption.None)]
-        public long IpUdpNsID { get; set; }
-
+        public long IpID { get; set; }
         public string ip_flags_mf { get; set; }
-        public string ip_bsc_aggre { get; set; }
+        public string bsc_ip_distinct { get; set; }
 
-        public string bvci_distinct { get; set; }
+        public bool sgsn_lost_bsc_ip { get; set; }
+    }
+    public class DimensionUdp
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGenerationOption.None)]
+        public long UdpID { get; set; }
+    }
+    public class DimensionNs
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGenerationOption.None)]
+        public long NsID { get; set; }
+
+        public string bvci_distinct { get; set; }//记录不同的小区
         public int bvci_distinct_cnt { get; set; }
+        public string bvci_seq { get; set; }//记录切换序列
+        public int bvci_seq_cnt { get; set; }
+        public int bvci_pp_cnt { get; set; }//记录乒乓切换
+
+        public bool multi_cell_per_bvci { get; set; }
+        public int multibvci_cnt { get; set; }
 
         public string lac_cell_from_bvci { get; set; }
         public int lac_cell_from_bvci_cnt { get; set; }
-
         public int bvci_cell_error_cnt { get; set; }
-        public int multibvci_cnt { get; set; }
-
-        public int multi_cell_per_bvci { get; set; }
-        public int sgsn_lost_bsc_ip { get; set; }
-
-        public string cell_seq_aggre { get; set; }
-        public string bvci_seq_aggre { get; set; }
-
-        public int bvci_seq_cnt { get; set; }
-        public int bvci_pp_cnt { get; set; }
-
+       
         public string bvci_from_lac_cell { get; set; }
         public int bvci_from_lac_cell_cnt { get; set; }
     }
@@ -119,10 +134,11 @@ namespace OfflineInspect.ReTransmission.MapReduce
         [DatabaseGenerated(DatabaseGenerationOption.None)]
         public long BssgpID { get; set; }
         public string imsi { get; set; }
-        public string direction { get; set;}
-        public string lac { get; set; }
-        public string lac_cell { get; set; }
-        public int lac_cell_cnt { get; set; }    
+        public string direction { get; set; }
+        public string lac_distinct { get; set; }
+        public string lac_cell_distinct { get; set; }
+        public int lac_cell_distinct_cnt { get; set; }
+        public string cell_seq { get; set; }
     }
 
     public class DimensionLlcSndcp
@@ -140,8 +156,8 @@ namespace OfflineInspect.ReTransmission.MapReduce
         [Key]
         [DatabaseGenerated(DatabaseGenerationOption.None)]
         public long Ip2ID { get; set; }
-        public string ip2_sp_aggre { get; set; }
-        public string ip2ttl_sp_aggre { get; set; }
+        public string ip2host_distinct { get; set; }
+        public string ip2ttl_distinct { get; set; }
         public string ip2_flags_mf { get; set; }
     }
     public class DimensionTcp
@@ -150,7 +166,7 @@ namespace OfflineInspect.ReTransmission.MapReduce
         [DatabaseGenerated(DatabaseGenerationOption.None)]
         public long TcpID { get; set; }
         public string tcp_need_segment { get; set; }
-        public string tcp_port_aggre { get; set; }
+        public string tcp_port_distinct { get; set; }
     }
 
     public class DimensionHttp
@@ -167,7 +183,7 @@ namespace OfflineInspect.ReTransmission.MapReduce
     {
         [Key]
         [DatabaseGenerated(DatabaseGenerationOption.None)]
-        public long MeasureID { get; set; }
+        public long MessageID { get; set; }
         public string session_id { get; set; }
         public long? ip2ip1_header { get; set; }
         public string msg_distinct_aggre { get; set; }
@@ -180,13 +196,15 @@ namespace OfflineInspect.ReTransmission.MapReduce
         [Key]
         public long FactID { get; set; }
 
-        public long IpUdpNsID { get; set; }
+        public long IpID { get; set; }
+        public long UdpID { get; set; }
+        public long NsID { get; set; }
         public long BssgpID { get; set; }
         public long LlcSndcpID { get; set; }
         public long Ip2ID { get; set; }
         public long TcpID { get; set; }
         public long HttpID { get; set; }
-        public long MeasureID { get; set; }
+        public long MessageID { get; set; }
 
         public int sndcp_m_count { get; set; }
         public int? sndcp_m_total { get; set; }
@@ -207,7 +225,9 @@ namespace OfflineInspect.ReTransmission.MapReduce
     public class TcpPortSessionETLDocument
     {
         public long _id;
-        public DimensionIpUdpNs DimIpUdpNs = new DimensionIpUdpNs();
+        public DimensionIp DimIp = new DimensionIp();
+        public DimensionUdp DimUdp = new DimensionUdp();
+        public DimensionNs DimNs = new DimensionNs();
         public DimensionBssgp DimBssgp = new DimensionBssgp();
         public DimensionLlcSndcp DimLlcSndcp = new DimensionLlcSndcp();
         public DimensionIp2 DimIp2 = new DimensionIp2();
@@ -293,62 +313,63 @@ namespace OfflineInspect.ReTransmission.MapReduce
 
                 trsd._id = p._id;
 
-                trsd.DimIpUdpNs.IpUdpNsID = p._id;
+                trsd.DimIp.IpID = p._id;
+                trsd.DimUdp.UdpID = p._id;
+                trsd.DimNs.NsID = p._id;
                 trsd.DimBssgp.BssgpID = p._id;
                 trsd.DimLlcSndcp.LlcSndcpID = p._id;
                 trsd.DimIp2.Ip2ID = p._id;
                 trsd.DimTcp.TcpID = p._id;
                 trsd.DimHttp.HttpID = p._id;
-                trsd.DimMessage.MeasureID = p._id;
+                trsd.DimMessage.MessageID= p._id;
 
                 trsd.FactTcp.FactID = p._id;
-
-                trsd.FactTcp.IpUdpNsID = p._id;
+                trsd.FactTcp.IpID = p._id;
+                trsd.FactTcp.UdpID = p._id;
+                trsd.FactTcp.NsID = p._id;
                 trsd.FactTcp.BssgpID = p._id;
                 trsd.FactTcp.LlcSndcpID = p._id;
                 trsd.FactTcp.Ip2ID = p._id;
                 trsd.FactTcp.TcpID = p._id;
                 trsd.FactTcp.HttpID = p._id;
-                trsd.FactTcp.MeasureID = p._id;
+                trsd.FactTcp.MessageID = p._id;
 
-                //trsd.session_id = p.session_id;
-                trsd.DimIpUdpNs.ip_bsc_aggre = p.direction == directiondown ? p.ip_dst_aggre : p.ip_src_aggre;
-                trsd.DimIpUdpNs.cell_seq_aggre = p.cell_seq_aggre;
-                trsd.DimIpUdpNs.bvci_seq_aggre = p.bvci_seq_aggre;
-                trsd.DimIpUdpNs.multi_cell_per_bvci = p.multi_cell_per_bvci;
-                trsd.DimIpUdpNs.sgsn_lost_bsc_ip = p.sgsn_lost_bsc_ip;
-                trsd.DimIpUdpNs.ip_flags_mf = p.ip_flags_mf;
-                trsd.DimIpUdpNs.bvci_distinct = p.bsc_bvci;
-                trsd.DimIpUdpNs.bvci_distinct_cnt = GetCellCount(p.bsc_bvci);//
-                trsd.DimIpUdpNs.lac_cell_from_bvci = p.lac_cell_from_bvci;
-                trsd.DimIpUdpNs.lac_cell_from_bvci_cnt = GetCellCount(p.lac_cell_from_bvci);//
-                trsd.DimIpUdpNs.multibvci_cnt = trsd.DimIpUdpNs.lac_cell_from_bvci_cnt - trsd.DimIpUdpNs.bvci_distinct_cnt;
-                trsd.DimIpUdpNs.bvci_from_lac_cell = SplitLacCellStr(p.lac_cell, cellslook);
-                trsd.DimIpUdpNs.bvci_from_lac_cell_cnt = SplitLacCellCnt(p.lac_cell, cellslook);
+                trsd.DimIp.bsc_ip_distinct = p.direction == directiondown ? p.ip_dst_aggre : p.ip_src_aggre;
+                trsd.DimIp.ip_flags_mf = p.ip_flags_mf;
+                trsd.DimIp.sgsn_lost_bsc_ip = p.sgsn_lost_bsc_ip;
 
-                trsd.DimIpUdpNs.bvci_seq_cnt = GetCellCount(p.bvci_seq_aggre);
-                trsd.DimIpUdpNs.bvci_pp_cnt = trsd.DimIpUdpNs.bvci_seq_cnt - trsd.DimIpUdpNs.bvci_distinct_cnt;
-
-
+                trsd.DimNs.bvci_seq = p.bvci_seq_aggre;
+           
+                trsd.DimNs.bvci_distinct = p.bsc_bvci;
+                trsd.DimNs.bvci_distinct_cnt = GetCellCount(p.bsc_bvci);//
+                trsd.DimNs.lac_cell_from_bvci = p.lac_cell_from_bvci;
+                trsd.DimNs.lac_cell_from_bvci_cnt = GetCellCount(p.lac_cell_from_bvci);
+                trsd.DimNs.multi_cell_per_bvci = p.multi_cell_per_bvci;
+                trsd.DimNs.multibvci_cnt = trsd.DimNs.lac_cell_from_bvci_cnt - trsd.DimNs.bvci_distinct_cnt;
+                trsd.DimNs.bvci_from_lac_cell = SplitLacCellStr(p.lac_cell, cellslook);
+                trsd.DimNs.bvci_from_lac_cell_cnt = SplitLacCellCnt(p.lac_cell, cellslook);
+                trsd.DimNs.bvci_seq_cnt = GetCellCount(p.bvci_seq_aggre);
+                trsd.DimNs.bvci_pp_cnt = trsd.DimNs.bvci_seq_cnt - trsd.DimNs.bvci_distinct_cnt;
 
                 //mulit-bvci-percell的问题
-                trsd.DimBssgp.lac = p.lac;      
+                trsd.DimBssgp.lac_distinct = p.lac;
                 trsd.DimBssgp.imsi = p.imsi;
                 trsd.DimBssgp.direction = p.direction;
-                trsd.DimBssgp.lac_cell = p.lac_cell;
-                trsd.DimBssgp.lac_cell_cnt = GetCellCount(p.lac_cell);
-              
-                trsd.DimIpUdpNs.bvci_cell_error_cnt = trsd.DimIpUdpNs.bvci_distinct_cnt - trsd.DimBssgp.lac_cell_cnt;
+                trsd.DimBssgp.lac_cell_distinct = p.lac_cell;
+                trsd.DimBssgp.lac_cell_distinct_cnt = GetCellCount(p.lac_cell);
+                trsd.DimBssgp.cell_seq = p.cell_seq_aggre;
+
+                trsd.DimNs.bvci_cell_error_cnt = trsd.DimNs.bvci_distinct_cnt - trsd.DimBssgp.lac_cell_distinct_cnt;
 
                 trsd.DimLlcSndcp.sndcp_m = p.sndcp_m;
                 trsd.DimLlcSndcp.sndcp_nsapi = p.sndcp_nsapi;
                 trsd.DimLlcSndcp.llcgprs_sapi = p.llcgprs_sapi;
 
                 trsd.DimIp2.ip2_flags_mf = p.ip2_flags_mf;
-                trsd.DimIp2.ip2_sp_aggre = p.direction == directiondown ? p.ip2_src_aggre : p.ip2_dst_aggre;
-                trsd.DimIp2.ip2ttl_sp_aggre = p.direction == directiondown ? p.ip2_ttl_aggre : fillnull;
+                trsd.DimIp2.ip2host_distinct = p.direction == directiondown ? p.ip2_src_aggre : p.ip2_dst_aggre;
+                trsd.DimIp2.ip2ttl_distinct = p.direction == directiondown ? p.ip2_ttl_aggre : fillnull;
 
-                trsd.DimTcp.tcp_port_aggre = p.direction == directiondown ? p.src_port_aggre : p.dst_port_aggre;
+                trsd.DimTcp.tcp_port_distinct = p.direction == directiondown ? p.src_port_aggre : p.dst_port_aggre;
                 trsd.DimTcp.tcp_need_segment = p.tcp_need_segment;
 
                 trsd.DimHttp.http_method = p.http_method == null ? tcp_data : p.http_method;

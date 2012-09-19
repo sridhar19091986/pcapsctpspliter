@@ -12,7 +12,7 @@ namespace OfflineInspect.ReTransmission
     {
         public static void BathMakeTcpData()
         {
-            //CreateTcpDb();
+            CreateTcpDb();
             BatchMakeTcpDataForMongo();
             BatchMakeTcpDataForSqlServer();
 
@@ -36,12 +36,12 @@ namespace OfflineInspect.ReTransmission
 
         private static void BatchMakeTcpDataForMongo()
         {
-            //using (LacCellBvciStaging lcb = new LacCellBvciStaging())
-            //    lcb.CreatCollection();
-            //GC.Collect();
-            //using (LacCellBvciETL lcbs = new LacCellBvciETL())
-            //    lcbs.CreatCollection();
-            //GC.Collect();
+            using (LacCellBvciStaging lcb = new LacCellBvciStaging())
+                lcb.CreatCollection();
+            GC.Collect();
+            using (LacCellBvciETL lcbs = new LacCellBvciETL())
+                lcbs.CreatCollection();
+            GC.Collect();
             using (TcpPortSessionStaging tps = new TcpPortSessionStaging())
                 tps.CreateCollection();
             GC.Collect();

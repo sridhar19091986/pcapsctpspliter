@@ -30,25 +30,37 @@ namespace OfflineInspect.ReTransmission.Context
 
         //定义数据库
         public DbSet<TcpPortSessionStagingDocument> TcpPortSessionStagingDocumentSet { get; set; }
-      
+
         public DbSet<LacCellBvciStagingDocument> LacCellBvciStagingDocumentSet { get; set; }
         public DbSet<LacCellBvciETLDocument> LacCellBvciETLDocumentSet { get; set; }
         public DbSet<LlcTlliSessionStagingDocument> LlcTlliSessionDocumentSet { get; set; }
- 
+
         #region  //public DbSet<TcpPortSessionETLDocument> TcpPortSessionETLDocumentSet { get; set; }
-        public DbSet<DimensionIpUdpNs> DimensionIpUdpNsSet { get; set; }
+        public DbSet<DimensionIp> DimensionIpSet { get; set; }
+        public DbSet<DimensionUdp> DimensionUdpSet { get; set; }
+        public DbSet<DimensionNs> DimensionNsSet { get; set; }
         public DbSet<DimensionBssgp> DimensionBssgpSet { get; set; }
         public DbSet<DimensionLlcSndcp> DimensionLlcSndcpSet { get; set; }
         public DbSet<DimensionIp2> DimensionIp2Set { set; get; }
         public DbSet<DimensionTcp> DimensionTcpSet { get; set; }
         public DbSet<DimensionHttp> DimensionHttpSet { get; set; }
         public DbSet<DimensionMessage> MeasurementTcpPortSet { get; set; }
-        public DbSet<FactTcpPortSession> FactTcpPortSessionSet { get; set; } 
+        public DbSet<FactTcpPortSession> FactTcpPortSessionSet { get; set; }
         #endregion
 
-        public TcpDbContext AddToContext(TcpDbContext context, DimensionIpUdpNs entity, int count, int commitCount, bool recreateContext, string sqlconn)
+        public TcpDbContext AddToContext(TcpDbContext context, DimensionIp entity, int count, int commitCount, bool recreateContext, string sqlconn)
         {
-            context.Set<DimensionIpUdpNs>().Add(entity);
+            context.Set<DimensionIp>().Add(entity);
+            return AddToContextCon(context, count, commitCount, recreateContext, sqlconn);
+        }
+        public TcpDbContext AddToContext(TcpDbContext context, DimensionUdp entity, int count, int commitCount, bool recreateContext, string sqlconn)
+        {
+            context.Set<DimensionUdp>().Add(entity);
+            return AddToContextCon(context, count, commitCount, recreateContext, sqlconn);
+        }
+        public TcpDbContext AddToContext(TcpDbContext context, DimensionNs entity, int count, int commitCount, bool recreateContext, string sqlconn)
+        {
+            context.Set<DimensionNs>().Add(entity);
             return AddToContextCon(context, count, commitCount, recreateContext, sqlconn);
         }
         public TcpDbContext AddToContext(TcpDbContext context, DimensionBssgp entity, int count, int commitCount, bool recreateContext, string sqlconn)
@@ -86,7 +98,6 @@ namespace OfflineInspect.ReTransmission.Context
             context.Set<FactTcpPortSession>().Add(entity);
             return AddToContextCon(context, count, commitCount, recreateContext, sqlconn);
         }
-
 
         public TcpDbContext AddToContext(TcpDbContext context, TcpPortSessionETLDocument entity, int count, int commitCount, bool recreateContext, string sqlconn)
         {

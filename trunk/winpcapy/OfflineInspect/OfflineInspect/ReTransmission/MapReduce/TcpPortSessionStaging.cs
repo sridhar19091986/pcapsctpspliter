@@ -162,8 +162,8 @@ namespace OfflineInspect.ReTransmission.MapReduce
         public string lac { get; set; }
         public string lac_cell_from_bvci { get; set; }
 
-        public int multi_cell_per_bvci { get; set; }
-        public int sgsn_lost_bsc_ip { get; set; }
+        public bool multi_cell_per_bvci { get; set; }
+        public bool sgsn_lost_bsc_ip { get; set; }
 
         //切换序列
         public string cell_seq_aggre { get; set; }
@@ -185,8 +185,8 @@ namespace OfflineInspect.ReTransmission.MapReduce
         //private GuangZhou_Gb_TCP_ReTransmission gb;
 
 
-        private int multicellperbvci;
-        private int sgsnlostbscip;
+        private bool multicellperbvci;
+        private bool sgsnlostbscip;
 
         public TcpPortSessionStaging()
         {
@@ -231,24 +231,35 @@ namespace OfflineInspect.ReTransmission.MapReduce
             }
             Console.WriteLine("TcpPortSessionStagingDocument->mongo->ok");
         }
+        /*
+         * 这里max,count等会出现全部加载的情况，即table全部加入到内存，问题可能1
+         * 
+         * 1.entity和table的主键不匹配
+         * 
+         * 2.改用sql
+         *
+         * 
+         * */
 
         private int? packet_cnt = null;
+        //        private string esql = @"SELECT value max(it.BeginFrameNum) 
+        //                                FROM foshan_tcp_dataEntities.Gb_TCP_ReTransmission as it 
+        //                                where it.BeginFileNum=@v1";
+
         public void CreateCollection(int filenum)
         {
             using (foshan_tcp_dataEntities gb = new foshan_tcp_dataEntities())
             {
+                //gb.CommandTimeout = 0;
+                //ObjectParameter v1 = new ObjectParameter("v1", filenum);
+                //ObjectQuery<int> query = gb.CreateQuery<int>(esql, v1);
+                //packet_cnt = query.Execute(MergeOption.NoTracking).FirstOrDefault();
+                //数据库分页错误的问题？？？？？
                 gb.CommandTimeout = 0;
                 gb.Gb_TCP_ReTransmission.MergeOption = MergeOption.NoTracking;
-                gb.ContextOptions.LazyLoadingEnabled = false;
-                //var cnt = from p in gb.Gb_TCP_ReTransmission
-                //          where p.BeginFileNum==filenum
-                //          select p.BeginFrameNum;
-                //packet_cnt = cnt.Max();
-                packet_cnt = gb.Gb_TCP_ReTransmission.Where(e => e.BeginFileNum == filenum).Max(e => e.BeginFrameNum);//数据库分页错误的问题？？？？？
+                packet_cnt = gb.Gb_TCP_ReTransmission.Where(e => e.BeginFileNum == filenum).Max(e => e.BeginFrameNum);
             }
-
             if (packet_cnt == null) return;
-
             using (foshan_tcp_dataEntities gb = new foshan_tcp_dataEntities())
             {
                 gb.CommandTimeout = 0;
@@ -265,10 +276,10 @@ namespace OfflineInspect.ReTransmission.MapReduce
         }
 
         //提取下行方向BVCI对应的小区
-        private string GetLacCellFromBvci(IEnumerable<Gb_TCP_ReTransmission> tcps, out int multiCellPerBvci, out int sgsnLostBscIp)
+        private string GetLacCellFromBvci(IEnumerable<Gb_TCP_ReTransmission> tcps, out bool multiCellPerBvci, out bool sgsnLostBscIp)
         {
-            multiCellPerBvci = 0;
-            sgsnLostBscIp = 0;
+            multiCellPerBvci = false;
+            sgsnLostBscIp = false;
             List<string> cells = new List<string>();
             //string laccell = string.Empty;
             foreach (var tcp in tcps)
@@ -278,9 +289,9 @@ namespace OfflineInspect.ReTransmission.MapReduce
                     (e.dst == tcp.ip_src_host && e.src == tcp.ip_dst_host))
                 .Select(e => e.lac_cell).Distinct();
 
-                if (laccell.Count() > 1) multiCellPerBvci = 1;
+                if (laccell.Count() > 1) multiCellPerBvci = true;
 
-                if (laccell.Count() == 0) sgsnLostBscIp = 1;
+                if (laccell.Count() == 0) sgsnLostBscIp = true;
 
                 foreach (var ce in laccell)
                     cells.Add(ce);
