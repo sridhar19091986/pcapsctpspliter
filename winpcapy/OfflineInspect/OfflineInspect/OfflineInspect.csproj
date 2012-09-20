@@ -102,6 +102,7 @@
     <Compile Include="ReTransmission\MapReduce\LacCellBvciETL.cs" />
     <Compile Include="ReTransmission\Context\TcpDataContextSave.cs" />
     <Compile Include="ReTransmission\Context\TcpDbContext.cs" />
+    <Compile Include="ReTransmission\MapReduce\TcpPortSessionFlushLLStaging.cs" />
     <Compile Include="ReTransmission\TcpDataFactory.cs" />
     <Compile Include="ReTransmission\MapReduce\TcpPortSessionETL.cs" />
     <Compile Include="ReTransmission\MapReduce\LlcTlliSessionStaging.cs" />
@@ -116,10 +117,15 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="ReTransmission\NoteBook\TextFile1.txt" />
+    <Content Include="ReTransmission\NoteBook\TextFile2.txt" />
+    <None Include="ReTransmission\NoteBook\CREATE PARTITION FUNCTION" />
+    <None Include="ReTransmission\NoteBook\CREATE DATABASE foshan_tcp_data" />
     <Content Include="ReTransmission\NoteBook\TlliTcpSession.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="packages.xsd">

@@ -45,6 +45,9 @@
           <Property Name="llcgprs_nu" Type="int" />
           <Property Name="llcgprs_sapi" Type="nvarchar" MaxLength="200" />
           <Property Name="nsip_bvci" Type="int" />
+          <Property Name="nsip_control_bits_c" Type="nvarchar" MaxLength="200" />
+          <Property Name="nsip_control_bits_r" Type="nvarchar" MaxLength="200" />
+          <Property Name="sndcp_len" Type="int" />
           <Property Name="sndcp_m" Type="nvarchar" MaxLength="200" />
           <Property Name="sndcp_nsapi" Type="nvarchar" MaxLength="200" />
           <Property Name="tcp_ack" Type="nvarchar" MaxLength="200" />
@@ -57,7 +60,6 @@
           <Property Name="tcp_seq" Type="nvarchar" MaxLength="200" />
           <Property Name="tcp_srcport" Type="int" />
           <Property Name="tcp_window_size" Type="nvarchar" MaxLength="200" />
-          <Property Name="sndcp_len" Type="int" />
         </EntityType>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -103,6 +105,9 @@
           <Property Type="Int32" Name="llcgprs_nu" />
           <Property Type="String" Name="llcgprs_sapi" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="nsip_bvci" />
+          <Property Type="String" Name="nsip_control_bits_c" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="nsip_control_bits_r" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="sndcp_len" />
           <Property Type="String" Name="sndcp_m" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="sndcp_nsapi" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="tcp_ack" MaxLength="200" FixedLength="false" Unicode="true" />
@@ -115,7 +120,6 @@
           <Property Type="String" Name="tcp_seq" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="tcp_srcport" />
           <Property Type="String" Name="tcp_window_size" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="sndcp_len" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -126,7 +130,6 @@
           <EntitySetMapping Name="Gb_TCP_ReTransmission">
             <EntityTypeMapping TypeName="foshan_tcp_dataModel.Gb_TCP_ReTransmission">
               <MappingFragment StoreEntitySet="Gb_TCP_ReTransmission">
-                <ScalarProperty Name="sndcp_len" ColumnName="sndcp_len" />
                 <ScalarProperty Name="tcp_window_size" ColumnName="tcp_window_size" />
                 <ScalarProperty Name="tcp_srcport" ColumnName="tcp_srcport" />
                 <ScalarProperty Name="tcp_seq" ColumnName="tcp_seq" />
@@ -139,6 +142,9 @@
                 <ScalarProperty Name="tcp_ack" ColumnName="tcp_ack" />
                 <ScalarProperty Name="sndcp_nsapi" ColumnName="sndcp_nsapi" />
                 <ScalarProperty Name="sndcp_m" ColumnName="sndcp_m" />
+                <ScalarProperty Name="sndcp_len" ColumnName="sndcp_len" />
+                <ScalarProperty Name="nsip_control_bits_r" ColumnName="nsip_control_bits_r" />
+                <ScalarProperty Name="nsip_control_bits_c" ColumnName="nsip_control_bits_c" />
                 <ScalarProperty Name="nsip_bvci" ColumnName="nsip_bvci" />
                 <ScalarProperty Name="llcgprs_sapi" ColumnName="llcgprs_sapi" />
                 <ScalarProperty Name="llcgprs_nu" ColumnName="llcgprs_nu" />
@@ -194,8 +200,8 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="tcp_data" ZoomLevel="69">
-        <EntityTypeShape EntityType="foshan_tcp_dataModel.Gb_TCP_ReTransmission" Width="1.5" PointX="0.75" PointY="0.75" Height="8.535625" />
+      <Diagram Name="tcp_data" ZoomLevel="63">
+        <EntityTypeShape EntityType="foshan_tcp_dataModel.Gb_TCP_ReTransmission" Width="1.5" PointX="0.75" PointY="0.75" Height="8.8728645833333317" />
       </Diagram>
     </Diagrams>
   </Designer>

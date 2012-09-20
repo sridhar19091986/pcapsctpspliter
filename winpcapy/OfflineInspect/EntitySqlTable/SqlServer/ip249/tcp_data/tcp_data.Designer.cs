@@ -905,6 +905,78 @@ namespace EntitySqlTable.SqlServer.ip249.tcp_data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        public global::System.String nsip_control_bits_c
+        {
+            get
+            {
+                return _nsip_control_bits_c;
+            }
+            set
+            {
+                Onnsip_control_bits_cChanging(value);
+                ReportPropertyChanging("nsip_control_bits_c");
+                _nsip_control_bits_c = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("nsip_control_bits_c");
+                Onnsip_control_bits_cChanged();
+            }
+        }
+        private global::System.String _nsip_control_bits_c;
+        partial void Onnsip_control_bits_cChanging(global::System.String value);
+        partial void Onnsip_control_bits_cChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String nsip_control_bits_r
+        {
+            get
+            {
+                return _nsip_control_bits_r;
+            }
+            set
+            {
+                Onnsip_control_bits_rChanging(value);
+                ReportPropertyChanging("nsip_control_bits_r");
+                _nsip_control_bits_r = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("nsip_control_bits_r");
+                Onnsip_control_bits_rChanged();
+            }
+        }
+        private global::System.String _nsip_control_bits_r;
+        partial void Onnsip_control_bits_rChanging(global::System.String value);
+        partial void Onnsip_control_bits_rChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> sndcp_len
+        {
+            get
+            {
+                return _sndcp_len;
+            }
+            set
+            {
+                Onsndcp_lenChanging(value);
+                ReportPropertyChanging("sndcp_len");
+                _sndcp_len = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("sndcp_len");
+                Onsndcp_lenChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _sndcp_len;
+        partial void Onsndcp_lenChanging(Nullable<global::System.Int32> value);
+        partial void Onsndcp_lenChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
         public global::System.String sndcp_m
         {
             get
@@ -1187,30 +1259,6 @@ namespace EntitySqlTable.SqlServer.ip249.tcp_data
         private global::System.String _tcp_window_size;
         partial void Ontcp_window_sizeChanging(global::System.String value);
         partial void Ontcp_window_sizeChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> sndcp_len
-        {
-            get
-            {
-                return _sndcp_len;
-            }
-            set
-            {
-                Onsndcp_lenChanging(value);
-                ReportPropertyChanging("sndcp_len");
-                _sndcp_len = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("sndcp_len");
-                Onsndcp_lenChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _sndcp_len;
-        partial void Onsndcp_lenChanging(Nullable<global::System.Int32> value);
-        partial void Onsndcp_lenChanged();
 
         #endregion
     
