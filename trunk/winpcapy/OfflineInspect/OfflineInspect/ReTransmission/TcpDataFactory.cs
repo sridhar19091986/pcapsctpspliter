@@ -13,6 +13,7 @@ namespace OfflineInspect.ReTransmission
         public static void BathMakeTcpData()
         {
             CreateTcpDb();
+            //BatchMakeLlcDataForMongo();
             BatchMakeTcpDataForMongo();
             BatchMakeTcpDataForSqlServer();
 
@@ -34,7 +35,7 @@ namespace OfflineInspect.ReTransmission
             Console.WriteLine("CreateTcpDb,Finish");
         }
 
-        private static void BatchMakeTcpDataForMongo()
+        private static void BatchMakeLlcDataForMongo()
         {
             using (LacCellBvciStaging lcb = new LacCellBvciStaging())
                 lcb.CreatCollection();
@@ -42,15 +43,20 @@ namespace OfflineInspect.ReTransmission
             using (LacCellBvciETL lcbs = new LacCellBvciETL())
                 lcbs.CreatCollection();
             GC.Collect();
+            //using (LlcTlliSessionStaging tls = new LlcTlliSessionStaging())
+            //    tls.CreateCollection();
+            //GC.Collect();
+            Console.WriteLine("BatchMakeLlcDataForMongo,Finish");
+        }
+
+        private static void BatchMakeTcpDataForMongo()
+        {
             using (TcpPortSessionStaging tps = new TcpPortSessionStaging())
                 tps.CreateCollection();
             GC.Collect();
             using (TcpPortSessionETL trs = new TcpPortSessionETL())
                 trs.CreatCollection();
             GC.Collect();
-            //using (LlcTlliSessionStaging tls = new LlcTlliSessionStaging())
-            //    tls.CreateCollection();
-            //GC.Collect();
             Console.WriteLine("BatchMakeTcpDataForMongo,Finish");
         }
 
