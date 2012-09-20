@@ -1,0 +1,78 @@
+﻿USE [master]
+GO
+ALTER DATABASE [foshan_tcp_data] ADD FILEGROUP [FG1]
+GO
+ALTER DATABASE [foshan_tcp_data] ADD FILEGROUP [FG2]
+GO
+ALTER DATABASE [foshan_tcp_data] ADD FILEGROUP [FG3]
+GO
+ALTER DATABASE [foshan_tcp_data] ADD FILEGROUP [FG4]
+GO
+ALTER DATABASE [foshan_tcp_data] ADD FILEGROUP [FG5]
+GO
+ALTER DATABASE [foshan_tcp_data] ADD FILEGROUP [FG6]
+GO
+ALTER DATABASE [foshan_tcp_data] ADD FILEGROUP [FG7]
+GO
+ALTER DATABASE [foshan_tcp_data] ADD FILEGROUP [FG8]
+GO
+ALTER DATABASE [foshan_tcp_data] ADD FILEGROUP [FG9]
+
+
+USE foshan_tcp_data
+GO
+CREATE PARTITION FUNCTION partition_function_tcp(int)
+AS RANGE RIGHT FOR VALUES(0,1,2,3,4,5,6,7)
+GO
+CREATE PARTITION SCHEME partitionschemetcp
+AS PARTITION partition_function_tcp
+TO (FG1,FG2,FG3,FG4,FG5,FG6,FG7,FG8,FG9);
+go
+
+USE [foshan_tcp_data]
+GO
+
+/****** Object:  Index [beginfile]    Script Date: 09/20/2012 15:42:53 ******/
+IF  EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'[dbo].[Gb_TCP_ReTransmission]') AND name = N'beginfile')
+DROP INDEX [beginfile] ON [dbo].[Gb_TCP_ReTransmission] WITH ( ONLINE = OFF )
+GO
+
+USE [foshan_tcp_data]
+GO
+
+/****** Object:  Index [beginfile]    Script Date: 09/20/2012 15:42:53 ******/
+CREATE NONCLUSTERED INDEX [beginfile] ON [dbo].[Gb_TCP_ReTransmission] 
+(
+	[BeginFileNum] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+
+
+
+
+USE [foshan_tcp_data]
+GO
+BEGIN TRANSACTION
+alter TABLE  [Gb_TCP_ReTransmission]  alter  COLUMN [PacketNum] int  not null
+
+alter TABLE [Gb_TCP_ReTransmission ]  alter  COLUMN [FileNum] int  not null
+
+ALTER TABLE [dbo].[Gb_TCP_ReTransmission] DROP CONSTRAINT [PK__Gb_TCP_R__009C88E809DE7BCC]
+
+
+ALTER TABLE [dbo].[Gb_TCP_ReTransmission] ADD PRIMARY KEY NONCLUSTERED 
+(
+	[PacketNum] ASC,
+	[FileNum] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+
+
+CREATE CLUSTERED INDEX [ClusteredIndex_on_partitionschemetcp_634837508029531250] ON [dbo].[Gb_TCP_ReTransmission] 
+(
+	[BeginFileNum]
+)WITH (SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF) ON [partitionschemetcp]([BeginFileNum])
+
+
+DROP INDEX [ClusteredIndex_on_partitionschemetcp_634837508029531250] ON [dbo].[Gb_TCP_ReTransmission] WITH ( ONLINE = OFF )
+
+COMMIT TRANSACTION

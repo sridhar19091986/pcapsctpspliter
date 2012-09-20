@@ -78,6 +78,7 @@ using OfflineInspect.Mongo;
 using OfflineInspect.CommonTools;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace OfflineInspect.ReTransmission.MapReduce
 {
@@ -168,6 +169,10 @@ namespace OfflineInspect.ReTransmission.MapReduce
         //切换序列
         public string cell_seq_aggre { get; set; }
         public string bvci_seq_aggre { get; set; }
+
+        public string nsip_control_bits_c { get; set; }
+        public string nsip_control_bits_r { get; set; }
+
     }
 
     public class TcpPortSessionStaging : CommonToolx, IDisposable
@@ -232,34 +237,36 @@ namespace OfflineInspect.ReTransmission.MapReduce
             Console.WriteLine("TcpPortSessionStagingDocument->mongo->ok");
         }
         /*
-         * 这里max,count等会出现全部加载的情况，即table全部加入到内存，问题可能1
+         * 这里max,count等会出现全部加载的情况，即table全部加入到内存
          * 
          * 1.entity和table的主键不匹配
          * 
          * 2.改用sql
          *
+         * 3.改用上述方法后，max仍然需要把整个table加载到内存？
+         * 
+         * 4.如果兼任域服务器，一般为60-70%,实际上是sqlserver自身的问题，非ef5的问题
          * 
          * */
 
         private int? packet_cnt = null;
-        //        private string esql = @"SELECT value max(it.BeginFrameNum) 
-        //                                FROM foshan_tcp_dataEntities.Gb_TCP_ReTransmission as it 
-        //                                where it.BeginFileNum=@v1";
+        //private string esql = @"SELECT max(it.BeginFrameNum) FROM Gb_TCP_ReTransmission as it where it.BeginFileNum=@v1";
 
         public void CreateCollection(int filenum)
         {
             using (foshan_tcp_dataEntities gb = new foshan_tcp_dataEntities())
             {
                 //gb.CommandTimeout = 0;
-                //ObjectParameter v1 = new ObjectParameter("v1", filenum);
-                //ObjectQuery<int> query = gb.CreateQuery<int>(esql, v1);
-                //packet_cnt = query.Execute(MergeOption.NoTracking).FirstOrDefault();
+                //SqlParameter v1 = new SqlParameter("v1", filenum);
+                //packet_cnt = gb.ExecuteStoreQuery<int?>(esql, v1).FirstOrDefault();
                 //数据库分页错误的问题？？？？？
                 gb.CommandTimeout = 0;
                 gb.Gb_TCP_ReTransmission.MergeOption = MergeOption.NoTracking;
                 packet_cnt = gb.Gb_TCP_ReTransmission.Where(e => e.BeginFileNum == filenum).Max(e => e.BeginFrameNum);
             }
+
             if (packet_cnt == null) return;
+
             using (foshan_tcp_dataEntities gb = new foshan_tcp_dataEntities())
             {
                 gb.CommandTimeout = 0;
@@ -389,6 +396,9 @@ namespace OfflineInspect.ReTransmission.MapReduce
                         //计算2中问题，per bvci multi cell，
                         tcps.multi_cell_per_bvci = multicellperbvci;
                         tcps.sgsn_lost_bsc_ip = sgsnlostbscip;
+
+                        tcps.nsip_control_bits_c = m.Select(e => e.nsip_control_bits_c).IEnumDistinctStrComma();
+                        tcps.nsip_control_bits_r = m.Select(e => e.nsip_control_bits_r).IEnumDistinctStrComma();
 
                         #region seq算法，计算tcp重传和丢包
                         //序列号的计算

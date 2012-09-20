@@ -1,0 +1,84 @@
+﻿USE master 
+drop database foshan_tcp_data
+go
+CREATE DATABASE foshan_tcp_data ON PRIMARY 
+( 
+NAME = 'foshan_tcp_data', 
+FILENAME='D:\foshan_offline\foshan_tcp_data.mdf', 
+SIZE=3MB, 
+MAXSIZE=10000MB, 
+FILEGROWTH=10% 
+), 
+FILEGROUP FG1 
+( 
+NAME = 'File1', 
+FILENAME = 'D:\foshan_offline\File1_dat.ndf', 
+SIZE = 1MB, 
+MAXSIZE = 10000MB, 
+FILEGROWTH = 10% 
+), 
+FILEGROUP FG2 
+( 
+NAME = 'File2', 
+FILENAME = 'D:\foshan_offline\File2_dat.ndf', 
+SIZE = 1MB, 
+MAXSIZE = 10000MB, 
+FILEGROWTH = 10% 
+), 
+FILEGROUP FG3 
+( 
+NAME = 'File3', 
+FILENAME = 'D:\foshan_offline\File3_dat.ndf', 
+SIZE = 1MB, 
+MAXSIZE = 10000MB, 
+FILEGROWTH = 10% 
+) ,
+FILEGROUP FG4
+( 
+NAME = 'File4', 
+FILENAME = 'D:\foshan_offline\File4_dat.ndf', 
+SIZE = 1MB, 
+MAXSIZE = 10000MB, 
+FILEGROWTH = 10% 
+) ,
+FILEGROUP FG5
+( 
+NAME = 'File5', 
+FILENAME = 'D:\foshan_offline\File5_dat.ndf', 
+SIZE = 1MB, 
+MAXSIZE = 10000MB, 
+FILEGROWTH = 10% 
+) ,
+FILEGROUP FG6
+( 
+NAME = 'File6', 
+FILENAME = 'D:\foshan_offline\File6_dat.ndf', 
+SIZE = 1MB, 
+MAXSIZE = 10000MB, 
+FILEGROWTH = 10% 
+) ,
+FILEGROUP FG7
+( 
+NAME = 'File7', 
+FILENAME = 'D:\foshan_offline\File7_dat.ndf', 
+SIZE = 1MB, 
+MAXSIZE = 10000MB, 
+FILEGROWTH = 10% 
+) ,
+FILEGROUP FG8
+( 
+NAME = 'File8', 
+FILENAME = 'D:\foshan_offline\File8_dat.ndf', 
+SIZE = 1MB, 
+MAXSIZE = 10000MB, 
+FILEGROWTH = 10% 
+) 
+LOG ON 
+( 
+NAME = 'foshan_tcp_data_Log', 
+FILENAME = 'D:\foshan_offline\foshan_tcp_data_Log.ldf', 
+SIZE = 1MB, 
+MAXSIZE = 10MB, 
+FILEGROWTH = 10% 
+) 
+

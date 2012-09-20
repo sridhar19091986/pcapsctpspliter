@@ -1,0 +1,74 @@
+﻿
+USE [foshan_tcp_data]
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Gb_TCP_ReTransmission]') AND type in (N'U'))
+DROP TABLE [dbo].[Gb_TCP_ReTransmission]
+GO
+GO
+IF  EXISTS (SELECT * FROM sys.partition_schemes WHERE name = N'partitionschemetcp')
+DROP PARTITION SCHEME [partitionschemetcp]
+GO
+IF  EXISTS (SELECT * FROM sys.partition_functions WHERE name = N'partition_function_tcp')
+DROP PARTITION FUNCTION [partition_function_tcp]
+GO
+CREATE PARTITION FUNCTION [partition_function_tcp](int) AS RANGE RIGHT FOR VALUES 
+(1, 2, 3, 4, 5, 6)
+GO
+CREATE PARTITION SCHEME [partitionschemetcp] AS PARTITION [partition_function_tcp] TO 
+([FG1], [FG2], [FG3], [FG4], [FG5], [FG6], [FG7])
+GO
+
+CREATE TABLE [dbo].[Gb_TCP_ReTransmission](
+	[FileNum] [int] NULL,
+	[PacketNum] [int] NULL,
+	[BeginFileNum] [int] NULL,
+	[BeginFrameNum] [int] NULL,
+	[PacketTime] [datetime] NULL,
+	[PacketTime(ms)] [int] NULL,
+	[DumpFor] [nvarchar](30) NULL,
+	[GbOverLLC] [int] NULL,
+	[GbOverLLC_time] [nvarchar](200) NULL,
+	[GbOverLLC_MsgType] [nvarchar](200) NULL,
+	[bssgp_ci] [int] NULL,
+	[bssgp_direction] [nvarchar](200) NULL,
+	[bssgp_imsi] [nvarchar](200) NULL,
+	[bssgp_lac] [int] NULL,
+	[bssgp_tlli] [nvarchar](200) NULL,
+	[http_host] [nvarchar](200) NULL,
+	[http_request_method] [nvarchar](200) NULL,
+	[http_request_uri] [nvarchar](200) NULL,
+	[http_user_agent] [nvarchar](200) NULL,
+	[ip_dst_host] [nvarchar](200) NULL,
+	[ip_flags_mf] [nvarchar](200) NULL,
+	[ip_len] [int] NULL,
+	[ip_src_host] [nvarchar](200) NULL,
+	[ip_ttl] [nvarchar](200) NULL,
+	[ip2_dst_host] [nvarchar](200) NULL,
+	[ip2_flags_mf] [nvarchar](200) NULL,
+	[ip2_len] [int] NULL,
+	[ip2_src_host] [nvarchar](200) NULL,
+	[ip2_ttl] [nvarchar](200) NULL,
+	[llcgprs_nu] [int] NULL,
+	[llcgprs_sapi] [nvarchar](200) NULL,
+	[nsip_bvci] [int] NULL,
+	[nsip_control_bits_c] [nvarchar](200) NULL,
+	[nsip_control_bits_r] [nvarchar](200) NULL,
+	[sndcp_len] [int] NULL,
+	[sndcp_m] [nvarchar](200) NULL,
+	[sndcp_nsapi] [nvarchar](200) NULL,
+	[tcp_ack] [nvarchar](200) NULL,
+	[tcp_dstport] [int] NULL,
+	[tcp_flags_cwr] [nvarchar](200) NULL,
+	[tcp_hdr_len] [int] NULL,
+	[tcp_need_segment] [nvarchar](200) NULL,
+	[tcp_nxtseq] [nvarchar](200) NULL,
+	[tcp_options_sack_se_num] [int] NULL,
+	[tcp_seq] [nvarchar](200) NULL,
+	[tcp_srcport] [int] NULL,
+	[tcp_window_size] [nvarchar](200) NULL
+) ON  partitionschemetcp(BeginFileNum)
+
+GO
+
+
+
+

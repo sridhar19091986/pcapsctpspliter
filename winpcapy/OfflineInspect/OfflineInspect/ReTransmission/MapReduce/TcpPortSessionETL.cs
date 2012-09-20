@@ -68,15 +68,19 @@ using System.ComponentModel.DataAnnotations;
 
 
 /*
- * 
- * key
- * dimension
- * measurement
+ * cube structure
+ * dimension usage
  * calculation
- * cube
- * partion
+ * kpi
+ * action
+ * partition
+ * perspecitve
+ * translation
+ * browser
+ * 
  * aggregation
  * 
+ * fact
  * 
  * */
 
@@ -84,7 +88,20 @@ using System.ComponentModel.DataAnnotations;
 /*
  * 关于维度的命名规则，能够一眼识别其计算方法，2012.9.19
  * 
+ * 维度的组合和处理需要很高的专业的基础，选择最合适的维度去发现问题？
+ * 
+ * ETL是一个反复抽取数据的过程，反复清洗数据的过程，因此，针对不同的项目需要不同的清洗方法，即ETL也会不同。
+ * 
+ * 相对于元数据metadata，ETL是一个数据挖掘的重要过程。数据挖掘关键技术在于维度的处理。
+ * 
+ * etl:1.mtrix->sqlserver,2.sqlserver->mongo,3.mongo->mongo,4.mongo->sqlserver,5.olap
+ * 
+ * 另外的一种ETL方法：
+ * 如何建立小区维度级别的重传率，丢包率，当前是可以实现小区累加级别的，aggregate级别？，重现钻去回到原始表的方法？
+ * 多列合并的ETL转换，主键用packetnum，外键用？以TCP会话过程中小区切换作为最小事实粒度，不是以每个消息做最小的事实粒度？
+ * 
  * */
+
 
 namespace OfflineInspect.ReTransmission.MapReduce
 {
@@ -123,9 +140,12 @@ namespace OfflineInspect.ReTransmission.MapReduce
         public string lac_cell_from_bvci { get; set; }
         public int lac_cell_from_bvci_cnt { get; set; }
         public int bvci_cell_error_cnt { get; set; }
-       
+
         public string bvci_from_lac_cell { get; set; }
         public int bvci_from_lac_cell_cnt { get; set; }
+
+        public string nsip_control_bits_c { get; set; }
+        public string nsip_control_bits_r { get; set; }
     }
 
     public class DimensionBssgp
@@ -179,6 +199,7 @@ namespace OfflineInspect.ReTransmission.MapReduce
         public string user_agent { get; set; }//提取用户的代理
     }
 
+    //其他的维度和计算
     public class DimensionMessage
     {
         [Key]
@@ -189,7 +210,7 @@ namespace OfflineInspect.ReTransmission.MapReduce
         public string msg_distinct_aggre { get; set; }
     }
 
-    //其他的维度和计算
+    //事实表
     public class FactTcpPortSession
     {
 
@@ -294,11 +315,18 @@ namespace OfflineInspect.ReTransmission.MapReduce
         }
 
 
-        private int GetCellCount(string laccell)
+        private int GetDistinctCount(string field_aggre)
         {
-            if (laccell == null) return 0;
-            var cells = laccell.Split(',');
-            return cells.Distinct().Count();
+            if (field_aggre == null) return 0;
+            var cells = field_aggre.Split(',');
+            return cells.Distinct().Count();//进行不重复计数
+        }
+
+        private int GetSequenceCount(string field_aggre)
+        {
+            if (field_aggre == null) return 0;
+            var cells = field_aggre.Split(',');
+            return cells.Count();//进行序列计数
         }
 
         public void CreatCollection()
@@ -341,22 +369,25 @@ namespace OfflineInspect.ReTransmission.MapReduce
                 trsd.DimNs.bvci_seq = p.bvci_seq_aggre;
            
                 trsd.DimNs.bvci_distinct = p.bsc_bvci;
-                trsd.DimNs.bvci_distinct_cnt = GetCellCount(p.bsc_bvci);//
+                trsd.DimNs.bvci_distinct_cnt = GetDistinctCount(p.bsc_bvci);//进行不重复计数
                 trsd.DimNs.lac_cell_from_bvci = p.lac_cell_from_bvci;
-                trsd.DimNs.lac_cell_from_bvci_cnt = GetCellCount(p.lac_cell_from_bvci);
+                trsd.DimNs.lac_cell_from_bvci_cnt = GetDistinctCount(p.lac_cell_from_bvci);
                 trsd.DimNs.multi_cell_per_bvci = p.multi_cell_per_bvci;
                 trsd.DimNs.multibvci_cnt = trsd.DimNs.lac_cell_from_bvci_cnt - trsd.DimNs.bvci_distinct_cnt;
                 trsd.DimNs.bvci_from_lac_cell = SplitLacCellStr(p.lac_cell, cellslook);
                 trsd.DimNs.bvci_from_lac_cell_cnt = SplitLacCellCnt(p.lac_cell, cellslook);
-                trsd.DimNs.bvci_seq_cnt = GetCellCount(p.bvci_seq_aggre);
+                trsd.DimNs.bvci_seq_cnt = GetSequenceCount(p.bvci_seq_aggre);//进行序列计数
                 trsd.DimNs.bvci_pp_cnt = trsd.DimNs.bvci_seq_cnt - trsd.DimNs.bvci_distinct_cnt;
+
+                trsd.DimNs.nsip_control_bits_c = p.nsip_control_bits_c;
+                trsd.DimNs.nsip_control_bits_r = p.nsip_control_bits_r;
 
                 //mulit-bvci-percell的问题
                 trsd.DimBssgp.lac_distinct = p.lac;
                 trsd.DimBssgp.imsi = p.imsi;
                 trsd.DimBssgp.direction = p.direction;
                 trsd.DimBssgp.lac_cell_distinct = p.lac_cell;
-                trsd.DimBssgp.lac_cell_distinct_cnt = GetCellCount(p.lac_cell);
+                trsd.DimBssgp.lac_cell_distinct_cnt = GetDistinctCount(p.lac_cell);
                 trsd.DimBssgp.cell_seq = p.cell_seq_aggre;
 
                 trsd.DimNs.bvci_cell_error_cnt = trsd.DimNs.bvci_distinct_cnt - trsd.DimBssgp.lac_cell_distinct_cnt;
