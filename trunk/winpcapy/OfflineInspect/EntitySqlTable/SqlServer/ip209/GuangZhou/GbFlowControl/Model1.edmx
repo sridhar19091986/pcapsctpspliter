@@ -224,7 +224,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="Model1" ZoomLevel="42">
+      <Diagram Name="Model1" ZoomLevel="33">
         <EntityTypeShape EntityType="GuangZhou_GbModel.Gb_FlowControly" Width="1.5" PointX="0.75" PointY="0.75" Height="10.390442708333332" IsExpanded="true" />
       </Diagram>
     </Diagrams>
