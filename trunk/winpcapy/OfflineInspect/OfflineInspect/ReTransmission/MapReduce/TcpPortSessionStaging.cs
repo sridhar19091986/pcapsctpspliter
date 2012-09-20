@@ -188,11 +188,6 @@ namespace OfflineInspect.ReTransmission.MapReduce
 
         public MongoCrud<TcpPortSessionStagingDocument> mongo_TcpPortSessionStaging;
         //private GuangZhou_Gb_TCP_ReTransmission gb;
-
-
-        private bool multicellperbvci;
-        private bool sgsnlostbscip;
-
         public TcpPortSessionStaging()
         {
             mongo_TcpPortSessionStaging = new MongoCrud<TcpPortSessionStagingDocument>(mongo_conn, mongo_db, mongo_collection);
@@ -315,12 +310,13 @@ namespace OfflineInspect.ReTransmission.MapReduce
          * */
         //对每个文件号中的开始帧号进行分页
 
+        /*
+         * 存在单核工作负荷100%的问题
+         * 
+         * */
+
         public void CreateTable(string[] directions, IQueryable<Gb_TCP_ReTransmission> gb_tcp_retrans, int filenum, int step)
         {
-
-            string host = null;
-            string uri = null;
-
             //执行帧号分页
             for (int i = 0; i < step; i++)
             //Parallel.For(0, step, (i) =>
@@ -334,12 +330,18 @@ namespace OfflineInspect.ReTransmission.MapReduce
 
                 foreach (var direction in directions)
                     //帧号分页中的每个tcp的会话过程
-                    foreach (var m in tcp_sessions)
+                    //foreach (var m in tcp_sessions)
+                    Parallel.ForEach(tcp_sessions, (m) =>
                     {
                         #region 会话过滤，filter
+                        string host = null;
+                        string uri = null;
+                        bool multicellperbvci;
+                        bool sgsnlostbscip;
                         var gb_packet = m.Where(e => e.bssgp_direction == direction); //本次只计算下行速率
                         var pd_no_3tcp = gb_packet.Where(e => e.tcp_nxtseq != null);//不是3次握手的包
-                        if (pd_no_3tcp.Count() == 0) continue;
+                        //http://stackoverflow.com/questions/3765038/is-there-an-equivalent-to-continue-in-a-parallel-foreach
+                        if (pd_no_3tcp.Count() == 0) return;//continue;
                         #endregion
 
                         TcpPortSessionStagingDocument tcps = new TcpPortSessionStagingDocument();
@@ -456,7 +458,8 @@ namespace OfflineInspect.ReTransmission.MapReduce
                         tcps.llcgprs_sapi = pd_no_3tcp.Select(e => e.llcgprs_sapi).IEnumDistinctStrComma();
 
                         mongo_TcpPortSessionStaging.MongoCol.Insert(tcps);
-                    }
+                    });
+
             }
 
             string mess = string.Format("OK......size:{0}...step:{1}", size, step);

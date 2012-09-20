@@ -78,7 +78,7 @@ LOG ON
 NAME = 'foshan_tcp_data_Log', 
 FILENAME = 'D:\foshan_offline\foshan_tcp_data_Log.ldf', 
 SIZE = 1MB, 
-MAXSIZE = 10MB, 
+MAXSIZE = 100000MB, 
 FILEGROWTH = 10% 
 ) 
 
