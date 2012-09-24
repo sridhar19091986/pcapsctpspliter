@@ -82,6 +82,17 @@ using System.ComponentModel.DataAnnotations;
  * 
  * fact
  * 
+ * 
+AssociationModel
+ClusteringModel
+DecisionTreesModel
+LinearRegressionModel
+LogisticRegressionModel
+NaiveBayesModel
+NeuralNetworkModel
+SequenceClusteringModel
+TimeSeriesModel
+ * 
  * */
 
 
@@ -107,6 +118,13 @@ using System.ComponentModel.DataAnnotations;
  * 
  * 以小区切换作为ETL的最小粒度？
  * 
+ * 
+ * 维表存在比较多的重复值，需要进一步的ETL。
+ * 
+ * 小区或者BVCI粒度的ETL需要重新开启设计。
+ * 
+ * 
+ * 表结构还需要进行调整，不然，不能放入数据挖掘模型
  * 
  * */
 
@@ -218,6 +236,31 @@ namespace OfflineInspect.ReTransmission.MapReduce
         public string msg_distinct_aggre { get; set; }
     }
 
+    //计算模型,datamining定制
+    public class CalculationItem
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGenerationOption.None)]
+        public long CalculationItemID { get; set; }
+
+        public decimal? IP实传字节数 { get; set; }
+        public decimal? TCP实传字节数 { get; set; }
+        public decimal? TCP完整字节数 { get; set; }
+
+        public double TCP传输速率 { get; set; }
+        public double TCP会话时长 { get; set; }
+
+        public double TCP传输次数 { get; set; }
+        public double TCP重发次数 { get; set; }
+        public double TCP重传次数占比 { get; set; }
+
+        public decimal? TCP重传字节数 { get; set; }
+        public double TCP重传字节占比 { get; set; }
+
+        public decimal? TCP丢包字节数 { get; set; }
+        public double TCP丢包字节占比 { get; set; }
+    }
+
     //事实表
     public class FactTcpPortSession
     {
@@ -234,6 +277,7 @@ namespace OfflineInspect.ReTransmission.MapReduce
         public long TcpID { get; set; }
         public long HttpID { get; set; }
         public long MessageID { get; set; }
+        public long CalculationItemID { get; set; }
 
         public int sndcp_m_count { get; set; }
         public int? sndcp_m_total { get; set; }
@@ -247,7 +291,6 @@ namespace OfflineInspect.ReTransmission.MapReduce
         public decimal? seq_total_lost { get; set; }   //丢包和重传计算
         public decimal? seq_total_repeat { get; set; }
         public double duration { get; set; }  //时间计算
-
     }
 
     //这部分给mongo保存
@@ -263,6 +306,7 @@ namespace OfflineInspect.ReTransmission.MapReduce
         public DimensionTcp DimTcp = new DimensionTcp();
         public DimensionHttp DimHttp = new DimensionHttp();
         public DimensionMessage DimMessage = new DimensionMessage();
+        public CalculationItem CalItem = new CalculationItem();
         public FactTcpPortSession FactTcp = new FactTcpPortSession();
     }
 
@@ -357,7 +401,8 @@ namespace OfflineInspect.ReTransmission.MapReduce
                 trsd.DimIp2.Ip2ID = p._id;
                 trsd.DimTcp.TcpID = p._id;
                 trsd.DimHttp.HttpID = p._id;
-                trsd.DimMessage.MessageID= p._id;
+                trsd.DimMessage.MessageID = p._id;
+                trsd.CalItem.CalculationItemID = p._id;
 
                 trsd.FactTcp.FactID = p._id;
                 trsd.FactTcp.IpID = p._id;
@@ -369,13 +414,14 @@ namespace OfflineInspect.ReTransmission.MapReduce
                 trsd.FactTcp.TcpID = p._id;
                 trsd.FactTcp.HttpID = p._id;
                 trsd.FactTcp.MessageID = p._id;
+                trsd.FactTcp.CalculationItemID = p._id;
 
                 trsd.DimIp.bsc_ip_distinct = p.direction == directiondown ? p.ip_dst_aggre : p.ip_src_aggre;
                 trsd.DimIp.ip_flags_mf = p.ip_flags_mf;
                 trsd.DimIp.sgsn_lost_bsc_ip = p.sgsn_lost_bsc_ip;
 
                 trsd.DimNs.bvci_seq = p.bvci_seq_aggre;
-           
+
                 trsd.DimNs.bvci_distinct = p.bsc_bvci;
                 trsd.DimNs.bvci_distinct_cnt = GetDistinctCount(p.bsc_bvci);//进行不重复计数
                 trsd.DimNs.lac_cell_from_bvci = p.lac_cell_from_bvci;
@@ -431,6 +477,19 @@ namespace OfflineInspect.ReTransmission.MapReduce
                 trsd.FactTcp.seq_total_lost = p.seq_total_lost > 0 ? p.seq_total_lost : 0;
                 trsd.FactTcp.seq_total_repeat = p.seq_total_lost < 0 ? -1 * p.seq_total_lost : 0;
                 trsd.FactTcp.duration = p.duration;
+
+                trsd.CalItem.IP实传字节数 = trsd.FactTcp.ip_total_aggre;
+                trsd.CalItem.TCP实传字节数 = trsd.FactTcp.seqtotal_sndcp_aggre;
+                trsd.CalItem.TCP完整字节数 = trsd.FactTcp.seq_total_reduce;
+                trsd.CalItem.TCP传输速率 = (double)trsd.FactTcp.seqtotal_sndcp_aggre / trsd.FactTcp.duration;
+                trsd.CalItem.TCP会话时长 = trsd.FactTcp.duration;
+                trsd.CalItem.TCP传输次数 = trsd.FactTcp.seq_total_count;
+                trsd.CalItem.TCP重发次数 = trsd.FactTcp.seq_repeat_cnt;
+                trsd.CalItem.TCP重传次数占比 = 1.0 * p.seq_repeat_cnt / p.seq_total_count;
+                trsd.CalItem.TCP重传字节数 = trsd.FactTcp.seq_total_repeat;
+                trsd.CalItem.TCP重传字节占比 = (double)trsd.FactTcp.seq_total_repeat / (double)trsd.FactTcp.seqtotal_sndcp_aggre;
+                trsd.CalItem.TCP丢包字节数 = trsd.FactTcp.seq_total_lost;
+                trsd.CalItem.TCP丢包字节占比 = (double)trsd.FactTcp.seq_total_lost / (double)trsd.FactTcp.seq_total_reduce;
 
                 mongo_TcpPortSessionETL.MongoCol.Insert(trsd);
             }
