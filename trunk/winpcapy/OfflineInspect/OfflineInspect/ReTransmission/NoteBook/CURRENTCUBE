@@ -1,0 +1,43 @@
+﻿
+CREATE MEMBER CURRENTCUBE.[Measures].[IP实传字节数]
+ AS [Measures].[Ip Total Aggre], 
+VISIBLE = 1;    
+CREATE MEMBER CURRENTCUBE.[Measures].[TCP重传次数占比]
+ AS [Measures].[Seq Repeat Cnt]/[Measures].[Seq Total Count], 
+FORMAT_STRING = "Percent", 
+FORE_COLOR = 255 /*Red*/, 
+VISIBLE = 1;       
+CREATE MEMBER CURRENTCUBE.[Measures].[TCP重传字节占比]
+ AS [Measures].[Seq Total Repeat]/[Measures].[Seqtotal Sndcp Aggre], 
+FORMAT_STRING = "Percent", 
+FORE_COLOR = 255 /*Red*/ , 
+VISIBLE = 1;           
+CREATE MEMBER CURRENTCUBE.[Measures].[TCP丢包字节占比]
+ AS [Measures].[Seq Total Lost]/[Measures].[Seq Total Reduce], 
+FORMAT_STRING = "Percent", 
+FORE_COLOR = 255 /*Red*/ , 
+VISIBLE = 1  ;      
+CREATE MEMBER CURRENTCUBE.[Measures].[TCP实传字节数]
+ AS [Measures].[Seqtotal Sndcp Aggre], 
+VISIBLE = 1;          
+CREATE MEMBER CURRENTCUBE.[Measures].[TCP传输速率]
+ AS [Measures].[Seqtotal Sndcp Aggre]/[Measures].[Duration], 
+VISIBLE = 1;           
+CREATE MEMBER CURRENTCUBE.[Measures].[TCP会话时长]
+ AS [Measures].[Duration], 
+VISIBLE = 1;       
+CREATE MEMBER CURRENTCUBE.[Measures].[TCP传输次数]
+ AS [Measures].[Seq Total Count], 
+VISIBLE = 1;       
+CREATE MEMBER CURRENTCUBE.[Measures].[TCP重发次数]
+ AS [Measures].[Seq Repeat Cnt], 
+VISIBLE = 1;       
+CREATE MEMBER CURRENTCUBE.[Measures].[TCP丢包字节数]
+ AS [Measures].[Seq Total Lost], 
+VISIBLE = 1;       
+CREATE MEMBER CURRENTCUBE.[Measures].[TCP重传字节数]
+ AS [Measures].[Seq Total Repeat], 
+VISIBLE = 1;       
+CREATE MEMBER CURRENTCUBE.[Measures].[TCP完整字节数]
+ AS [Measures].[Seq Total Reduce], 
+VISIBLE = 1  ; 

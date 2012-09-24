@@ -44,9 +44,11 @@ namespace OfflineInspect.ReTransmission.Context
         public DbSet<DimensionIp2> DimensionIp2Set { set; get; }
         public DbSet<DimensionTcp> DimensionTcpSet { get; set; }
         public DbSet<DimensionHttp> DimensionHttpSet { get; set; }
-        public DbSet<DimensionMessage> MeasurementTcpPortSet { get; set; }
+        public DbSet<DimensionMessage> DimensionMessageSet { get; set; }
+        public DbSet<CalculationItem> CalculationItemSet { get; set; }
         public DbSet<FactTcpPortSession> FactTcpPortSessionSet { get; set; }
         #endregion
+
 
         public TcpDbContext AddToContext(TcpDbContext context, DimensionIp entity, int count, int commitCount, bool recreateContext, string sqlconn)
         {
@@ -91,6 +93,11 @@ namespace OfflineInspect.ReTransmission.Context
         public TcpDbContext AddToContext(TcpDbContext context, DimensionMessage entity, int count, int commitCount, bool recreateContext, string sqlconn)
         {
             context.Set<DimensionMessage>().Add(entity);
+            return AddToContextCon(context, count, commitCount, recreateContext, sqlconn);
+        }
+        public TcpDbContext AddToContext(TcpDbContext context, CalculationItem entity, int count, int commitCount, bool recreateContext, string sqlconn)
+        {
+            context.Set<CalculationItem>().Add(entity);
             return AddToContextCon(context, count, commitCount, recreateContext, sqlconn);
         }
         public TcpDbContext AddToContext(TcpDbContext context, FactTcpPortSession entity, int count, int commitCount, bool recreateContext, string sqlconn)

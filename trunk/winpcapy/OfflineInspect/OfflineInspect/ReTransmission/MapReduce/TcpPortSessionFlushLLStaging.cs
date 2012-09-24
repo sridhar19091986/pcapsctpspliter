@@ -1,5 +1,8 @@
 ﻿/*
- *  以小区切换作为ETL的最小粒度？
+ * 以小区切换作为ETL的最小粒度？
+ *  
+ * 
+ * 替换以tcp会话这个维度。
  * 
  * */
 
@@ -12,5 +15,6 @@ namespace OfflineInspect.ReTransmission.MapReduce
 {
     public class TcpPortSessionFlushLLStaging
     {
+
     }
 }

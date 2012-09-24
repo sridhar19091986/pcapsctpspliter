@@ -43,7 +43,7 @@ namespace OfflineInspect.ReTransmission.Context
         //生成维度表和事实表，同时开启多个连接进行处理？
         public void saveTcpPortSessionETLDocumentSet(string sqlconn)
         {
-            TcpDbContext[] context = new TcpDbContext[10];
+            TcpDbContext[] context = new TcpDbContext[11];
             try
             {
                 for (int i = 0; i < context.Length; i++)
@@ -68,7 +68,8 @@ namespace OfflineInspect.ReTransmission.Context
                             context[6] = context[6].AddToContext(context[6], tcp.DimTcp, count, bulksize, true, sqlconn);
                             context[7] = context[7].AddToContext(context[7], tcp.DimHttp, count, bulksize, true, sqlconn);
                             context[8] = context[8].AddToContext(context[8], tcp.DimMessage, count, bulksize, true, sqlconn);
-                            context[9] = context[9].AddToContext(context[9], tcp.FactTcp, count, bulksize, true, sqlconn);
+                            context[9] = context[9].AddToContext(context[9], tcp.CalItem, count, bulksize, true, sqlconn);
+                            context[10] = context[10].AddToContext(context[10], tcp.FactTcp, count, bulksize, true, sqlconn);
                         });
                 }
 

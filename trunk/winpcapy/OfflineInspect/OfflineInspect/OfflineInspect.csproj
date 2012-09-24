@@ -120,6 +120,7 @@
     <Content Include="ReTransmission\NoteBook\TextFile2.txt" />
     <None Include="ReTransmission\NoteBook\CREATE PARTITION FUNCTION" />
     <None Include="ReTransmission\NoteBook\CREATE DATABASE foshan_tcp_data" />
+    <None Include="ReTransmission\NoteBook\CURRENTCUBE" />
     <Content Include="ReTransmission\NoteBook\TlliTcpSession.txt" />
   </ItemGroup>
   <ItemGroup>

@@ -341,7 +341,7 @@ namespace OfflineInspect.ReTransmission.MapReduce
                         var gb_packet = m.Where(e => e.bssgp_direction == direction); //本次只计算下行速率
                         var pd_no_3tcp = gb_packet.Where(e => e.tcp_nxtseq != null);//不是3次握手的包
                         //http://stackoverflow.com/questions/3765038/is-there-an-equivalent-to-continue-in-a-parallel-foreach
-                        if (pd_no_3tcp.Count() == 0) return;//continue;
+                        if (pd_no_3tcp.Count() == 0) return ;//continue;
                         #endregion
 
                         TcpPortSessionStagingDocument tcps = new TcpPortSessionStagingDocument();
@@ -388,7 +388,6 @@ namespace OfflineInspect.ReTransmission.MapReduce
                         #endregion
 
                         tcps.bsc_bvci = m.Where(e => e.nsip_bvci != null).Select(e => Convert.ToString(e.nsip_bvci)).IEnumDistinctStrComma();
-
                         tcps.lac_cell_from_bvci = GetLacCellFromBvci(m, out multicellperbvci, out sgsnlostbscip);//??????pdp????
 
                         //小区切换序列？

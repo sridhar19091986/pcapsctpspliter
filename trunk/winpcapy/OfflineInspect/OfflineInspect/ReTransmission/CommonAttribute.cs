@@ -15,7 +15,7 @@ namespace OfflineInspect.ReTransmission
     public class CommonAttribute : CommonDataLocation
     {
         public static string[] LacCellBvciStaging = new String[] { "LacCellBvciStaging", db, remote };
-        public static string[] TcpPortSessionStaging = new String[] { "TcpPortSessionStaging", db, remote, "0", "5", "50000" };
+        public static string[] TcpPortSessionStaging = new String[] { "TcpPortSessionStaging", db, remote, "0", "5", "5000" };
         public static string[] LlcTlliSessionStaging = new String[] { "LlcTlliSessionStaging", db, remote, "0", "2", "5000" };
         public static string[] LacCellBvciETL = new string[] { "LacCellBvciETL", db, remote };
         public static string[] TcpPortSessionETL = new String[] { "TcpPortSessionETL", db, remote };
