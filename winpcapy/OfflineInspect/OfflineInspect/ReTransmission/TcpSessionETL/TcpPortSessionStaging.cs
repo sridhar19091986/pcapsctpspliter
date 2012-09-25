@@ -386,9 +386,7 @@ namespace OfflineInspect.ReTransmission.MapReduce
 
                         tcps.lac_cell = mtrix_tcpflow.Where(e => e.bssgp_lac != null).Count() == 0 ? "" : mtrix_tcpflow.Where(e => e.bssgp_lac != null).Select(e => Convert.ToString(e.bssgp_lac) + "-" + Convert.ToString(e.bssgp_ci)).IEnumDistinctStrComma();
                         tcps.lac = mtrix_tcpflow.Where(e => e.bssgp_lac != null).Select(e => e.bssgp_lac).IEnumDistinctStrComma();
-                        //下行时延，包含3次握手，取这次会话的总长度吧。
-                        TimeSpan? ts = mtrix_tcpflow.Max(e => DateTime.Parse(e.GbOverLLC_time)) - mtrix_tcpdir_tcpnxtNull.Min(e => DateTime.Parse(e.GbOverLLC_time));
-                        tcps.duration = ts.Value.TotalMilliseconds;
+        
                         #endregion
 
                         tcps.bsc_bvci = mtrix_tcpflow.Where(e => e.nsip_bvci != null).Select(e => Convert.ToString(e.nsip_bvci)).IEnumDistinctStrComma();
@@ -402,10 +400,11 @@ namespace OfflineInspect.ReTransmission.MapReduce
                         tcps.multi_cell_per_bvci = multicellperbvci;
                         tcps.sgsn_lost_bsc_ip = sgsnlostbscip;
 
-                        tcps.nsip_control_bits_c = mtrix_tcpflow.Select(e => e.nsip_control_bits_c).IEnumDistinctStrComma();
-                        tcps.nsip_control_bits_r = mtrix_tcpflow.Select(e => e.nsip_control_bits_r).IEnumDistinctStrComma();
+                        //这个存在方向性的问题
+                        tcps.nsip_control_bits_c = mtrix_tcpdir.Select(e => e.nsip_control_bits_c).IEnumDistinctStrComma();
+                        tcps.nsip_control_bits_r = mtrix_tcpdir.Select(e => e.nsip_control_bits_r).IEnumDistinctStrComma();
 
-                        tcps.ip2_id_aggre = mtrix_tcpflow.Where(e => e.ip2_id != null).Select(e => e.ip2_id).IEnumSequenceStrComma();
+                        tcps.ip2_id_aggre = mtrix_tcpdir.Where(e => e.ip2_id != null).Select(e => e.ip2_id).IEnumSequenceStrComma();
 
                         #region seq算法，计算tcp重传和丢包
                         //序列号的计算
@@ -414,6 +413,9 @@ namespace OfflineInspect.ReTransmission.MapReduce
                         //sndcp分片的问题会影响丢包率的计算   
                         //tcps.ip2_total_aggre = pd_no_3tcp.Sum(e => e.ip2_len - 20 - e.tcp_hdr_len);
                         //tcps.seqreduce_ip2total_aggre = tcps.seq_total_reduce > tcps.ip2_total_aggre ? tcps.seq_total_reduce : tcps.ip2_total_aggre;
+                        //下行时延，包含3次握手，取这次会话的总长度吧。
+                        TimeSpan? ts = mtrix_tcpdir_tcpnxtNull.Max(e => DateTime.Parse(e.GbOverLLC_time)) - mtrix_tcpdir_tcpnxtNull.Min(e => DateTime.Parse(e.GbOverLLC_time));
+                        tcps.duration = ts.Value.TotalMilliseconds;
 
                         tcps.ip_total_aggre = mtrix_tcpdir.Sum(e => e.ip_len);
                         tcps.sndcp_m_count = mtrix_tcpdir.Where(e => e.ip2_len == null).Count();
@@ -431,9 +433,12 @@ namespace OfflineInspect.ReTransmission.MapReduce
                         //计算速率，取reduce吧
                         //tcps.seq_total_aggre_rate = (double)tcps.seq_total_reduce / tcps.duration
                         tcps.seq_total_count = mtrix_tcpdir_tcpnxtNull.Count();
-                        tcps.seq_distinct_count = mtrix_tcpdir_tcpnxtNull.Select(e => e.tcp_seq).Distinct().Count();
+                        tcps.seq_distinct_count = mtrix_tcpdir_tcpnxtNull.Select(e => e.tcp_nxtseq).Distinct().Count();
                         tcps.seq_repeat_cnt = tcps.seq_total_count - tcps.seq_distinct_count;
-                        tcps.tcp_seq_aggre = mtrix_tcpdir_tcpnxtNull.Select(e => e.tcp_seq).IEnumDistinctStrComma();
+
+                        tcps.tcp_seq_aggre = mtrix_tcpdir_tcpnxtNull.Select(e => e.tcp_seq).Aggregate((a, b) => a + "," + b);
+                        tcps.tcp_nxt_aggre = mtrix_tcpdir_tcpnxtNull.Select(e => e.tcp_nxtseq).Aggregate((a, b) => a + "," + b);
+
                         //第1层ip地址，第2层ip地址
                         tcps.ip_src_aggre = mtrix_tcpdir_tcpnxtNull.Select(e => e.ip_src_host).IEnumDistinctStrComma();
                         tcps.ip2_src_aggre = mtrix_tcpdir_tcpnxtNull.Select(e => e.ip2_src_host).IEnumDistinctStrComma();
@@ -450,9 +455,7 @@ namespace OfflineInspect.ReTransmission.MapReduce
                         //windows_size,CWR
                         tcps.tcp_flags_cwr = mtrix_tcpdir_tcpnxtNull.Select(e => e.tcp_flags_cwr).IEnumDistinctStrComma();
                         tcps.tcp_win_size = mtrix_tcpdir_tcpnxtNull.Select(e => e.tcp_window_size).IEnumDistinctStrComma();
-                        //端口
-                        tcps.tcp_nxt_aggre = mtrix_tcpdir_tcpnxtNull.Select(e => e.tcp_nxtseq).OrderBy(e => e).Aggregate((a, b) => a + "," + b);
-                        // + "-" + Convert.ToString(e.tcp_dstport),只取源端口吧。
+                        //端口，+ "-" + Convert.ToString(e.tcp_dstport),只取源端口吧。
                         tcps.src_port_aggre = mtrix_tcpdir_tcpnxtNull.Select(e => Convert.ToString(e.tcp_srcport)).IEnumDistinctStrComma();
                         tcps.dst_port_aggre = mtrix_tcpdir_tcpnxtNull.Select(e => Convert.ToString(e.tcp_dstport)).IEnumDistinctStrComma();
                         //消息类型
