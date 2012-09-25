@@ -14,6 +14,7 @@ namespace OfflineInspect.ReTransmission.Context
     {
         //执行mongo导入sqlserver
         private int bulksize = 5000;
+        private int contextlen = 11;
         public void saveTcpPortSessionDocumentSet(string sqlconn)
         {
             TcpDbContext context = null;
@@ -43,7 +44,7 @@ namespace OfflineInspect.ReTransmission.Context
         //生成维度表和事实表，同时开启多个连接进行处理？
         public void saveTcpPortSessionETLDocumentSet(string sqlconn)
         {
-            TcpDbContext[] context = new TcpDbContext[11];
+            TcpDbContext[] context = new TcpDbContext[contextlen];
             try
             {
                 for (int i = 0; i < context.Length; i++)

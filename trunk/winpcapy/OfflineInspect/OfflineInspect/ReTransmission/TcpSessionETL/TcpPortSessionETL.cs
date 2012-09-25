@@ -247,18 +247,18 @@ namespace OfflineInspect.ReTransmission.MapReduce
         public decimal? TCP实传字节数 { get; set; }
         public decimal? TCP完整字节数 { get; set; }
 
-        public double TCP传输速率 { get; set; }
-        public double TCP会话时长 { get; set; }
+        public double? TCP传输速率 { get; set; }
+        public double? TCP会话时长 { get; set; }
 
-        public double TCP传输次数 { get; set; }
-        public double TCP重发次数 { get; set; }
-        public double TCP重传次数占比 { get; set; }
+        public int? TCP传输次数 { get; set; }
+        public int? TCP重发次数 { get; set; }
+        public double? TCP重传次数占比 { get; set; }
 
         public decimal? TCP重传字节数 { get; set; }
-        public double TCP重传字节占比 { get; set; }
+        public double? TCP重传字节占比 { get; set; }
 
         public decimal? TCP丢包字节数 { get; set; }
-        public double TCP丢包字节占比 { get; set; }
+        public double? TCP丢包字节占比 { get; set; }
     }
 
     //事实表
@@ -347,44 +347,27 @@ namespace OfflineInspect.ReTransmission.MapReduce
         }
         #endregion
 
-
-        private string SplitLacCellStr(string laccell, ILookup<string, LacCellBvciETLDocument> lookcell)
+        //返回2个值的方法
+        private string SplitLacCellStr(string laccell, ILookup<string, LacCellBvciETLDocument> lookcell, out int bvci_count)
         {
+            bvci_count = 0;
             string bvci = string.Empty;
             var cells = laccell.Split(',');
             foreach (var ce in cells.Distinct())
+            {
                 bvci = bvci + lookcell[ce].Select(e => e.bvci_aggre).FirstOrDefault() + ",";
+                bvci_count = bvci_count + lookcell[ce].Sum(e => e.bvci_cnt);
+            }
             return bvci;
         }
 
-        private int SplitLacCellCnt(string laccell, ILookup<string, LacCellBvciETLDocument> lookcell)
-        {
-            int bvci = 0;
-            var cells = laccell.Split(',');
-            foreach (var ce in cells.Distinct())
-                bvci = bvci + lookcell[ce].Sum(e => e.bvci_cnt);
-            return bvci;
-        }
-
-
-        private int GetDistinctCount(string field_aggre)
-        {
-            if (field_aggre == null) return 0;
-            var cells = field_aggre.Split(',');
-            return cells.Distinct().Count();//进行不重复计数
-        }
-
-        private int GetSequenceCount(string field_aggre)
-        {
-            if (field_aggre == null) return 0;
-            var cells = field_aggre.Split(',');
-            return cells.Count();//进行序列计数
-        }
+        private double EdgeMax = 4 * 59.2;
 
         public void CreatCollection()
         {
             LacCellBvciETL lcbs = new LacCellBvciETL();
             var cellslook = lcbs.mongo_LacCellBvciETL.QueryMongo().ToLookup(e => e.lac_ci);
+            int bvci_count = 0;
 
             TcpPortSessionStaging tts = new TcpPortSessionStaging();
             foreach (var p in tts.mongo_TcpPortSessionStaging.QueryMongo())
@@ -423,14 +406,14 @@ namespace OfflineInspect.ReTransmission.MapReduce
                 trsd.DimNs.bvci_seq = p.bvci_seq_aggre;
 
                 trsd.DimNs.bvci_distinct = p.bsc_bvci;
-                trsd.DimNs.bvci_distinct_cnt = GetDistinctCount(p.bsc_bvci);//进行不重复计数
+                trsd.DimNs.bvci_distinct_cnt = p.bsc_bvci.GetDistinctCount();//进行不重复计数
                 trsd.DimNs.lac_cell_from_bvci = p.lac_cell_from_bvci;
-                trsd.DimNs.lac_cell_from_bvci_cnt = GetDistinctCount(p.lac_cell_from_bvci);
+                trsd.DimNs.lac_cell_from_bvci_cnt = p.lac_cell_from_bvci.GetDistinctCount();//进行不重复计数
                 trsd.DimNs.multi_cell_per_bvci = p.multi_cell_per_bvci;
                 trsd.DimNs.multibvci_cnt = trsd.DimNs.lac_cell_from_bvci_cnt - trsd.DimNs.bvci_distinct_cnt;
-                trsd.DimNs.bvci_from_lac_cell = SplitLacCellStr(p.lac_cell, cellslook);
-                trsd.DimNs.bvci_from_lac_cell_cnt = SplitLacCellCnt(p.lac_cell, cellslook);
-                trsd.DimNs.bvci_seq_cnt = GetSequenceCount(p.bvci_seq_aggre);//进行序列计数
+                trsd.DimNs.bvci_from_lac_cell = SplitLacCellStr(p.lac_cell, cellslook, out bvci_count);
+                trsd.DimNs.bvci_from_lac_cell_cnt = bvci_count;
+                trsd.DimNs.bvci_seq_cnt = p.bvci_seq_aggre.GetSequenceCount();//进行序列计数
                 trsd.DimNs.bvci_pp_cnt = trsd.DimNs.bvci_seq_cnt - trsd.DimNs.bvci_distinct_cnt;
 
                 trsd.DimNs.nsip_control_bits_c = p.nsip_control_bits_c;
@@ -441,7 +424,7 @@ namespace OfflineInspect.ReTransmission.MapReduce
                 trsd.DimBssgp.imsi = p.imsi;
                 trsd.DimBssgp.direction = p.direction;
                 trsd.DimBssgp.lac_cell_distinct = p.lac_cell;
-                trsd.DimBssgp.lac_cell_distinct_cnt = GetDistinctCount(p.lac_cell);
+                trsd.DimBssgp.lac_cell_distinct_cnt = p.lac_cell.GetDistinctCount();//进行不重复计数
                 trsd.DimBssgp.cell_seq = p.cell_seq_aggre;
 
                 trsd.DimNs.bvci_cell_error_cnt = trsd.DimNs.bvci_distinct_cnt - trsd.DimBssgp.lac_cell_distinct_cnt;
@@ -481,15 +464,15 @@ namespace OfflineInspect.ReTransmission.MapReduce
                 trsd.CalItem.IP实传字节数 = trsd.FactTcp.ip_total_aggre;
                 trsd.CalItem.TCP实传字节数 = trsd.FactTcp.seqtotal_sndcp_aggre;
                 trsd.CalItem.TCP完整字节数 = trsd.FactTcp.seq_total_reduce;
-                trsd.CalItem.TCP传输速率 = (double)trsd.FactTcp.seqtotal_sndcp_aggre / trsd.FactTcp.duration;
+                trsd.CalItem.TCP传输速率 = trsd.FactTcp.duration != 0 ? (double)trsd.FactTcp.seqtotal_sndcp_aggre / trsd.FactTcp.duration : EdgeMax;
                 trsd.CalItem.TCP会话时长 = trsd.FactTcp.duration;
                 trsd.CalItem.TCP传输次数 = trsd.FactTcp.seq_total_count;
                 trsd.CalItem.TCP重发次数 = trsd.FactTcp.seq_repeat_cnt;
                 trsd.CalItem.TCP重传次数占比 = 1.0 * p.seq_repeat_cnt / p.seq_total_count;
                 trsd.CalItem.TCP重传字节数 = trsd.FactTcp.seq_total_repeat;
-                trsd.CalItem.TCP重传字节占比 = (double)trsd.FactTcp.seq_total_repeat / (double)trsd.FactTcp.seqtotal_sndcp_aggre;
+                trsd.CalItem.TCP重传字节占比 = trsd.FactTcp.seqtotal_sndcp_aggre != 0 ? (double)trsd.FactTcp.seq_total_repeat / (double)trsd.FactTcp.seqtotal_sndcp_aggre : 1.0;
                 trsd.CalItem.TCP丢包字节数 = trsd.FactTcp.seq_total_lost;
-                trsd.CalItem.TCP丢包字节占比 = (double)trsd.FactTcp.seq_total_lost / (double)trsd.FactTcp.seq_total_reduce;
+                trsd.CalItem.TCP丢包字节占比 = trsd.FactTcp.seq_total_reduce != 0 ? (double)trsd.FactTcp.seq_total_lost / (double)trsd.FactTcp.seq_total_reduce : 1.0;
 
                 mongo_TcpPortSessionETL.MongoCol.Insert(trsd);
             }
