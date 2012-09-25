@@ -14,7 +14,7 @@ namespace OfflineInspect.ReTransmission
         {
             CreateTcpDb();
             //BatchMakeLlcDataForMongo();
-            BatchMakeTcpDataForMongo();
+            //BatchMakeTcpDataForMongo();
             BatchMakeTcpDataForSqlServer();
 
             Console.WriteLine("\r\n......");
@@ -51,9 +51,9 @@ namespace OfflineInspect.ReTransmission
 
         private static void BatchMakeTcpDataForMongo()
         {
-            using (TcpPortSessionStaging tps = new TcpPortSessionStaging())
-                tps.CreateCollection();
-            GC.Collect();
+            //using (TcpPortSessionStaging tps = new TcpPortSessionStaging())
+            //    tps.CreateCollection();
+            //GC.Collect();
             using (TcpPortSessionETL trs = new TcpPortSessionETL())
                 trs.CreatCollection();
             GC.Collect();

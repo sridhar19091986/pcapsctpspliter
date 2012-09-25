@@ -29,11 +29,10 @@ namespace OfflineInspect.ReTransmission.Context
         public TcpDbContext(string connection) : base(connection) { }
 
         //定义数据库
-        public DbSet<TcpPortSessionStagingDocument> TcpPortSessionStagingDocumentSet { get; set; }
-
-        public DbSet<LacCellBvciStagingDocument> LacCellBvciStagingDocumentSet { get; set; }
-        public DbSet<LacCellBvciETLDocument> LacCellBvciETLDocumentSet { get; set; }
-        public DbSet<LlcTlliSessionStagingDocument> LlcTlliSessionDocumentSet { get; set; }
+        //public DbSet<TcpPortSessionStagingDocument> TcpPortSessionStagingDocumentSet { get; set; }
+        //public DbSet<LacCellBvciStagingDocument> LacCellBvciStagingDocumentSet { get; set; }
+        //public DbSet<LacCellBvciETLDocument> LacCellBvciETLDocumentSet { get; set; }
+        //public DbSet<LlcTlliSessionStagingDocument> LlcTlliSessionDocumentSet { get; set; }
 
         #region  //public DbSet<TcpPortSessionETLDocument> TcpPortSessionETLDocumentSet { get; set; }
         public DbSet<DimensionIp> DimensionIpSet { get; set; }
