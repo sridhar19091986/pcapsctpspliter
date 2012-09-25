@@ -18,9 +18,9 @@ CREATE PARTITION SCHEME [partitionschemetcp] AS PARTITION [partition_function_tc
 GO
 
 CREATE TABLE [dbo].[Gb_TCP_ReTransmission](
-	[FileNum] [int] NULL,
-	[PacketNum] [int] NULL,
-	[BeginFileNum] [int] NULL,
+ 	  [FileNum] [int] not NULL,
+	  [PacketNum] [int] not NULL,
+	  [BeginFileNum] [int] not NULL,
 	[BeginFrameNum] [int] NULL,
 	[PacketTime] [datetime] NULL,
 	[PacketTime(ms)] [int] NULL,
@@ -39,6 +39,7 @@ CREATE TABLE [dbo].[Gb_TCP_ReTransmission](
 	[http_user_agent] [nvarchar](200) NULL,
 	[ip_dst_host] [nvarchar](200) NULL,
 	[ip_flags_mf] [nvarchar](200) NULL,
+		[ip2_id] [int] NULL,
 	[ip_len] [int] NULL,
 	[ip_src_host] [nvarchar](200) NULL,
 	[ip_ttl] [nvarchar](200) NULL,
@@ -69,6 +70,8 @@ CREATE TABLE [dbo].[Gb_TCP_ReTransmission](
 
 GO
 
+alter table [Gb_TCP_ReTransmission] add  PRIMARY KEY (PacketNum,FileNum,[BeginFileNum]);
 
 
+GO
 

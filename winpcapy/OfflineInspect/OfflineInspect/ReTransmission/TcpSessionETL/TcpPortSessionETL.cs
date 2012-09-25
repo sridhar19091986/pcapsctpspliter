@@ -1,5 +1,22 @@
 ﻿/*
  * 
+ * 
+ * 
+ * 
+1.SGSN发给BSC，每个LLC的生存时间是多少？
+PDU Lifetime=5762/100s=5.762秒. 
+ 
+2. 当编码是MSC-9的时候，1个PDCH，1小时的承载数据量是多少？
+59.2kbps*3600s=213120kbit=213.120Mbit。
+
+ * 
+ * 
+ * 
+ * */
+
+
+/*
+ * 
  * 输出目标是给SSAS进行数据挖掘使用。
  * 
  * 
@@ -185,6 +202,10 @@ namespace OfflineInspect.ReTransmission.MapReduce
         public string lac_cell_distinct { get; set; }
         public int lac_cell_distinct_cnt { get; set; }
         public string cell_seq { get; set; }
+
+        //BSSGP.LLC-DISCARDED
+        //
+
     }
 
     public class DimensionLlcSndcp

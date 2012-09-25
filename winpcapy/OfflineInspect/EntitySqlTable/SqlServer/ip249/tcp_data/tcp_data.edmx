@@ -12,10 +12,11 @@
           <Key>
             <PropertyRef Name="FileNum" />
             <PropertyRef Name="PacketNum" />
+            <PropertyRef Name="BeginFileNum" />
           </Key>
           <Property Name="FileNum" Type="int" Nullable="false" />
           <Property Name="PacketNum" Type="int" Nullable="false" />
-          <Property Name="BeginFileNum" Type="int" />
+          <Property Name="BeginFileNum" Type="int" Nullable="false" />
           <Property Name="BeginFrameNum" Type="int" />
           <Property Name="PacketTime" Type="datetime" />
           <Property Name="PacketTime(ms)" Type="int" />
@@ -39,6 +40,7 @@
           <Property Name="ip_ttl" Type="nvarchar" MaxLength="200" />
           <Property Name="ip2_dst_host" Type="nvarchar" MaxLength="200" />
           <Property Name="ip2_flags_mf" Type="nvarchar" MaxLength="200" />
+          <Property Name="ip2_id" Type="int" />
           <Property Name="ip2_len" Type="int" />
           <Property Name="ip2_src_host" Type="nvarchar" MaxLength="200" />
           <Property Name="ip2_ttl" Type="nvarchar" MaxLength="200" />
@@ -72,10 +74,11 @@
           <Key>
             <PropertyRef Name="FileNum" />
             <PropertyRef Name="PacketNum" />
+            <PropertyRef Name="BeginFileNum" />
           </Key>
           <Property Type="Int32" Name="FileNum" Nullable="false" />
           <Property Type="Int32" Name="PacketNum" Nullable="false" />
-          <Property Type="Int32" Name="BeginFileNum" />
+          <Property Type="Int32" Name="BeginFileNum" Nullable="false" />
           <Property Type="Int32" Name="BeginFrameNum" />
           <Property Type="DateTime" Name="PacketTime" />
           <Property Type="Int32" Name="PacketTime_ms_" />
@@ -99,6 +102,7 @@
           <Property Type="String" Name="ip_ttl" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="ip2_dst_host" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="ip2_flags_mf" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ip2_id" />
           <Property Type="Int32" Name="ip2_len" />
           <Property Type="String" Name="ip2_src_host" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="ip2_ttl" MaxLength="200" FixedLength="false" Unicode="true" />
@@ -151,6 +155,7 @@
                 <ScalarProperty Name="ip2_ttl" ColumnName="ip2_ttl" />
                 <ScalarProperty Name="ip2_src_host" ColumnName="ip2_src_host" />
                 <ScalarProperty Name="ip2_len" ColumnName="ip2_len" />
+                <ScalarProperty Name="ip2_id" ColumnName="ip2_id" />
                 <ScalarProperty Name="ip2_flags_mf" ColumnName="ip2_flags_mf" />
                 <ScalarProperty Name="ip2_dst_host" ColumnName="ip2_dst_host" />
                 <ScalarProperty Name="ip_ttl" ColumnName="ip_ttl" />
@@ -201,7 +206,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="tcp_data" ZoomLevel="63">
-        <EntityTypeShape EntityType="foshan_tcp_dataModel.Gb_TCP_ReTransmission" Width="1.5" PointX="0.75" PointY="0.75" Height="8.8728645833333317" />
+        <EntityTypeShape EntityType="foshan_tcp_dataModel.Gb_TCP_ReTransmission" Width="1.5" PointX="0.75" PointY="0.75" Height="9.041484375" />
       </Diagram>
     </Diagrams>
   </Designer>

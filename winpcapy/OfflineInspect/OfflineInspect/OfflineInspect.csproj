@@ -102,11 +102,11 @@
     <Compile Include="ReTransmission\MapReduce\LacCellBvciETL.cs" />
     <Compile Include="ReTransmission\Context\TcpDataContextSave.cs" />
     <Compile Include="ReTransmission\Context\TcpDbContext.cs" />
-    <Compile Include="ReTransmission\MapReduce\TcpPortSessionFlushLLStaging.cs" />
+    <Compile Include="ReTransmission\BvciETL\TcpPortSessionFlushLLStaging.cs" />
     <Compile Include="ReTransmission\TcpDataFactory.cs" />
-    <Compile Include="ReTransmission\MapReduce\TcpPortSessionETL.cs" />
+    <Compile Include="ReTransmission\TcpSessionETL\TcpPortSessionETL.cs" />
     <Compile Include="ReTransmission\MapReduce\LlcTlliSessionStaging.cs" />
-    <Compile Include="ReTransmission\MapReduce\TcpPortSessionStaging.cs" />
+    <Compile Include="ReTransmission\TcpSessionETL\TcpPortSessionStaging.cs" />
     <Content Include="Mongo\Template2.txt" />
     <Content Include="Mongo\Template.txt" />
     <Compile Include="MultiInterface\GiGETRateMap.cs" />
