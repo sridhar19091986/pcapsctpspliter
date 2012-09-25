@@ -115,11 +115,13 @@ namespace EntitySqlTable.SqlServer.ip249.tcp_data
         /// </summary>
         /// <param name="fileNum">Initial value of the FileNum property.</param>
         /// <param name="packetNum">Initial value of the PacketNum property.</param>
-        public static Gb_TCP_ReTransmission CreateGb_TCP_ReTransmission(global::System.Int32 fileNum, global::System.Int32 packetNum)
+        /// <param name="beginFileNum">Initial value of the BeginFileNum property.</param>
+        public static Gb_TCP_ReTransmission CreateGb_TCP_ReTransmission(global::System.Int32 fileNum, global::System.Int32 packetNum, global::System.Int32 beginFileNum)
         {
             Gb_TCP_ReTransmission gb_TCP_ReTransmission = new Gb_TCP_ReTransmission();
             gb_TCP_ReTransmission.FileNum = fileNum;
             gb_TCP_ReTransmission.PacketNum = packetNum;
+            gb_TCP_ReTransmission.BeginFileNum = beginFileNum;
             return gb_TCP_ReTransmission;
         }
 
@@ -183,9 +185,9 @@ namespace EntitySqlTable.SqlServer.ip249.tcp_data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> BeginFileNum
+        public global::System.Int32 BeginFileNum
         {
             get
             {
@@ -193,15 +195,18 @@ namespace EntitySqlTable.SqlServer.ip249.tcp_data
             }
             set
             {
-                OnBeginFileNumChanging(value);
-                ReportPropertyChanging("BeginFileNum");
-                _BeginFileNum = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("BeginFileNum");
-                OnBeginFileNumChanged();
+                if (_BeginFileNum != value)
+                {
+                    OnBeginFileNumChanging(value);
+                    ReportPropertyChanging("BeginFileNum");
+                    _BeginFileNum = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("BeginFileNum");
+                    OnBeginFileNumChanged();
+                }
             }
         }
-        private Nullable<global::System.Int32> _BeginFileNum;
-        partial void OnBeginFileNumChanging(Nullable<global::System.Int32> value);
+        private global::System.Int32 _BeginFileNum;
+        partial void OnBeginFileNumChanging(global::System.Int32 value);
         partial void OnBeginFileNumChanged();
     
         /// <summary>
@@ -755,6 +760,30 @@ namespace EntitySqlTable.SqlServer.ip249.tcp_data
         private global::System.String _ip2_flags_mf;
         partial void Onip2_flags_mfChanging(global::System.String value);
         partial void Onip2_flags_mfChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ip2_id
+        {
+            get
+            {
+                return _ip2_id;
+            }
+            set
+            {
+                Onip2_idChanging(value);
+                ReportPropertyChanging("ip2_id");
+                _ip2_id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ip2_id");
+                Onip2_idChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ip2_id;
+        partial void Onip2_idChanging(Nullable<global::System.Int32> value);
+        partial void Onip2_idChanged();
     
         /// <summary>
         /// No Metadata Documentation available.

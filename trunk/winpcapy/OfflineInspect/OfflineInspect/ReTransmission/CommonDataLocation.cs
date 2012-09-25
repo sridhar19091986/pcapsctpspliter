@@ -7,7 +7,7 @@ namespace OfflineInspect.ReTransmission
 {
     public class CommonDataLocation
     {
-        protected static string db = "ReTransmission";
+        protected static string db = "ReTransmission_TEST";
         //protected static string remote = "mongodb://localhost/?safe=true";
         //protected static string sqlconn = "Data Source=localhost;Initial Catalog=TcpDbContext;Integrated Security=True;";
 

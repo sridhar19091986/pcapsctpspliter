@@ -7,6 +7,21 @@ namespace OfflineInspect.CommonTools
 {
     public static class IEnumerableExtensions
     {
+
+        public static int GetDistinctCount(this string field_aggre)
+        {
+            if (field_aggre == null) return 0;
+            var cells = field_aggre.Split(',');
+            return cells.Distinct().Count();//进行不重复计数
+        }
+
+        public static int GetSequenceCount(this string field_aggre)
+        {
+            if (field_aggre == null) return 0;
+            var cells = field_aggre.Split(',');
+            return cells.Count();//进行序列计数
+        }
+
         public static string GetHeader(this string source, string postion)
         {
             int pos = source.IndexOf(postion);
