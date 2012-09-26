@@ -1,0 +1,16 @@
+﻿
+
+
+select *  FROM [TcpDbContextab_TEST].[dbo].[FactTcpPortSessions]
+      WHERE 
+      --seq_total_lost/seq_total_reduce >0.9   
+      seq_total_lost>10287104
+go
+
+
+delete FROM [TcpDbContextab_TEST].[dbo].[FactTcpPortSessions]
+      WHERE 
+      --seq_total_lost/seq_total_reduce >0.9
+       seq_total_lost>10287104
+      
+--go
