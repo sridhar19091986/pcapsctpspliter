@@ -66,6 +66,13 @@ CREATE UNIQUE CLUSTERED INDEX [tcpport] ON [dbo].[Gb_TCP_ReTransmission]
  * 
  * */
 
+/*
+ * mongodb查询
+ * 
+ * db.TcpPortSessionStaging.find({ "session_id" : "0-29" }).limit(50);
+ * 
+ * */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -345,7 +352,7 @@ namespace OfflineInspect.ReTransmission.MapReduce
                         var mtrix_tcpdir = mtrix_tcpflow.Where(e => e.bssgp_direction == direction); //本次只计算下行速率
                         var mtrix_tcpdir_tcpnxtNull = mtrix_tcpdir.Where(e => e.tcp_nxtseq != null);//不是3次握手的包
                         //http://stackoverflow.com/questions/3765038/is-there-an-equivalent-to-continue-in-a-parallel-foreach
-                        if (mtrix_tcpdir_tcpnxtNull.Count() == 0) return ;//continue;
+                        if (mtrix_tcpdir_tcpnxtNull.Count() == 0) return;//continue;
                         #endregion
 
                         TcpPortSessionStagingDocument tcps = new TcpPortSessionStagingDocument();
@@ -386,7 +393,7 @@ namespace OfflineInspect.ReTransmission.MapReduce
 
                         tcps.lac_cell = mtrix_tcpflow.Where(e => e.bssgp_lac != null).Count() == 0 ? "" : mtrix_tcpflow.Where(e => e.bssgp_lac != null).Select(e => Convert.ToString(e.bssgp_lac) + "-" + Convert.ToString(e.bssgp_ci)).IEnumDistinctStrComma();
                         tcps.lac = mtrix_tcpflow.Where(e => e.bssgp_lac != null).Select(e => e.bssgp_lac).IEnumDistinctStrComma();
-        
+
                         #endregion
 
                         tcps.bsc_bvci = mtrix_tcpflow.Where(e => e.nsip_bvci != null).Select(e => Convert.ToString(e.nsip_bvci)).IEnumDistinctStrComma();

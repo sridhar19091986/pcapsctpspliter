@@ -156,7 +156,6 @@ namespace OfflineInspect.ReTransmission.MapReduce
         public long IpID { get; set; }
         public string ip_flags_mf { get; set; }
         public string bsc_ip_distinct { get; set; }
-
         public bool sgsn_lost_bsc_ip { get; set; }
     }
     public class DimensionUdp
@@ -202,10 +201,8 @@ namespace OfflineInspect.ReTransmission.MapReduce
         public string lac_cell_distinct { get; set; }
         public int lac_cell_distinct_cnt { get; set; }
         public string cell_seq { get; set; }
-
         //BSSGP.LLC-DISCARDED
-        //
-
+        //radio-status
     }
 
     public class DimensionLlcSndcp
@@ -226,7 +223,10 @@ namespace OfflineInspect.ReTransmission.MapReduce
         public string ip2host_distinct { get; set; }
         public string ip2ttl_distinct { get; set; }
         public string ip2_flags_mf { get; set; }
+        public int ip2_id_lost_seq { get; set; }
+        public int lost_ipid_seq { get; set; }
     }
+
     public class DimensionTcp
     {
         [Key]
@@ -234,6 +234,8 @@ namespace OfflineInspect.ReTransmission.MapReduce
         public long TcpID { get; set; }
         public string tcp_need_segment { get; set; }
         public string tcp_port_distinct { get; set; }
+        public int tcp_nxtseq_lost_seq { get; set; }
+        public int lost_tcp_seq { get; set; }
     }
 
     public class DimensionHttp
@@ -255,6 +257,7 @@ namespace OfflineInspect.ReTransmission.MapReduce
         public string session_id { get; set; }
         public long? ip2ip1_header { get; set; }
         public string msg_distinct_aggre { get; set; }
+
     }
 
     //计算模型,datamining定制
@@ -285,7 +288,6 @@ namespace OfflineInspect.ReTransmission.MapReduce
     //事实表
     public class FactTcpPortSession
     {
-
         [Key]
         public long FactID { get; set; }
 
@@ -423,9 +425,8 @@ namespace OfflineInspect.ReTransmission.MapReduce
                 trsd.DimIp.bsc_ip_distinct = p.direction == directiondown ? p.ip_dst_aggre : p.ip_src_aggre;
                 trsd.DimIp.ip_flags_mf = p.ip_flags_mf;
                 trsd.DimIp.sgsn_lost_bsc_ip = p.sgsn_lost_bsc_ip;
-
+        
                 trsd.DimNs.bvci_seq = p.bvci_seq_aggre;
-
                 trsd.DimNs.bvci_distinct = p.bsc_bvci;
                 trsd.DimNs.bvci_distinct_cnt = p.bsc_bvci.GetDistinctCount();//进行不重复计数
                 trsd.DimNs.lac_cell_from_bvci = p.lac_cell_from_bvci;
@@ -436,15 +437,13 @@ namespace OfflineInspect.ReTransmission.MapReduce
                 trsd.DimNs.bvci_from_lac_cell_cnt = bvci_count;
                 trsd.DimNs.bvci_seq_cnt = p.bvci_seq_aggre.GetSequenceCount();//进行序列计数
                 trsd.DimNs.bvci_pp_cnt = trsd.DimNs.bvci_seq_cnt - trsd.DimNs.bvci_distinct_cnt;
-
-                trsd.DimNs.nsip_control_bits_c = p.nsip_control_bits_c;
+                trsd.DimNs.nsip_control_bits_c = p.nsip_control_bits_c;//R-bit和C-bit不响应的问题，bsc_ip更新问题
                 trsd.DimNs.nsip_control_bits_r = p.nsip_control_bits_r;
-
-                //mulit-bvci-percell的问题
+ 
                 trsd.DimBssgp.lac_distinct = p.lac;
                 trsd.DimBssgp.imsi = p.imsi;
                 trsd.DimBssgp.direction = p.direction;
-                trsd.DimBssgp.lac_cell_distinct = p.lac_cell;
+                trsd.DimBssgp.lac_cell_distinct = p.lac_cell; //mulit-bvci-percell的问题
                 trsd.DimBssgp.lac_cell_distinct_cnt = p.lac_cell.GetDistinctCount();//进行不重复计数
                 trsd.DimBssgp.cell_seq = p.cell_seq_aggre;
 
@@ -461,6 +460,13 @@ namespace OfflineInspect.ReTransmission.MapReduce
                 trsd.DimTcp.tcp_port_distinct = p.direction == directiondown ? p.src_port_aggre : p.dst_port_aggre;
                 trsd.DimTcp.tcp_need_segment = p.tcp_need_segment;
 
+                #region TCP传输乱序的计算,ip2_id和tcp_nxtseq结合运算       
+                trsd.DimIp2.ip2_id_lost_seq = p.ip2_id_aggre.LostSequenctCount();
+                trsd.DimTcp.tcp_nxtseq_lost_seq = p.tcp_nxt_aggre.LostSequenctCount();
+                trsd.DimIp2.lost_ipid_seq = trsd.DimIp2.ip2_id_lost_seq > 0 ? 1 : 0;
+                trsd.DimTcp.lost_tcp_seq = trsd.DimTcp.tcp_nxtseq_lost_seq > 0 ? 1 : 0; 
+                #endregion
+
                 trsd.DimHttp.http_method = p.http_method == null ? tcp_data : p.http_method;
                 trsd.DimHttp.user_agent = p.user_agent == null ? fillnull : p.user_agent;
                 trsd.DimHttp.absolute_uri = p.absolute_uri == null ? fillnull : p.absolute_uri;
@@ -468,6 +474,7 @@ namespace OfflineInspect.ReTransmission.MapReduce
                 trsd.DimMessage.session_id = p.session_id;
                 trsd.DimMessage.msg_distinct_aggre = p.msg_distinct_aggre;
                 trsd.DimMessage.ip2ip1_header = p.ip2ip1_header;
+
 
                 trsd.FactTcp.ip_total_aggre = p.ip_total_aggre;
                 trsd.FactTcp.sndcp_m_count = p.sndcp_m_count;
