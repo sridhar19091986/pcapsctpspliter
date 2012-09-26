@@ -7,6 +7,22 @@ namespace OfflineInspect.CommonTools
 {
     public static class IEnumerableExtensions
     {
+        public static int LostSequenctCount(this string field_aggre)
+        {
+            if (field_aggre == null) return 0;
+            var cells = field_aggre.Split(',');
+            int lost_cnt = 0;
+            decimal now_value = 0;
+            decimal pre_value = 0;
+            foreach (var ce in cells)
+            {
+                now_value = Decimal.Parse(ce);
+                if (now_value < pre_value)
+                    lost_cnt++;
+                pre_value = now_value;
+            }
+            return lost_cnt;
+        }
 
         public static int GetDistinctCount(this string field_aggre)
         {
