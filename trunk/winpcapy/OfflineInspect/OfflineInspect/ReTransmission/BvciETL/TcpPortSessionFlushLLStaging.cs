@@ -21,6 +21,14 @@ using OfflineInspect.CommonTools;
 
 namespace OfflineInspect.ReTransmission.MapReduce
 {
+    public class TcpPortSessionFlushLLStagingDocument
+    {
+        /*
+         * 增加维度
+         * 
+         * */
+    }
+
     public class TcpPortSessionFlushLLStaging
     {
         private int size = Int32.Parse(CommonAttribute.TcpPortSessionFlushLLStaging[5]);

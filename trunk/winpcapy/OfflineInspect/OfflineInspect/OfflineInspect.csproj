@@ -97,8 +97,11 @@
     <Compile Include="FlowControl\FlowControlOneMs.cs" />
     <Compile Include="FlowControl\LacCellBvci.cs" />
     <Compile Include="Mongo\MongoCrud.cs" />
+    <Compile Include="ReTransmission\BvciETL\TcpPortSessionFlushETL.cs" />
     <Compile Include="ReTransmission\CommonAttribute.cs" />
+    <Compile Include="ReTransmission\ImsiSessionETL\LlcTlliSessionETL.cs" />
     <Compile Include="ReTransmission\MapReduce\LacCellBvciStaging.cs" />
+    <None Include="ReTransmission\NoteBook\会议纪要" />
     <None Include="ReTransmission\NoteBook\AbnormalTCPlost" />
     <Content Include="ReTransmission\NoteBook\RetransStatics.txt" />
     <Compile Include="ReTransmission\CommonDataLocation.cs" />
@@ -108,7 +111,7 @@
     <Compile Include="ReTransmission\BvciETL\TcpPortSessionFlushLLStaging.cs" />
     <Compile Include="ReTransmission\TcpDataFactory.cs" />
     <Compile Include="ReTransmission\TcpSessionETL\TcpPortSessionETL.cs" />
-    <Compile Include="ReTransmission\MapReduce\LlcTlliSessionStaging.cs" />
+    <Compile Include="ReTransmission\ImsiSessionETL\LlcTlliSessionStaging.cs" />
     <Compile Include="ReTransmission\TcpSessionETL\TcpPortSessionStaging.cs" />
     <Content Include="Mongo\Template2.txt" />
     <Content Include="Mongo\Template.txt" />
@@ -119,8 +122,7 @@
     <Compile Include="N201UXID\N201UXIDStatics.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="ReTransmission\NoteBook\TextFile1.txt" />
-    <Content Include="ReTransmission\NoteBook\TextFile2.txt" />
+    <Content Include="ReTransmission\NoteBook\dbChangeTracker.txt" />
     <None Include="ReTransmission\NoteBook\CREATE PARTITION FUNCTION" />
     <None Include="ReTransmission\NoteBook\CREATE DATABASE foshan_tcp_data" />
     <None Include="ReTransmission\NoteBook\CURRENTCUBE" />
