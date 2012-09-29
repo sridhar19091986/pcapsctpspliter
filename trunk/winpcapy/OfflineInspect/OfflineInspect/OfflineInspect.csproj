@@ -112,6 +112,7 @@
     <Compile Include="ReTransmission\TcpDataFactory.cs" />
     <Compile Include="ReTransmission\TcpSessionETL\TcpPortSessionETL.cs" />
     <Compile Include="ReTransmission\ImsiSessionETL\LlcTlliSessionStaging.cs" />
+    <Compile Include="ReTransmission\TcpSessionETL\TcpPortSessionRminer.cs" />
     <Compile Include="ReTransmission\TcpSessionETL\TcpPortSessionStaging.cs" />
     <Content Include="Mongo\Template2.txt" />
     <Content Include="Mongo\Template.txt" />
